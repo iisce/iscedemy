@@ -208,8 +208,8 @@ export const TESTIMONIALS: {
 	userrole: string;
 }[] = [
 	{
-		image: '/images/laken.jpg',
-		name: 'Jeff F.',
+		image: '/images/lekan.jpg',
+		name: 'Lekan.',
 		review: `I would not have gotten ready for a web developer position if I hadn't attended the ISCEDemy courses.giugiguigigikjkbbkjb`,
 		userrole: 'Frontend Developer',
 	},

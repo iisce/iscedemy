@@ -14,8 +14,8 @@ export default function CoursePreview() {
 			<p className='text-xl font-normal xl:font-semibold xl:w-1/2 w-full pb-3'>{`Choose between a range of beginner-friendly learning paths, hand-crafted by learning experts and backed by research`}</p>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 				{COURSE_PREVIEW.map((course, i) => (
-					
-					<Card key={i} className={`text-background items-start justify-center mx-auto bg-cover bg-center hover:bg-primary/70 hover:scale-105 transition-all`} style={{ backgroundImage: `url(${course.image})`}}  >
+
+					<Card key={i} className={`text-background items-start justify-center mx-auto bg-cover bg-center hover:bg-primary/70 hover:scale-105 transition-all`} style={{ backgroundImage: `url(${course.image})`}} >
 						<CardHeader>
 						<div className="flex items-center mb-3 w-5 h-5 space-x-2 text-tertiary">
 							{course.icon?.map((singleicon, i) => (
@@ -41,7 +41,7 @@ export default function CoursePreview() {
 						</div>
 					</CardFooter>
 				</Card>
-				
+
 				))}
 			</div>
 
@@ -96,17 +96,18 @@ export default function CoursePreview() {
 	))}
 	</div>
 
-	<Button className="mx-auto grid max-w-sm py-3 mt-4 animate-bounce duration-1000 delay-9000 ">
-		<Link
-			className="inline-block w-full bg-white text-black rounded-full 
-			   px-8 py-2 text-sm font-medium  shadow transition-colors hover:bg-tertiary/100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 "
-			href="/courses"
-		>
-			{`Start A Course`}
+	<div className="bg-primary my-3 w-[1024px] mx-auto gap-5 flex items-center justify-center space-x-4 rounded-xl py-6 px-3 text-white text-center">
+		<div className="flex-col mr-10">
+		<h2 className="text-2xl font-bold mb-4">Ready to get started?</h2>
+		<p className="mb-6 text-xl">Join us now and unlock your potential!</p>
+	
+		</div>
+			<Link href="/sign-up">
+			<Button className="bg-background text-primary px-6 py-3 rounded-full hover:bg-tertiary hover:text-white transition duration-300">
+				{`Sign Up Here`}
+			</Button>
 		</Link>
-	</Button>
-
-
+	</div>
 	</div>
 	)
 }

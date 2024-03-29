@@ -2,6 +2,8 @@ import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
 import * as Icons from '../../../lib/icons'
 import MaxWidthWrapper from '../../layout/max-width-wrapper'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 export default function HomeHeader() {
   return (
@@ -12,6 +14,14 @@ export default function HomeHeader() {
           <h1 className="text-5xl font-bold mb-6">
             {`Learn to code. Build a portfolio. Get hired.`}
           </h1>
+
+		<Link href="/sign-up">
+			<Button className="bg-primary text-background px-8 py-4 rounded-full hover:bg-tertiary text-xl hover:text-white transition duration-300">
+				{`Get OnBoard`}
+			</Button>
+		</Link>
+
+			
         </div>
 
         <div className="lg:w-1/2 flex md:space-x-2 justify-center py-3">

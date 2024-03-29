@@ -2,8 +2,6 @@ import MaxWidthWrapper from '@/components/layout/max-width-wrapper'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import * as Icons from '../../../lib/icons'
-import React from 'react'
-import Image from 'next/image'
 
 export default function AboutPreview() {
   return (
@@ -14,7 +12,7 @@ export default function AboutPreview() {
             <h2 className="text-3xl font-bold tracking-tighter xl:text-4xl underline">{`At PalmTechNIQ`}</h2>
             <div className="space-y-2 flex flex-col-reverse items-center lg:flex-row lg:justify-between w-full">
               <div className="relative w-full lg:w-1/2 px-4">
-                   <p className="w-full text-primary text-lg text-center xl:mx-8 py-2 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                <p className="w-full text-primary text-lg text-center xl:mx-8 py-2 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                   {`We're dedicated to providing the best technical education for our students, preparing them for success in the digital age. Our innovative approach, experienced instructors, and hands-on learning opportunities make our institute the perfect place to launch your career in tech.`}
                 </p>
               </div>
@@ -54,15 +52,18 @@ export default function AboutPreview() {
               </div>
             </div>
             
-            <Button className="mx-auto grid max-w-sm py-3 mt-4 animate-bounce duration-1000 delay-9000 ">
-              <Link
-                className="inline-block w-full bg-white text-black rounded-full 
-                px-8 py-2 text-sm font-medium  shadow transition-colors hover:bg-tertiary/100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900"
-                href="/about"
-              >
-                {`Learn More`}
-              </Link>
-              </Button>
+            <div className="bg-primary my-3 w-[1024px] mx-auto gap-5 flex items-center justify-center space-x-4 rounded-xl py-4 px-2 text-white text-center">
+		<div className="flex-col  mr-10">
+		<h2 className="text-2xl  font-bold mb-4">Ready to get started?</h2>
+		<p className="mb-6 text-xl">Join us now and unlock your potential!</p>
+	
+		</div>
+			<Link href="/about">
+			<Button className="bg-background text-primary px-6 py-3 rounded-full hover:bg-tertiary hover:text-white transition duration-300">
+				{`Learn More`}
+			</Button>
+		</Link>
+	</div>
           </div>
         </div>
       </MaxWidthWrapper>
