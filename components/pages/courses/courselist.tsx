@@ -7,16 +7,15 @@ export default function CourseList({
 	image,
 	title,
 	content,
-}: ICOURSELIST) {
+}: ICOURSELIST2) {
 	return (
 		<div className='p-[10px] rounded-md group shadow-md border'>
 			<div className='flex items-center mb-3 w-5 h-5 space-x-2 text-tertiary'>
-					{icon && icon.map((singleIcon, i) =>(
-						<div className='h-5 w-5' key={i}>
-							{singleIcon}
-						</div>
-					))}
-            </div>
+				{/* {icon && icon.map((singleIcon, i) =>( */}
+				{/* <div className='h-5 w-5' key={i}> */}
+				<div className='h-5 w-5'>{icon}</div>
+				{/* ))} */}
+			</div>
 			<div className='relative'>
 				<Image
 					className=' rounded-md'
@@ -29,7 +28,9 @@ export default function CourseList({
 					<Link
 						className=''
 						// <Link href={`/courses/${encodeURIComponent(title.toLowerCase().replace(/\s+/g, '-'))}`}>
-						href={`/courses/${encodeURIComponent(title.toLowerCase().replace(/\s+/g, '-'))}`}
+						href={`/courses/${encodeURIComponent(
+							title.toLowerCase().replace(/\s+/g, '-')
+						)}`}
 					>
 						<div className='after:bg-white after:absolute after:bottom-0 after:w-[20px] group-hover:after:w-[120px] pb-1 transition duration-300 translate-y-0 after:h-[2.5px] after:rounded-full flex gap-2 justify-center items-center'>
 							<p className='text-white text-center items-center mt-[80px]'>

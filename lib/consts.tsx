@@ -57,59 +57,45 @@ export const COURSEHEADER: ICOURSEHEADER[] = [
 	},
 ];
 
-export const COURSELIST: ICOURSELIST[] = [
+export const COURSELIST: ICOURSELIST2[] = [
 	{
-		icon: [
-			<Icons.LaptopIcon/>
-		],
+		icon: <Icons.LaptopIcon />,
 		image: '/frontend.jpg',
 		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
 		title: 'Frontend Development',
 	},
 	{
-		icon: [
-			<Icons.DatabaseIcon/>
-		],
+		icon: <Icons.DatabaseIcon />,
 		image: '/backend.jpg',
 		content: 'Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.',
 		title: 'Backend Development',
 	},
 	{
-		icon: [
-			<Icons.DataBaseColorIon/>
-		],
+		icon: <Icons.DataBaseColorIon />,
 		image: '/cybersecurity.jpg',
 		content: 'Understand data management, optimizing server performance fgfigignrg rgrngringr grgnrignrigrginrignrigrg rgnrigrigrignrig',
 		title: 'CyberSecurity',
 	},
 	{
-		icon: [ 
-			<Icons.BookIcon/>
-		],
+		icon: <Icons.BookIcon />,
 		image: '/uiux.jpg',
 		content: 'Understand enhamced user satisfaction, higher engagement and user accessibility.',
 		title: 'UI/UX Designing',
 	},
 	{
-		icon: [ 
-			<Icons.TrendIcon/>
-		],
+		icon: <Icons.TrendIcon />,
 		image: '/digitalmarketing.jpg',
 		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
 		title: 'Digital Marketing',
 	},
 	{
-		icon: [ 
-			<Icons.ReactJSColorIcon/>
-		],
+		icon: <Icons.ReactJSColorIcon />,
 		image: '/mobileappdevelopment.jpg',
 		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
 		title: 'Mobile App Development',
 	},
 	{
-		icon: [ 
-			<Icons.PaintbrushIcon/>
-		],
+		icon: <Icons.PaintbrushIcon />,
 		image: '/graphicdesign.webp',
 		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
 		title: 'Graphic Design',
@@ -165,7 +151,7 @@ export const OTHER_COURSE_PREVIEW: {
 		icon: <Icons.BookIcon key='9' />,
 		name: 'COURSE',
 		link: 'ui%2Fux-designing',
-		image:'/images/user-interface-design.jpg',
+		image: '/images/user-interface-design.jpg',
 		title: 'UI/UX',
 		info: `Explore a beginner-friendly, popular programming language that's renowned for its readability and
         extensive range of applications.`,
@@ -174,7 +160,7 @@ export const OTHER_COURSE_PREVIEW: {
 		icon: <Icons.DataBaseColorIon key='10' />,
 		name: ' COURSE',
 		link: 'cybersecurity',
-		image:'/images/cyber-security.jpg',
+		image: '/images/cyber-security.jpg',
 		title: 'CyberSecurity',
 		info: `Master SQL, an essential skill in data analysis and management, from creating to querying and manipulating
         databases.`,
@@ -183,7 +169,7 @@ export const OTHER_COURSE_PREVIEW: {
 		icon: <Icons.TrendIcon key='11' />,
 		name: 'COURSE',
 		link: 'digital-marketing',
-		image:'/images/search-engine-marketing.jpg',
+		image: '/images/search-engine-marketing.jpg',
 		title: 'Digital Marketing',
 		info: `Master the building blocks of web development, understand the structure of web
         pages, and start building real websites.`,
@@ -192,7 +178,7 @@ export const OTHER_COURSE_PREVIEW: {
 		icon: <Icons.PaintbrushIcon key='12' />,
 		name: ' COURSE',
 		link: 'graphic-design',
-		image:'/images/graphic-design.jpg',
+		image: '/images/graphic-design.jpg',
 		title: 'Graphic Design',
 		info: `Dive into the world of JavaScript, the programming language to manipulate web page elements, build web
         applications, and more.`,
@@ -210,149 +196,140 @@ export const COURSE_OUTLINE: {
 	numberOfStudentsErolled: string;
 	language: string;
 	certification: string;
-
 }[] = [
-  {
-	title: 'frontend-development',
-	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
-	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+	{
+		title: 'frontend-development',
+		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorName: 'Ayobami Paul',
+		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
-	summary:[
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-
-	], 
-	price: '$50',
-	lessons: '12',
-	duration: '2 weeks',
-	numberOfStudentsErolled: '657',
-	language: 'English',
-	certification: 'Yes',
-  },
-  {
-	title: 'backend-development',
-	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
-	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+		summary: [
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+		],
+		price: '$50',
+		lessons: '12',
+		duration: '2 weeks',
+		numberOfStudentsErolled: '657',
+		language: 'English',
+		certification: 'Yes',
+	},
+	{
+		title: 'backend-development',
+		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorName: 'Ayobami Paul',
+		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
-	summary:[
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-
-	], 
-	price: '$50',
-	lessons: '12',
-	duration: '2 weeks',
-	numberOfStudentsErolled: '657',
-	language: 'English',
-	certification: 'Yes',
-  },
-  {
-	title: 'cybersecurity',
-	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
-	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+		summary: [
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+		],
+		price: '$50',
+		lessons: '12',
+		duration: '2 weeks',
+		numberOfStudentsErolled: '657',
+		language: 'English',
+		certification: 'Yes',
+	},
+	{
+		title: 'cybersecurity',
+		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorName: 'Ayobami Paul',
+		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
-	summary:[
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-
-	], 
-	price: '$50',
-	lessons: '12',
-	duration: '2 weeks',
-	numberOfStudentsErolled: '657',
-	language: 'English',
-	certification: 'Yes',
-  },
-  {
-	title: 'graphic-design',
-	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
-	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+		summary: [
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+		],
+		price: '$50',
+		lessons: '12',
+		duration: '2 weeks',
+		numberOfStudentsErolled: '657',
+		language: 'English',
+		certification: 'Yes',
+	},
+	{
+		title: 'graphic-design',
+		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorName: 'Ayobami Paul',
+		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
-	summary:[
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-
-	], 
-	price: '$50',
-	lessons: '12',
-	duration: '2 weeks',
-	numberOfStudentsErolled: '657',
-	language: 'English',
-	certification: 'Yes',
-  },
-  {
-	title: 'ui%2Fux-designing',
-	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
-	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+		summary: [
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+		],
+		price: '$50',
+		lessons: '12',
+		duration: '2 weeks',
+		numberOfStudentsErolled: '657',
+		language: 'English',
+		certification: 'Yes',
+	},
+	{
+		title: 'ui%2Fux-designing',
+		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorName: 'Ayobami Paul',
+		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
-	summary:[
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-
-	], 
-	price: '$50',
-	lessons: '12',
-	duration: '2 weeks',
-	numberOfStudentsErolled: '657',
-	language: 'English',
-	certification: 'Yes',
-  },
-  {
-	title: 'mobile-app-development',
-	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
-	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+		summary: [
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+		],
+		price: '$50',
+		lessons: '12',
+		duration: '2 weeks',
+		numberOfStudentsErolled: '657',
+		language: 'English',
+		certification: 'Yes',
+	},
+	{
+		title: 'mobile-app-development',
+		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorName: 'Ayobami Paul',
+		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
-	summary:[
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-
-	], 
-	price: '$50',
-	lessons: '12',
-	duration: '2 weeks',
-	numberOfStudentsErolled: '657',
-	language: 'English',
-	certification: 'Yes',
-  },
-  {
-	title: 'digital-markerting',
-	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
-	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+		summary: [
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+		],
+		price: '$50',
+		lessons: '12',
+		duration: '2 weeks',
+		numberOfStudentsErolled: '657',
+		language: 'English',
+		certification: 'Yes',
+	},
+	{
+		title: 'digital-markerting',
+		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorName: 'Ayobami Paul',
+		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
-	summary:[
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-
-	], 
-	price: '$50',
-	lessons: '12',
-	duration: '2 weeks',
-	numberOfStudentsErolled: '657',
-	language: 'English',
-	certification: 'Yes',
-  },
-	
+		summary: [
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+			'In this course you will learn',
+		],
+		price: '$50',
+		lessons: '12',
+		duration: '2 weeks',
+		numberOfStudentsErolled: '657',
+		language: 'English',
+		certification: 'Yes',
+	},
 ];
 export const CURRICULUM: {
 	title: string;
@@ -366,30 +343,30 @@ export const CURRICULUM: {
 	{
 		title: 'Basic Introduction',
 		topics: [
-		  {
-			name: 'Brush up on Java concepts',
-			previewUrl: 'Preview',
-		  },
-		  {
-			name: `A Quick Introduction to Excel's Pivot Tables`,
-			duration: '3 minutes',
-		  },
-		  {
-			name: 'Amazon RDS Hands On',
-			duration: '3 minutes',
-		  },
-		  {
-			name: 'Associative Arrays',
-			duration: '3 minutes',
-		  },
-		  {
-			name: 'PHP fundamental',
-			duration: '3 minutes',
-			questions: 2,
-		  },
+			{
+				name: 'Brush up on Java concepts',
+				previewUrl: 'Preview',
+			},
+			{
+				name: `A Quick Introduction to Excel's Pivot Tables`,
+				duration: '3 minutes',
+			},
+			{
+				name: 'Amazon RDS Hands On',
+				duration: '3 minutes',
+			},
+			{
+				name: 'Associative Arrays',
+				duration: '3 minutes',
+			},
+			{
+				name: 'PHP fundamental',
+				duration: '3 minutes',
+				questions: 2,
+			},
 		],
-	  },
-	  {
+	},
+	{
 		title: 'Fundamental Concept Of HTML',
 		topics: [
 			{
@@ -408,10 +385,10 @@ export const CURRICULUM: {
 				name: `Code download`,
 				duration: `3 minutes`,
 			},
-		]
-	 }
+		],
+	},
 ];
-export const TUTOR_PROFILE:{
+export const TUTOR_PROFILE: {
 	name: string;
 	about: string;
 	role: string;
@@ -420,7 +397,7 @@ export const TUTOR_PROFILE:{
 }[] = [
 	{
 		icon: [
-			<Icons.FacebookIcon key='1'/>,
+			<Icons.FacebookIcon key='1' />,
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
@@ -431,8 +408,7 @@ export const TUTOR_PROFILE:{
 		dolor in reprehenderit in voluptate.`,
 		image: '/images/lekan.jpg',
 	},
-	
-]
+];
 export const TESTIMONIALS: {
 	image?: StaticImport | string;
 	name: string;
