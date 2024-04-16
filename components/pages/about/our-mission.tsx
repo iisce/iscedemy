@@ -3,11 +3,12 @@ import Image from "next/image";
 export default function OurMission() {
   return (
     <div id="our-mission" className="h-[100svh]">
-        <div className="grid md:grid-cols-2 gap-16 justify-center py-20">
-          <div className="">
-            <div className="text-start pb-10 ">
-              <div className="text-2xl font-bold ">{`Our Mission`}</div>
+        <div className="grid md:grid-cols-2 items-center mx-auto w-full justify-center py-20">
+        <div className="text-start ">
+              <h1 className="text-2xl font-bold ">{`Our Mission`}</h1>
             </div>
+          <div className="">
+            
             <div className="font-light text-lg w-full rounded-xl overflow-clip">
               <Image
                 src="/pixabay.jpg"

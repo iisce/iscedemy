@@ -2,7 +2,7 @@
 export default function OurValues() {
   return (
     <div id="our-values" className="h-[100svh]">
-        <div className="grid md:grid-cols-2 gap-16 justify-center py-20 ">
+        <div className="grid md:grid-cols-2 gap-16 items-center mx-auto w-full justify-center py-20 ">
           <div className="text-xl  ">
             <div className="text-start pb-10 ">
               <div className="text-2xl font-bold ">{`Our Values`}</div>
@@ -11,7 +11,7 @@ export default function OurValues() {
               <span className="">{`We plan to lead the charge of technological innovation and solutions in africa while improving consumers lives.`}</span>
             </div>
           </div>
-          <div className=" flex w-96 gap-20">
+          
             <div className="grid grid-cols-2 gap-10  text-xl">
               <div className=" ">
                 <span className="font-normal text-black flex flex-col">{`Transparency`}</span>
@@ -29,7 +29,7 @@ export default function OurValues() {
                 <span className="">{`Focus `}</span>
               </div>
             </div>
-          </div>
+     
         </div>
     </div>
   );

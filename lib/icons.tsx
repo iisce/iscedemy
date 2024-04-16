@@ -454,3 +454,317 @@ export function TrendIcon() {
 		</svg>
 	);
 }
+export const BadgeCheckIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+		<path d="m9 12 2 2 4-4" />
+	  </svg>
+	)
+  }
+  
+  
+  export const BookOpenIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+		<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+	  </svg>
+	)
+  }
+  
+  
+  export const ClockIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<circle cx="12" cy="12" r="10" />
+		<polyline points="12 6 12 12 16 14" />
+	  </svg>
+	)
+  }
+  
+  
+  export const CurrencyIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<circle cx="12" cy="12" r="8" />
+		<line x1="3" x2="6" y1="3" y2="6" />
+		<line x1="21" x2="18" y1="3" y2="6" />
+		<line x1="3" x2="6" y1="21" y2="18" />
+		<line x1="21" x2="18" y1="21" y2="18" />
+	  </svg>
+	)
+  }
+  
+  
+  export const FacebookIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+	  </svg>
+	)
+  }
+  
+  
+  export const GlobeIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<circle cx="12" cy="12" r="10" />
+		<line x1="2" x2="22" y1="12" y2="12" />
+		<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+	  </svg>
+	)
+  }
+  
+  
+  export const LinkedinIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+		<rect width="4" height="12" x="2" y="9" />
+		<circle cx="4" cy="4" r="2" />
+	  </svg>
+	)
+  }
+  
+  
+export const UserIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+		<circle cx="12" cy="7" r="4" />
+	  </svg>
+	)
+  }
+  
+  export const StarIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+	  </svg>
+	)
+  }
+  
+  
+  export const TwitterIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+	  </svg>
+	)
+  }
+  
+  
+  export const UsersIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+		<circle cx="9" cy="7" r="4" />
+		<path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+		<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+	  </svg>
+	)
+  }
+ export const DollarSignIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<line x1="12" x2="12" y1="2" y2="22" />
+		<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+	  </svg>
+	)
+}
+export const FileIcon = () => {
+	return (
+	  <svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	  >
+		<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+		<polyline points="14 2 14 8 20 8" />
+	  </svg>
+	)
+  }
+//   export const FacebookIcon = () => {
+// 	return (
+// 	  <svg
+// 		xmlns="http://www.w3.org/2000/svg"
+// 		width="24"
+// 		height="24"
+// 		viewBox="0 0 24 24"
+// 		fill="none"
+// 		stroke="currentColor"
+// 		strokeWidth="2"
+// 		strokeLinecap="round"
+// 		strokeLinejoin="round"
+// 	  >
+// 		<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+// 	  </svg>
+// 	)
+//   }
+  
+  
+//   export const LinkedinIcon = () => {
+// 	return (
+// 	  <svg
+// 		xmlns="http://www.w3.org/2000/svg"
+// 		width="24"
+// 		height="24"
+// 		viewBox="0 0 24 24"
+// 		fill="none"
+// 		stroke="currentColor"
+// 		strokeWidth="2"
+// 		strokeLinecap="round"
+// 		strokeLinejoin="round"
+// 	  >
+// 		<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+// 		<rect width="4" height="12" x="2" y="9" />
+// 		<circle cx="4" cy="4" r="2" />
+// 	  </svg>
+// 	)
+//   }
+  
+  
+// export const TwitterIcon = () => {
+// 	return (
+// 	  <svg
+// 		xmlns="http://www.w3.org/2000/svg"
+// 		width="24"
+// 		height="24"
+// 		viewBox="0 0 24 24"
+// 		fill="none"
+// 		stroke="currentColor"
+// 		strokeWidth="2"
+// 		strokeLinecap="round"
+// 		strokeLinejoin="round"
+// 	  >
+// 		<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+// 	  </svg>
+// 	)
+//   }

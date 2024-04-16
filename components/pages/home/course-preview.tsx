@@ -33,9 +33,9 @@ export default function CoursePreview() {
 						</CardDescription>
 					</CardContent>
 					<CardFooter className="flex justify-between mt-4">
-						<Button variant="secondary" className="bg-white text-black px-5 py-3 rounded-full "><Link href='/course'>{`Start Learning`}</Link></Button>
+						<Button variant="secondary" className="bg-white text-black px-5 py-3 rounded-full "><Link href={`/courses/${course.link}`}>{`Start Learning`}</Link></Button>
 						<div className="h-5 w-5 text-tertiary">
-							<Link href='/course'>
+							<Link href={`/courses/${course.link}`}>
 								<Icons.ArrowRightIcon />
 							</Link>
 						</div>
@@ -68,7 +68,7 @@ export default function CoursePreview() {
 
 									<Link
 										className=''
-										href={othersignglecourse.link}
+										href={`/courses/${othersignglecourse.link}`}
 									>
 										<div className='after:bg-white after:absolute after:bottom-0 after:w-[20px] hover:after:w-[120px] pb-1 transition duration-300 translate-y-0 after:h-[2.5px] after:rounded-full flex gap-2 justify-center items-center'>
 											<p className='text-white text-center items-center mt-[80px]'>

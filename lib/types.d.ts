@@ -18,7 +18,7 @@ interface ICOURSEHEADER {
 interface ICOURSELIST{
   icon?: React.ReactNode[];
   image: string;
-  link: string;
+  link?: string;
   title: string;
   content: string;
 }

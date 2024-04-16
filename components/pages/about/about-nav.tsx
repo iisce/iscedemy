@@ -6,7 +6,7 @@ import React from "react";
 
 export default function AboutNav() {
   return (
-    <MaxWidthWrapper className="sticky top-0 grid grid-cols-4 bg-blue-200 rounded-lg  ">
+    <MaxWidthWrapper className="sticky top-0 grid grid-cols-4 w-full container bg-black text-secondary  ">
       <Link
         href={"/about#our-story"}
         className="border-b-2 hover:border-black py-2 text-center flex gap-2 justify-center items-center"

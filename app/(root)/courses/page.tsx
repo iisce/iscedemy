@@ -1,6 +1,6 @@
 "use client";
-import CourseHeader from "@/components/courseheader";
-import CourseList from "@/components/courselist";
+import CourseHeader from "@/components/pages/courses/courseheader";
+import CourseList from "@/components/pages/courses/courselist";
 import {
   Carousel,
   CarouselContent
