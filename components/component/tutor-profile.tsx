@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function TutorProfile() {
 	return (
-		<div className="max-w-4xl mx-auto p-6 bg-white ">
+		<div className="w-full mx-auto p-6 bg-white ">
 			{TUTOR_PROFILE.map((tutor, i) => (
 				<div className="flex items-center" key={i}>
           <div className="-translate-y-20 w-full h-full">

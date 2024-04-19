@@ -8,6 +8,7 @@ import * as Icons from '@/lib/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import TutorProfile from '@/components/component/tutor-profile';
+import { SingleTutorReviews } from '@/components/component/tutor-reviews';
 
 export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	const courseDetails = COURSE_OUTLINE.find(
@@ -151,6 +152,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							<SingleCourseCurriculum />
 						)}
 						{activeTab === 'instructor' && <TutorProfile />}
+						{activeTab === 'reviews' && <SingleTutorReviews />}
 					</div>
 				</div>
 
