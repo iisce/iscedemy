@@ -122,7 +122,6 @@ export const COURSES: ICOURSES[] = [
 		name: 'Mobile Development',
 	},
 ]
-
 export const COURSE_PREVIEW: {
 	icon?: React.ReactNode[];
 	image?: StaticImport | string;
@@ -240,7 +239,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'backend-development',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'John Paul',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -259,7 +258,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'cybersecurity',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Jonathan Willams',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -278,7 +277,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'graphic-design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Micheal Steve',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -297,7 +296,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'ui%2Fux-designing',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Mawuli Smith',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -316,7 +315,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'mobile-app-development',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Sokeye David',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -335,7 +334,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'digital-markerting',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Ignatius Emeka',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -410,9 +409,53 @@ export const CURRICULUM: {
 	},
 ];
 export const TUTOR_REVIEWS: {
-
+	name: string;
+	image: StaticImport | string;
+	rating: React.ReactNode[];
+	title: string;
+	description: string;
 }[] = [
-
+	{
+		name: 'James Paul',
+		image: '/images/lekan.jpg',
+		rating: [
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+		],
+		title: 'Amazing Course',
+		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
+		dolore magna aliqua.`
+	},
+	{
+		name: 'Nicolas Bassey',
+		image: '/images/lekan.jpg',
+		rating: [
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+		],
+		title: 'Amazing Course',
+		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
+		dolore magna aliqua.`
+	},
+	{
+		name: 'John Paul',
+		image: '/images/lekan.jpg',
+		rating: [
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>,
+			<Icons.StarIcon/>
+		],
+		title: 'Amazing Course',
+		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
+		dolore magna aliqua.`
+	}
 ]
 export const TUTOR_PROFILE: {
 	name: string;
@@ -427,14 +470,14 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'Edward Norton',
+		name: 'Ayobami Paul',
 		role: 'Design Expert',
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
 		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
 		dolor in reprehenderit in voluptate.`,
 		image: '/images/lekan.jpg',
 	},
-	];
+];
 export const TESTIMONIALS: {
 	image?: StaticImport | string;
 	name: string;

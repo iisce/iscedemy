@@ -3,6 +3,8 @@ import { Progress } from "@/components/ui/progress"
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar"
 import * as Icons from '@/lib/icons'
 import { Separator } from "../ui/separator"
+import { TUTOR_REVIEWS } from "@/lib/consts"
+import Image from "next/image"
 
 export function SingleTutorReviews() {
   return (
@@ -17,7 +19,8 @@ export function SingleTutorReviews() {
             <Icons.StarIcon />
             <Icons.StarIcon />
           </div>
-          <div className="text-sm text-gray-500">3 ratings</div>
+          <div className="text-sm text-gray-500">3
+           ratings</div>
         </div>
         <div className="flex flex-col space-y-2">
           <div className="flex items-center gap-3">
@@ -25,14 +28,14 @@ export function SingleTutorReviews() {
               5 <Icons.StarIcon />
             </div>
             <Progress className="w-[250px] bg-orange-400 mx-2" value={100} />
-            <div>3</div>
+            <div>2</div>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-yellow-400 gap-3 flex flex-row">
               4 <Icons.StarIcon />
             </div>
-            <Progress className="w-[250px] mx-2" value={0} />
-            <div>0</div>
+            <Progress className="w-[250px] mx-2" value={80} />
+            <div>1</div>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-yellow-400 gap-3 flex flex-row">
@@ -58,30 +61,25 @@ export function SingleTutorReviews() {
         </div>
       </div>
       <div className="mt-12 space-y-4">
-        <h2 className="text-2xl font-semibold">Reviews</h2>
+        <h2 className="text-2xl font-semibold underline">Reviews</h2>
         <div className="mt-4 ">
-          <div className="flex items-center space-x-4">
-            <Avatar>
-              <AvatarImage alt="Steve Martin" src="/placeholder.svg?height=40&width=40" />
-              <AvatarFallback>SM</AvatarFallback>
-            </Avatar>
-            <div className="flex flex-col space-y-2">
-              <div className="text-lg font-semibold">Steve Martin</div>
-              <div className="flex text-yellow-400">
-                <Icons.StarIcon />
-                <Icons.StarIcon />
-                <Icons.StarIcon />
-                <Icons.StarIcon />
-                <Icons.StarIcon />
-              </div>
-              <div className="text-gray-600">Excellent Course</div>
-              <p className="text-gray-500 mt-1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
-              </p>
-              <Separator className="w-full"/>
-            </div>
+        {TUTOR_REVIEWS.map((tutor, i) => (
+          <div className="flex items-center space-x-4" key={i}>        
+              <Image width={40} height={40} src={tutor.image} alt="Iscedemy | Wilhelm F." 
+                className="object-cover rounded-full" />
+               <div className="flex flex-col w-full space-y-2 py-3">
+               <div className="text-lg font-semibold">{tutor.name}</div>
+               <div className="flex text-yellow-400">
+                 {tutor.rating}
+               </div>
+               <div className="text-gray-600">{tutor.title}</div>
+               <p className="text-gray-500 mt-1">
+                 {tutor.description}
+               </p>
+               <Separator className="w-full"/>
+             </div>       
           </div>
+           ))}
         </div>
       </div>
     </div>
