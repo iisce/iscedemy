@@ -9,12 +9,16 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import TutorProfile from '@/components/component/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import CourseRegisterPage from '@/components/component/course-register';
 
 export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	const courseDetails = COURSE_OUTLINE.find(
 		(course) => course.title === courseTitle
 	);
 	const [activeTab, setActiveTab] = useState('overview');
+	const [open, setOpen] = useState(false)
+
 
 	if (!courseDetails) {
 		return <div>Course not found</div>;
@@ -23,6 +27,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
 	};
+
 
 	return (
 		<div className='bg-white p-8 '>
@@ -254,7 +259,15 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</div>
 						</div>
 						<hr />
-						<Button className='w-full'>Buy Now</Button>
+						<Drawer open={open} onOpenChange={setOpen}>
+							<DrawerTrigger className='grid w-full'>
+							<Button className='w-full '>Register Now</Button>
+							</DrawerTrigger>
+							<DrawerContent>
+								<CourseRegisterPage/>
+							</DrawerContent>
+						</Drawer>
+						
 					</div>
 					<div>
 						<h3 className='text-xl font-semibold'>

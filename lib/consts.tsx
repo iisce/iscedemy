@@ -1,3 +1,4 @@
+
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import * as Icons from './icons';
 import React from 'react';
@@ -101,6 +102,26 @@ export const COURSELIST: ICOURSELIST2[] = [
 		title: 'Graphic Design',
 	},
 ];
+export const COURSES: ICOURSES[] = [
+	{
+		name: 'Frontend Development',
+	},
+	{
+		name: 'Backend Development',
+	},
+	{
+		name: 'CyberSecurity',
+	},
+	{
+		name: 'Graphic Design',
+	},
+	{
+		name: 'UI/UX Design',
+	},
+	{
+		name: 'Mobile Development',
+	},
+]
 
 export const COURSE_PREVIEW: {
 	icon?: React.ReactNode[];
@@ -388,6 +409,11 @@ export const CURRICULUM: {
 		],
 	},
 ];
+export const TUTOR_REVIEWS: {
+
+}[] = [
+
+]
 export const TUTOR_PROFILE: {
 	name: string;
 	about: string;
