@@ -156,8 +156,8 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						{activeTab === 'curriculum' && (
 							<SingleCourseCurriculum />
 						)}
-						{activeTab === 'instructor' && <TutorProfile />}
-						{activeTab === 'reviews' && <SingleTutorReviews />}
+						{activeTab === 'instructor' && (<TutorProfile  tutorName={courseDetails.tutorName}/>)}
+						{activeTab === 'reviews' && (<SingleTutorReviews tutorName={courseDetails.tutorName}/>)}
 					</div>
 				</div>
 
@@ -288,8 +288,6 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						</div>
 					</div>
 				</div>
-
-				{/* Add other components */}
 			</div>
 		</div>
 	);

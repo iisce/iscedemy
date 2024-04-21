@@ -409,6 +409,7 @@ export const CURRICULUM: {
 	},
 ];
 export const TUTOR_REVIEWS: {
+	tutorName: string;
 	name: string;
 	image: StaticImport | string;
 	rating: React.ReactNode[];
@@ -416,6 +417,7 @@ export const TUTOR_REVIEWS: {
 	description: string;
 }[] = [
 	{
+		tutorName: 'Ayobami Paul',
 		name: 'James Paul',
 		image: '/images/lekan.jpg',
 		rating: [
@@ -430,6 +432,7 @@ export const TUTOR_REVIEWS: {
 		dolore magna aliqua.`
 	},
 	{
+		tutorName: 'Ayobami Paul',
 		name: 'Nicolas Bassey',
 		image: '/images/lekan.jpg',
 		rating: [
@@ -444,7 +447,8 @@ export const TUTOR_REVIEWS: {
 		dolore magna aliqua.`
 	},
 	{
-		name: 'John Paul',
+		tutorName: 'John Paul',
+		name: 'Adam Pearce',
 		image: '/images/lekan.jpg',
 		rating: [
 			<Icons.StarIcon/>,
@@ -472,6 +476,32 @@ export const TUTOR_PROFILE: {
 		],
 		name: 'Ayobami Paul',
 		role: 'Design Expert',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/lekan.jpg',
+	},
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'John Paul',
+		role: 'Design Expert',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/lekan.jpg',
+	},
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'Jonathan Willams',
+		role: 'Cyber Expert',
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
 		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
 		dolor in reprehenderit in voluptate.`,

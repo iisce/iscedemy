@@ -1,12 +1,15 @@
 
 import { Progress } from "@/components/ui/progress"
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar"
-import * as Icons from '@/lib/icons'
-import { Separator } from "../ui/separator"
 import { TUTOR_REVIEWS } from "@/lib/consts"
+import * as Icons from '@/lib/icons'
 import Image from "next/image"
+import { Separator } from "../ui/separator"
 
-export function SingleTutorReviews() {
+export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
+  const tutorReviews = TUTOR_REVIEWS.filter(
+    (review) => review.tutorName === tutorName
+  );
+
   return (
     <div className="w-full mx-auto  p-8">
       <div className="flex justify-between overflow-hidden space-x-2 gap-4 items-start">
@@ -63,18 +66,18 @@ export function SingleTutorReviews() {
       <div className="mt-12 space-y-4">
         <h2 className="text-2xl font-semibold underline">Reviews</h2>
         <div className="mt-4 ">
-        {TUTOR_REVIEWS.map((tutor, i) => (
+        {tutorReviews.map((review, i) => (
           <div className="flex items-center space-x-4" key={i}>        
-              <Image width={40} height={40} src={tutor.image} alt="Iscedemy | Wilhelm F." 
+              <Image width={40} height={40} src={review.image} alt={`PalmtechNIQ | ${tutorName}`}
                 className="object-cover rounded-full" />
                <div className="flex flex-col w-full space-y-2 py-3">
-               <div className="text-lg font-semibold">{tutor.name}</div>
+               <div className="text-lg font-semibold">{review.name}</div>
                <div className="flex text-yellow-400">
-                 {tutor.rating}
+                 {review.rating}
                </div>
-               <div className="text-gray-600">{tutor.title}</div>
+               <div className="text-gray-600">{review.title}</div>
                <p className="text-gray-500 mt-1">
-                 {tutor.description}
+                 {review.description}
                </p>
                <Separator className="w-full"/>
              </div>       
