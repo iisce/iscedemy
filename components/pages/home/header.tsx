@@ -15,7 +15,7 @@ export default function HomeHeader() {
             {`Learn to code. Build a portfolio. Get hired.`}
           </h1>
 
-		<Link href="/sign-up">
+		<Link href="/register">
 			<Button className="bg-primary text-background px-8 py-4 rounded-full hover:bg-tertiary text-xl hover:text-white transition duration-300">
 				{`Get OnBoard`}
 			</Button>

@@ -177,7 +177,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						<div className='space-y-4'>
 							<div className='flex items-center'>
 								<div className='text-gray-500'>
-									<Icons.DollarSignIcon />
+									<Icons.NairaSignIcon/>
 								</div>
 
 								<span className='ml-2'>Price:</span>

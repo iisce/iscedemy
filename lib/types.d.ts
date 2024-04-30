@@ -32,3 +32,6 @@ interface ICOURSELIST2 {
 interface ICOURSES {
 	name: string;
 }
+interface IOCCUPATION {
+	name: string;
+}

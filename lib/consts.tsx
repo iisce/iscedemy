@@ -32,6 +32,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 		link: 'digital-markerting',
 		name: 'Digital Marketing',
 	},
+	{
+		link: 'project-management',
+		name: 'Project Management',
+	},
 ];
 
 export const COURSEHEADER: ICOURSEHEADER[] = [
@@ -101,6 +105,12 @@ export const COURSELIST: ICOURSELIST2[] = [
 		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
 		title: 'Graphic Design',
 	},
+	{
+		icon: <Icons.PaintbrushIcon />,
+		image: '/graphicdesign.webp',
+		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
+		title: 'Project Management',
+	},
 ];
 export const COURSES: ICOURSES[] = [
 	{
@@ -120,6 +130,26 @@ export const COURSES: ICOURSES[] = [
 	},
 	{
 		name: 'Mobile Development',
+	},
+	{
+		name: 'Project Management',
+	},
+]
+export const OCCUPATION: IOCCUPATION[] = [
+	{
+		name: 'I am a student',
+	},
+	{
+		name: 'I a graduate looking to learn new soft skill',
+	},
+	{
+		name: 'I am a master degree holder',
+	},
+	{
+		name: 'Employed and looking to upscale my soft skill',
+	},
+	{
+		name: 'Unemployed and looking to learn new soft skill',
 	},
 ]
 export const COURSE_PREVIEW: {
@@ -229,7 +259,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -248,7 +278,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -267,7 +297,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -286,7 +316,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -305,7 +335,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -324,7 +354,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -343,7 +373,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -421,11 +451,11 @@ export const TUTOR_REVIEWS: {
 		name: 'James Paul',
 		image: '/images/lekan.jpg',
 		rating: [
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
+			<Icons.StarIcon key='1' />,
+			<Icons.StarIcon key='2'  />,
+			<Icons.StarIcon key='3' />,
+			<Icons.StarIcon key='4' />,
+			<Icons.StarIcon key='5' />,
 		],
 		title: 'Amazing Course',
 		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
@@ -436,11 +466,11 @@ export const TUTOR_REVIEWS: {
 		name: 'Nicolas Bassey',
 		image: '/images/lekan.jpg',
 		rating: [
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
+			<Icons.StarIcon key='6' />,
+			<Icons.StarIcon key='7' />,
+			<Icons.StarIcon key='8' />,
+			<Icons.StarIcon key='9' />,
+			<Icons.StarIcon key='10' />,
 		],
 		title: 'Amazing Course',
 		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
@@ -451,10 +481,10 @@ export const TUTOR_REVIEWS: {
 		name: 'Adam Pearce',
 		image: '/images/lekan.jpg',
 		rating: [
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>,
-			<Icons.StarIcon/>
+			<Icons.StarIcon key='11' />,
+			<Icons.StarIcon key='12' />,
+			<Icons.StarIcon key='13' />,
+			<Icons.StarIcon key='14' />
 		],
 		title: 'Amazing Course',
 		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
