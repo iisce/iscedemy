@@ -192,7 +192,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								</div>
 
 								<span className='ml-2'>
-									Instructor:
+								 	Instructor:
 								</span>
 								<span className='ml-auto font-bold'>
 									{courseDetails.tutorName}
