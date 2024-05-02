@@ -19,13 +19,6 @@ export default function AboutPreview() {
               <div className="p-8 w-full lg:w-1/2 relative">
                 <video src='/images/aboutsectionvideo.mp4' width={500} height={500}  
                 autoPlay loop className='rounded-xl'></video>
-                {/* <Image
-                  width={500}
-                  height={500}
-                  src='/images/Build.png'
-                  alt='iscedemy | someone coding'
-                  className='rounded-xl'
-                /> */}
               </div>
             </div>
 
@@ -54,8 +47,8 @@ export default function AboutPreview() {
             
             <div className="bg-primary my-3 w-[1024px] mx-auto gap-5 flex items-center justify-center space-x-4 rounded-xl py-4 px-2 text-white text-center">
 		<div className="flex-col  mr-10">
-		<h2 className="text-2xl  font-bold mb-4">Ready to get started?</h2>
-		<p className="mb-6 text-xl">Join us now and unlock your potential!</p>
+  <h2 className="text-2xl  font-bold mb-4">{`Ready to get started?`}</h2>
+		<p className="mb-6 text-xl">{`Join us now and unlock your potential!`}</p>
 	
 		</div>
 			<Link href="/about">

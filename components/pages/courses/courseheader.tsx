@@ -27,7 +27,8 @@ export default function CourseHeader({
             <p>{description}</p>
             <Link
               className="bg-white text-black px-5 py-3 rounded-full "
-              href={`/courses/${link}`}
+              href='/sign-up'
+              // href={`/courses/${link}`}
             >
               <button className="mt-[20px]">Get started</button>
             </Link>

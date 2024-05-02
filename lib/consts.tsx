@@ -1,3 +1,4 @@
+
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import * as Icons from './icons';
 import React from 'react';
@@ -30,6 +31,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 	{
 		link: 'digital-markerting',
 		name: 'Digital Marketing',
+	},
+	{
+		link: 'project-management',
+		name: 'Project Management',
 	},
 ];
 
@@ -100,8 +105,53 @@ export const COURSELIST: ICOURSELIST2[] = [
 		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
 		title: 'Graphic Design',
 	},
+	{
+		icon: <Icons.PaintbrushIcon />,
+		image: '/graphicdesign.webp',
+		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
+		title: 'Project Management',
+	},
 ];
-
+export const COURSES: ICOURSES[] = [
+	{
+		name: 'Frontend Development',
+	},
+	{
+		name: 'Backend Development',
+	},
+	{
+		name: 'CyberSecurity',
+	},
+	{
+		name: 'Graphic Design',
+	},
+	{
+		name: 'UI/UX Design',
+	},
+	{
+		name: 'Mobile Development',
+	},
+	{
+		name: 'Project Management',
+	},
+]
+export const OCCUPATION: IOCCUPATION[] = [
+	{
+		name: 'I am a student',
+	},
+	{
+		name: 'I a graduate looking to learn new soft skill',
+	},
+	{
+		name: 'I am a master degree holder',
+	},
+	{
+		name: 'Employed and looking to upscale my soft skill',
+	},
+	{
+		name: 'Unemployed and looking to learn new soft skill',
+	},
+]
 export const COURSE_PREVIEW: {
 	icon?: React.ReactNode[];
 	image?: StaticImport | string;
@@ -209,7 +259,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -219,7 +269,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'backend-development',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'John Paul',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -228,7 +278,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -238,7 +288,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'cybersecurity',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Jonathan Willams',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -247,7 +297,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -257,7 +307,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'graphic-design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Micheal Steve',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -266,7 +316,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -276,7 +326,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'ui%2Fux-designing',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Mawuli Smith',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -285,7 +335,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -295,7 +345,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'mobile-app-development',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Sokeye David',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -304,7 +354,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -314,7 +364,7 @@ export const COURSE_OUTLINE: {
   {
 	title: 'digital-markerting',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Ignatius Emeka',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -323,7 +373,7 @@ export const COURSE_OUTLINE: {
 		'In this course you will learn',
 		'In this course you will learn',
 	], 
-	price: '$50',
+	price: '50,000',
 	lessons: '12',
 	duration: '2 weeks',
 	numberOfStudentsErolled: '657',
@@ -388,6 +438,59 @@ export const CURRICULUM: {
 		],
 	},
 ];
+export const TUTOR_REVIEWS: {
+	tutorName: string;
+	name: string;
+	image: StaticImport | string;
+	rating: React.ReactNode[];
+	title: string;
+	description: string;
+}[] = [
+	{
+		tutorName: 'Ayobami Paul',
+		name: 'James Paul',
+		image: '/images/lekan.jpg',
+		rating: [
+			<Icons.StarIcon key='1' />,
+			<Icons.StarIcon key='2'  />,
+			<Icons.StarIcon key='3' />,
+			<Icons.StarIcon key='4' />,
+			<Icons.StarIcon key='5' />,
+		],
+		title: 'Amazing Course',
+		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
+		dolore magna aliqua.`
+	},
+	{
+		tutorName: 'Ayobami Paul',
+		name: 'Nicolas Bassey',
+		image: '/images/lekan.jpg',
+		rating: [
+			<Icons.StarIcon key='6' />,
+			<Icons.StarIcon key='7' />,
+			<Icons.StarIcon key='8' />,
+			<Icons.StarIcon key='9' />,
+			<Icons.StarIcon key='10' />,
+		],
+		title: 'Amazing Course',
+		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
+		dolore magna aliqua.`
+	},
+	{
+		tutorName: 'John Paul',
+		name: 'Adam Pearce',
+		image: '/images/lekan.jpg',
+		rating: [
+			<Icons.StarIcon key='11' />,
+			<Icons.StarIcon key='12' />,
+			<Icons.StarIcon key='13' />,
+			<Icons.StarIcon key='14' />
+		],
+		title: 'Amazing Course',
+		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
+		dolore magna aliqua.`
+	}
+]
 export const TUTOR_PROFILE: {
 	name: string;
 	about: string;
@@ -401,14 +504,40 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'Edward Norton',
+		name: 'Ayobami Paul',
 		role: 'Design Expert',
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
 		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
 		dolor in reprehenderit in voluptate.`,
 		image: '/images/lekan.jpg',
 	},
-	];
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'John Paul',
+		role: 'Design Expert',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/lekan.jpg',
+	},
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'Jonathan Willams',
+		role: 'Cyber Expert',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/lekan.jpg',
+	},
+];
 export const TESTIMONIALS: {
 	image?: StaticImport | string;
 	name: string;

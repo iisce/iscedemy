@@ -9,12 +9,16 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import TutorProfile from '@/components/component/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import CourseRegisterPage from '@/components/component/course-register';
 
 export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	const courseDetails = COURSE_OUTLINE.find(
 		(course) => course.title === courseTitle
 	);
 	const [activeTab, setActiveTab] = useState('overview');
+	const [open, setOpen] = useState(false)
+
 
 	if (!courseDetails) {
 		return <div>Course not found</div>;
@@ -23,6 +27,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
 	};
+
 
 	return (
 		<div className='bg-white p-8 '>
@@ -151,8 +156,8 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						{activeTab === 'curriculum' && (
 							<SingleCourseCurriculum />
 						)}
-						{activeTab === 'instructor' && <TutorProfile />}
-						{activeTab === 'reviews' && <SingleTutorReviews />}
+						{activeTab === 'instructor' && (<TutorProfile  tutorName={courseDetails.tutorName}/>)}
+						{activeTab === 'reviews' && (<SingleTutorReviews tutorName={courseDetails.tutorName}/>)}
 					</div>
 				</div>
 
@@ -172,7 +177,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						<div className='space-y-4'>
 							<div className='flex items-center'>
 								<div className='text-gray-500'>
-									<Icons.DollarSignIcon />
+									<Icons.NairaSignIcon/>
 								</div>
 
 								<span className='ml-2'>Price:</span>
@@ -187,7 +192,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								</div>
 
 								<span className='ml-2'>
-									Instructor:
+								 	Instructor:
 								</span>
 								<span className='ml-auto font-bold'>
 									{courseDetails.tutorName}
@@ -254,7 +259,15 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</div>
 						</div>
 						<hr />
-						<Button className='w-full'>Buy Now</Button>
+						<Drawer open={open} onOpenChange={setOpen}>
+							<DrawerTrigger className='grid w-full'>
+							<Button className='w-full '>Register Now</Button>
+							</DrawerTrigger>
+							<DrawerContent>
+								<CourseRegisterPage/>
+							</DrawerContent>
+						</Drawer>
+						
 					</div>
 					<div>
 						<h3 className='text-xl font-semibold'>
@@ -275,8 +288,6 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						</div>
 					</div>
 				</div>
-
-				{/* Add other components */}
 			</div>
 		</div>
 	);

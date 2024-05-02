@@ -1,14 +1,22 @@
-import { TUTOR_PROFILE } from "@/lib/consts"
-import Image from "next/image"
-import Link from "next/link"
+import { TUTOR_PROFILE } from "@/lib/consts";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function TutorProfile() {
+interface ITutorProfileProps{
+  tutorName: string;
+}
+
+export default function TutorProfile({ tutorName }: ITutorProfileProps) {
+  const tutor = TUTOR_PROFILE.find(profile => profile.name === tutorName);
+
+  if (!tutor) {
+    return <div>Tutor profile not available at the moment</div>;
+  }
 	return (
 		<div className="w-full mx-auto p-6 bg-white ">
-			{TUTOR_PROFILE.map((tutor, i) => (
-				<div className="flex items-center" key={i}>
+				<div className="flex items-center">
           <div className="-translate-y-20 w-full h-full">
-          <Image width={50} height={50} src={tutor.image} alt="Iscedemy | Wilhelm F." 
+          <Image width={50} height={50} src={tutor.image} alt={`PalmtechNIQ | ${tutor.name}`}
             className="object-cover rounded-full" />
           </div>
            
@@ -25,7 +33,6 @@ export default function TutorProfile() {
         </Link>
 	    </div>
     </div>
-	))}
 </div>
 	)
 }

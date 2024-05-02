@@ -28,7 +28,7 @@ export default function CoursePreview() {
 						<CardTitle className="mt-2">{course.title}</CardTitle>
 					</CardHeader>
 					<CardContent className='py-2 '>
-						<CardDescription className="text-background font-normal text-xl ">
+						<CardDescription className="text-background  ">
 							{course.info}
 						</CardDescription>
 					</CardContent>
@@ -48,7 +48,7 @@ export default function CoursePreview() {
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8 ">
 				{OTHER_COURSE_PREVIEW.map((othersignglecourse, i) => (
 					<Card className="bg-background rounded-md shadow-md border " key={i}>
-						<CardHeader className=' gap-y-3'>
+						<CardHeader className=' space-y-1 gap-y-3'>
 							<div className="h-6 w-6 text-tertiary">
 								{othersignglecourse.icon}
 							</div>

@@ -29,3 +29,9 @@ interface ICOURSELIST2 {
 	title: string;
 	content: string;
 }
+interface ICOURSES {
+	name: string;
+}
+interface IOCCUPATION {
+	name: string;
+}
