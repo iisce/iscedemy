@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <>
       <div className="w-full flex">
-        <div className="w-[50%] px-[50px] my-[50px] ">
-          <h3 className="text-[50px] font-bold ">
+        <div className="lg:w-[50%] px-[30px] lg:px-[50px] my-[50px] ">
+          <h3 className="lg:text-[50px] text-[30px] font-bold ">
             <span className=" font-normal">❝</span>Creativity is INTELLIGENCE
             having fun.<span className="font-normal">❞</span>
           </h3>
@@ -22,7 +22,7 @@ export default function Home() {
             </Button>{" "}
           </Link>
         </div>
-        <div className="w-[40%]">
+        <div className=" hidden lg:inline xl:inline w-[40%]">
           <Image
             className=" mt-[26.5px] "
             src="/right.png"
