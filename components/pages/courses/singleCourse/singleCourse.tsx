@@ -11,6 +11,7 @@ import TutorProfile from '@/components/component/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import CourseRegisterPage from '@/components/component/course-register';
+import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
 
 export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	const courseDetails = COURSE_OUTLINE.find(
@@ -30,11 +31,12 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 
 
 	return (
-		<div className='bg-white p-8 '>
-			<div className='flex flex-col lg:flex-row lg:space-x-8'>
+		<div className='bg-white p-8 justify-center w-full'>
+			<MaxWidthWrapper>
+			<div className='flex flex-col justify-center items-center mx-auto md:flex-row md:space-x-8'>
 				<div className='flex-1 space-y-6'>
-					<div className='space-y-2'>
-						<h1 className='text-4xl font-bold'>
+					<div className='space-y-2 md:px-0 px-4 md:w-full w-96 '>
+						<h1 className='md:text-4xl text-2xl text-wrap font-bold'>
 							Starting {courseDetails.title} as your Home
 							Based Business
 						</h1>
@@ -74,8 +76,8 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							<Badge variant='secondary'>Business</Badge>
 						</div>
 					</div>
-					<Tabs>
-						<div className='flex space-x-4 border-b'>
+					<Tabs className='md:w-full min-w-32 md:px-0   justify-center items-center mx-auto '>
+						<div className='flex md:space-x-4 border-b'>
 							<Button
 								variant='ghost'
 								onClick={() =>
@@ -130,16 +132,16 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</Button>
 						</div>
 					</Tabs>
-					<div>
+					<div className='py-4 md:px-0 px-4'>
 						{activeTab === 'overview' && (
-							<div>
-								<h2 className='text-2xl font-bold'>
+							<div className="text-wrap">
+								<h2 className='md:text-2xl text-xl font-bold'>
 									Course Description
 								</h2>
 								<p className='mt-4 text-gray-600'>
 									{courseDetails.description}
 								</p>
-								<h3 className='mt-6 text-xl font-semibold'>
+								<h3 className='mt-6 md::text-xl text-lg font-semibold'>
 									What You&apos;ll Learn?
 								</h3>
 								<ul className='list-disc pl-6 mt-4 space-y-2 text-gray-600'>
@@ -161,21 +163,23 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 					</div>
 				</div>
 
-				<div className='lg:w-96 space-y-6'>
+				<div className='md:w-full w-screen  space-y-6'>
 					<iframe
 						width='400'
+						className='w-full h-full'
 						height='315'
 						src={courseDetails.tutorVideoUrl}
 						title="Tutor's Explanatory Video"
-						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+					allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
 					></iframe>
 
-					<div className='space-y-4'>
+					<div className='space-y-4 md:w-full w-screen flex flex-col justify-between items-center'>
 						<h3 className='text-xl font-semibold'>
 							Course Includes:
 						</h3>
-						<div className='space-y-4'>
-							<div className='flex items-center'>
+						<div className='space-y-4 '>
+							<div className='flex flex-row justify-between  items-center'>
+
 								<div className='text-gray-500'>
 									<Icons.NairaSignIcon/>
 								</div>
@@ -186,7 +190,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								</span>
 							</div>
 							<hr />
-							<div className='flex items-center'>
+							<div className='flex justify-between items-center'>
 								<div className='text-gray-500'>
 									<Icons.UserIcon />
 								</div>
@@ -194,7 +198,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								<span className='ml-2'>
 								 	Instructor:
 								</span>
-								<span className='ml-auto font-bold'>
+								<span className=' ml-6 font-bold'>
 									{courseDetails.tutorName}
 								</span>
 							</div>
@@ -269,7 +273,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						</Drawer>
 						
 					</div>
-					<div>
+					<div className=' md:px-0 px-4'>
 						<h3 className='text-xl font-semibold'>
 							Share On:
 						</h3>
@@ -289,6 +293,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 					</div>
 				</div>
 			</div>
+			</MaxWidthWrapper>
 		</div>
 	);
 }

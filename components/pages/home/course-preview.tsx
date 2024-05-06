@@ -11,7 +11,7 @@ export default function CoursePreview() {
 	return (
 		<div className=" text-primary px-4">
 			<h1 className=' font-bold xl:w-96 w-full  xl:text-4xl text-2xl py-2'>{`React, JavaScript, HTML, CSS, and more`}</h1>
-			<p className='text-xl font-normal xl:font-semibold xl:w-1/2 w-full pb-3'>{`Choose between a range of beginner-friendly learning paths, hand-crafted by learning experts and backed by research`}</p>
+			<p className='text-sm font-normal md:text-xl xl:font-semibold md:w-1/2 xl:w-1/2 w-full pb-3'>{`Choose between a range of beginner-friendly learning paths, hand-crafted by learning experts and backed by research`}</p>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 				{COURSE_PREVIEW.map((course, i) => (
 
@@ -96,15 +96,15 @@ export default function CoursePreview() {
 	))}
 	</div>
 
-	<div className="bg-primary my-3 w-[1024px] mx-auto gap-5 flex items-center justify-center space-x-4 rounded-xl py-6 px-3 text-white text-center">
-		<div className="flex-col mr-10">
-		<h2 className="text-2xl font-bold mb-4">Ready to get started?</h2>
-		<p className="mb-6 text-xl">Join us now and unlock your potential!</p>
+	<div className="bg-primary my-3 xl:w-[1024px] w-full mx-auto xl:gap-5 flex xl:flex-row flex-col items-center justify-center  rounded-xl py-4 xl:my-8 px-2 text-white text-center">
+		<div className="flex-col w-full items-center justify-center p-1 xl:mr-10">
+  <h2 className="xl:text-2xl text-xl  font-bold mb-4">{`Ready to get started?`}</h2>
+		<p className="mb-6 xl:text-xl md:text-md text-lg">{`Join us now and unlock your potential!`}</p>
 	
 		</div>
-			<Link href="/sign-up">
+			<Link href="/sign-up" className='xl:mr-10'>
 			<Button className="bg-background text-primary px-6 py-3 rounded-full hover:bg-tertiary hover:text-white transition duration-300">
-				{`Sign Up Here`}
+			{`Sign Up Here`}
 			</Button>
 		</Link>
 	</div>

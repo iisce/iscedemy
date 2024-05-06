@@ -1,11 +1,4 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { COURSES, OCCUPATION } from "@/lib/consts"
-import { Drawer, DrawerClose, DrawerFooter } from "../ui/drawer"
-import { Textarea } from "../ui/textarea"
+import CrashCourseRegisterForm from "./course-registerpage"
 
 export default function CourseRegisterPage() {
   return (
@@ -19,74 +12,9 @@ export default function CourseRegisterPage() {
               {`Fill out the form below to enroll in your desired course.`}
               </p>
             </div>
-            <Card>
-              <CardContent className="space-y-4 py-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="space-y-3">
-                    <Label htmlFor="firstName" className="px-3 font-semibold">{`First Name`}</Label>
-                    <Input id="firstName" placeholder="Enter your first name" required />
-                  </div>
-                  <div className="space-y-3">
-                    <Label htmlFor="lastName" className="px-3 font-semibold">{`Last Name`}</Label>
-                    <Input id="lastName" placeholder="Enter your last name" required />
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <Label htmlFor="email" className="px-3 font-semibold">{`Email`}</Label>
-                  <Input id="email" placeholder="Enter your email address" type="email" required/>
-                </div>
-                <div className="space-y-3">
-                  <Label htmlFor="course" className="px-3 font-semibold">{`Course`}</Label>
-                  <Select required>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a course" />
-                    </SelectTrigger>
-                    <SelectContent>
-                    {COURSES.map((course, i) => (
-                      <SelectGroup key={i}>
-                        <SelectItem value={course.name}>{course.name}</SelectItem>
-                      </SelectGroup>
-                    ))}
-                    </SelectContent>
-                  </Select>   
-                </div>
-                <div className="space-y-3">
-              <Label htmlFor="occupant" className="px-3 font-semibold">{`Let's Know you`}</Label>
-                  <Select required>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Tell us a bit about yourself." />
-                    </SelectTrigger>
-                    <SelectContent>
-                    {OCCUPATION.map((occupant, i) => (
-                      <SelectGroup key={i}>
-                        <SelectItem value={occupant.name}>{occupant.name}</SelectItem>
-                      </SelectGroup>
-                    ))}
-                    </SelectContent>
-                  </Select>  
-                </div>
-
-                
-                <div className="space-y-2">
-                 <Textarea className="h-32" placeholder="What are your expectations from this course?">
-                 </Textarea>
-                  
-                </div>
-                
-              </CardContent>
-              <CardFooter>
-                <Drawer>
-                  <DrawerFooter className="pt-2 w-full grid">
-                      <Button className="w-full" type="submit">
-                     {` Register`}
-                      </Button>
-                    <DrawerClose asChild>
-                      <Button variant="outline">{`Cancel`}</Button>
-                    </DrawerClose>
-                  </DrawerFooter>
-                </Drawer>   
-              </CardFooter>
-            </Card>
+            <div>
+              <CrashCourseRegisterForm/>
+            </div>
           </div>
         </div>
       </main>

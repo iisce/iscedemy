@@ -2,11 +2,8 @@ import Image from "next/image";
 
 export default function AboutIsce() {
   return (
-    <div className="text-black grid gap-5 h-[100svh]">
-      <div className="text-start">
-        <div className="text-5xl font-bold ">{``}</div>
-      </div>
-      <div className="grid md:grid-cols-2 gap-10 items-center w-full mx-auto  overflow-x-clip  justify-center py-20">
+    <div className="text-black grid xl:gap-5 h-[100svh] overflow-hidden w-full">
+      <div className="grid md:grid-cols-2 gap-10 items-center w-full mx-auto  overflow-x-clip  justify-center md:py-20">
         <div className="flex flex-col max-w-[500px]">
           <div className="flex flex-col gap-2 font-bold text-lg lg:text-xl  text-[34px] leading-normal ">
             <span>{`About us `}</span>
@@ -23,7 +20,7 @@ export default function AboutIsce() {
           </div>
           
         </div>
-        <div className="bg-black w-screen rounded-lg bg-blend-screen px-4   border h-24  -translate-y-14 "></div>
+        <div className="bg-black w-screen rounded-lg bg-blend-screen md:px-4 hidden md:block  border md:h-24  -translate-y-14 "></div>
       </div>
     </div>
   );

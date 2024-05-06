@@ -8,7 +8,7 @@ import OurValues from '@/components/pages/about/our-values';
 
 export default function About() {
 	return (
-		<MaxWidthWrapper className='text-black grid gap-5 relative '>
+		<MaxWidthWrapper className='text-black grid md:gap-5 relative '>
 			<AboutIsce />
 			<AboutNav />
 			<OurStory />

@@ -70,7 +70,7 @@ export default function Footer() {
 						</ol>
 					</div>
 
-					<div className='flex flex-col gap-4 px-9 text-sm'>
+					<div className=' w-full flex flex-col gap-4 text-sm'>
 						<ol className='font-bold text-lg'>Company</ol>
 						<Link
 							href='https://www.isce.tech'

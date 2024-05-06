@@ -137,19 +137,19 @@ export const COURSES: ICOURSES[] = [
 ]
 export const OCCUPATION: IOCCUPATION[] = [
 	{
-		name: 'I am a student',
+		name: 'I am an undergraduate looking to improve my soft skill.',
 	},
 	{
-		name: 'I a graduate looking to learn new soft skill',
+		name: 'I am graduate looking to learn new/improve my soft skill.',
 	},
 	{
-		name: 'I am a master degree holder',
+		name: 'I am a secondary school student ready to start a career in tech.',
 	},
 	{
-		name: 'Employed and looking to upscale my soft skill',
+		name: 'Employed and looking to upscale my soft skill.',
 	},
 	{
-		name: 'Unemployed and looking to learn new soft skill',
+		name: 'Unemployed and looking to learn new soft skill.',
 	},
 ]
 export const COURSE_PREVIEW: {
