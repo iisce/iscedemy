@@ -1,0 +1,23 @@
+import Image from "next/image";
+
+export default function OurTeam() {
+  return (
+		<div id="our-team" className="h-[100svh] md:px-0 md:py-0 py-2 px-2">
+			<h2 className="text-2xl font-bold pb-10 pt-16">{`Our team`}</h2>
+			<div className="grid mb:mb-0  mb-8 md:grid-cols-2 grid-cols-1 gap-10 items-center justify-center mx-auto w-full">
+				<div className="w-full h-full rounded-xl overflow-clip">
+        <Image
+         src="/christina.jpg"
+          width={400}
+          height={400}
+          alt="arin"
+          className="w-full object-cover"
+        ></Image>
+				</div>
+				<div className="md:text-2xl text-md text-wrap grid font-normal md:gap-4 space-y-2 ">
+        <p className="">{`We exist specifically for our customers because we know heroes such as yourselves deserve only the best sidekicks.`}</p>
+        </div>
+			</div>
+		</div>
+	);
+}
