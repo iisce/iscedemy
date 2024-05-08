@@ -5,7 +5,8 @@ import Link from "next/link";
 
 export default function AboutNav() {
   return (
-    <MaxWidthWrapper className="sticky top-0 grid  md:grid-cols-4 grid-cols-4 mx-auto w-full md:w-full overflow-clip container bg-black text-secondary  ">
+    <div className="sticky -top-1 w-full z-50 overflow-clip bg-black text-secondary">
+    <MaxWidthWrapper className="grid md:grid-cols-4 grid-cols-4">
       <Link
         href={"/about#our-story"}
         className="border-b-2 hover:border-black py-2 text-center flex xl:gap-2 md:gap-2 xl:justify-center  items-center"
@@ -35,5 +36,6 @@ export default function AboutNav() {
         Our Team
       </Link>
     </MaxWidthWrapper>
+    </div>
   );
 }
