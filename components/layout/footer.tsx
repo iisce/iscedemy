@@ -85,13 +85,13 @@ export default function Footer() {
 							Terms Of Use
 						</Link>
 						<Link
-							href='/about-us'
+							href='/'
 							className='cursor-pointer'
 						>
 							Privacy & Policy
 						</Link>
 						<Link
-							href='/about-us'
+							href='/faq'
 							className='cursor-pointer'
 						>
 							{`Frequently Asked Question`}
