@@ -1,9 +1,9 @@
 
 export default function OurValues() {
   return (
-    <div id="our-values" className="h-[100svh]">
-        <div className="grid md:grid-cols-2 gap-16 items-center mx-auto w-full justify-center py-20 ">
-          <div className="text-xl  ">
+    <div id="our-values" className="h-[100svh] md:py-0 py-2">
+        <div className="grid md:grid-cols-2 gap-16 items-center mx-auto w-full justify-center pb-10 pt-16 ">
+          <div className="md:text-2xl text-md text-wrap  ">
             <div className="text-start pb-10 ">
               <div className="text-2xl font-bold ">{`Our Values`}</div>
             </div>
@@ -12,7 +12,7 @@ export default function OurValues() {
             </div>
           </div>
           
-            <div className="grid grid-cols-2 gap-10  text-xl">
+            <div className="grid grid-cols-2 gap-10 md:text-2xl text-md text-wrap">
               <div className=" ">
                 <span className="font-normal text-black flex flex-col">{`Transparency`}</span>
               </div>

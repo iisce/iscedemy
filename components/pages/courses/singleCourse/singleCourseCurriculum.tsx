@@ -19,13 +19,13 @@ export default function SingleCourseCurriculum() {
                  </div>
                 
                  <span className="ml-2 text-sm font-medium text-gray-600">{topic.name}</span>
-                 <span className="text-xs font-semibold text-gray-500">{topic.duration}</span>
-                 <span className="text-xs font-semibold text-gray-500">{topic.questions} </span>
+                 <span className="text-xs hidden md:block font-semibold text-gray-500">{topic.duration}</span>
+                 <span className="text-xs hidden md:block font-semibold text-gray-500">{topic.questions} </span>
      
                  </div>
                       
                {topic.previewUrl && (
-                    <Button className="text-xs font-semibold text-blue-600 hover:text-blue-700">{topic.previewUrl}</Button>
+                    <Button className="text-xs font-semibold hidden md:block text-blue-600 hover:text-blue-700">{topic.previewUrl}</Button>
                   )}             
                 </li>
               ))}     

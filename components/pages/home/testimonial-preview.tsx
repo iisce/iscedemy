@@ -6,9 +6,9 @@ import Image from "next/image"
 
 export function TestimonialPreview() {
   return (
-      <div className="w-full mx-auto py-12">
+      <div className="w-full mx-auto py-6 xl:py-12">
         <MaxWidthWrapper>
-        <h2 className="text-center text-white xl:text-3xl text-xl  font-semibold mb-8">
+        <h2 className="text-center text-primary xl:text-3xl text-xl  font-semibold mb-8">
           {`Join 20+ Million learners & start a career you'll love`}
         </h2>
         <div className="xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 grid mx-auto items-center justify-center gap-4">

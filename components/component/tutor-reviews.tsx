@@ -11,8 +11,8 @@ export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
   );
 
   return (
-    <div className="w-full mx-auto  p-8">
-      <div className="flex justify-between overflow-hidden space-x-2 gap-4 items-start">
+    <div className="w-full  mx-auto  md:p-8">
+      <div className="flex flex-col justify-between overflow-hidden md:space-x-2 gap-6 md:gap-4 items-start">
         <div className="bg-white space-y-1 p-4 rounded-lg shadow flex flex-col items-center">
           <div className="text-3xl font-bold">5</div>
           <div className="flex text-yellow-400">

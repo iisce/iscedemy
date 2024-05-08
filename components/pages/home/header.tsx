@@ -8,23 +8,25 @@ import { Button } from '@/components/ui/button'
 export default function HomeHeader() {
   return (
     <div className="my-10 py-10 text-primary w-full items-center justify-center mx-auto">
-      <MaxWidthWrapper className='flex flex-col lg:flex-row'>
-        <div className="flex flex-col justify-center mx-auto lg:w-1/2">
+      <MaxWidthWrapper className='flex md:flex-row flex-col lg:flex-row'>
+        <div className="flex flex-col justify-center mx-auto md:items-start md:justify-start  md:w-1/2 xl:w-1/2">
           <h1 className="text-3xl font-bold mb-2">{`PalmTechNIQ`}</h1>
-          <h1 className="text-5xl font-bold mb-6">
-            {`Learn to code. Build a portfolio. Get hired.`}
+          <h1 className="xl:text-5xl md:text-3xl md:text-wrap text-xl font-bold mb-6">
+            {`Learn to code. 
+            Build a portfolio. 
+            Get hired.`}
           </h1>
 
-		<Link href="/register">
-			<Button className="bg-primary text-background px-8 py-4 rounded-full hover:bg-tertiary text-xl hover:text-white transition duration-300">
-				{`Get OnBoard`}
-			</Button>
-		</Link>
+          <Link href="/register">
+            <Button className="bg-primary text-background px-8 py-4 rounded-full hover:bg-tertiary xl:text-xl md:text-xl text-lg hover:text-white transition duration-300">
+              {`Get OnBoard`}
+            </Button>
+          </Link>
 
 			
         </div>
 
-        <div className="lg:w-1/2 flex md:space-x-2 justify-center py-3">
+        <div className="xl:w-1/2 md:w-1/2 flex md:space-x-2 justify-center py-3">
           <div className="relative rounded-lg ">
             
             <Image
