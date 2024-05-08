@@ -116,16 +116,16 @@ export default function Footer() {
 				</div>
 				<div className='pt-10  space-y-2'>
 					<div className='flex items-center gap-4 justify-center py-2'>
-						<Link href='/'>
+						<Link href='https://www.twitter.com/'>
 							<LucideTwitter />
 						</Link>
-						<Link href='/'>
+						<Link href='https://www.facebook.com/'>
 							<LucideFacebook />
 						</Link>
-						<Link href='/'>
+						<Link href='https://www.instagram.com/'>
 							<LucideInstagram />
 						</Link>
-						<Link href='/'>
+						<Link href='https://www.linkedin.com/'>
 							<LucideLinkedin />
 						</Link>
 					</div>

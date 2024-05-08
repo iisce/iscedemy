@@ -2,6 +2,7 @@ import React from "react";
 import { CarouselItem } from "../../ui/carousel";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function CourseHeader({
   image,
@@ -25,13 +26,15 @@ export default function CourseHeader({
               {header}
             </h1>
             <p>{description}</p>
+            <Button asChild className="mt-[20px]">
             <Link
               className="bg-white text-black px-5 py-3 rounded-full "
               href='/sign-up'
               // href={`/courses/${link}`}
             >
-              <button className="mt-[20px]">Get started</button>
+              Get started
             </Link>
+            </Button>
           </div>
         </div>
       </div>

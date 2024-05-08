@@ -15,7 +15,7 @@ export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
       <div className="flex flex-col justify-between overflow-hidden md:space-x-2 gap-6 md:gap-4 items-start">
         <div className="bg-white space-y-1 p-4 rounded-lg shadow flex flex-col items-center">
           <div className="text-3xl font-bold">5</div>
-          <div className="flex text-yellow-400">
+          <div className="flex text-green-600">
             <Icons.StarIcon />
             <Icons.StarIcon />
             <Icons.StarIcon />
@@ -27,35 +27,35 @@ export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
         </div>
         <div className="flex flex-col space-y-2">
           <div className="flex items-center gap-3">
-            <div className="text-yellow-400 gap-3 flex flex-row">
+            <div className="text-green-600 gap-3 flex flex-row">
               5 <Icons.StarIcon />
             </div>
             <Progress className="w-[250px] bg-orange-400 mx-2" value={100} />
             <div>2</div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="text-yellow-400 gap-3 flex flex-row">
+            <div className="text-green-600 gap-3 flex flex-row">
               4 <Icons.StarIcon />
             </div>
             <Progress className="w-[250px] mx-2" value={80} />
             <div>1</div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="text-yellow-400 gap-3 flex flex-row">
+            <div className="text-green-600 gap-3 flex flex-row">
               3 <Icons.StarIcon />
             </div>
             <Progress className="w-[250px] mx-2" value={0} />
             <div>0</div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="text-yellow-400 gap-3 flex flex-row">
+            <div className="text-green-600 gap-3 flex flex-row">
               2 <Icons.StarIcon />
             </div>
             <Progress className="w-[250px] mx-2" value={0} />
             <div>0</div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="text-yellow-400 gap-3 flex flex-row">
+            <div className="text-green-600 gap-3 flex flex-row">
               1 <Icons.StarIcon />
             </div>
             <Progress className="w-[250px] mx-2" value={0} />
@@ -72,7 +72,7 @@ export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
                 className="object-cover rounded-full" />
                <div className="flex flex-col w-full space-y-2 py-3">
                <div className="text-lg font-semibold">{review.name}</div>
-               <div className="flex text-yellow-400">
+               <div className="flex text-green-600">
                  {review.rating}
                </div>
                <div className="text-gray-600">{review.title}</div>

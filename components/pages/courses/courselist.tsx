@@ -10,7 +10,7 @@ export default function CourseList({
 }: ICOURSELIST2) {
 	return (
 		<div className='p-[10px] rounded-md group shadow-md border'>
-			<div className='flex items-center mb-3 w-5 h-5 space-x-2 text-tertiary'>
+			<div className='flex items-center mb-3 w-5 h-5 space-x-2 text-green-600'>
 				<div className='h-5 w-5'>{icon}</div>
 			</div>
 			<div className='relative'>

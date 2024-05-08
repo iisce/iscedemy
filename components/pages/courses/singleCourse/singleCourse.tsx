@@ -3,15 +3,16 @@ import React, { useState } from 'react';
 import { Tabs } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import SingleCourseCurriculum from './singleCourseCurriculum';
-import { COURSE_OUTLINE } from '@/lib/consts';
+import { COURSE_OUTLINE, TUTOR_PROFILE, TUTOR_REVIEWS } from '@/lib/consts';
 import * as Icons from '@/lib/icons';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import Image from "next/image";
 import { Badge } from '@/components/ui/badge';
 import TutorProfile from '@/components/component/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import CourseRegisterPage from '@/components/component/course-register';
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
+import Link from 'next/link';
 
 export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	const courseDetails = COURSE_OUTLINE.find(
@@ -25,6 +26,13 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 		return <div>Course not found</div>;
 	}
 
+	/**This picks the image in the tutor profile and sets it as the same image in the course header for a particular course */
+	const tutor = TUTOR_PROFILE.find(profile => profile.name === courseDetails.tutorName);
+
+	/**This is the Calculation for the total reviews for a particular tutor */
+	const tutorReviews = TUTOR_REVIEWS.filter(review => review.tutorName === courseDetails.tutorName);
+	const totalReviewsCount = tutorReviews.length;
+
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
 	};
@@ -37,23 +45,27 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 				<div className='flex-1 space-y-6'>
 					<div className='space-y-2 md:px-0 px-4 md:w-full w-96 '>
 						<h1 className='md:text-4xl text-2xl text-wrap font-bold'>
-							Starting {courseDetails.title} as your Home
-							Based Business
+							{courseDetails.textSnippet?.replace('{courseDetails.title}', courseDetails.title) || `Starting ${courseDetails.title} as your Home
+							Based Business`}
+							
 						</h1>
 						<div className='flex items-center space-x-2'>
-							<Avatar>
-								<AvatarImage
-									alt='Edward Norton'
-									src='/placeholder.svg?height=40&width=40'
+							
+								<Image
+									width={50}
+									height={50}
+									alt={ tutor?.name ||'PalmtechNIQ'}
+									src={ tutor?.image ||'/placeholder.svg'}
+									className="object-cover rounded-full"
 								/>
-								<AvatarFallback>CN</AvatarFallback>
-							</Avatar>
+								
+							
 							<div className='flex flex-col my-2 space-y-1'>
 								<div className='text-sm font-bold'>
 									{courseDetails.tutorName}
 								</div>
 								<div className='flex flex-row items-center'>
-									<div className='flex text-yellow-400'>
+									<div className='flex text-green-600'>
 										<Icons.StarIcon />
 										<Icons.StarIcon />
 										<Icons.StarIcon />
@@ -64,16 +76,16 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 									</div>
 
 									<span className='ml-2 text-sm'>
-										(3 Reviews)
+										({totalReviewsCount}Reviews)
 									</span>
 								</div>
 							</div>
 						</div>
 						<div className='flex space-x-2 text-sm'>
-							<div className='text-gray-500'>
+							<div className='text-green-600'>
 								<Icons.BookOpenIcon />
 							</div>
-							<Badge variant='secondary'>Business</Badge>
+							{/* <Badge variant={courseDetails.badgeType}>Business</Badge> */}
 						</div>
 					</div>
 					<Tabs className='md:w-full min-w-32 md:px-0   justify-center items-center mx-auto '>
@@ -85,7 +97,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								}
 								className={
 									activeTab === 'overview'
-										? 'border-b-2 border-blue-500'
+										? 'border-b-2 border-green-600'
 										: ''
 								}
 							>
@@ -98,7 +110,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								}
 								className={
 									activeTab === 'curriculum'
-										? 'border-b-2 border-blue-500'
+										? 'border-b-2 border-green-600'
 										: ''
 								}
 							>
@@ -111,7 +123,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								}
 								className={
 									activeTab === 'instructor'
-										? 'border-b-2 border-blue-500'
+										? 'border-b-2 border-green-600'
 										: ''
 								}
 							>
@@ -124,7 +136,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								}
 								className={
 									activeTab === 'reviews'
-										? 'border-b-2 border-blue-500'
+										? 'border-b-2 border-green-600'
 										: ''
 								}
 							>
@@ -156,7 +168,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</div>
 						)}
 						{activeTab === 'curriculum' && (
-							<SingleCourseCurriculum />
+							<SingleCourseCurriculum curriculum={courseDetails.curriculum}/>
 						)}
 						{activeTab === 'instructor' && (<TutorProfile  tutorName={courseDetails.tutorName}/>)}
 						{activeTab === 'reviews' && (<SingleTutorReviews tutorName={courseDetails.tutorName}/>)}
@@ -180,7 +192,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						<div className='space-y-4 '>
 							<div className='flex flex-row justify-between  items-center'>
 
-								<div className='text-gray-500'>
+								<div className='text-green-600'>
 									<Icons.NairaSignIcon/>
 								</div>
 
@@ -191,7 +203,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</div>
 							<hr />
 							<div className='flex justify-between items-center'>
-								<div className='text-gray-500'>
+								<div className='text-green-600'>
 									<Icons.UserIcon />
 								</div>
 
@@ -204,7 +216,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</div>
 							<hr />
 							<div className='flex items-center'>
-								<div className='text-gray-500'>
+								<div className='text-green-600'>
 									<Icons.ClockIcon />
 								</div>
 
@@ -215,18 +227,18 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</div>
 							<hr />
 							<div className='flex items-center'>
-								<div className='text-gray-500'>
+								<div className='text-green-600'>
 									<Icons.BookOpenIcon />
 								</div>
 
-								<span className='ml-2'>Lessons:</span>
+								<span className='ml-2'>Classes:</span>
 								<span className='ml-auto font-bold'>
-									{courseDetails.lessons}
+									{courseDetails.classes}
 								</span>
 							</div>
 							<hr />
 							<div className='flex items-center'>
-								<div className='text-gray-500'>
+								<div className='text-green-600'>
 									<Icons.UsersIcon />
 								</div>
 
@@ -239,7 +251,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</div>
 							<hr />
 							<div className='flex items-center'>
-								<div className='text-gray-500'>
+								<div className='text-green-600 '>
 									<Icons.GlobeIcon />
 								</div>
 
@@ -250,7 +262,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							</div>
 							<hr />
 							<div className='flex items-center'>
-								<div className='text-gray-500'>
+								<div className='text-green-600'>
 									<Icons.BadgeCheckIcon />
 								</div>
 
@@ -265,7 +277,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						<hr />
 						<Drawer open={open} onOpenChange={setOpen}>
 							<DrawerTrigger className='grid w-full'>
-							<Button className='w-full '>Register Now</Button>
+							Register Now
 							</DrawerTrigger>
 							<DrawerContent>
 								<CourseRegisterPage/>
@@ -279,15 +291,21 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						</h3>
 						<div className='flex flex-row  mt-4'>
 							<div className='flex space-x-2 mt-4 text-white'>
-								<Button className='p-2 rounded-full bg-blue-500 text-white'>
+								<Link href='https://www.facebook.com/'>
+								<Button className='p-2 rounded-full bg-blue-500 hover:bg-green-600 text-white'>
 									<Icons.FacebookIcon />
 								</Button>
-								<Button className='p-2 rounded-full bg-blue-300 text-white'>
+								</Link>
+								<Link href='https://www.twitter.com'>
+								<Button className='p-2 rounded-full bg-blue-300 hover:bg-green-600 text-white'>
 									<Icons.TwitterIcon />
 								</Button>
-								<Button className='p-2 rounded-full bg-blue-700 text-white'>
+								</Link>
+								<Link href='https://www.linkedin.com/'>
+								<Button className='p-2 rounded-full bg-blue-700 hover:bg-green-600 text-white'>
 									<Icons.LinkedinIcon />
 								</Button>
+								</Link>
 							</div>
 						</div>
 					</div>

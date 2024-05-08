@@ -11,9 +11,12 @@ import { Button } from '../ui/button';
 import FormError from '../form-error';
 import FormSuccess from '../form-success';
 import { Login } from '@/actions/login';
+import { useSearchParams } from 'next/navigation';
 
 
 export default function LoginForm() {
+  const searchParams = useSearchParams()
+  const callBackUrl = searchParams.get('callBackUrl') ?? undefined
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -31,17 +34,18 @@ export default function LoginForm() {
     setSuccess("");
 
     startTransition(() => {
-      Login(values)
+      Login(values, callBackUrl)
       .then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        if (data?.error){
+          setError(data.error)
+        };
       })
     });
   };
 
   return (
     <CardWrapper 
-    headerLabel='Enter your email to login'
+    headerLabel='Login to continue'
     backButtonLabel="Don't have an account?"
     backButtonHref='/sign-up'
     showSocial  

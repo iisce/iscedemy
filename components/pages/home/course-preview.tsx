@@ -17,7 +17,7 @@ export default function CoursePreview() {
 
 					<Card key={i} className={`text-background items-start justify-center mx-auto bg-cover bg-center hover:bg-primary/70 hover:scale-105 transition-all`} style={{ backgroundImage: `url(${course.image})`}} >
 						<CardHeader>
-						<div className="flex items-center mb-3 w-5 h-5 space-x-2 text-tertiary">
+						<div className="flex items-center mb-3 w-5 h-5 space-x-2 text-green-600">
 							{course.icon?.map((singleicon, i) => (
 								<div className='h-5 w-5' key={i}>
 									{singleicon}
@@ -34,7 +34,7 @@ export default function CoursePreview() {
 					</CardContent>
 					<CardFooter className="flex justify-between mt-4">
 						<Button variant="secondary" className="bg-white text-black px-5 py-3 rounded-full "><Link href={`/courses/${course.link}`}>{`Start Learning`}</Link></Button>
-						<div className="h-5 w-5 text-tertiary">
+						<div className="h-5 w-5 text-green-600">
 							<Link href={`/courses/${course.link}`}>
 								<Icons.ArrowRightIcon />
 							</Link>
@@ -49,7 +49,7 @@ export default function CoursePreview() {
 				{OTHER_COURSE_PREVIEW.map((othersignglecourse, i) => (
 					<Card className="bg-background rounded-md shadow-md border " key={i}>
 						<CardHeader className=' space-y-1 gap-y-3'>
-							<div className="h-6 w-6 text-tertiary">
+							<div className="h-6 w-6 text-green-600">
 								{othersignglecourse.icon}
 							</div>
 						<div className='relative'>
@@ -103,7 +103,7 @@ export default function CoursePreview() {
 	
 		</div>
 			<Link href="/sign-up" className='xl:mr-10'>
-			<Button className="bg-background text-primary px-6 py-3 rounded-full hover:bg-tertiary hover:text-white transition duration-300">
+			<Button className="bg-background text-primary px-6 py-3 rounded-full hover:bg-green-600 hover:text-white transition duration-300">
 			{`Sign Up Here`}
 			</Button>
 		</Link>

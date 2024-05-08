@@ -52,7 +52,7 @@ export default function AboutPreview() {
 	
 		</div>
 			<Link href="/about" className='xl:mr-10'>
-			<Button className="bg-background text-primary px-6 py-3 rounded-full hover:bg-tertiary hover:text-white transition duration-300">
+			<Button className="bg-background text-primary px-6 py-3 rounded-full hover:bg-green-600 hover:text-white transition duration-300">
 				{`Learn More`}
 			</Button>
 		</Link>
