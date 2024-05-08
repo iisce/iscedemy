@@ -16,11 +16,8 @@ export default function AboutIsce() {
         <div className="flex flex-col">
           <div className="font-light text-lg">
             <Image src="/arin.png" width={400} height={400} alt="arin"></Image>
-            
           </div>
-          
         </div>
-        <div className="bg-black w-screen rounded-lg bg-blend-screen md:px-4 hidden md:block  border md:h-24  -translate-y-14 "></div>
       </div>
     </div>
   );
