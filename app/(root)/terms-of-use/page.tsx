@@ -11,14 +11,14 @@ export default function TermsOfUse() {
         <p className="font-bold p-5">Acceptance of Terms</p>
         Welcome to
         <span className="text-green-600 font-bold"> PalmtechnIQ!</span> By
-        accessing or using our platform, you agree to be bound by these Terms of
-        Use ("Terms"). If you do not agree to these Terms, please do not use our
+        accessing or using our platform you agree to be bound by these Terms of
+        Use (Terms). If you do not agree to these Terms please do not use our
         platform.
         <p>
           2. Description of Services
           <span className="text-green-600 font-bold"> PalmtechnIQ </span>
           provides an online learning platform that offers a variety of
-          educational resources, courses, and services to users.
+          educational resources courses and services to users.
         </p>
         <p>
           3. User Responsibilities Users are responsible for maintaining the
@@ -29,28 +29,28 @@ export default function TermsOfUse() {
         </p>
         <p>
           4. Intellectual Property All content and materials available on our
-          platform, including but not limited to text, graphics, logos, images,
-          and software, are the property of
+          platform including but not limited to text graphics logos images and
+          software are the property of
           <span className="text-green-600 font-bold"> PalmtechnIQ </span> or its
           licensors and are protected by copyright and other intellectual
           property laws.
         </p>
         <p>
-          5. Privacy Policy Our Privacy Policy explains how we collect, use, and
-          protect your personal information. By using our platform, you consent
+          5. Privacy Policy Our Privacy Policy explains how we collect use and
+          protect your personal information. By using our platform you consent
           to the collection and use of your information as described in our
           Privacy Policy.
         </p>
         <p>
           6. Payment and Billing Certain features or services on our platform
-          may require payment. By purchasing these features or services, you
+          may require payment. By purchasing these features or services you
           agree to pay all applicable fees and charges.
         </p>
         <p>
           7. Limitation of Liability
           <span className="text-green-600 font-bold"> PalmtechnIQ </span> is not
           liable for any damages or losses arising out of or in connection with
-          your use of our platform. We are not responsible for the accuracy,
+          your use of our platform. We are not responsible for the accuracy
           completeness, or reliability of any content or materials provided by
           third parties.
         </p>
@@ -64,16 +64,16 @@ export default function TermsOfUse() {
           9. Changes to Terms
           <span className="text-green-600 font-bold"> PalmtechnIQ </span>{" "}
           reserves the right to modify or update these Terms at any time. We
-          will notify users of any material changes to these Terms, and
-          continued use of our platform after such changes constitutes
-          acceptance of the updated Terms.
+          will notify users of any material changes to these Terms and continued
+          use of our platform after such changes constitutes acceptance of the
+          updated Terms.
         </p>
         10.
         <Link className="text-green-600" href="/about">
           {" "}
           Contact Us{" "}
         </Link>
-        If you have any questions or concerns about these Terms, please contact
+        If you have any questions or concerns about these Terms please contact
         us at contact
       </div>
     </div>
