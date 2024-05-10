@@ -68,33 +68,21 @@ export default function Footer() {
             </ol>
           </div>
 
-					<div className=' w-full flex flex-col gap-4 text-sm'>
-						<ol className='font-bold text-lg'>Company</ol>
-						<Link
-							href='https://www.isce.tech'
-							className='cursor-pointer'
-						>
-							About Us
-						</Link>
-						<Link
-							href='/about-us'
-							className='cursor-pointer'
-						>
-							Terms Of Use
-						</Link>
-						<Link
-							href='/about-us'
-							className='cursor-pointer'
-						>
-							Privacy & Policy
-						</Link>
-						<Link
-							href='/about-us'
-							className='cursor-pointer'
-						>
-							{`Frequently Asked Question`}
-						</Link>
-					</div>
+          <div className=" w-full flex flex-col gap-4 text-sm">
+            <ol className="font-bold text-lg">Company</ol>
+            <Link href="https://www.isce.tech" className="cursor-pointer">
+              About Us
+            </Link>
+            <Link href="/terms-of-use" className="cursor-pointer">
+              Terms Of Use
+            </Link>
+            <Link href="/privacy-policy" className="cursor-pointer">
+              Privacy & Policy
+            </Link>
+            <Link href="/about-us" className="cursor-pointer">
+              {`Frequently Asked Question`}
+            </Link>
+          </div>
 
 					<div className='flex flex-col gap-4 text-sm'>
 						<div className='font-bold text-lg'>
