@@ -16,11 +16,11 @@ export default function AboutSection() {
           </h3>
           <i>-Albert Einstein.</i>
           <br />
-          <Link href="">
-            {" "}
+          <Link href="/register">
+            
             <Button className="mt-[10px]">
-              Apply now <ArrowRight className="w-5 h-4 " />{" "}
-            </Button>{" "}
+              Apply now <ArrowRight className="w-5 h-4 " />
+            </Button>
           </Link>
         </div>
         <div className=" hidden lg:inline xl:inline w-[40%]">

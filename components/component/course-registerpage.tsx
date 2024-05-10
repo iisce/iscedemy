@@ -20,6 +20,8 @@ export default function CrashCourseRegisterForm() {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const [open, setOpen] = useState(false)
+
 
   const form = useForm<z.infer<typeof CourseRegisterSchema>>({
     resolver: zodResolver(CourseRegisterSchema),
@@ -192,12 +194,12 @@ export default function CrashCourseRegisterForm() {
             <FormSuccess message={success}/>
             <Button 
             type='submit'
-            className='w-full'
+            className='w-full rounded-full'
             >
               {isPending ? <Loader  className="w-6 h-6 animate-spin"/> : 'Register'}
              
             </Button>
-            <Button className='w-full' variant="outline">{`Cancel`}</Button>
+            <Button className='w-full rounded-full' variant="outline">{`Cancel`}</Button>
         </form>
       </Form>
 

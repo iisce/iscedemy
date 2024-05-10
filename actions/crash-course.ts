@@ -1,5 +1,6 @@
 'use server';
 import { Resend } from 'resend';
+import { PrismaClient } from '@prisma/client';
 import { CourseRegisterSchema } from '@/schemas';
 import * as z from 'zod';
 
@@ -8,6 +9,8 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export const CrashCourse = async (values: z.infer<typeof CourseRegisterSchema>) => {
     const validatedFields = CourseRegisterSchema.safeParse(values);
+
+    const prisma = new PrismaClient();
 
     /**
      * This checks if the available fields are of type success message; 
@@ -55,8 +58,20 @@ export const CrashCourse = async (values: z.infer<typeof CourseRegisterSchema>) 
             Best regards,
             ISCE TEAM
             `,
+
         });
 
+            const registration = await prisma.courseRegistration.create({ 
+                data: {
+                  firstname: validatedFields.data.firstname,
+                  lastname: validatedFields.data.lastname,
+                  email: validatedFields.data.email,
+                  occupation: validatedFields.data.occupation,
+                  course: validatedFields.data.course
+                }
+            })
+        
+        
         /**The return statement either success or error displays after the 
          * form must have checked for errors and found non or found some
          * the CATCH catches the error and displays it to the user else it displays the SUCCESS message.

@@ -6,13 +6,13 @@ const SignOutButton = () => {
     const session = useSession();
 
     return (
-        <div className="grid">
+        <div className="grid ">
           {session.data?.user ? (
-          <Button onClick={() => signOut()}>
+          <Button className="w-full px-5 py-3 rounded-full" onClick={() => signOut()}>
             Sign Out
           </Button>
           ):(
-          <Button onClick={() => signIn()}>
+          <Button className="w-full px-5 py-3 rounded-full" onClick={() => signIn()}>
             Sign In
           </Button>
           ) }

@@ -16,6 +16,9 @@ import { useSearchParams } from 'next/navigation';
 
 export default function LoginForm() {
   const searchParams = useSearchParams()
+  const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
+  ? "Email already in use with different provider!"
+  : "";
   const callBackUrl = searchParams.get('callBackUrl') ?? undefined
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -38,6 +41,7 @@ export default function LoginForm() {
       .then((data) => {
         if (data?.error){
           setError(data.error)
+          setSuccess(data?.success);
         };
       })
     });
@@ -46,7 +50,7 @@ export default function LoginForm() {
   return (
     <CardWrapper 
     headerLabel='Login to continue'
-    backButtonLabel="Don't have an account?"
+    backButtonLabel="Don't have an account? Sign-Up"
     backButtonHref='/sign-up'
     showSocial  
     >
@@ -93,11 +97,11 @@ export default function LoginForm() {
               )}
               />
             </div>
-            <FormError message={error}/>
+            <FormError message={error || urlError}/>
             <FormSuccess message={success}/>
             <Button 
             type='submit'
-            className='w-full'
+            className='w-full rounded-full'
             disabled={isPending}
             >
               

@@ -1,32 +1,30 @@
 import {
-	LucideFacebook,
-	LucideInstagram,
-	LucideLinkedin,
-	LucideMail,
-	LucideMapPin,
-	LucidePhone,
-	LucideTwitter
-} from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import MaxWidthWrapper from './max-width-wrapper';
+  LucideFacebook,
+  LucideInstagram,
+  LucideLinkedin,
+  LucideMail,
+  LucideMapPin,
+  LucidePhone,
+  LucideTwitter,
+} from "lucide-react";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import MaxWidthWrapper from "./max-width-wrapper";
 
 export default function Footer() {
-	return (
-		<div className='pt-8 bg-primary text-background'>
-			<MaxWidthWrapper>
-				<div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-7 justify-between'>
-					<div className='w-full flex flex-col gap-4'>
-						<div className='font-bold text-lg'>
-							{`PalmTechNIQ`}
-						</div>
-						<div className=' font-normal text-sm'>
-							{`PalmTechNIQ Store is a dynamic and inclusive
+  return (
+    <div className="pt-8 bg-primary text-background">
+      <MaxWidthWrapper>
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-7 justify-between">
+          <div className="w-full flex flex-col gap-4">
+            <div className="font-bold text-lg">{`PalmTechNIQ`}</div>
+            <div className=" font-normal text-sm">
+              {`PalmTechNIQ Store is a dynamic and inclusive
 							e-commerce platform that seamlessly connects
 							sellers and buyers, fostering a vibrant
 							marketplace`}
-						</div>
-						{/* <ol className='grid grid-cols-2 gap-4'>
+            </div>
+            {/* <ol className='grid grid-cols-2 gap-4'>
 							<li className='bg-black h-12 justify-center gap-2 flex items-center text-white rounded-lg'>
 								<LucideApple />
 								<div>
@@ -50,25 +48,25 @@ export default function Footer() {
 								</div>
 							</li>
 						</ol> */}
-					</div>
+          </div>
 
-					<div className='w-full flex flex-col gap-4 text-sm'>
-						<ol className='font-bold text-lg'> Contact Us</ol>
-						<ol className='flex gap-2 cursor-pointer'>
-							<LucideMapPin className='shrink-0' />
-							<Link href=''>
-								{`1st Floor, Chicken Republic building, 22rd ,Festac Town, Lagos, Nigeria`}
-							</Link>
-						</ol>
-						<ol className='flex gap-2 cursor-pointer'>
-							<LucideMail className='shrink-0' />
-							<Link href='/'> info@iscedemy.com</Link>
-						</ol>
-						<ol className='flex gap-2 cursor-pointer'>
-							<LucidePhone className='shrink-0' />
-							<Link href='tel:'> 09013 447 0693</Link>
-						</ol>
-					</div>
+          <div className="w-full flex flex-col gap-4 text-sm">
+            <ol className="font-bold text-lg"> Contact Us</ol>
+            <ol className="flex gap-2 cursor-pointer">
+              <LucideMapPin className="shrink-0" />
+              <Link href="">
+                {`1st Floor, Chicken Republic building, 22rd ,Festac Town, Lagos, Nigeria`}
+              </Link>
+            </ol>
+            <ol className="flex gap-2 cursor-pointer">
+              <LucideMail className="shrink-0" />
+              <Link href="/"> info@iscedemy.com</Link>
+            </ol>
+            <ol className="flex gap-2 cursor-pointer">
+              <LucidePhone className="shrink-0" />
+              <Link href="tel:"> 09013 447 0693</Link>
+            </ol>
+          </div>
 
 					<div className=' w-full flex flex-col gap-4 text-sm'>
 						<ol className='font-bold text-lg'>Company</ol>
@@ -109,7 +107,7 @@ export default function Footer() {
 								className='px-3 w-full h-full border-none bg-slate-100  text-black rounded-lg placeholder:text-black'
 							/>
 						</div>
-						<Button variant='outline' className='h-12 rounded-2xl bg-background text-primary hover:bg-none'>
+						<Button variant='outline' className='h-12 rounded-full bg-background text-primary hover:bg-none'>
 							{`Subscribe`}
 						</Button>
 					</div>

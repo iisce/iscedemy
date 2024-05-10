@@ -26,11 +26,10 @@ export default function CourseHeader({
               {header}
             </h1>
             <p>{description}</p>
-            <Button asChild className="mt-[20px]">
+            <Button asChild className="mt-[20px] bg-white hover:bg-white/95 text-black px-5 py-3 rounded-full ">
             <Link
-              className="bg-white text-black px-5 py-3 rounded-full "
-              href='/sign-up'
-              // href={`/courses/${link}`}
+              // href='/sign-up'
+              href={`/courses/${link}`}
             >
               Get started
             </Link>

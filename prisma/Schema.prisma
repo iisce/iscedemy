@@ -42,3 +42,23 @@ model Account {
   @@map("accounts")
 
 }
+
+model CourseRegistration {
+  id            String @id @default(cuid())
+  firstname     String
+  lastname      String
+  email         String @unique
+  occupation    String
+  course        String
+
+  @@map("courseRegistrations")
+}
+
+model VerificationToken {
+  id    String @id @default(cuid())
+  email String
+  token String @unique
+  expires DateTime
+
+  @@unique([ email, token])
+}

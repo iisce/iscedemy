@@ -10,7 +10,8 @@ export default function SideBar() {
   
   const [click, setClicked] = useState("h-0");
   return (
-    <div className="hidden md:inline justify-between md:text-left md:h-screen md:w-[16%]">
+    <div className="hidden md:flex flex-col gap-4 justify-between md:text-left md:h-[calc(100%-80px)] md:w-[16%] ">
+      <div>
       <div className="flex pb-[10px] items-center gap-3">
         <h2 className="font-bold">All Courses</h2>
         <Link href='/courses'><span>{CircleRightArrow}</span></Link>
@@ -21,8 +22,10 @@ export default function SideBar() {
           <CourseItem key={k} link={course.link} name={course.name} />
         ))}
       </ul>
-      
+      </div>
+      <div className="">
       <SignOutButton />
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function NavBar() {
 	return (
 		<div className='bg-primary text-background'>
 			<MaxWidthWrapper>
-				<nav className='min-h-20 flex justify-between items-center'>
+				<nav className='h-20 flex justify-between items-center'>
 					<div className='flex justify-left items-center gap-12'>
 						<Link href='/'>
 							<Image

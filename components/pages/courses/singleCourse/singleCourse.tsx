@@ -276,7 +276,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						</div>
 						<hr />
 						<Drawer open={open} onOpenChange={setOpen}>
-							<DrawerTrigger className='grid w-full'>
+							<DrawerTrigger className='grid w-full bg-black text-background font-medium text-xl px-5 py-3 rounded-full'>
 							Register Now
 							</DrawerTrigger>
 							<DrawerContent>

@@ -1,10 +1,11 @@
-import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
-import AboutPreview from '@/components/pages/home/about-preview';
-import CoursePreview from '@/components/pages/home/course-preview';
-import HomeHeader from '@/components/pages/home/header';
-import { TestimonialPreview } from '@/components/pages/home/testimonial-preview';
-import Image from 'next/image';
-import React from 'react';
+import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
+import TermsOfUse from "@/app/(root)/terms-of-use/page";
+import AboutPreview from "@/components/pages/home/about-preview";
+import CoursePreview from "@/components/pages/home/course-preview";
+import HomeHeader from "@/components/pages/home/header";
+import { TestimonialPreview } from "@/components/pages/home/testimonial-preview";
+import Image from "next/image";
+import React from "react";
 
 export default function Home() {
 	return (

@@ -43,7 +43,7 @@ export default function SignUpForm() {
   return (
     <CardWrapper 
     headerLabel='Create an account'
-    backButtonLabel="Already have an account?"
+    backButtonLabel="Already have an account? Login"
     backButtonHref='/login'
     showSocial 
     >
