@@ -1,10 +1,21 @@
+'use client'
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import MaxWidthWrapper from './max-width-wrapper';
 import MobileMenu from './mobile-menu';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { NAVLINKS } from '@/lib/consts';
 
 export default function NavBar() {
+
+	//this constant is useed to set a particular navlink active letting users know the page they're on.
+	const [active, setActive] = useState('');
+	useEffect(() => {
+		const currentPathname = window.location.pathname;
+		setActive(currentPathname);
+	}, []);
+
 	return (
 		<div className='bg-primary text-background'>
 			<MaxWidthWrapper>
@@ -14,46 +25,23 @@ export default function NavBar() {
 							<Image
 							width={150}
 							height={150}
-							alt='PalmtechNIQ'
-							src='/assets/palmtechniqlogo.png'
+							alt='PalmTechnIQ'
+							src='/assets/PalmTechnIQlogo.png'
 							className='w-full h-full'
 							/>
 						</Link>
 						<div className='hidden lg:flex gap-8'>
-							<div>
-								<Link
-									href='/'
-									className=' font-bold text-[15px]'
-								>
-									Home
-								</Link>
-							</div>
+							<ul className='flex gap-9 justify-end items-center flex-1'>
+								{NAVLINKS.map((nav) => (
+									<li key={nav.title}
+									className={`font-bold text-[15px] ${active === nav.href ? 'text-green-600  px-1 py-2': 'text-background'} `}
+									onClick={() => setActive(nav.href)}
+									>
+									<Link href={`${nav.href}`}>{nav.title}</Link>
+									</li>
+								))}
+							</ul>
 							
-							<div>
-								<Link
-									href='/about'
-									className=' font-bold text-[15px]'
-								>
-									About
-								</Link>
-							</div>
-							<div>
-							<Link
-									href='/courses'
-									className=' font-bold text-[15px]'
-								>
-									Courses
-								</Link>
-							
-							</div>
-							<div>
-								<Link
-									href='/contact'
-									className=' font-bold text-[15px]'
-								>
-									Contact
-								</Link>
-							</div>
 						</div>
 					</div>
 					<Link href='https://wa.me/+2348163453826'>

@@ -16,13 +16,13 @@ export function TestimonialPreview() {
             <Card key={i} className="bg-white p-6 rounded-lg shadow-md w-[300px]">
               {testimonial.image && (
                 <div className="h-[50px] w-[50px]">
-                  <Image width={50} height={50} src={testimonial.image} alt="Iscedemy | Wilhelm F." className="
+                  <Image width={50} height={50} src={testimonial.image} alt="PalmTechnIQ | Wilhelm F." className="
                    object-cover rounded-full" />
                 </div>
               )}
               <p className="text-lg font-semibold mt-4 mb-2">{testimonial.name}</p>
               <p className="text-gray-600 italic mb-4">{testimonial.review}</p>
-              <p className="text-sm font-medium text-gray-800">{testimonial.userrole}</p>
+              <p className="text-sm font-medium text-gray-900">{testimonial.userrole}</p>
             </Card>
           ))}  
         </div>

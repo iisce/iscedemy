@@ -25,7 +25,7 @@ export default function CoursePreview() {
 							))}
 						</div>
 						<Badge className="py-4 w-full" variant="secondary">{course.name}</Badge>
-						<CardTitle className="mt-2">{course.title}</CardTitle>
+						<CardTitle className="mt-2 font-semibold">{course.title}</CardTitle>
 					</CardHeader>
 					<CardContent className='py-2 '>
 						<CardDescription className="text-background  ">
@@ -48,6 +48,10 @@ export default function CoursePreview() {
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8 ">
 				{OTHER_COURSE_PREVIEW.map((othersignglecourse, i) => (
 					<Card className="bg-background rounded-md shadow-md border " key={i}>
+						<Link
+										className=''
+										href={`/courses/${othersignglecourse.link}`}
+									>
 						<CardHeader className=' space-y-1 gap-y-3'>
 							<div className="h-6 w-6 text-green-600">
 								{othersignglecourse.icon}
@@ -58,7 +62,7 @@ export default function CoursePreview() {
 									className=' rounded-md'
 									width='1000'
 									height='1000'
-									alt='image'
+									alt='PalmtechnIQ'
 									src={othersignglecourse.image}
 								/>
 							)}
@@ -66,10 +70,7 @@ export default function CoursePreview() {
 								{othersignglecourse.link && (
 
 
-									<Link
-										className=''
-										href={`/courses/${othersignglecourse.link}`}
-									>
+									
 										<div className='after:bg-white after:absolute after:bottom-0 after:w-[20px] hover:after:w-[120px] pb-1 transition duration-300 translate-y-0 after:h-[2.5px] after:rounded-full flex gap-2 justify-center items-center'>
 											<p className='text-white text-center items-center mt-[80px]'>
 												Get Course
@@ -78,7 +79,7 @@ export default function CoursePreview() {
 												{<Icons.ArrowRightIcon />}
 											</div>
 										</div>
-									</Link>
+									
 
 								)}
 							</div>
@@ -92,6 +93,7 @@ export default function CoursePreview() {
 			{othersignglecourse.info}
 		</CardDescription>
 	</CardContent>
+	</Link>
 	</Card>
 	))}
 	</div>

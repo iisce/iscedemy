@@ -10,13 +10,13 @@ export default function TermsOfUse() {
       <div className=" p-5 ">
         <p className="font-bold p-5">Acceptance of Terms</p>
         Welcome to
-        <span className="text-green-600 font-bold"> PalmtechnIQ!</span> By
+        <span className="text-green-600 font-bold"> PalmTechnIQ!</span> By
         accessing or using our platform you agree to be bound by these Terms of
         Use (Terms). If you do not agree to these Terms please do not use our
         platform.
         <p>
           2. Description of Services
-          <span className="text-green-600 font-bold"> PalmtechnIQ </span>
+          <span className="text-green-600 font-bold"> PalmTechnIQ </span>
           provides an online learning platform that offers a variety of
           educational resources courses and services to users.
         </p>
@@ -31,7 +31,7 @@ export default function TermsOfUse() {
           4. Intellectual Property All content and materials available on our
           platform including but not limited to text graphics logos images and
           software are the property of
-          <span className="text-green-600 font-bold"> PalmtechnIQ </span> or its
+          <span className="text-green-600 font-bold"> PalmTechnIQ </span> or its
           licensors and are protected by copyright and other intellectual
           property laws.
         </p>
@@ -48,7 +48,7 @@ export default function TermsOfUse() {
         </p>
         <p>
           7. Limitation of Liability
-          <span className="text-green-600 font-bold"> PalmtechnIQ </span> is not
+          <span className="text-green-600 font-bold"> PalmTechnIQ </span> is not
           liable for any damages or losses arising out of or in connection with
           your use of our platform. We are not responsible for the accuracy
           completeness, or reliability of any content or materials provided by
@@ -62,7 +62,7 @@ export default function TermsOfUse() {
         </p>
         <p>
           9. Changes to Terms
-          <span className="text-green-600 font-bold"> PalmtechnIQ </span>{" "}
+          <span className="text-green-600 font-bold"> PalmTechnIQ </span>{" "}
           reserves the right to modify or update these Terms at any time. We
           will notify users of any material changes to these Terms and continued
           use of our platform after such changes constitutes acceptance of the

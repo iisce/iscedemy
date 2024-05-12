@@ -8,7 +8,8 @@ export const publicRoutes = [
     "/about",
     "/contact",
     "/courses",
-    "/register"
+    "/register",
+    "/new-verification"
 ]
 
 
@@ -20,7 +21,9 @@ export const publicRoutes = [
 export const authRoutes = [
     "/login",
     "/sign-up",
-    "/error"
+    "/error",
+    "/reset",
+    "/new-password"
 ]
 
 /**

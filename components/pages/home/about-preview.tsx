@@ -9,7 +9,7 @@ export default function AboutPreview() {
       <MaxWidthWrapper>
         <div className="xl:container xl:grid-in-container  md:px-6">
           <div className="flex flex-col text-primary   justify-center space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter xl:text-4xl underline">{`At PalmTechNIQ`}</h2>
+            <h2 className="text-3xl font-bold tracking-tighter xl:text-4xl underline">{`At PalmTechnIQ`}</h2>
             <div className="space-y-2 flex flex-col-reverse items-center xl:flex-row xl:justify-between w-full">
               <div className="relative w-full xl:w-1/2 xl:px-4">
                 <p className="w-full text-primary text-lg text-center xl:mx-8 py-2 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -47,8 +47,8 @@ export default function AboutPreview() {
             
             <div className="bg-primary my-3 xl:w-[1024px] w-full mx-auto xl:gap-5 flex xl:flex-row  flex-col items-center justify-center rounded-xl py-4 px-2 text-white text-center">
 		<div className="flex-col w-full items-center justify-center p-1">
-  <h2 className="xl:text-2xl text-xl  font-bold mb-4">{`Ready to get started?`}</h2>
-		<p className="mb-6 xl:text-xl md:text-md text-lg">{`Join us now and unlock your potential!`}</p>
+  <h2 className="xl:text-2xl text-xl  font-bold mb-4">{`Stay ahead in the right field.`}</h2>
+		<p className="mb-6 xl:text-xl md:text-md text-lg">{`Let's be the guide you need to perfect your greatness!`}</p>
 	
 		</div>
 			<Link href="/about" className='xl:mr-10'>

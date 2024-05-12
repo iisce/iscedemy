@@ -54,7 +54,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								<Image
 									width={50}
 									height={50}
-									alt={ tutor?.name ||'PalmtechNIQ'}
+									alt={ tutor?.name ||'PalmtechnIQ'}
 									src={ tutor?.image ||'/placeholder.svg'}
 									className="object-cover rounded-full"
 								/>

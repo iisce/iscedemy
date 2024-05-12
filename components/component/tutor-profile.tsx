@@ -16,7 +16,7 @@ export default function TutorProfile({ tutorName }: ITutorProfileProps) {
 		<div className="w-full px-4 md:px-0 py-4 mx-auto justify-center items-center md:p-6 bg-white ">
 				<div className="flex md:flex-row flex-col md:gap-0 gap-2 justify-center items-center">
           <div className="md:-translate-y-20  md:block w-full h-full">
-          <Image width={50} height={50} src={tutor.image} alt={`PalmtechNIQ | ${tutor.name}`}
+          <Image width={50} height={50} src={tutor.image} alt={`PalmTechnIQ | ${tutor.name}`}
             className="object-cover rounded-full" />
           </div>
            

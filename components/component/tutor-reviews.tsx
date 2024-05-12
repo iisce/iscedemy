@@ -68,7 +68,7 @@ export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
         <div className="mt-4 ">
         {tutorReviews.map((review, i) => (
           <div className="flex items-center space-x-4" key={i}>        
-              <Image width={40} height={40} src={review.image} alt={`PalmtechNIQ | ${tutorName}`}
+              <Image width={40} height={40} src={review.image} alt={`PalmTechnIQ | ${tutorName}`}
                 className="object-cover rounded-full" />
                <div className="flex flex-col w-full space-y-2 py-3">
                <div className="text-lg font-semibold">{review.name}</div>

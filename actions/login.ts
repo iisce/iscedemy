@@ -8,7 +8,7 @@ import { LoginSchema } from '@/schemas';
 import { AuthError } from 'next-auth';
 import * as z from 'zod'
 
-export const Login = async (values: z.infer<typeof LoginSchema>, callBackUrl?: string) => {
+export const Login = async (values: z.infer<typeof LoginSchema>, callBackUrl?: string | null,) => {
     const validatedFields = LoginSchema.safeParse(values);
 
     if (!validatedFields.success) {
@@ -21,7 +21,7 @@ export const Login = async (values: z.infer<typeof LoginSchema>, callBackUrl?: s
 
     if (!existingUser || !existingUser.email || !existingUser.password) {
         return { error: "Email does not exist!" }
-    }
+    } 
 
     if (!existingUser.emailVerified) {
         const verificationToken = await generateverificationToken(
@@ -40,7 +40,7 @@ export const Login = async (values: z.infer<typeof LoginSchema>, callBackUrl?: s
         await signIn("credentials", {
             email,
             password,
-            redirectTo: callBackUrl ||DEFAULT_LOGIN_REDIRECT,
+            redirectTo: callBackUrl ||  DEFAULT_LOGIN_REDIRECT,
         })
 
     } catch (error) {

@@ -17,9 +17,9 @@ export default function Footer() {
       <MaxWidthWrapper>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-7 justify-between">
           <div className="w-full flex flex-col gap-4">
-            <div className="font-bold text-lg">{`PalmTechNIQ`}</div>
+            <div className="font-bold text-lg">{`PalmTechnIQ`}</div>
             <div className=" font-normal text-sm">
-              {`PalmTechNIQ Store is a dynamic and inclusive
+              {`PalmTechnIQ Store is a dynamic and inclusive
 							e-commerce platform that seamlessly connects
 							sellers and buyers, fostering a vibrant
 							marketplace`}
@@ -60,7 +60,7 @@ export default function Footer() {
             </ol>
             <ol className="flex gap-2 cursor-pointer">
               <LucideMail className="shrink-0" />
-              <Link href="/"> info@iscedemy.com</Link>
+              <Link href="/"> info@PalmTechnIQ.com</Link>
             </ol>
             <ol className="flex gap-2 cursor-pointer">
               <LucidePhone className="shrink-0" />
@@ -116,7 +116,7 @@ export default function Footer() {
 						</Link>
 					</div>
 					<div className='grid justify-center'>
-						{`2024 PalmTechNIQ. All Rights Reserved.`}
+						{`2024 PalmTechnIQ. All Rights Reserved.`}
 					</div>
 				</div>
 			</MaxWidthWrapper>

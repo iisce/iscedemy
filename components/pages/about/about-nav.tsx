@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function AboutNav() {
   return (
-    <div className="sticky -top-1 w-full z-50 overflow-clip bg-black text-secondary">
+    <div className="sticky -top-1 w-full  md:z-50 overflow-clip bg-black text-secondary">
     <MaxWidthWrapper className="grid md:grid-cols-4 grid-cols-4">
       <Link
         href={"/about#our-story"}

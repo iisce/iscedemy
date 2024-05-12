@@ -12,10 +12,11 @@ import FormError from '../form-error';
 import FormSuccess from '../form-success';
 import { Login } from '@/actions/login';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 
 export default function LoginForm() {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
   ? "Email already in use with different provider!"
   : "";
@@ -40,7 +41,7 @@ export default function LoginForm() {
       Login(values, callBackUrl)
       .then((data) => {
         if (data?.error){
-          setError(data.error)
+          setError(data?.error)
           setSuccess(data?.success);
         };
       })
@@ -92,6 +93,11 @@ export default function LoginForm() {
                     type='password'
                     />
                   </FormControl>
+                  <Button asChild size="sm" variant="link" className='px-0 font-normal'>
+                    <Link href='reset'>
+                      Forgot password?
+                    </Link>
+                  </Button>
                   <FormMessage/>
                 </FormItem>
               )}

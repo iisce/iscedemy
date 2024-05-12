@@ -3,14 +3,52 @@ import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import * as Icons from './icons';
 import React from 'react';
 
-export const COURSEITEM: ICOURSEITEM[] = [
+export const NAVLINKS: {
+	name: string;
+	href: string;
+	title: string;
+}[] =[
 	{
-		link: 'frontend-development',
-		name: 'Frontend Development',
+		name: 'home',
+		href: '/',
+		title: 'Home',
 	},
 	{
-		link: 'backend-development',
-		name: 'Backend Development',
+		name: 'about',
+		href: '/about',
+		title: 'About',
+	},
+
+	
+	{
+		name: 'courses',
+		href: '/courses',
+		title: 'Courses',
+	},
+	{
+		name: 'contact',
+		href: '/contact',
+		title: 'Contact',
+	},
+]
+
+
+export const COURSEITEM: ICOURSEITEM[] = [
+	// {
+	// 	link: 'frontend-development',
+	// 	name: 'Frontend Development',
+	// },
+	// {
+	// 	link: 'backend-development',
+	// 	name: 'Backend Development',
+	// },
+	{
+		link: 'web-development',
+		name: 'Web Development',
+	},
+	{
+		link: 'smart-home-automation',
+		name: 'Smart-home Automation',
 	},
 	{
 		link: 'cybersecurity',
@@ -33,6 +71,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 		name: 'Digital Marketing',
 	},
 	{
+		link: 'personal-branding',
+		name: 'Personal Branding',
+	},
+	{
 		link: 'project-management',
 		name: 'Project Management',
 	},
@@ -41,10 +83,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 export const COURSEHEADER: ICOURSEHEADER[] = [
 	{
 		image: '/first.jpg',
-		header: 'Become a PRO in Frontend Development.',
+		header: 'Become a PRO in Web Development.',
 		description:
 			'Explore what it entails to become a frontend developer.',
-		link: 'frontend-development',
+		link: 'web-development',
 	},
 	{
 		image: '/second.jpg',
@@ -63,17 +105,29 @@ export const COURSEHEADER: ICOURSEHEADER[] = [
 ];
 
 export const COURSELIST: ICOURSELIST2[] = [
+	// {
+	// 	icon: <Icons.LaptopIcon />,
+	// 	image: '/frontend.jpg',
+	// 	content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
+	// 	title: 'Frontend Development',
+	// },
+	// {
+	// 	icon: <Icons.DatabaseIcon />,
+	// 	image: '/backend.jpg',
+	// 	content: 'Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.',
+	// 	title: 'Backend Development',
+	// },
 	{
-		icon: <Icons.LaptopIcon />,
-		image: '/frontend.jpg',
-		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
-		title: 'Frontend Development',
+		icon: <Icons.DatabaseIcon />,
+		image: '/backend.jpg',
+		content: 'Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.',
+		title: 'Web Development',
 	},
 	{
 		icon: <Icons.DatabaseIcon />,
 		image: '/backend.jpg',
 		content: 'Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.',
-		title: 'Backend Development',
+		title: 'Smart-home Automation',
 	},
 	{
 		icon: <Icons.DataBaseColorIon />,
@@ -92,6 +146,12 @@ export const COURSELIST: ICOURSELIST2[] = [
 		image: '/digitalmarketing.jpg',
 		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
 		title: 'Digital Marketing',
+	},
+	{
+		icon: <Icons.TrendIcon />,
+		image: '/digitalmarketing.jpg',
+		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
+		title: 'Personal Branding',
 	},
 	{
 		icon: <Icons.ReactJSColorIcon />,
@@ -113,11 +173,14 @@ export const COURSELIST: ICOURSELIST2[] = [
 	},
 ];
 export const COURSES: ICOURSES[] = [
+	// {
+	// 	name: 'Frontend Development',
+	// },
+	// {
+	// 	name: 'Backend Development',
+	// },
 	{
-		name: 'Frontend Development',
-	},
-	{
-		name: 'Backend Development',
+		name: 'Web Development',
 	},
 	{
 		name: 'CyberSecurity',
@@ -133,6 +196,12 @@ export const COURSES: ICOURSES[] = [
 	},
 	{
 		name: 'Project Management',
+	},
+	{
+		name: 'Smart-home Automation',
+	},
+	{
+		name: 'Personal Branding',
 	},
 ]
 export const OCCUPATION: IOCCUPATION[] = [
@@ -169,10 +238,10 @@ export const COURSE_PREVIEW: {
 			<Icons.GitIcon key='4' />,
 		],
 		name: 'COURSE',
-		title: 'Back-end Development',
-		info: `Discover the core of back-end development. Learn to create user interfaces and master
+		title: 'Web Development',
+		info: `Discover the core of web development. Learn to create user interfaces and master
 			key programming languages and frameworks driving today's web.`,
-		link: 'backend-development',
+		link: 'web-development',
 	},
 	{
 		image: '/images/frontenddev.jpg',
@@ -183,11 +252,39 @@ export const COURSE_PREVIEW: {
 			<Icons.Heading5Icon key='8' />,
 		],
 		name: 'COURSE',
-		title: 'Front-end Development',
+		title: 'Smart-home Automation',
 		info: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
         develop engaging user-focused web applications.`,
-		link: 'frontend-development',
+		link: 'smart-home-automation',
 	},
+	// {
+	// 	image: '/images/bakenddev.jpg',
+	// 	icon: [
+	// 		<Icons.LaptopIcon key='1' />,
+	// 		<Icons.NodeJSCourseIcon key='2' />,
+	// 		<Icons.DatabaseIcon key='3' />,
+	// 		<Icons.GitIcon key='4' />,
+	// 	],
+	// 	name: 'COURSE',
+	// 	title: 'Back-end Development',
+	// 	info: `Discover the core of back-end development. Learn to create user interfaces and master
+	// 		key programming languages and frameworks driving today's web.`,
+	// 	link: 'backend-development',
+	// },
+	// {
+	// 	image: '/images/frontenddev.jpg',
+	// 	icon: [
+	// 		<Icons.NextJSIcon key='5' />,
+	// 		<Icons.JavaScriptIcon key='6' />,
+	// 		<Icons.ReactJSColorIcon key='7' />,
+	// 		<Icons.Heading5Icon key='8' />,
+	// 	],
+	// 	name: 'COURSE',
+	// 	title: 'Front-end Development',
+	// 	info: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+    //     develop engaging user-focused web applications.`,
+	// 	link: 'frontend-development',
+	// },
 ];
 export const OTHER_COURSE_PREVIEW: {
 	icon?: React.ReactNode;
@@ -258,7 +355,7 @@ export const COURSE_OUTLINE: {
 			}[];
 }[] = [
 	{
-	title: 'frontend-development',
+	title: 'web-development',
 	badgeType: 'Engineering',
 	textSnippet: 'Become a master with our {courseDetails.title} Crash Course',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
@@ -294,7 +391,7 @@ export const COURSE_OUTLINE: {
 ]
 },
 	{
-	title: 'backend-development',
+	title: 'smart-home-automation',
 	badgeType: 'Engineering',
 	tutorVideoUrl: '/images/workspaces.webm',
 	tutorName: 'John Paul',
@@ -557,6 +654,37 @@ export const COURSE_OUTLINE: {
 ]
   },
 	{
+	title: 'personal-branding',
+	badgeType: 'Business',
+	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+	tutorName: 'Ignatius Emeka',
+	description: `Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.`,
+	summary: [
+		'In this course you will learn',
+		'In this course you will learn',
+		'In this course you will learn',
+		'In this course you will learn',
+	], 
+	price: '50,000',
+	classes: '5',
+	duration: '1 week',
+	numberOfStudentsErolled: '40',
+	language: 'English',
+	certification: 'Yes',
+	curriculum: [
+		{
+		title: 'Basic Introduction',
+		topics: [
+			{ name: 'Brush up on Java concepts', },
+			{
+			name: `A Quick Introduction to Excel's Pivot Tables`,
+		  },
+		  
+		]
+	}
+]
+  },
+	{
 	title: 'project-management',
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
@@ -696,20 +824,20 @@ export const TESTIMONIALS: {
 }[] = [
 	{
 		image: '/images/lekan.jpg',
-		name: 'Lekan.',
-		review: `I would not have gotten ready for a web developer position if I hadn't attended the ISCEDemy courses.giugiguigigikjkbbkjb`,
+		name: 'Lekan John',
+		review: `I would not have gotten ready for a web developer position if I hadn't attended the PalmTechnIQ courses. I strongly recommend you try a course with them.`,
 		userrole: 'Frontend Developer',
 	},
 	{
 		image: '/images/wuli.jpg',
 		name: 'Tobechukwu P.',
-		review: `What I gained from the course was the ability to better understand coding and how to work on a project.`,
+		review: `What I gained from the course was the ability to better understand coding and how to work better on a project. Just an amazing place to start your tech career.`,
 		userrole: 'Frontend Developer',
 	},
 	{
 		image: '/images/favour.jpg',
-		name: 'Favour S.',
-		review: `I highly recommend ISCEDemy to anyone looking to learn Web Development. I promise you will not regret it.`,
-		userrole: 'Frontend Developer',
+		name: 'Favour Mbegbu',
+		review: `I highly recommend PalmTechnIQ to anyone looking to learn a beginner friendly course. This is where you go from beginner to PRO. I promise you will not regret it.`,
+		userrole: 'Social media manager',
 	},
 ];

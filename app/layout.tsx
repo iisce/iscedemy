@@ -10,11 +10,11 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: {
-		template: '%s | PalmtechnIQ',
-		default: 'PalmtechnIQ',
+		template: '%s | PalmTechnIQ',
+		default: 'PalmTechnIQ',
 	},
 	description:
-		'Learn cutting-edge tech skills with PalmtechnIQ! Explore our comprehensive courses and tutorials on programming, web development, data science, and more. Start your journey to becoming a tech expert today!',
+		'Learn cutting-edge tech skills with PalmTechnIQ! Explore our comprehensive courses and tutorials on programming, web development, data science, and more. Start your journey to becoming a tech expert today!',
 };
 
 export default async function RootLayout({

@@ -5,7 +5,7 @@ export default function PrivacyPolicy() {
   return (
     <div className=" max-w-5xl mx-auto p-5 pb-3">
       <div className=" p-3">
-        <span className="text-green-600 font-bold"> PalmtechnIQ</span> (we or
+        <span className="text-green-600 font-bold"> PalmTechnIQ</span> (we or
         us) is committed to protecting the privacy and security of your personal
         information. This Privacy Policy outlines how we collect use and
         safeguard your information when you use our website services or mobile
