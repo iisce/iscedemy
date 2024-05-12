@@ -44,7 +44,7 @@ export default function MobileMenu() {
 								width={100}
 								height={100}
 								alt='PalmTechnIQ'
-								src='/assets/PalmTechnIQlogo.png'
+								src='/assets/PalmTechniqlogo.png'
 								className='w-full py-3 h-full'
 								onClick={() => {
 								toggleMenu();
