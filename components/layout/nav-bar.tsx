@@ -26,7 +26,7 @@ export default function NavBar() {
 							width={150}
 							height={150}
 							alt='PalmTechnIQ'
-							src='/assets/PalmTechniqlogo.png'
+							src='/assets/palmtechniqlogo.png'
 							className='w-full h-full'
 							/>
 						</Link>
