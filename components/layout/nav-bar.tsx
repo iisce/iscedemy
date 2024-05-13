@@ -26,7 +26,7 @@ export default function NavBar() {
 							width={150}
 							height={150}
 							alt='PalmTechnIQ'
-							src='/assets/PalmTechnIQlogo.png'
+							src='/assets/palmtechniqlogo.png'
 							className='w-full h-full'
 							/>
 						</Link>
@@ -45,10 +45,9 @@ export default function NavBar() {
 						</div>
 					</div>
 					<Link href='https://wa.me/+2348163453826'>
-					<Button  variant='outline' className='rounded-full h-12 hidden hover:text-primary hover:bg-none bg-background text-primary  lg:flex'>
-						
-						Speak to admissions
-						
+					<Button  variant='outline' className='rounded-full h-12 hidden hover:text-primary hover:bg-none bg-background text-primary  lg:flex'>		
+						{`Speak to adm
+						issions`}				
 					</Button>
 					</Link>
 					<MobileMenu />

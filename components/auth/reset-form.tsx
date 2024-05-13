@@ -35,6 +35,9 @@ export default function Resetorm() {
         if (data?.error){
           setError(data?.error)
           setSuccess(data?.success);
+          if(data.success){
+            form.reset();
+          }
         };
       })
     });

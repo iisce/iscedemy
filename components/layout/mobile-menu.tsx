@@ -4,6 +4,7 @@ import { MenuIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import SignOutButton from '../ui/sign-out';
 
 export default function MobileMenu() {
 	const [active, setActive] = useState('');
@@ -37,14 +38,14 @@ export default function MobileMenu() {
 				} w-screen h-screen  text-background backdrop-blur-md bg-slate-500 bg-opacity-50 z-50 flex items-center justify-end lg:hidden transition-all duration-500 ease-out`}
 			>
 			
-				<div className='absolute text-background h-screen w-[80%] rounded-l-3xl bg-primary flex flex-col'>
+				<div className='absolute text-background h-screen w-[80%] rounded-l-3xl justify-between bg-primary flex flex-col'>
 					<div className='flex flex-col gap-8 items-center pt-2 '>
 						<Link href='/'>
 							<Image
 								width={100}
 								height={100}
 								alt='PalmTechnIQ'
-								src='/assets/PalmTechnIQlogo.png'
+								src='/assets/palmtechniqlogo.png'
 								className='w-full py-3 h-full'
 								onClick={() => {
 								toggleMenu();
@@ -64,6 +65,11 @@ export default function MobileMenu() {
 									</li>
 								))}
 							</ul>
+							<div className='border border-green-600 rounded-full ' onClick={() => {
+								toggleMenu();
+							}}>
+								<SignOutButton/>
+							</div>
 					</div>
 				</div>
 				

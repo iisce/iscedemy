@@ -9,7 +9,7 @@ export default function HomeHeader() {
   return (
     <div className="my-10 py-10 text-primary w-full items-center justify-center mx-auto">
       <MaxWidthWrapper className='flex md:flex-row flex-col lg:flex-row'>
-        <div className="flex flex-col justify-center mx-auto md:items-start md:justify-start  md:w-1/2 xl:w-1/2">
+        <div className="flex flex-col justify-center md:mt-16   mx-auto md:items-start md:justify-start md:w-1/2">
           <h1 className="text-3xl font-bold mb-2">{`PalmTechnIQ`}</h1>
           <h1 className="xl:text-5xl md:text-3xl md:text-wrap text-xl font-bold mb-6">
             {`Learn to code. 

@@ -36,6 +36,9 @@ export default function SignUpForm() {
       .then((data) => {
         setError(data.error);
         setSuccess(data.success);
+        if (data.success) {
+          form.reset();
+        }
       })
     });
   };

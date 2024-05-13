@@ -46,7 +46,7 @@ export const CourseRegisterSchema = z.object({
         required_error: "Please select at least 1 course!",
     })
         .refine(
-            (value) => ['Frontend Development', 'Backend Development', 'CyberSecurity', 'Graphic Design', 'UI/UX Design', 'Mobile Development', 'Project Management'].includes(value),
+            (value) => ['Web Development', 'CyberSecurity', 'Graphic Design', 'UI/UX Design', 'Mobile Development', 'Project Management','Smart-home Automation', 'Personal Branding'].includes(value),
             {
                 message: "Invalid course selected!",
             }
@@ -59,8 +59,8 @@ export const CourseRegisterSchema = z.object({
             (value) => ['I am an undergraduate looking to improve my soft skill.',
              'I am graduate looking to learn new/improve my soft skill.', 
              'I am a secondary school student ready to start a career in tech.', 
-             'Employed and looking to upscale my soft skill', 
-             'Unemployed and looking to learn new soft skill', 
+             'Employed and looking to upscale my soft skill.', 
+             'Unemployed and looking to learn new soft skill.', 
              ].includes(value),
             {
                 message: "Invalid occupation!",

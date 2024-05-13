@@ -44,6 +44,9 @@ export default function CrashCourseRegisterForm() {
       .then((data) => {
         setError(data.error);
         setSuccess(data.success);
+        if(data.success) {
+          form.reset();
+        }
       })
     });
   };

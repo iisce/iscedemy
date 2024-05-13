@@ -43,6 +43,9 @@ export default function LoginForm() {
         if (data?.error){
           setError(data?.error)
           setSuccess(data?.success);
+          if (data.success) {
+            form.reset();
+          }
         };
       })
     });

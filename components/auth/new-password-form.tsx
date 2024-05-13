@@ -38,6 +38,9 @@ export default function NewPasswordForm() {
         if (data?.error){
           setError(data?.error)
           setSuccess(data?.success);
+          if(data.success) {
+            form.reset();
+          }
         };
       })
     });

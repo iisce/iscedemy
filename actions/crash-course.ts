@@ -6,6 +6,7 @@ import * as z from 'zod';
 
 
 const resend = new Resend(process.env.RESEND_API_KEY)
+const chatLink = `https://wa.me/+2348163453826`;
 
 export const CrashCourse = async (values: z.infer<typeof CourseRegisterSchema>) => {
     const validatedFields = CourseRegisterSchema.safeParse(values);
@@ -54,9 +55,7 @@ export const CrashCourse = async (values: z.infer<typeof CourseRegisterSchema>) 
             to: validatedFields.data.email,
             subject: 'Crash Course Registration',
             text: `Dear ${validatedFields.data.firstname}
-            Thank you for registering for the Crash Course! We've received your registration and will be in touch with more details soon.
-            Best regards,
-            ISCE TEAM
+            Thank you for registering for the Crash Course! We've received your registration.
             `,
 
         });
