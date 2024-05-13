@@ -105,72 +105,81 @@ export const COURSEHEADER: ICOURSEHEADER[] = [
 ];
 
 export const COURSELIST: ICOURSELIST2[] = [
-	// {
-	// 	icon: <Icons.LaptopIcon />,
-	// 	image: '/frontend.jpg',
-	// 	content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
-	// 	title: 'Frontend Development',
-	// },
-	// {
-	// 	icon: <Icons.DatabaseIcon />,
-	// 	image: '/backend.jpg',
-	// 	content: 'Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.',
-	// 	title: 'Backend Development',
-	// },
-	{
-		icon: <Icons.DatabaseIcon />,
-		image: '/backend.jpg',
-		content: 'Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.',
-		title: 'Web Development',
-	},
-	{
-		icon: <Icons.DatabaseIcon />,
-		image: '/backend.jpg',
-		content: 'Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.',
-		title: 'Smart-home Automation',
-	},
-	{
-		icon: <Icons.DataBaseColorIon />,
-		image: '/cybersecurity.jpg',
-		content: 'Understand data management, optimizing server performance fgfigignrg rgrngringr grgnrignrigrginrignrigrg rgnrigrigrignrig',
-		title: 'CyberSecurity',
-	},
-	{
-		icon: <Icons.BookIcon />,
-		image: '/uiux.jpg',
-		content: 'Understand enhamced user satisfaction, higher engagement and user accessibility.',
-		title: 'UI/UX Designing',
-	},
-	{
-		icon: <Icons.TrendIcon />,
-		image: '/digitalmarketing.jpg',
-		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
-		title: 'Digital Marketing',
-	},
-	{
-		icon: <Icons.TrendIcon />,
-		image: '/digitalmarketing.jpg',
-		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
-		title: 'Personal Branding',
-	},
-	{
-		icon: <Icons.ReactJSColorIcon />,
-		image: '/mobileappdevelopment.jpg',
-		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
-		title: 'Mobile App Development',
-	},
-	{
-		icon: <Icons.PaintbrushIcon />,
-		image: '/graphicdesign.webp',
-		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
-		title: 'Graphic Design',
-	},
-	{
-		icon: <Icons.PaintbrushIcon />,
-		image: '/graphicdesign.webp',
-		content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
-		title: 'Project Management',
-	},
+  // {
+  // 	icon: <Icons.LaptopIcon />,
+  // 	image: '/frontend.jpg',
+  // 	content: 'Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.',
+  // 	title: 'Frontend Development',
+  // },
+  // {
+  // 	icon: <Icons.DatabaseIcon />,
+  // 	image: '/backend.jpg',
+  // 	content: 'Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.',
+  // 	title: 'Backend Development',
+  // },
+  {
+    icon: <Icons.DatabaseIcon />,
+    image: "/webdevelopment.jpg",
+    content:
+      "Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.",
+    title: "Web Development",
+  },
+  {
+    icon: <Icons.DatabaseIcon />,
+    image: "/smarthomes.jpg",
+    content:
+      "Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.",
+    title: "Smart-home Automation",
+  },
+  {
+    icon: <Icons.DataBaseColorIon />,
+    image: "/cybersecurity.jpg",
+    content:
+      "Understand data management, optimizing server performance fgfigignrg rgrngringr grgnrignrigrginrignrigrg rgnrigrigrignrig",
+    title: "CyberSecurity",
+  },
+  {
+    icon: <Icons.BookIcon />,
+    image: "/uiux.jpg",
+    content:
+      "Understand enhamced user satisfaction, higher engagement and user accessibility.",
+    title: "UI/UX Designing",
+  },
+  {
+    icon: <Icons.TrendIcon />,
+    image: "/digitalmarketing.jpg",
+    content:
+      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
+    title: "Digital Marketing",
+  },
+  {
+    icon: <Icons.TrendIcon />,
+    image: "/personalbranding.jpeg",
+    content:
+      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
+    title: "Personal Branding",
+  },
+  {
+    icon: <Icons.ReactJSColorIcon />,
+    image: "/mobileappdevelopment.jpg",
+    content:
+      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
+    title: "Mobile App Development",
+  },
+  {
+    icon: <Icons.PaintbrushIcon />,
+    image: "/graphicdesign.webp",
+    content:
+      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
+    title: "Graphic Design",
+  },
+  {
+    icon: <Icons.PaintbrushIcon />,
+    image: "/projectmanagement.jpg",
+    content:
+      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
+    title: "Project Management",
+  },
 ];
 export const COURSES: ICOURSES[] = [
 	// {
