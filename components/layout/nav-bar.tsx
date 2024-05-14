@@ -46,8 +46,7 @@ export default function NavBar() {
 					</div>
 					<Link href='https://wa.me/+2348163453826'>
 					<Button  variant='outline' className='rounded-full h-12 hidden hover:text-primary hover:bg-none bg-background text-primary  lg:flex'>		
-						{`Speak to adm
-						issions`}				
+						{`Speak to admissions`}				
 					</Button>
 					</Link>
 					<MobileMenu />
