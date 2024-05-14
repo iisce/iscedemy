@@ -9,7 +9,9 @@ export const publicRoutes = [
     "/contact",
     "/courses",
     "/register",
-    "/new-verification"
+    "/new-verification",
+    "/privacy-policy",
+    "/terms-of-use",
 ]
 
 

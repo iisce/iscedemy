@@ -385,9 +385,9 @@ export const COURSE_OUTLINE: {
 	certification: 'Yes',
 	curriculum: [
 		{
-		title: 'Basic Introduction',
+		title: 'Introduction',
 		topics: [
-			{ name: 'Brush up on Java concepts', },
+			{ name: 'What is web development', },
 			{
 			name: 'Associative Arrays',
 				},
@@ -403,7 +403,7 @@ export const COURSE_OUTLINE: {
 	title: 'smart-home-automation',
 	badgeType: 'Engineering',
 	tutorVideoUrl: '/images/workspaces.webm',
-	tutorName: 'John Paul',
+	tutorName: 'Tope Bamidele',
 	description: `In this course, you'll go behind the scenes and discover how websites store information, talk to each other, and make amazing things happen. Get ready to power up the internet!`,
 	summary: [
 		'In this course you will learn',
@@ -421,13 +421,14 @@ export const COURSE_OUTLINE: {
 		{
 		title: 'Basic Introduction',
 		topics: [
-			{ name: 'Brush up on Java concepts', },
+			{ name: 'Introduction to smart home automation', },
 			{
-			name: 'Associative Arrays',
+			name: 'Smart home hubs and controllers',
 				},
-				{
-			name: 'PHP fundamental',
-				},
+			{name: 'Smart lighting',},
+			{name: 'Smart security and surveillance systems',},
+			{name: 'Smart temperature and environmental control',},
+			{name: 'Smart  home entertainment',},
 
 		]
 	}
@@ -437,7 +438,7 @@ export const COURSE_OUTLINE: {
 	title: 'cybersecurity',
 	badgeType: 'Security',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Jonathan Willams',
+	tutorName: 'Tope Bamidele',
 	description: `Become a digital defender! Protect your online world from sneaky cyber villains. Learn how to safeguard your information, spot online scams, and keep your devices safe from harm.`,
 	summary: [
 		'In this course you will learn',
@@ -455,13 +456,11 @@ export const COURSE_OUTLINE: {
 		{
 		title: 'Basic Introduction',
 		topics: [
-			{
-			name: 'Associative Arrays',
-				},
-				{
-			name: 'PHP fundamental',
-				},
-
+			{name: 'Introduction to cybersecurity',},
+			{name: 'Types of cyber threats',},
+			{name: 'basic security measures',},
+			{name: 'Basic crytography',},
+			{name: 'Threat detection and response',},
 		]
 	}
 ]
@@ -470,7 +469,7 @@ export const COURSE_OUTLINE: {
 	title: 'graphic-design',
 	badgeType: 'Design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Micheal Steve',
+	tutorName: 'Mahoussi Ezekiel',
 	description: `Make your ideas come to life! Learn to design amazing logos, posters, and images that grab attention and tell your story. Express yourself through colors, shapes, and stunning visuals.`,
 	summary: [
 		'In this course you will learn',
@@ -503,7 +502,7 @@ export const COURSE_OUTLINE: {
 	{
 	title: 'ui%2Fux-designing',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Mawuli Smith',
+	tutorName: 'Mawuli Nwosu',
 	description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
 	summary: [
 		'Basic understanding on what UI/UX designing is all about.',
@@ -604,10 +603,12 @@ export const COURSE_OUTLINE: {
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn avatar manuipulation',
+		'Understand the basic concepts of mobile app development',
+		'Navigate around the flutter world',
+		'Basic setups of andriod using code editiors',
+		'Ability to use  platforms specific widgets',
+		'Know how to use state maintenance widgets',
+		'Understand navigation routing and controllers in flutter',
 	], 
 	price: '50,000',
 	classes: '5',
@@ -619,16 +620,51 @@ export const COURSE_OUTLINE: {
 		{
 		title: 'Basic Introduction',
 		topics: [
-			{ name: 'Brush up on Java concepts', },
+			{ name: 'What is flutter?', },
 			{
-			name: 'Amazon RDS Hands On',
+			name: 'Advantages of using flutter for app development',
 				},
-				{
-			name: 'Associative Arrays',
-				},
-
+			{name: 'Installation of code editior and flutter setup',},
+			{name: 'Installation of andriod studio and setups',},
 		]
-	}
+	},
+	{
+		title: 'Platform specific widgets',
+		topics: [
+			{ name: 'Scaffold ', },
+			{name: 'Textfield',},
+			{name: 'Elevated buttons',},
+			{name: 'App bar',},
+			{name: 'Bottom navigation bar',},
+			{name: 'floating action button',},
+		]
+	},
+	{
+		title: 'Platform independent widgets',
+		topics: [
+			{ name: 'Text widgets ', },
+			{name: 'Image widgets',},
+			{name: 'Icon widgets',},
+			{name: 'Form widgets',},
+		]
+	},
+	{
+		title: 'State maintenance widgets',
+		topics: [
+			{ name: 'Stateless widgets', },
+			{name: 'Stateful widgets',},
+		]
+	},
+	{
+		title: 'Using single child layouts',
+		topics: [
+			{ name: 'Container', },
+			{name: 'Center',},
+			{name: 'Expended',},
+			{name: 'Padding',},
+			{name: 'Sixed box',},
+		]
+	},
 ]
 	},
 	{
@@ -666,7 +702,7 @@ export const COURSE_OUTLINE: {
 	title: 'personal-branding',
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ignatius Emeka',
+	tutorName: 'Mahoussi Ezekiel',
 	description: `Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.`,
 	summary: [
 		'In this course you will learn',
@@ -817,8 +853,60 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'Jonathan Willams',
+		name: 'Mawuli Nwosu',
+		role: 'Design Expert',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/wuli.jpg',
+	},
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'Tope Bamidele',
 		role: 'Cyber Expert',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/tems.jpg',
+	},
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'Tope Bamidele',
+		role: 'Home Expert',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/tems.jpg',
+	},
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'Akhabue Emmanuel',
+		role: 'Project manager',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/lekan.jpg',
+	},
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'Sokeye David',
+		role: 'Flutter & Dart Developer',
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
 		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
 		dolor in reprehenderit in voluptate.`,

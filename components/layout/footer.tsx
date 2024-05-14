@@ -1,124 +1,171 @@
+'use client'
+import { subscribeToNewsletter } from "@/lib/mail";
 import {
-  LucideFacebook,
-  LucideInstagram,
-  LucideLinkedin,
-  LucideMail,
-  LucideMapPin,
-  LucidePhone,
-  LucideTwitter,
+	Loader,
+	LucideFacebook,
+	LucideInstagram,
+	LucideLinkedin,
+	LucideMail,
+	LucideMapPin,
+	LucidePhone,
+	LucideTwitter
 } from "lucide-react";
 import Link from "next/link";
+import React, { useState, useTransition } from "react";
+import { z } from "zod";
+import FormError from "../form-error";
+import FormSuccess from "../form-success";
 import { Button } from "../ui/button";
 import MaxWidthWrapper from "./max-width-wrapper";
+import { subscribe } from "@/actions/subcribe";
 
 export default function Footer() {
-  return (
-    <div className="pt-8 bg-primary text-background">
-      <MaxWidthWrapper>
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-7 justify-between">
-          <div className="w-full flex flex-col gap-4">
-            <div className="font-bold text-lg">{`PalmTechnIQ`}</div>
-            <div className=" font-normal text-sm">
-              {`PalmTechnIQ Store is a dynamic and inclusive
-							e-commerce platform that seamlessly connects
-							sellers and buyers, fostering a vibrant
-							marketplace`}
-            </div>
-            {/* <ol className='grid grid-cols-2 gap-4'>
-							<li className='bg-black h-12 justify-center gap-2 flex items-center text-white rounded-lg'>
-								<LucideApple />
-								<div>
-									<div className='text-white text-[9px]'>
-										Download On The
-									</div>
-									<div className='text-white text-[16px] font-bold'>
-										App Store
-									</div>
-								</div>
-							</li>
-							<li className='bg-black h-12 justify-center gap-2 flex items-center text-white rounded-lg'>
-								<LucideApple />
-								<div>
-									<div className='text-white text-[11px]'>
-										Get it In
-									</div>
-									<div className='text-white text-[16px] font-bold'>
-										Google Play
-									</div>
-								</div>
-							</li>
-						</ol> */}
-          </div>
+	const [email, setEmail] = useState('');
+	const [error, setError] = useState<string | undefined>(undefined);
+	const [success, setSuccess] = useState<string| undefined>(undefined);
+	const [isPending, startTransition] = useTransition();
 
-          <div className="w-full flex flex-col gap-4 text-sm">
-            <ol className="font-bold text-lg"> Contact Us</ol>
-            <ol className="flex gap-2 cursor-pointer">
-              <LucideMapPin className="shrink-0" />
-              <Link href="">
-                {`1st Floor, Chicken Republic building, 22rd ,Festac Town, Lagos, Nigeria`}
-              </Link>
-            </ol>
-            <ol className="flex gap-2 cursor-pointer">
-              <LucideMail className="shrink-0" />
-              <Link href="/"> info@PalmTechnIQ.com</Link>
-            </ol>
-            <ol className="flex gap-2 cursor-pointer">
-              <LucidePhone className="shrink-0" />
-              <Link href="tel:"> 09013 447 0693</Link>
-            </ol>
-          </div>
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		setError("");
+		setSuccess("");
 
-          <div className=" w-full flex flex-col gap-4 text-sm">
-            <ol className="font-bold text-lg">Company</ol>
-            <Link href="https://www.isce.tech" className="cursor-pointer">
-              About Us
-            </Link>
-            <Link href="/terms-of-use" className="cursor-pointer">
-              Terms Of Use
-            </Link>
-            <Link href="/privacy-policy" className="cursor-pointer">
-              Privacy & Policy
-            </Link>
-            <Link href="/about-us" className="cursor-pointer">
-              {`Frequently Asked Question`}
-            </Link>
-          </div>
+		startTransition(async () => {
 
-					<div className='flex flex-col gap-4 text-sm'>
-						<div className='font-bold text-lg'>
-							{`Subscribe To Our Newsletter`}
+
+			try {
+
+				const result = await subscribe({email});
+				if (result.error) {
+					setError(result.error);
+				} else {
+					setSuccess(result.success);
+					setEmail("");
+				}
+			}catch (error) {
+				console.error('Error subscribing to newsletter:', error);
+				setError('An error occurred while subscribing. Please try again.');
+			}
+			})
+	}
+		return (
+			<div className="pt-8 bg-primary text-background">
+				<MaxWidthWrapper>
+					<div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-7 justify-between">
+						<div className="w-full flex flex-col gap-4">
+							<div className="font-bold text-lg">{`PalmTechnIQ`}</div>
+							<div className=" font-normal text-sm">
+								{`PalmTechnIQ Store is a dynamic and inclusive
+					e-commerce platform that seamlessly connects
+					sellers and buyers, fostering a vibrant
+					marketplace`}
 						</div>
-						<div className='border-b-2 rounded-lg h-12'>
-							<input
-								placeholder='Email Address'
-								type='text'
-								className='px-3 w-full h-full border-none bg-slate-100  text-black rounded-lg placeholder:text-black'
-							/>
+						{/* <ol className='grid grid-cols-2 gap-4'>
+					<li className='bg-black h-12 justify-center gap-2 flex items-center text-white rounded-lg'>
+						<LucideApple />
+						<div>
+							<div className='text-white text-[9px]'>
+								Download On The
+							</div>
+							<div className='text-white text-[16px] font-bold'>
+								App Store
+							</div>
 						</div>
-						<Button variant='outline' className='h-12 rounded-full bg-background text-primary hover:bg-none'>
-							{`Subscribe`}
-						</Button>
+					</li>
+					<li className='bg-black h-12 justify-center gap-2 flex items-center text-white rounded-lg'>
+						<LucideApple />
+						<div>
+							<div className='text-white text-[11px]'>
+								Get it In
+							</div>
+							<div className='text-white text-[16px] font-bold'>
+								Google Play
+							</div>
+						</div>
+					</li>
+				</ol> */}
 					</div>
+
+					<div className="w-full flex flex-col gap-4 text-sm">
+						<ol className="font-bold text-lg"> Contact Us</ol>
+						<ol className="flex gap-2 cursor-pointer">
+							<LucideMapPin className="shrink-0" />
+							<Link href="">
+								{`1st Floor, Chicken Republic building, 22rd ,Festac Town, Lagos, Nigeria`}
+							</Link>
+						</ol>
+						<ol className="flex gap-2 cursor-pointer">
+							<LucideMail className="shrink-0" />
+							<Link href="/"> info@PalmTechnIQ.com</Link>
+						</ol>
+						<ol className="flex gap-2 cursor-pointer">
+							<LucidePhone className="shrink-0" />
+							<Link href="tel:"> 09013 447 0693</Link>
+						</ol>
+					</div>
+
+					<div className=" w-full flex flex-col gap-4 text-sm">
+						<ol className="font-bold text-lg">Company</ol>
+						<Link href="https://www.isce.tech" className="cursor-pointer">
+							About Us
+						</Link>
+						<Link href="/terms-of-use" className="cursor-pointer">
+							Terms Of Use
+						</Link>
+						<Link href="/privacy-policy" className="cursor-pointer">
+							Privacy & Policy
+						</Link>
+						<Link href="/about-us" className="cursor-pointer">
+							{`Frequently Asked Question`}
+						</Link>
+					</div>
+
+			<div className='flex flex-col gap-4 text-sm'>
+				<div className='font-bold text-lg'>
+					{`Subscribe To Our Newsletter`}
 				</div>
-				<div className='pt-10  space-y-2'>
-					<div className='flex items-center gap-4 justify-center py-2'>
-						<Link href='https://www.twitter.com/'>
-							<LucideTwitter />
-						</Link>
-						<Link href='https://www.facebook.com/'>
-							<LucideFacebook />
-						</Link>
-						<Link href='https://www.instagram.com/'>
-							<LucideInstagram />
-						</Link>
-						<Link href='https://www.linkedin.com/'>
-							<LucideLinkedin />
-						</Link>
+				<form onSubmit={handleSubmit} >
+					<div className='border-b-2 rounded-lg h-12 my-4'>
+						<input
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							placeholder='Email Address'
+							type='email' 
+							className='px-3 w-full h-full border-none bg-slate-100 text-black rounded-lg placeholder:text-black'
+						/>
 					</div>
-					<div className='grid justify-center'>
-						{`2024 PalmTechnIQ. All Rights Reserved.`}
-					</div>
+					<Button 
+						type="submit"
+						variant='outline' 
+						className='h-12 w-full rounded-full bg-background text-primary hover:bg-none '
+						disabled={isPending || !email}
+					>
+						{isPending ? <Loader className="w-6 h-6 animate-spin" /> : 'Subscribe'}
+					</Button>
+					<FormError message={error} />
+					<FormSuccess message={success} />
+				</form>
 				</div>
+			</div>
+			<div className='pt-10  space-y-2'>
+				<div className='flex items-center gap-4 justify-center py-2'>
+					<Link href='https://www.twitter.com/'>
+						<LucideTwitter />
+					</Link>
+					<Link href='https://www.facebook.com/'>
+						<LucideFacebook />
+					</Link>
+					<Link href='https://www.instagram.com/'>
+						<LucideInstagram />
+					</Link>
+					<Link href='https://www.linkedin.com/'>
+						<LucideLinkedin />
+					</Link>
+				</div>
+				<div className='grid justify-center'>
+					{`2024 PalmTechnIQ. All Rights Reserved.`}
+				</div>
+			</div>
 			</MaxWidthWrapper>
 		</div>
 	);

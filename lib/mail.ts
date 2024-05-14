@@ -32,3 +32,18 @@ export const sendVerificationEmail = async (
         
     })
 }
+
+export const subscribeToNewsletter = async (email: string) => {
+    try {
+        await resend.emails.send({
+            from: process.env.FROM_EMAIL_ADDRESS!,
+            to: email,
+            subject: "Welcome to our newsletter system",
+            html: `<p>Thank you for subscribing to our newsletter! You'll now receive our latest updates and news.</p>`,
+        });
+        return { success: "Subcribed successfully!"};
+    } catch (error) {
+        console.error('Error subcribing to newsletter!', error);
+        return {error: "Subcription failed! Try again"};
+    }
+};

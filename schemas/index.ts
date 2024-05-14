@@ -18,6 +18,11 @@ export const ResetSchema = z.object({
         message: "Email is required",
     }),
 });
+export const SubscribeSchema = z.object({
+    email: z.string().email({
+        message: "Email is required",
+    }),
+});
 export const RegisterSchema = z.object({
     email: z.string().email({
         message: "Email is required",
