@@ -239,7 +239,7 @@ export const COURSE_PREVIEW: {
 	link?: string;
 }[] = [
 	{
-		image: '/images/bakenddev.jpg',
+		image: '/images/frontenddev.jpg',
 		icon: [
 			<Icons.LaptopIcon key='1' />,
 			<Icons.NodeJSCourseIcon key='2' />,
@@ -253,7 +253,7 @@ export const COURSE_PREVIEW: {
 		link: 'web-development',
 	},
 	{
-		image: '/images/frontenddev.jpg',
+		image: '/images/bakenddev.jpg',
 		icon: [
 			<Icons.NextJSIcon key='5' />,
 			<Icons.JavaScriptIcon key='6' />,
@@ -262,8 +262,7 @@ export const COURSE_PREVIEW: {
 		],
 		name: 'COURSE',
 		title: 'Smart-home Automation',
-		info: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
-        develop engaging user-focused web applications.`,
+		info: ` Learn to control lights, thermostats, locks, and more with a tap on your phone or the sound of your voice. Create a futuristic home that works for you.`,
 		link: 'smart-home-automation',
 	},
 	// {
@@ -309,8 +308,7 @@ export const OTHER_COURSE_PREVIEW: {
 		link: 'ui%2Fux-designing',
 		image: '/images/user-interface-design.jpg',
 		title: 'UI/UX',
-		info: `Explore a beginner-friendly, popular programming language that's renowned for its readability and
-			extensive range of applications.`,
+		info: `Create websites and apps that are both beautiful and intuitive. Know the art of user-centric design, ensuring that your products are easy to use and enjoyable to interact with.`,
 	},
 	{
 		icon: <Icons.DataBaseColorIon key='10' />,
@@ -318,8 +316,7 @@ export const OTHER_COURSE_PREVIEW: {
 		link: 'cybersecurity',
 		image: '/images/cyber-security.jpg',
 		title: 'CyberSecurity',
-		info: `Master SQL, an essential skill in data analysis and management, from creating to querying and manipulating
-			databases.`,
+		info: `Protect your data, devices, and privacy from cyber threats. Learn to identify risks, prevent attacks, and safeguard your online presence in an ever-changing digital landscape.`,
 	},
 	{
 		icon: <Icons.TrendIcon key='11' />,
@@ -327,8 +324,7 @@ export const OTHER_COURSE_PREVIEW: {
 		link: 'digital-marketing',
 		image: '/images/search-engine-marketing.jpg',
 		title: 'Digital Marketing',
-		info: `Master the building blocks of web development, understand the structure of web
-			pages, and start building real websites.`,
+		info: `Reach the world with your message! Learn the strategies and tools to promote your business, product, or brand online. Master social media, search engines, and advertising to attract and engage customers.`,
 	},
 	{
 		icon: <Icons.PaintbrushIcon key='5' />,
@@ -336,8 +332,7 @@ export const OTHER_COURSE_PREVIEW: {
 		link: 'graphic-design',
 		image: '/images/graphic-design.jpg',
 		title: 'Graphic Design',
-		info: `Dive into the world of JavaScript, the programming language to manipulate web page elements, build web
-			applications, and more.`,
+		info: `Understand the secrets of color, layout, and typography to create eye-catching visuals that tell a story. Design logos, posters, and graphics that captivate and inspire.` ,
 	},
 ];
 export const COURSE_OUTLINE: {
@@ -369,13 +364,12 @@ export const COURSE_OUTLINE: {
 	textSnippet: 'Become a master with our {courseDetails.title} Crash Course',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
 	tutorName: 'Ayobami Paul',
-	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
-	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
+	description: `You'll master the fundamental languages of the web (HTML, CSS, and JavaScript) and dive into React, a powerful tool for creating dynamic user interfaces. Learn to craft stunning layouts, bring your designs to life with interactive elements, and create responsive websites that look amazing on any device. No prior coding experience is required – just a passion for building awesome things on the web!`,
 	summary: [
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
+		`Web Fundamentals: Grasp the core building blocks of every website: HTML for structure, CSS for style, and JavaScript for interactivity.`,
+		`React Essentials:Get introduced to React, the go-to library for crafting modern, component-based web applications. Build interactive UIs that are easy to maintain and scale.`,
+		`Responsive Design knowledge: Learn to create websites that adapt seamlessly to different screen sizes, ensuring a great user experience on desktops, tablets, and mobile devices.`,
+		`Dynamic Web Pages: Go beyond static content and build web pages that respond to user actions, update in real time, and deliver a truly engaging experience.`,
 	], 
 	price: '50,000',
 	classes: '5',
@@ -385,18 +379,45 @@ export const COURSE_OUTLINE: {
 	certification: 'Yes',
 	curriculum: [
 		{
-		title: 'Introduction',
+		title: 'Introduction to Web Development',
 		topics: [
-			{ name: 'What is web development', },
-			{
-			name: 'Associative Arrays',
-				},
-				{
-			name: 'PHP fundamental',
-				},
-
+			{ name: 'What is web development?', },
+			{name: 'Front-end vs. back-end development',},
+			{name: `Setting up your development environment`,},
 		]
-			}
+		},
+		{
+		title: 'HTML (HyperText Markup Language)',
+		topics: [
+			{ name: 'Basic HTML tags and structure', },
+			{name: 'Creating elements, headings, paragraphs, lists, images, and links',},
+			{name: `Building simple web page layouts`,},
+		]
+		},
+		{
+		title: 'CSS (Cascading Style Sheets)',
+		topics: [
+			{ name: 'Styling HTML elements: colors, fonts, spacing, and backgrounds', },
+			{name: 'Creating responsive layouts with Flexbox or Grid',},
+			{name: `Basic CSS animations and transitions`,},
+		]
+		},
+		{
+		title: 'JavaScript (JS)',
+		topics: [
+			{ name: 'Variables, data types, and operators', },
+			{name: 'Functions and conditional statements (if/else)',},
+			{name: `DOM manipulation: interacting with HTML elements using JS`,},
+		]
+		},
+		{
+		title: 'React Introduction',
+		topics: [
+			{ name: 'What is React?', },
+			{name: 'Creating simple React components',},
+			{name: `Basic state management and rendering`,},
+		]
+		},
 ]
 },
 	{
@@ -404,12 +425,12 @@ export const COURSE_OUTLINE: {
 	badgeType: 'Engineering',
 	tutorVideoUrl: '/images/workspaces.webm',
 	tutorName: 'Tope Bamidele',
-	description: `In this course, you'll go behind the scenes and discover how websites store information, talk to each other, and make amazing things happen. Get ready to power up the internet!`,
+	description: `Know the inner workings of smart-home automation in this captivating course! Let's show you the secrets of how devices communicate, store data, and orchestrate incredible experiences within your home. Get set to transform your living space with the power of automation!!`,
 	summary: [
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
+		`The ABCs of Smart Homes. You'll get a friendly introduction to the world of smart home automation, from the gadgets that make it happen to the amazing things you can do with it.`,
+		`Know the control central behind the operation – smart hubs and controllers.You'll learn how they connect your devices and make your home truly smart.`,
+		`Understand smart lighting – dim the lights for movie night, wake up to a sunrise glow, or set the mood with colorful scenes, all from your phone or with voice commands.`,
+		`Keep your home safe and secure with smart security systems. Monitor cameras, lock doors remotely, and even receive alerts when someone's at your door.`,
 	], 
 	price: '50,000',
 	classes: '5',
@@ -441,10 +462,10 @@ export const COURSE_OUTLINE: {
 	tutorName: 'Tope Bamidele',
 	description: `Become a digital defender! Protect your online world from sneaky cyber villains. Learn how to safeguard your information, spot online scams, and keep your devices safe from harm.`,
 	summary: [
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
+		`Get a solid foundation in the essentials of cybersecurity.You'll understand the common threats, and why protecting your online world is crucial.`,
+		`Know different types of cyber attacks – from sneaky viruses and malware to phishing scams and identity theft. Learn how hackers operate so you can stay one step ahead.`,
+		`Master the fundamental security measures everyone should know. From how to create strong passwords, safeguarding your personal information, and protect your devices from harm.`,
+		` Dip your toes into the world of cryptography – the secret language of cybersecurity. Get a basic understanding of how encryption works and why it's so important for online security.`,
 	], 
 	price: '50,000',
 	classes: '5',
@@ -506,10 +527,13 @@ export const COURSE_OUTLINE: {
 	description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
 	summary: [
 		'Basic understanding on what UI/UX designing is all about.',
-		'Fundamentals of User Interface Design',
+		`The magic behind user interface (UI) and user experience (UX) design. You'll understand why it's so important for creating websites and apps that people actually enjoy using.`,
+		' Learn the secrets of user-centered design. Find out how to think like your target audience so you can build websites that cater to their needs and desires.',
+		`Understand the fundamental principles of good UI design. Discover the best practices for creating intuitive interfaces that are both visually appealing and easy to navigate.`,
 		'Tools for desinging and how to use them effectively in design.',
 		'Understand visual design and how to implement them.',
 		'How to conduct a user research.',
+		
 	], 
 	price: '50,000',
 	classes: '5',
@@ -672,12 +696,12 @@ export const COURSE_OUTLINE: {
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
 	tutorName: 'Ignatius Emeka',
-	description: `Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.`,
+	description: `Become a digital marketing whiz and learn how to take your message to the masses in this exciting, hands-on course. Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.Whether you're promoting a business, a product, a cause, or even yourself, this course will equip you with the tools you need to make a real impact online.`,
 	summary: [
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
+		`The Digital Marketing scopes: You'll get a clear overview of the digital marketing world, from social media platforms and search engines to email campaigns and paid advertising. Understand how each piece fits into a comprehensive strategy.`,
+		`Social Media Superstar: You'll learn to harness the power of platforms like Facebook, Instagram, Twitter, and LinkedIn.How to create engaging content, build a loyal following, and drive traffic to your website or landing pages.`,
+		`Explore the different types of digital advertising, understand targeting options, and measure your ad performance.`,
+		`Discover how to create valuable content that attracts and delights your audience. Learn to write compelling blog posts, articles, and social media updates that resonate with your target market.`,
 	], 
 	price: '50,000',
 	classes: '5',
@@ -687,15 +711,45 @@ export const COURSE_OUTLINE: {
 	certification: 'Yes',
 	curriculum: [
 		{
-		title: 'Basic Introduction',
+		title: 'Digital Marketing Fundamentals',
 		topics: [
-			{ name: 'Brush up on Java concepts', },
+			{ name: 'What is digital marketing and why is it essential?', },
 			{
-			name: `A Quick Introduction to Excel's Pivot Tables`,
+			name: `The different channels and tactics of digital marketing`,
 		  },
+		 {name: `Developing a digital marketing strategy`}
 		  
 		]
-	}
+	},
+		{
+		title: 'Social Media Marketing',
+		topics: [
+			{ name: 'Choosing the right platforms for your audience', },
+			{
+			name: `Creating engaging content calendars`,
+		  },
+		 {name: `Running effective social media campaigns`},
+		 {name: `Measuring social media success`},
+		  
+		]
+	},
+		{
+		title: 'Digital Advertising',
+		topics: [
+			{ name: 'Understanding different ad formats (display, search, social, video)', },
+		  
+		]
+	},
+		{
+		title: 'Content Marketing',
+		topics: [
+			{ name: 'Identifying your target audience and their needs', },
+			{ name: 'Creating a content strategy', },
+			{ name: 'Writing engaging and informative content', },
+			{ name: 'Distributing and promoting your content', },
+		  
+		]
+	},
 ]
   },
 	{
@@ -832,7 +886,7 @@ export const TUTOR_PROFILE: {
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
 		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
 		dolor in reprehenderit in voluptate.`,
-		image: '/images/lekan.jpg',
+		image: '/images/paul.jpg',
 	},
 	{
 		icon: [
@@ -907,6 +961,19 @@ export const TUTOR_PROFILE: {
 		],
 		name: 'Sokeye David',
 		role: 'Flutter & Dart Developer',
+		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
+		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
+		dolor in reprehenderit in voluptate.`,
+		image: '/images/lekan.jpg',
+	},
+	{
+		icon: [
+			<Icons.FacebookIcon key='1' />,
+			<Icons.TwitterIcon key='2' />,
+			<Icons.LinkedinIcon key='3' />,
+		],
+		name: 'Ignatius Emeka',
+		role: 'Digital Specialist',
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
 		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
 		dolor in reprehenderit in voluptate.`,

@@ -115,7 +115,7 @@ export default function Footer() {
 						<Link href="/privacy-policy" className="cursor-pointer">
 							Privacy & Policy
 						</Link>
-						<Link href="/about-us" className="cursor-pointer">
+						<Link href="/faq" className="cursor-pointer">
 							{`Frequently Asked Question`}
 						</Link>
 					</div>

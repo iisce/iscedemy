@@ -43,12 +43,12 @@ export default function HomeHeader() {
             <div className="backdrop-blur-sm absolute top-0 h-full w-full">
             </div>       
             <div className="lg:absolute bottom-0 hidden -left-2 right-0 gap-3 py-2 px-3 rounded-b-lg xl:flex flex-wrap justify-center items-center lg:ml-4 lg:mb-4">
-              <Badge variant="secondary" className=' cursor-pointer text-lg ' >{`HTML`}<div className=' ml-2 bg-green-600 rounded-lg py-3 px-4'><Icons.HtmlIcon /></div></Badge>
-              <Badge variant="secondary"  className='cursor-pointer text-lg p-2'>{`JavaScript`}<div className='rounded-lg ml-2 bg-green-600 py-3 px-4'><Icons.JavaScriptIcon/></div></Badge>
-              <Badge variant="secondary"  className=' cursor-pointer text-lg p-2'>{`SQL`}<div className='rounded-lg ml-2 bg-green-600 py-3 px-4'><Icons.SqlIcon/></div></Badge>
-              <Badge variant="secondary"  className='cursor-pointer text-lg p-2'>{`Next.js`}<div className='rounded-lg ml-2 bg-green-600 py-3 px-4'><Icons.NextJSIcon/></div></Badge>
-              <Badge variant="secondary"  className=' cursor-pointer text-lg p-2'>{`Node.js`}<div className='rounded-lg ml-2 bg-green-600 py-3 px-4'><Icons.NodeJSIcon/></div></Badge>
-              <Badge variant="secondary"  className='cursor-pointer text-lg p-2'>{`React`}<div className='rounded-lg ml-2 bg-green-600 py-3 px-4'><Icons.ReactJSIcon/></div></Badge>
+              <Badge variant="secondary" className=' cursor-pointer text-lg ' >{`HTML`}<div className=' ml-2 bg-tertiary rounded-lg py-3 px-4'><Icons.HtmlIcon /></div></Badge>
+              <Badge variant="secondary"  className='cursor-pointer text-lg p-2'>{`JavaScript`}<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'><Icons.JavaScriptIcon/></div></Badge>
+              <Badge variant="secondary"  className=' cursor-pointer text-lg p-2'>{`SQL`}<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'><Icons.SqlIcon/></div></Badge>
+              <Badge variant="secondary"  className='cursor-pointer text-lg p-2'>{`Next.js`}<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'><Icons.NextJSIcon/></div></Badge>
+              <Badge variant="secondary"  className=' cursor-pointer text-lg p-2'>{`Node.js`}<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'><Icons.NodeJSIcon/></div></Badge>
+              <Badge variant="secondary"  className='cursor-pointer text-lg p-2'>{`React`}<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'><Icons.ReactJSIcon/></div></Badge>
             </div>
           </div>
         </div>
