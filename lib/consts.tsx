@@ -938,3 +938,36 @@ export const TESTIMONIALS: {
 		userrole: 'Social media manager',
 	},
 ];
+export const FREQUENTLY_ASKED_QUESTIONS: {
+	question: string;
+    answer: string;
+}[] = [
+	{
+		question: 'What is PalmtechnIQ?',
+		answer: 'PalmtechnIQ is an online educational platform that offers a wide range of courses and resources in various fields such as technology, business, arts, and more. Our mission is to provide accessible and high-quality education to learners worldwide.',
+	},
+	{
+		question: 'How does PalmtechnIQ work?',
+		answer: 'To get started with PalmtechnIQ, simply create an account on our website or mobile app. Browse through our course catalog, enroll in your preferred courses, and start learning at your own pace. Our platform offers interactive lessons, quizzes, projects, and discussions to enhance your learning experience.',
+	},
+	{
+		question: 'What types of courses does PalmtechnIQ offer?',
+		answer: 'We offer courses in diverse subjects, including programming, web development, data science, graphic design, entrepreneurship, and many more. Our courses are designed by industry experts and updated regularly to ensure relevance and quality.',
+	},
+	{
+		question: 'Are the courses on PalmtechnIQ self-paced?',
+		answer: 'Yes! most of our courses are self-paced, allowing you to learn at a time and place that suits you. You can progress through the lessons and complete assignments at your own speed, with no deadlines or fixed schedules.',
+	},
+	{
+		question: 'Can I access PalmtechnIQ courses on mobile devices?',
+		answer: ' Yes! PalmtechnIQ is accessible on both desktop and mobile devices. You can download our mobile app from the App Store or Google Play Store to access courses and continue learning on the go.',
+	},
+	{
+		question: 'How much do PalmtechnIQ courses cost?',
+		answer: 'While some courses on PalmtechnIQ are free, others may require payment. The cost of courses varies depending on factors such as course duration, complexity, and instructor expertise. We also offer discounts and promotions from time to time.',
+	},
+	{
+		question: 'Can I get a certificate upon completing a course?',
+		answer: 'Yes! upon successfully completing a course on PalmtechnIQ, you will receive a certificate of completion. Certificates can be shared on your LinkedIn profile or included in your resume to showcase your skills and achievements.',
+	},
+]
