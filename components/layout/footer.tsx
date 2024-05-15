@@ -1,5 +1,5 @@
 'use client'
-import { subscribeToNewsletter } from "@/lib/mail";
+import { subscribe } from "@/actions/subcribe";
 import {
 	Loader,
 	LucideFacebook,
@@ -12,12 +12,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import React, { useState, useTransition } from "react";
-import { z } from "zod";
 import FormError from "../form-error";
 import FormSuccess from "../form-success";
 import { Button } from "../ui/button";
 import MaxWidthWrapper from "./max-width-wrapper";
-import { subscribe } from "@/actions/subcribe";
 
 export default function Footer() {
 	const [email, setEmail] = useState('');
@@ -55,10 +53,7 @@ export default function Footer() {
 						<div className="w-full flex flex-col gap-4">
 							<div className="font-bold text-lg">{`PalmTechnIQ`}</div>
 							<div className=" font-normal text-sm">
-								{`PalmTechnIQ Store is a dynamic and inclusive
-					e-commerce platform that seamlessly connects
-					sellers and buyers, fostering a vibrant
-					marketplace`}
+								{`PalmTechnIQ is an educational platform that offers a wide range of courses and resources in various fields such as technology, business, arts, and more. Our mission is to provide accessible and high-quality education to learners worldwide. `}
 						</div>
 						{/* <ol className='grid grid-cols-2 gap-4'>
 					<li className='bg-black h-12 justify-center gap-2 flex items-center text-white rounded-lg'>
@@ -96,11 +91,11 @@ export default function Footer() {
 						</ol>
 						<ol className="flex gap-2 cursor-pointer">
 							<LucideMail className="shrink-0" />
-							<Link href="/"> info@PalmTechnIQ.com</Link>
+							<Link href="/"> support@palmtechniq.com</Link>
 						</ol>
 						<ol className="flex gap-2 cursor-pointer">
 							<LucidePhone className="shrink-0" />
-							<Link href="tel:"> 09013 447 0693</Link>
+							<Link href="tel:"> 08163453826 </Link>
 						</ol>
 					</div>
 

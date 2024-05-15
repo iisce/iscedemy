@@ -22,7 +22,7 @@ export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
             <Icons.StarIcon />
             <Icons.StarIcon />
           </div>
-          <div className="text-sm text-gray-500">3
+          <div className="text-sm text-gray-700">3
            ratings</div>
         </div>
         <div className="flex flex-col space-y-2">
@@ -75,8 +75,8 @@ export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
                <div className="flex text-green-600">
                  {review.rating}
                </div>
-               <div className="text-gray-600">{review.title}</div>
-               <p className="text-gray-500 mt-1">
+               <div className="text-gray-900">{review.title}</div>
+               <p className="text-gray-700 mt-1">
                  {review.description}
                </p>
                <Separator className="w-full"/>

@@ -120,65 +120,58 @@ export const COURSELIST: ICOURSELIST2[] = [
   {
     icon: <Icons.DatabaseIcon />,
     image: "/webdevelopment.jpg",
-    content:
-      "Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.",
-    title: "Web Development",
+	content: `Ready to build websites from scratch? Our crash course covers everything you need, from basic HTML and CSS to JavaScript. Learn to create sites that work on any device and look great too. Plus, we'll teach you how to make your sites easy . Whether you're a beginner, join us and start coding your way to success!`, 
+	title: "Web Development",
   },
   {
     icon: <Icons.DatabaseIcon />,
     image: "/smarthomes.jpg",
-    content:
-      "Understand how to optimize server performance and manage databases, ensure security through authorisation mechanisms.",
-    title: "Smart-home Automation",
+    content: `Transform your living space into a futuristic, efficient haven with our Smart Home Automation crash course. Learn how to control lights, temperature, security, and more with just a tap on your smartphone or a simple voice command. Say goodbye to mundane tasks and embrace the convenience and energy savings of a smart home.`,  
+	title: "Smart-home Automation",
   },
   {
     icon: <Icons.DataBaseColorIon />,
     image: "/cybersecurity.jpg",
-    content:
-      "Understand data management, optimizing server performance fgfigignrg rgrngringr grgnrignrigrginrignrigrg rgnrigrigrignrig",
-    title: "CyberSecurity",
+	content: `Protect yourself and your digital assets from cyber threats with our Cybersecurity crash course. From safeguarding personal information to securing business networks, our comprehensive training will guide you to the latest techniques and best practices in cybersecurity. Gain peace of mind knowing that you're equipped to defend against hackers and keep your data safe.`, 
+	title: "CyberSecurity",
   },
   {
     icon: <Icons.BookIcon />,
     image: "/uiux.jpg",
-    content:
-      "Understand enhamced user satisfaction, higher engagement and user accessibility.",
-    title: "UI/UX Designing",
+	content: `Create seamless, user-friendly experiences that delight and engage with our UI/UX course.Learn the principles of user interface and user experience design, and how to apply them to websites, apps, and digital products. From wireframing to prototyping, our hands-on training will equip you with the basic skills to design intuitive interfaces that users love to interact with.
+	`, 
+	title: "UI/UX Designing",
   },
   {
     icon: <Icons.TrendIcon />,
     image: "/digitalmarketing.jpg",
-    content:
-      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
-    title: "Digital Marketing",
+    content: `Join the digital revolution and learn how to reach your audience effectively in the online world. Our Digital Marketing crash course the necessary things you need from social media strategies to search engine optimization, equipping you with the fundamental skills to drive traffic, generate leads, and increase sales. Stay ahead of the competition and make your mark in the digital landscape.`,  
+	title: "Digital Marketing",
   },
   {
     icon: <Icons.TrendIcon />,
     image: "/personalbranding.jpeg",
-    content:
-      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
-    title: "Personal Branding",
+    content: `Stand out from the crowd and make a lasting impression with our Personal Branding crash course. Whether you're a freelancer, entrepreneur, or job seeker, building a strong personal brand is essential for success. Learn how to articulate your unique value proposition, establish credibility, and cultivate a compelling online presence that resonates with your target audience.
+	`,     
+	title: "Personal Branding",
   },
   {
     icon: <Icons.ReactJSColorIcon />,
     image: "/mobileappdevelopment.jpg",
-    content:
-      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
-    title: "Mobile App Development",
+    content: `Turn your app idea into reality with our Mobile App Development crash course. No coding experience? No problem. Our beginner-friendly course will guide you through the fundamental level of app development process, from concept to launch. Discover the tools and techniques used by professional developers and bring your innovative app to the fingertips of users worldwide.`,     
+	title: "Mobile App Development",
   },
   {
     icon: <Icons.PaintbrushIcon />,
     image: "/graphicdesign.webp",
-    content:
-      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
-    title: "Graphic Design",
+    content: `Showcase your creativity and bring your ideas to life with our Graphic Design crash course. Whether you're a budding artist or a business owner looking to enhance your brand, our crash course will teach you the fundamentals of design principles, typography, color theory, and industry-standard software. Unlock the power to communicate visually and make a lasting impression.`,     
+	title: "Graphic Design",
   },
   {
     icon: <Icons.PaintbrushIcon />,
     image: "/projectmanagement.jpg",
-    content:
-      "Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.",
-    title: "Project Management",
+    content: `Understand the art of project management and how you can take your career to new heights with our Project Management crash course. Whether you're overseeing a small team or leading a large-scale initiative, our crash course will equip you with the skills to plan, execute, and deliver projects on time and within budget. Gain the confidence and competence to tackle any project with ease.`,     
+	title: "Project Management",
   },
 ];
 export const COURSES: ICOURSES[] = [
@@ -342,6 +335,7 @@ export const COURSE_OUTLINE: {
 	tutorVideoUrl: string;
 	tutorName: string;
 	description: string;
+	conclusion?: string;
 	summary: string[];
 	price: string;
 	classes: string;
@@ -361,7 +355,7 @@ export const COURSE_OUTLINE: {
 	{
 	title: 'web-development',
 	badgeType: 'Engineering',
-	textSnippet: 'Become a master with our {courseDetails.title} Crash Course',
+	textSnippet: 'Take charge of your tech career with our {courseDetails.title} Crash Course!',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
 	tutorName: 'Ayobami Paul',
 	description: `You'll master the fundamental languages of the web (HTML, CSS, and JavaScript) and dive into React, a powerful tool for creating dynamic user interfaces. Learn to craft stunning layouts, bring your designs to life with interactive elements, and create responsive websites that look amazing on any device. No prior coding experience is required – just a passion for building awesome things on the web!`,
@@ -418,7 +412,8 @@ export const COURSE_OUTLINE: {
 			{name: `Basic state management and rendering`,},
 		]
 		},
-]
+],
+conclusion: `By the end of this crash course, you'll have a solid foundation in web development and the skills to start building your own amazing websites!`,
 },
 	{
 	title: 'smart-home-automation',
@@ -453,7 +448,8 @@ export const COURSE_OUTLINE: {
 
 		]
 	}
-]
+],
+conclusion: `By the end of this course, you'll be able to understand and navigate your way around smart home automation, ready to transform your living space into a futuristic haven of comfort, convenience, and control.`,
 	},
 	{
 	title: 'cybersecurity',
@@ -484,7 +480,8 @@ export const COURSE_OUTLINE: {
 			{name: 'Threat detection and response',},
 		]
 	}
-]
+],
+conclusion: `By the end of this course, you'll be equipped with the knowledge and tools to protect yourself in the digital world. You'll navigate the internet with confidence, knowing how to outsmart cyber villains and keep your information safe.`,
 	},
 	{
 	title: 'graphic-design',
@@ -518,7 +515,8 @@ export const COURSE_OUTLINE: {
 
 		]
 	}
-]
+],
+conclusion: ``,
 	},
 	{
 	title: 'ui%2Fux-designing',
@@ -617,9 +615,10 @@ export const COURSE_OUTLINE: {
 				},
 			]
 		}, 
-	]
+	],
+	conclusion: `By the end of this course, you'll have a solid fundamental foundation in UI/UX design and the confidence to start building your own amazing websites. Let's create some digital magic together!`,
 		},
-		{
+{
 	title: 'mobile-app-development',
 	badgeType: 'Application',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
@@ -689,9 +688,10 @@ export const COURSE_OUTLINE: {
 			{name: 'Sixed box',},
 		]
 	},
-]
-	},
-	{
+],
+	conclusion: `By the end of this course, you'll have the skills and confidence to bring your app ideas to life, whether you're building the next viral sensation or a handy tool for your own personal use.`,
+},
+{
 	title: 'digital-markerting',
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
@@ -750,8 +750,9 @@ export const COURSE_OUTLINE: {
 		  
 		]
 	},
-]
-  },
+],
+	conclusion: `By the end of this course, you'll be equipped with the right digital marketing skills, ready to launch successful campaigns, grow your online presence, and achieve your marketing goals.`,
+},
 	{
 	title: 'personal-branding',
 	badgeType: 'Business',
@@ -781,7 +782,8 @@ export const COURSE_OUTLINE: {
 		  
 		]
 	}
-]
+],
+conclusion: ``,
   },
 	{
 	title: 'project-management',
@@ -812,7 +814,8 @@ export const COURSE_OUTLINE: {
 		  
 		]
 	}
-]
+],
+conclusion: ``,
   },
 	];
 
@@ -961,10 +964,8 @@ export const TUTOR_PROFILE: {
 		],
 		name: 'Sokeye David',
 		role: 'Flutter & Dart Developer',
-		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
-		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
-		dolor in reprehenderit in voluptate.`,
-		image: '/images/lekan.jpg',
+		about: `Proficient in Dart programming language and Flutter framework Strong knowledge of object-oriented programming (OOP) principles Experience in developing and implementing UI/UX designs Expertise in integrating RESTful APIs`,
+		image: '/images/david.jpg',
 	},
 	{
 		icon: [
@@ -1036,5 +1037,95 @@ export const FREQUENTLY_ASKED_QUESTIONS: {
 	{
 		question: 'Can I get a certificate upon completing a course?',
 		answer: 'Yes! upon successfully completing a course on PalmtechnIQ, you will receive a certificate of completion. Certificates can be shared on your LinkedIn profile or included in your resume to showcase your skills and achievements.',
+	},
+]
+export const PRIVACY_POLICY: {
+	title?: string;
+	information : string;
+	link?: string;
+}[] = [
+	{
+		title: `Personal Information:`,
+		information: ` When you register for an account enroll in
+		courses or interact with our Services we may collect personal
+		information such as your name email address date of birt and payment
+		information.`,
+	},
+	{
+		title: `Data Usage:`,
+		information: `We may collect information about how you interact with
+		our Services including your IP address browser type pages visited and
+		timestamps.`,
+	},
+	{
+		title: `Cookies:`,
+		information: `We use cookies and similar tracking technologies to enhance
+		your user experience and analyze usage patterns.`,
+	},
+	{
+		title: `How We Use Your
+		Information:`,
+		information: `We use your personal information to provide and improve our Services
+		communicate with you and personalize your experience.`,
+	},
+	{
+		information: `We may use usage data and cookies for analytics purposes, such as
+		monitoring traffic and user behavior on our website. • We may use your
+		information to send you promotional emails newsletters and other
+		marketing communications which you can opt out of at any time.
+		`,
+	},
+	{
+		title: `Information Sharing`,
+		information: `We may share your information with third party service providers who
+		assist us in operating our Services conducting our business or serving
+		our users.`,
+	},
+	{
+		information: `We may disclose your information in response to legal requests court
+		orders or government regulations or to protect our rights property or
+		safety or that of others. `,
+	},
+	{
+		title: `Data Security:`,
+		information: `We implement reasonable security measures to protect your
+		information from unauthorized access alteration disclosure or
+		destruction.`,
+	},
+	{
+		information: ` Despite our efforts no method of transmission over the internet or
+		electronic storage is completely secure and we cannot guarantee
+		absolute security.`,
+	},
+	{
+		title: `Childrens Privacy:`,
+		information: `Our Services are not directed to children under the age of 13 and we
+		do not knowingly collect personal information from children under 13.
+		If you believe we have collected information from a child under 13
+		please contact us immediately.`,
+	},
+	{
+		title: `Your Choices`,
+		information: `You can update your account information and communication
+		preferences by logging into your account settings.`,
+	},
+	{
+		information: `
+		You can opt out of receiving promotional emails and marketing
+		communications by following the instructions in the email or
+		contacting us directly.`,
+	}, 
+	{
+		title: `Changes to this Privacy Policy`,
+		information: `We may update this Privacy Policy from time to time. We will notify
+		you of any material changes by posting the new Privacy Policy on this
+		page.`,
+		link: 'contact'
+	},
+	{
+		information: `If you have any questions or concerns about this Privacy Policy or our
+        privacy practices please contact us at [Contact Information]. By using
+        our Services you consent to the collection use and sharing of your
+        information as described in this Privacy Policy.`,
 	},
 ]

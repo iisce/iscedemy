@@ -20,7 +20,7 @@ export default function SingleCourseCurriculum({ curriculum }: SingleCourseCurri
 			{curriculum.map((courseCurriculum, i) => ( 
 				<div className="mt-4" key={i}>
 					<div className="mb-5">
-						<h3 className="text-lg leading-6 font-medium text-gray-900">{courseCurriculum.title}</h3>
+						<h3 className="text-lg leading-6 font-medium text-black">{courseCurriculum.title}</h3>
 						<ul className="mt-2">
 							{courseCurriculum.topics.map((topic, i) => (
 								<li className="flex items-center justify-between my-4 py-2 border-b border-gray-200" key={i}>

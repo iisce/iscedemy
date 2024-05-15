@@ -22,7 +22,7 @@ export default function TutorProfile({ tutorName }: ITutorProfileProps) {
            
       <div className="flex flex-col gap-2">
         <h1 className="md:text-2xl text-xl font-semibold">{tutor.name}</h1>
-        <p className="text-sm text-gray-500">{tutor.role}</p>
+        <p className="text-sm text-gray-700">{tutor.role}</p>
         <p className="mt-4 text-gray-700">
           {tutor.about}
         </p>

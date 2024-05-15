@@ -12,7 +12,7 @@ export default function AboutPreview() {
             <h2 className="text-3xl font-bold tracking-tighter xl:text-4xl underline">{`At PalmTechnIQ`}</h2>
             <div className="space-y-2 flex flex-col-reverse items-center xl:flex-row xl:justify-between w-full">
               <div className="relative w-full xl:w-1/2 xl:px-4">
-                <p className="w-full text-primary text-lg text-center xl:mx-8 py-2 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                <p className="w-full text-primary text-lg text-center xl:mx-8 py-2 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-700">
                   {`We're dedicated to providing the best technical education for our students, preparing them for success in the digital age. Our innovative approach, experienced instructors, and hands-on learning opportunities make our institute the perfect place to launch your career in tech.`}
                 </p>
               </div>
@@ -28,19 +28,19 @@ export default function AboutPreview() {
                   <div className="h-30 w-30 py-3">
                     <Icons.ExpertIcon />
                   </div>
-                  <div className="xl:text-xl lg:text-xl text-md text-primary dark:text-gray-400">{`Expert Instructors`}</div>
+                  <div className="xl:text-xl lg:text-xl text-md text-primary dark:text-gray-700">{`Expert Instructors`}</div>
                 </div>
                 <div className="flex flex-col items-center ">
                   <div className="h-30 w-30 py-3">
                     <Icons.Curriculum />
                   </div>
-                  <div className="xl:text-xl lg:text-xl text-md text-primary dark:text-gray-400">{`Hands-on Projects`}</div>
+                  <div className="xl:text-xl lg:text-xl text-md text-primary dark:text-gray-700">{`Hands-on Projects`}</div>
                 </div>
                 <div className="flex flex-col items-center ">
                   <div className="h-30 w-30 py-3">
                     <Icons.AwardIcon />
                   </div>
-                  <div className="xl:text-xl lg:text-xl text-md text-primary dark:text-gray-400">{`Cutting-edge Curriculum`}</div>
+                  <div className="xl:text-xl lg:text-xl text-md text-primary dark:text-gray-700">{`Cutting-edge Curriculum`}</div>
                 </div>
               </div>
             </div>

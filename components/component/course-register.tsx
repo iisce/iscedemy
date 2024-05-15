@@ -8,7 +8,7 @@ export default function CourseRegisterPage() {
           <div className="mx-auto max-w-2xl space-y-6">
             <div className="space-y-2 text-center">
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{`Register for a Course`}</h1>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-700 dark:text-gray-700">
               {`Fill out the form below to enroll in your desired course.`}
               </p>
             </div>

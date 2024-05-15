@@ -1,19 +1,24 @@
+import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import Link from "next/link";
 import React from "react";
 
 export default function TermsOfUse() {
   return (
-    <div className=" max-w-5xl mx-auto p-5 pb-3">
-      <div className=" text-center ">
-        <h1 className="font-bold text-3xl"> Terms of Use</h1>
+    <MaxWidthWrapper>
+    <div className=" max-w-5xl mx-auto my-10">
+      <div className=" text-center my-3">
+        <h1 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl"> Terms of Use</h1>
       </div>
-      <div className=" p-5 ">
-        <p className="font-bold p-5">Acceptance of Terms</p>
+      <div className=" my-3">
+        <h2 className="font-bold py-4 text-xl">Acceptance of Terms</h2>
+        <div className="space-y-4">
+        <p>
         Welcome to
         <span className="text-green-600 font-bold"> PalmTechnIQ!</span> By
         accessing or using our platform you agree to be bound by these Terms of
         Use (Terms). If you do not agree to these Terms please do not use our
         platform.
+        </p>
         <p>
           2. Description of Services
           <span className="text-green-600 font-bold"> PalmTechnIQ </span>
@@ -62,20 +67,22 @@ export default function TermsOfUse() {
         </p>
         <p>
           9. Changes to Terms
-          <span className="text-green-600 font-bold"> PalmTechnIQ </span>{" "}
+          <span className="text-green-600 font-bold"> PalmTechnIQ </span>
           reserves the right to modify or update these Terms at any time. We
           will notify users of any material changes to these Terms and continued
           use of our platform after such changes constitutes acceptance of the
           updated Terms.
         </p>
-        10.
-        <Link className="text-green-600" href="/about">
-          {" "}
-          Contact Us{" "}
+        <p> 10.
+        <Link className="text-green-600" href="/contact">
+          
+          Contact Us
         </Link>
         If you have any questions or concerns about these Terms please contact
-        us at contact
+        us at contact</p>
+        </div>
       </div>
     </div>
+    </MaxWidthWrapper>
   );
 }

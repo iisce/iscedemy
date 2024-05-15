@@ -21,8 +21,8 @@ export function TestimonialPreview() {
                 </div>
               )}
               <p className="text-lg font-semibold mt-4 mb-2">{testimonial.name}</p>
-              <p className="text-gray-600 italic mb-4">{testimonial.review}</p>
-              <p className="text-sm font-medium text-gray-900">{testimonial.userrole}</p>
+              <p className="text-gray-700 italic mb-4">{testimonial.review}</p>
+              <p className="text-sm font-medium text-gray-700">{testimonial.userrole}</p>
             </Card>
           ))}  
         </div>

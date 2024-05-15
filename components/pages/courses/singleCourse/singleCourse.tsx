@@ -98,7 +98,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								className={
 									activeTab === 'overview'
 										? 'border-b-2 border-green-600'
-										: ''
+										: 'text-black font-semibold'
 								}
 							>
 								Overview
@@ -111,7 +111,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								className={
 									activeTab === 'curriculum'
 										? 'border-b-2 border-green-600'
-										: ''
+										: 'text-black font-semibold'
 								}
 							>
 								Curriculum
@@ -124,7 +124,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								className={
 									activeTab === 'instructor'
 										? 'border-b-2 border-green-600'
-										: ''
+										: 'text-black font-semibold'
 								}
 							>
 								Instructor
@@ -137,7 +137,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								className={
 									activeTab === 'reviews'
 										? 'border-b-2 border-green-600'
-										: ''
+										: 'text-black font-semibold'
 								}
 							>
 								Reviews
@@ -150,7 +150,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 								<h2 className='md:text-2xl text-xl font-bold'>
 									Course Description
 								</h2>
-								<p className='mt-4 text-gray-600'>
+								<p className='mt-4 text-gray-700'>
 									{courseDetails.description}
 								</p>
 								<h3 className='mt-6 md::text-xl text-lg font-semibold'>
@@ -165,6 +165,9 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 										)
 									)}
 								</ul>
+								<p className='mt-4 text-gray-700'>
+									{courseDetails.conclusion}
+								</p>
 							</div>
 						)}
 						{activeTab === 'curriculum' && (
@@ -175,17 +178,17 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 					</div>
 				</div>
 
-				<div className='md:w-full w-screen  space-y-6'>
+				<div className='md:w-full w-screen space-y-6'>
 					<iframe
 						width='400'
-						className='w-full h-full'
+						className='w-full h-96'
 						height='315'
 						src={courseDetails.tutorVideoUrl}
 						title="Tutor's Explanatory Video"
 					allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
 					></iframe>
 
-					<div className='space-y-4 md:w-full w-screen flex flex-col justify-between items-center'>
+					<div className='space-y-4 px-3 md:px-0 md:w-full w-screen flex flex-col justify-between items-center'>
 						<h3 className='text-xl font-semibold'>
 							Course Includes:
 						</h3>
