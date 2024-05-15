@@ -18,9 +18,9 @@ export default function PrivacyPolicy() {
       <h1 className="font-bold py-2 text-xl ">Information We Collect</h1>
       <div className="">
         {PRIVACY_POLICY.map((info, i) => (
-          <div className="">
+          <div className="" key={i}>
           <h3 className="font-semibold my-3">{info.title}</h3>
-         <ul key={i}>
+         <ul >
             <li className=" list-disc">{info.information}</li>
          </ul>
          <Link className="text-green-600" href='/contact'>
