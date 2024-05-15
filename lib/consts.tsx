@@ -331,7 +331,7 @@ export const OTHER_COURSE_PREVIEW: {
 export const COURSE_OUTLINE: {
 	title: string;
 	textSnippet?: string;
-	badgeType?: string;
+	badgeType?: 'Engineering' | 'Application' | 'Business' | 'Security' | 'Technology' | 'Design' |  'default' | 'secondary' | 'destructive' | 'outline' |  null | undefined;
 	tutorVideoUrl: string;
 	tutorName: string;
 	description: string;
@@ -417,7 +417,7 @@ conclusion: `By the end of this crash course, you'll have a solid foundation in 
 },
 	{
 	title: 'smart-home-automation',
-	badgeType: 'Engineering',
+	badgeType: 'Technology',
 	tutorVideoUrl: '/images/workspaces.webm',
 	tutorName: 'Tope Bamidele',
 	description: `Know the inner workings of smart-home automation in this captivating course! Let's show you the secrets of how devices communicate, store data, and orchestrate incredible experiences within your home. Get set to transform your living space with the power of automation!!`,
@@ -520,6 +520,7 @@ conclusion: ``,
 	},
 	{
 	title: 'ui%2Fux-designing',
+	badgeType: 'Design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
 	tutorName: 'Mawuli Nwosu',
 	description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,

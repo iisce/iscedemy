@@ -37,6 +37,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 		setActiveTab(tab);
 	};
 
+	
 
 	return (
 		<div className='bg-white p-8 justify-center w-full'>
@@ -85,7 +86,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 							<div className='text-green-600'>
 								<Icons.BookOpenIcon />
 							</div>
-							{/* <Badge variant={courseDetails.badgeType}>Business</Badge> */}
+							{courseDetails.badgeType && (<Badge variant={'secondary'}>{courseDetails.badgeType}</Badge>)}
 						</div>
 					</div>
 					<Tabs className='md:w-full min-w-32 md:px-0   justify-center items-center mx-auto '>
