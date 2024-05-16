@@ -70,10 +70,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 		link: 'digital-markerting',
 		name: 'Digital Marketing',
 	},
-	{
-		link: 'personal-branding',
-		name: 'Personal Branding',
-	},
+	// {
+	// 	link: 'personal-branding',
+	// 	name: 'Personal Branding',
+	// },
 	{
 		link: 'project-management',
 		name: 'Project Management',
@@ -148,13 +148,13 @@ export const COURSELIST: ICOURSELIST2[] = [
     content: `Join the digital revolution and learn how to reach your audience effectively in the online world. Our Digital Marketing crash course the necessary things you need from social media strategies to search engine optimization, equipping you with the fundamental skills to drive traffic, generate leads, and increase sales. Stay ahead of the competition and make your mark in the digital landscape.`,  
 	title: "Digital Marketing",
   },
-  {
-    icon: <Icons.TrendIcon />,
-    image: "/personalbranding.jpeg",
-    content: `Stand out from the crowd and make a lasting impression with our Personal Branding crash course. Whether you're a freelancer, entrepreneur, or job seeker, building a strong personal brand is essential for success. Learn how to articulate your unique value proposition, establish credibility, and cultivate a compelling online presence that resonates with your target audience.
-	`,     
-	title: "Personal Branding",
-  },
+//   {
+//     icon: <Icons.TrendIcon />,
+//     image: "/personalbranding.jpeg",
+//     content: `Stand out from the crowd and make a lasting impression with our Personal Branding crash course. Whether you're a freelancer, entrepreneur, or job seeker, building a strong personal brand is essential for success. Learn how to articulate your unique value proposition, establish credibility, and cultivate a compelling online presence that resonates with your target audience.
+// 	`,     
+// 	title: "Personal Branding",
+//   },
   {
     icon: <Icons.ReactJSColorIcon />,
     image: "/mobileappdevelopment.jpg",
@@ -201,9 +201,6 @@ export const COURSES: ICOURSES[] = [
 	},
 	{
 		name: 'Smart-home Automation',
-	},
-	{
-		name: 'Personal Branding',
 	},
 ]
 export const OCCUPATION: IOCCUPATION[] = [
@@ -357,7 +354,7 @@ export const COURSE_OUTLINE: {
 	badgeType: 'Engineering',
 	textSnippet: 'Take charge of your tech career with our {courseDetails.title} Crash Course!',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ayobami Paul',
+	tutorName: 'Paul Ayobami',
 	description: `You'll master the fundamental languages of the web (HTML, CSS, and JavaScript) and dive into React, a powerful tool for creating dynamic user interfaces. Learn to craft stunning layouts, bring your designs to life with interactive elements, and create responsive websites that look amazing on any device. No prior coding experience is required – just a passion for building awesome things on the web!`,
 	summary: [
 		`Web Fundamentals: Grasp the core building blocks of every website: HTML for structure, CSS for style, and JavaScript for interactivity.`,
@@ -366,7 +363,7 @@ export const COURSE_OUTLINE: {
 		`Dynamic Web Pages: Go beyond static content and build web pages that respond to user actions, update in real time, and deliver a truly engaging experience.`,
 	], 
 	price: '50,000',
-	classes: '5',
+	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
 	language: 'English',
@@ -428,7 +425,7 @@ conclusion: `By the end of this crash course, you'll have a solid foundation in 
 		`Keep your home safe and secure with smart security systems. Monitor cameras, lock doors remotely, and even receive alerts when someone's at your door.`,
 	], 
 	price: '50,000',
-	classes: '5',
+	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
 	language: 'English',
@@ -464,7 +461,7 @@ conclusion: `By the end of this course, you'll be able to understand and navigat
 		` Dip your toes into the world of cryptography – the secret language of cybersecurity. Get a basic understanding of how encryption works and why it's so important for online security.`,
 	], 
 	price: '50,000',
-	classes: '5',
+	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
 	language: 'English',
@@ -487,42 +484,60 @@ conclusion: `By the end of this course, you'll be equipped with the knowledge an
 	title: 'graphic-design',
 	badgeType: 'Design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Mahoussi Ezekiel',
+	tutorName: 'Ezekiel Mahoussi ',
 	description: `Make your ideas come to life! Learn to design amazing logos, posters, and images that grab attention and tell your story. Express yourself through colors, shapes, and stunning visuals.`,
 	summary: [
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
+		` Get a clear and concise introduction to the world of graphic design. You'll understand what it is, why it's important, and how it shapes our visual landscape.`,
+		`key roles and responsibilities of a graphic designer. Learn about the different career paths available and the skills you'll need to succeed.`,
+		`Get acquainted with the essential software and tools used by professional graphic designers. We'll cover industry standards like Adobe Photoshop and Illustrator, as well as other helpful resources.`,
+		`Learn how to install and set up your design software, so you're ready to start creating from day one. We'll guide you through the process step-by-step.`,
+		`Start your design journey by exploring the selection tool – your key to manipulating images and elements within your designs. This is the first step towards unleashing your creativity!`,
 	], 
 	price: '50,000',
-	classes: '5',
+	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
 	language: 'English',
 	certification: 'Yes',
 	curriculum:[ 
 		{
-		title: 'Basic Introduction',
+		title: 'Introduction to graphics design',
 		topics: [
-			{ name: 'Brush up on Java concepts', },
-			{
-			name: 'Associative Arrays',
-				},
-				{
-			name: 'PHP fundamental',
-				},
+			{ name: 'Brief Explanation of graphics design ', },
+			{name: 'Roles of a graphics designer',},
+			{name: 'Design tools and software',},
+			{name: `Installation`},
 
 		]
-	}
+	},
+		{
+		title: 'Vectors and Rasters',
+		topics: [
+			{ name: 'Introduction to basic tools i.e selection tool ', },
+			{name: 'Understanding design principles',},
+			{name: 'Designing simple filers with minimal effects',},
+			{name: `Redesigning popular logos and fliers`},
+
+		]
+	},
+		{
+		title: 'Interpretation of design',
+		topics: [
+			{ name: 'Creating color palette ', },
+			{name: 'Color psychology',},
+			{name: 'Researching ideas',},
+			{name: `Class work`},
+
+		]
+	},
 ],
-conclusion: ``,
+conclusion: `By the end of this course, you'll have a clear understanding &  foundation in graphic design principles, software proficiency, and the confidence to start creating your own stunning visuals.`,
 	},
 	{
 	title: 'ui%2Fux-designing',
 	badgeType: 'Design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Mawuli Nwosu',
+	tutorName: 'Mawuli Owusu',
 	description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
 	summary: [
 		'Basic understanding on what UI/UX designing is all about.',
@@ -535,7 +550,7 @@ conclusion: ``,
 		
 	], 
 	price: '50,000',
-	classes: '5',
+	classes: '3',
 	duration: '1 weeks',
 	numberOfStudentsErolled: '40',
 	language: 'English',
@@ -623,7 +638,7 @@ conclusion: ``,
 	title: 'mobile-app-development',
 	badgeType: 'Application',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Sokeye David',
+	tutorName: 'David Sokeye',
 	description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
 	develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 	summary: [
@@ -635,7 +650,7 @@ conclusion: ``,
 		'Understand navigation routing and controllers in flutter',
 	], 
 	price: '50,000',
-	classes: '5',
+	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
 	language: 'English',
@@ -696,7 +711,7 @@ conclusion: ``,
 	title: 'digital-markerting',
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Ignatius Emeka',
+	tutorName: 'Emeka Ignatius',
 	description: `Become a digital marketing whiz and learn how to take your message to the masses in this exciting, hands-on course. Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.Whether you're promoting a business, a product, a cause, or even yourself, this course will equip you with the tools you need to make a real impact online.`,
 	summary: [
 		`The Digital Marketing scopes: You'll get a clear overview of the digital marketing world, from social media platforms and search engines to email campaigns and paid advertising. Understand how each piece fits into a comprehensive strategy.`,
@@ -705,7 +720,7 @@ conclusion: ``,
 		`Discover how to create valuable content that attracts and delights your audience. Learn to write compelling blog posts, articles, and social media updates that resonate with your target market.`,
 	], 
 	price: '50,000',
-	classes: '5',
+	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
 	language: 'English',
@@ -754,43 +769,43 @@ conclusion: ``,
 ],
 	conclusion: `By the end of this course, you'll be equipped with the right digital marketing skills, ready to launch successful campaigns, grow your online presence, and achieve your marketing goals.`,
 },
-	{
-	title: 'personal-branding',
-	badgeType: 'Business',
-	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Mahoussi Ezekiel',
-	description: `Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.`,
-	summary: [
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-		'In this course you will learn',
-	], 
-	price: '50,000',
-	classes: '5',
-	duration: '1 week',
-	numberOfStudentsErolled: '40',
-	language: 'English',
-	certification: 'Yes',
-	curriculum: [
-		{
-		title: 'Basic Introduction',
-		topics: [
-			{ name: 'Brush up on Java concepts', },
-			{
-			name: `A Quick Introduction to Excel's Pivot Tables`,
-		  },
+// 	{
+// 	title: 'personal-branding',
+// 	badgeType: 'Business',
+// 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+// 	tutorName: 'Mahoussi Ezekiel',
+// 	description: `Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.`,
+// 	summary: [
+// 		'In this course you will learn',
+// 		'In this course you will learn',
+// 		'In this course you will learn',
+// 		'In this course you will learn',
+// 	], 
+// 	price: '50,000',
+// 	classes: '3',
+// 	duration: '1 week',
+// 	numberOfStudentsErolled: '40',
+// 	language: 'English',
+// 	certification: 'Yes',
+// 	curriculum: [
+// 		{
+// 		title: 'Basic Introduction',
+// 		topics: [
+// 			{ name: 'Brush up on Java concepts', },
+// 			{
+// 			name: `A Quick Introduction to Excel's Pivot Tables`,
+// 		  },
 		  
-		]
-	}
-],
-conclusion: ``,
-  },
+// 		]
+// 	}
+// ],
+// conclusion: ``,
+//   },
 	{
 	title: 'project-management',
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Akhabue Emmanuel',
+	tutorName: 'Emmanuel Akhabue',
 	description: `Be the ultimate organizer! Master the skills to lead projects from start to finish. Learn to set goals, manage timelines, and keep your team on track for success. It's like being the boss of your own adventure!`,
 	summary: [
 		'Define key project management concepts and terminology.',
@@ -799,24 +814,48 @@ conclusion: ``,
 		'Apply effective communication and stakeholder management techniques.',
 	], 
 	price: '50,000',
-	classes: '5',
+	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
 	language: 'English',
 	certification: 'Yes',
 	curriculum: [
 		{
-		title: 'Basic Introduction',
+		title: ' Introduction to Project Management',
 		topics: [
-			{ name: 'Brush up on Java concepts', },
-			{
-			name: `A Quick Introduction to Excel's Pivot Tables`,
-		  },
+			{ name: 'What is project management?', },
+			{name: `Project vs. Operations`, },
+			{name: `Benefits of effective project management`, },
+			{name: `Key project management terminology`, },
 		  
 		]
-	}
+	},
+		{
+		title: 'Project Life Cycle',
+		topics: [
+			{ name: 'Phases of a project (Initiation, Planning, Execution, Monitoring & Control, Closing)', },
+			{name: `Deliverables and activities at each stage`, },
+			{name: `Project lifecycle models (e.g., Waterfall, Agile)`, },
+		]
+	},
+		{
+		title: 'Project Planning',
+		topics: [
+			{ name: 'Defining project scope (Work Breakdown Structure - WBS)', },
+			{name: ` Developing a communication plan`, },
+			{name: `Creating a project charter`, },		  
+		]
+	},
+		{
+		title: 'Project Risk Management',
+		topics: [
+			{ name: 'Identifying potential project risks)', },
+			{name: `  Assessing risk probability and impact`, },
+			{name: `Monitoring and managing risks throughout the project`, },		  
+		]
+	},
 ],
-conclusion: ``,
+conclusion: `By the end of this crash course, you'll be equipped with the essential project management knowledge and tools to successfully initiate, plan, execute, and close projects of varying complexities. `,
   },
 	];
 
@@ -829,7 +868,7 @@ export const TUTOR_REVIEWS: {
 	description: string;
 }[] = [
 	{
-		tutorName: 'Ayobami Paul',
+		tutorName: 'Paul Ayobami',
 		name: 'James Paul',
 		image: '/images/lekan.jpg',
 		rating: [
@@ -844,7 +883,7 @@ export const TUTOR_REVIEWS: {
 		dolore magna aliqua.`
 	},
 	{
-		tutorName: 'Ayobami Paul',
+		tutorName: ' Paul Ayobami',
 		name: 'Nicolas Bassey',
 		image: '/images/lekan.jpg',
 		rating: [
@@ -859,7 +898,7 @@ export const TUTOR_REVIEWS: {
 		dolore magna aliqua.`
 	},
 	{
-		tutorName: 'John Paul',
+		tutorName: 'David Sokeye',
 		name: 'Adam Pearce',
 		image: '/images/lekan.jpg',
 		rating: [
@@ -885,8 +924,8 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'Ayobami Paul',
-		role: 'Design Expert',
+		name: 'Paul Ayobami',
+		role: 'Senior frontend Developer',
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
 		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
 		dolor in reprehenderit in voluptate.`,
@@ -898,11 +937,10 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'John Paul',
-		role: 'Design Expert',
-		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
-		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
-		dolor in reprehenderit in voluptate.`,
+		name: 'Ezekiel Mahoussi',
+		role: 'Graphic Designer',
+		about: `I am a visual storyteller, strategist and graphic designer, I create problem solving designs with a streamlined process using various design tools.
+		`,
 		image: '/images/lekan.jpg',
 	},
 	{
@@ -911,7 +949,7 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'Mawuli Nwosu',
+		name: 'Mawuli Owusu',
 		role: 'Design Expert',
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
 		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
@@ -950,12 +988,10 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'Akhabue Emmanuel',
+		name: 'Emmanuel Akhabue',
 		role: 'Project manager',
-		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
-		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
-		dolor in reprehenderit in voluptate.`,
-		image: '/images/lekan.jpg',
+		about: `I thrive on leading teams and projects to successful outcomes. Proficient in utilizing various project management methodologies, including Agile and Waterfall, adapting my approach to suit the specific needs of each project.`,
+		image: '/images/emma.jpg',
 	},
 	{
 		icon: [
@@ -963,7 +999,7 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'Sokeye David',
+		name: ' David Sokeye',
 		role: 'Flutter & Dart Developer',
 		about: `Proficient in Dart programming language and Flutter framework Strong knowledge of object-oriented programming (OOP) principles Experience in developing and implementing UI/UX designs Expertise in integrating RESTful APIs`,
 		image: '/images/david.jpg',
@@ -974,12 +1010,10 @@ export const TUTOR_PROFILE: {
 			<Icons.TwitterIcon key='2' />,
 			<Icons.LinkedinIcon key='3' />,
 		],
-		name: 'Ignatius Emeka',
+		name: ' Emeka Ignatius',
 		role: 'Digital Specialist',
-		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
-		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
-		dolor in reprehenderit in voluptate.`,
-		image: '/images/lekan.jpg',
+		about: `Creative Digital Marketer specializing in crafting compelling content that connects with audiences and drives engagement. Experienced in developing content strategies, writing engaging, and optimizing content for SEO. Adept at social media storytelling and managing online communities.Passionate about leveraging digital tools and trends to promote brands and achieve measurable growth.`,
+		image: '/images/emeka.jpg',
 	},
 ];
 export const TESTIMONIALS: {
