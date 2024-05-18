@@ -11,7 +11,7 @@ export default function OurStory() {
 					width={400}
 					height={400}
 					alt="arin"
-					className="w-full object-cover"
+					className="w-full h-96 object-cover"
 					/>
 				</div>
 				<div className="md:text-2xl text-md text-wrap  w-full grid font-normal md:gap-4 space-y-2 ">

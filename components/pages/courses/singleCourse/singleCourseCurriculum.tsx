@@ -1,6 +1,4 @@
-import React from 'react'
-import * as Icons from '@/lib/icons'
-import { Button } from '@/components/ui/button'
+import * as Icons from '@/lib/icons';
 
 
 interface SingleCourseCurriculumProps {

@@ -17,37 +17,41 @@ export default function ContactPage() {
             <div className="flex flex-col gap-4">
               
               <div className="flex gap-2">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7200243526713!2d3.463767170317022!3d6.430002110038022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b917993a95193%3A0x21bdfe095d86ad6d!2sISCE%20Digital%20Concept%20Limited!5e0!3m2!1sen!2sng!4v1716046623716!5m2!1sen!2sng" width="600" height="450" loading="lazy">
               <MapPin />
               <div>
               <h1>Island Location</h1>
               <p>
               {`3rd Floor Polystar Building, Marwa, Lekki, Lagos`}
-              </p>
+              </p>  
               </div>
+              </iframe>
               </div>
               <div className="flex gap-2">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.4457680185615!2d3.2825375740803637!3d6.465075023841424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b88c3bd8d26f3%3A0xa3d6fcc756e8be40!2sChicken%20Republic!5e0!3m2!1sen!2sng!4v1716046961247!5m2!1sen!2sng" width="600" height="450" loading="lazy" >
               <MapPin />
               <div>
                 <h1>Mainland Location</h1>
                 <p>
-              {`1st floor, Chicken Rebuplic Building, 22rd, Festac Town, Lagos`}
+              {`1st floor, (Festac Tower) Chicken Rebuplic Building, 22rd, Festac Town, Lagos`}
               </p>
               </div>
+              </iframe>
               </div>
               
             </div>
             <div className="flex gap-2">
               <Smartphone />
-              <Link href="tel:"> 08163453826 </Link>
+              <Link href="tel:+2348163453826"> 08163453826 </Link>
             </div>
             <div className="">{`We build a better system to empower and facilitate younger generation on the right path to be on!`}</div>
 
-            {/* <Image
-              src="/christina.jpg"
+            <Image
+              src="/contact.jpg"
               width={500}
               height={500}
               alt="Picture of the author"
-            /> */}
+            />
           </div>
 
           <div className="flex flex-col my-6 md:my-0 gap-5 md:p-7 w-full">

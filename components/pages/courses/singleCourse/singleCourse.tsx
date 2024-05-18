@@ -77,7 +77,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 									</div>
 
 									<span className='ml-2 text-sm'>
-										({totalReviewsCount}Reviews)
+										({totalReviewsCount}Review{totalReviewsCount !== 1 && 's'})
 									</span>
 								</div>
 							</div>
@@ -174,8 +174,8 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						{activeTab === 'curriculum' && (
 							<SingleCourseCurriculum curriculum={courseDetails.curriculum}/>
 						)}
-						{activeTab === 'instructor' && (<TutorProfile  tutorName={courseDetails.tutorName}/>)}
-						{activeTab === 'reviews' && (<SingleTutorReviews tutorName={courseDetails.tutorName}/>)}
+						{activeTab === 'instructor' && (<TutorProfile  tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount}/>)}
+						{activeTab === 'reviews' && (<SingleTutorReviews tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount}/>)}
 					</div>
 				</div>
 
@@ -200,7 +200,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 									<Icons.NairaSignIcon/>
 								</div>
 
-								<span className='ml-2'>Price:</span>
+								<span className='ml-2'>Price: Virtual/Physical</span>
 								<span className='ml-auto font-bold'>
 									{courseDetails.price}
 								</span>

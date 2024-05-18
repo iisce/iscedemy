@@ -1,20 +1,32 @@
-
 import { Progress } from "@/components/ui/progress"
 import { TUTOR_REVIEWS } from "@/lib/consts"
 import * as Icons from '@/lib/icons'
 import Image from "next/image"
 import { Separator } from "../ui/separator"
+import { useState } from "react"
 
-export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
+
+interface Review {
+  tutorName: string;
+  userName: string;
+  rating: number;
+  title: string;
+  description: string;
+  dateCreated?: Date; 
+}
+
+
+export function SingleTutorReviews({ tutorName, totalReviewsCount }: ISingleTutorReviews) {
   const tutorReviews = TUTOR_REVIEWS.filter(
     (review) => review.tutorName === tutorName
   );
+
 
   return (
     <div className="w-full  mx-auto  md:p-8">
       <div className="flex flex-col justify-between overflow-hidden md:space-x-2 gap-6 md:gap-4 items-start">
         <div className="bg-white space-y-1 p-4 rounded-lg shadow flex flex-col items-center">
-          <div className="text-3xl font-bold">5</div>
+          <div className="text-3xl font-bold">{totalReviewsCount}</div>
           <div className="flex text-green-600">
             <Icons.StarIcon />
             <Icons.StarIcon />
@@ -22,8 +34,7 @@ export function SingleTutorReviews({ tutorName }: {tutorName: string}) {
             <Icons.StarIcon />
             <Icons.StarIcon />
           </div>
-          <div className="text-sm text-gray-700">3
-           ratings</div>
+          <div className="text-sm text-gray-700">{totalReviewsCount}</div>
         </div>
         <div className="flex flex-col space-y-2">
           <div className="flex items-center gap-3">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 export default function OurValues() {
   return (
@@ -7,9 +8,18 @@ export default function OurValues() {
             <div className="text-start pb-10 ">
               <div className="text-2xl font-bold ">{`Our Values`}</div>
             </div>
-            <div className=" ">
+            <div className="  ">
               <span className="">{`We plan to lead the charge of technological innovation and solutions in africa while improving consumers lives.`}</span>
             </div>
+            <div className="w-full h-full rounded-xl overflow-clip my-3">
+					<Image
+					src="/innovation.jpg"
+					width={400}
+					height={400}
+					alt="arin"
+					className="w-full h-96 object-cover"
+					/>
+				</div>
           </div>
           
             <div className="grid grid-cols-2 gap-10 md:text-2xl text-md text-wrap">

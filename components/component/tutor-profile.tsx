@@ -1,12 +1,10 @@
 import { TUTOR_PROFILE } from "@/lib/consts";
 import Image from "next/image";
 import Link from "next/link";
+import { Badge } from "../ui/badge";
 
-interface ITutorProfileProps{
-  tutorName: string;
-}
 
-export default function TutorProfile({ tutorName }: ITutorProfileProps) {
+export default function TutorProfile({ tutorName, totalReviewsCount }: ITutorProfileProps) {
   const tutor = TUTOR_PROFILE.find(profile => profile.name === tutorName);
 
   if (!tutor) {
@@ -26,11 +24,6 @@ export default function TutorProfile({ tutorName }: ITutorProfileProps) {
         <p className="mt-4 text-gray-700">
           {tutor.about}
         </p>
-        <Link href='/' className=" cursor-pointer">
-        <div className="flex flex-row space-x-4 mt-4 text-blue-600">
-          {tutor.icon}
-        </div>
-        </Link>
 	    </div>
     </div>
 </div>

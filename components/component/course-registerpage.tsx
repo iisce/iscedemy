@@ -14,6 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '../ui/input';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Textarea } from '../ui/textarea';
+import { useRouter } from 'next/navigation';
 
 
 export default function CrashCourseRegisterForm() {
@@ -21,6 +22,7 @@ export default function CrashCourseRegisterForm() {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false)
+  const router = useRouter();
 
 
   const form = useForm<z.infer<typeof CourseRegisterSchema>>({
@@ -44,14 +46,27 @@ export default function CrashCourseRegisterForm() {
       .then((data) => {
         setError(data.error);
         setSuccess(data.success);
+
         if(data.success) {
+          setTimeout(() => {
+            router.push('/')
+          }, 3000 );
           form.reset();
         }
       })
+      .catch((error) =>{
+        console.error("Error occured while submitting your form. Please try again!", error);
+      });
     });
   };
 
   return (
+    <div>
+      {success ? (<div className="flex flex-col space-y-2">
+        <p>{success}</p>
+        <FormSuccess message={`You should be getting an email from us soon with some instructions on what to do next.`}/>
+      </div>
+      ) : (
       <Form {...form}>
         <form 
         onSubmit={form.handleSubmit( onSubmit)}
@@ -205,6 +220,8 @@ export default function CrashCourseRegisterForm() {
             <Button className='w-full rounded-full' variant="outline">{`Cancel`}</Button>
         </form>
       </Form>
+      )}
+      </div>
 
-  )
+  );
 }

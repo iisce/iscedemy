@@ -35,3 +35,12 @@ interface ICOURSES {
 interface IOCCUPATION {
 	name: string;
 }
+interface ITutorProfileProps {
+	tutorName: string;
+	totalReviewsCount: number; 
+  }
+interface ISingleTutorReviews {
+	tutorName: string;
+	totalReviewsCount: number;
+  }
+  

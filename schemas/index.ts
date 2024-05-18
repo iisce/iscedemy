@@ -37,6 +37,7 @@ export const RegisterSchema = z.object({
 export const CourseRegisterSchema = z.object({
     firstname: z.string().min(1, {
         message: "Firstname is required",
+       
     }),
 
     lastname: z.string().min(1, {
@@ -51,7 +52,7 @@ export const CourseRegisterSchema = z.object({
         required_error: "Please select at least 1 course!",
     })
         .refine(
-            (value) => ['Web Development', 'CyberSecurity', 'Graphic Design', 'UI/UX Design', 'Mobile Development', 'Project Management','Smart-home Automation', 'Personal Branding'].includes(value),
+            (value) => ['Web Development', 'CyberSecurity', 'Graphic Design', 'UI/UX Design', 'Mobile Development', 'Project Management','Smart-home Automation', 'Digital Marketing'].includes(value),
             {
                 message: "Invalid course selected!",
             }
@@ -72,5 +73,6 @@ export const CourseRegisterSchema = z.object({
             }
     ),
     expectations: z.string(),
+    
     
 });

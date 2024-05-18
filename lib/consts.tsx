@@ -67,7 +67,7 @@ export const COURSEITEM: ICOURSEITEM[] = [
 		name: 'Mobile App Development',
 	},
 	{
-		link: 'digital-markerting',
+		link: 'digital-marketing',
 		name: 'Digital Marketing',
 	},
 	// {
@@ -198,6 +198,9 @@ export const COURSES: ICOURSES[] = [
 	},
 	{
 		name: 'Project Management',
+	},
+	{
+		name: 'Digital Marketing',
 	},
 	{
 		name: 'Smart-home Automation',
@@ -362,7 +365,7 @@ export const COURSE_OUTLINE: {
 		`Responsive Design knowledge: Learn to create websites that adapt seamlessly to different screen sizes, ensuring a great user experience on desktops, tablets, and mobile devices.`,
 		`Dynamic Web Pages: Go beyond static content and build web pages that respond to user actions, update in real time, and deliver a truly engaging experience.`,
 	], 
-	price: '50,000',
+	price: '30,000/50,000',
 	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
@@ -414,9 +417,10 @@ conclusion: `By the end of this crash course, you'll have a solid foundation in 
 },
 	{
 	title: 'smart-home-automation',
+	textSnippet:'Transform Your Home with our {courseDetails.title} Crash Course!',
 	badgeType: 'Technology',
 	tutorVideoUrl: '/images/workspaces.webm',
-	tutorName: 'Tope Bamidele',
+	tutorName: 'Temitope Paul-Bamidele',
 	description: `Know the inner workings of smart-home automation in this captivating course! Let's show you the secrets of how devices communicate, store data, and orchestrate incredible experiences within your home. Get set to transform your living space with the power of automation!!`,
 	summary: [
 		`The ABCs of Smart Homes. You'll get a friendly introduction to the world of smart home automation, from the gadgets that make it happen to the amazing things you can do with it.`,
@@ -424,7 +428,7 @@ conclusion: `By the end of this crash course, you'll have a solid foundation in 
 		`Understand smart lighting – dim the lights for movie night, wake up to a sunrise glow, or set the mood with colorful scenes, all from your phone or with voice commands.`,
 		`Keep your home safe and secure with smart security systems. Monitor cameras, lock doors remotely, and even receive alerts when someone's at your door.`,
 	], 
-	price: '50,000',
+	price: '30,000/50,000',
 	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
@@ -450,9 +454,10 @@ conclusion: `By the end of this course, you'll be able to understand and navigat
 	},
 	{
 	title: 'cybersecurity',
+	textSnippet:'Become a Cyber Guardian with our {courseDetails.title} Crash Course.Your Essential Guide to Online Security',
 	badgeType: 'Security',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Tope Bamidele',
+	tutorName: 'Temitope Paul-Bamidele',
 	description: `Become a digital defender! Protect your online world from sneaky cyber villains. Learn how to safeguard your information, spot online scams, and keep your devices safe from harm.`,
 	summary: [
 		`Get a solid foundation in the essentials of cybersecurity.You'll understand the common threats, and why protecting your online world is crucial.`,
@@ -460,7 +465,7 @@ conclusion: `By the end of this course, you'll be able to understand and navigat
 		`Master the fundamental security measures everyone should know. From how to create strong passwords, safeguarding your personal information, and protect your devices from harm.`,
 		` Dip your toes into the world of cryptography – the secret language of cybersecurity. Get a basic understanding of how encryption works and why it's so important for online security.`,
 	], 
-	price: '50,000',
+	price: '30,000/50,000',
 	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
@@ -482,6 +487,7 @@ conclusion: `By the end of this course, you'll be equipped with the knowledge an
 	},
 	{
 	title: 'graphic-design',
+	textSnippet:'From Doodles to Designs! Jumpstart Your Design Career with Our {courseDetails.title} Crash Course!',
 	badgeType: 'Design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
 	tutorName: 'Ezekiel Mahoussi',
@@ -493,7 +499,7 @@ conclusion: `By the end of this course, you'll be equipped with the knowledge an
 		`Learn how to install and set up your design software, so you're ready to start creating from day one. We'll guide you through the process step-by-step.`,
 		`Start your design journey by exploring the selection tool – your key to manipulating images and elements within your designs. This is the first step towards unleashing your creativity!`,
 	], 
-	price: '50,000',
+	price: '30,000/50,000',
 	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
@@ -535,9 +541,10 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 	},
 	{
 	title: 'ui%2Fux-designing',
+	textSnippet:'Design Digital Delights with our {courseDetails.title} Crash Course. A Practical Guide to UI/UX Fundamentals',
 	badgeType: 'Design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-	tutorName: 'Mawuli Owusu',
+	tutorName: 'Mawuli Owusu Promise',
 	description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
 	summary: [
 		'Basic understanding on what UI/UX designing is all about.',
@@ -549,7 +556,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 		'How to conduct a user research.',
 		
 	], 
-	price: '50,000',
+	price: '30,000/50,000',
 	classes: '3',
 	duration: '1 weeks',
 	numberOfStudentsErolled: '40',
@@ -636,6 +643,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 		},
 {
 	title: 'mobile-app-development',
+	textSnippet:'Build Your App-titude! A Hands-On {courseDetails.title} Crash Course for Aspiring Developers.',
 	badgeType: 'Application',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
 	tutorName: 'David Sokeye',
@@ -649,7 +657,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 		'Know how to use state maintenance widgets',
 		'Understand navigation routing and controllers in flutter',
 	], 
-	price: '50,000',
+	price: '30,000/50,000',
 	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
@@ -709,6 +717,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 },
 {
 	title: 'digital-markerting',
+	textSnippet:'Understand the Art of Online Influence with our {courseDetails.title} Crash Course!',
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
 	tutorName: 'Emeka Ignatius',
@@ -719,7 +728,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 		`Explore the different types of digital advertising, understand targeting options, and measure your ad performance.`,
 		`Discover how to create valuable content that attracts and delights your audience. Learn to write compelling blog posts, articles, and social media updates that resonate with your target market.`,
 	], 
-	price: '50,000',
+	price: '30,000/50,000',
 	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
@@ -781,7 +790,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 // 		'In this course you will learn',
 // 		'In this course you will learn',
 // 	], 
-// 	price: '50,000',
+// 	price: '30,000/50,000',
 // 	classes: '3',
 // 	duration: '1 week',
 // 	numberOfStudentsErolled: '40',
@@ -803,6 +812,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 //   },
 	{
 	title: 'project-management',
+	textSnippet:'Lead with Confidence! Conquer Project Chaos with Our {courseDetails.title} Crash Course',
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
 	tutorName: 'Emmanuel Akhabue',
@@ -813,7 +823,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 		'Develop essential project management skills: planning, scheduling, budgeting, and risk management.',
 		'Apply effective communication and stakeholder management techniques.',
 	], 
-	price: '50,000',
+	price: '30,000/50,000',
 	classes: '3',
 	duration: '1 week',
 	numberOfStudentsErolled: '40',
@@ -909,21 +919,28 @@ export const TUTOR_REVIEWS: {
 		title: 'Amazing Course',
 		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
 		dolore magna aliqua.`
-	}
+	},
+	{
+		tutorName: 'David Sokeye',
+		name: 'Adam Pearce',
+		image: '/images/lekan.jpg',
+		rating: [
+			<Icons.StarIcon key='11' />,
+			<Icons.StarIcon key='5' />,
+			<Icons.StarIcon key='11' />,			<Icons.StarIcon key='14' />
+		],
+		title: 'Great tutor',
+		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
+		dolore magna aliqua.`
+	},
 ]
 export const TUTOR_PROFILE: {
 	name: string;
 	about: string;
 	role: string;
 	image: StaticImport | string;
-	icon: React.ReactNode[];
 }[] = [
 	{
-		icon: [
-			<Icons.FacebookIcon key='1' />,
-			<Icons.TwitterIcon key='2' />,
-			<Icons.LinkedinIcon key='3' />,
-		],
 		name: 'Paul Ayobami',
 		role: 'Senior frontend Developer',
 		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
@@ -932,84 +949,49 @@ export const TUTOR_PROFILE: {
 		image: '/images/paul.jpg',
 	},
 	{
-		icon: [
-			<Icons.FacebookIcon key='1' />,
-			<Icons.TwitterIcon key='2' />,
-			<Icons.LinkedinIcon key='3' />,
-		],
 		name: 'Ezekiel Mahoussi',
 		role: 'Graphic Designer',
 		about: `I am a visual storyteller, strategist and graphic designer, I create problem solving designs with a streamlined process using various design tools.
 		`,
-		image: '/images/lekan.jpg',
+		image: '/images/ezekiel.jpg',
 	},
 	{
-		icon: [
-			<Icons.FacebookIcon key='1' />,
-			<Icons.TwitterIcon key='2' />,
-			<Icons.LinkedinIcon key='3' />,
-		],
-		name: 'Mawuli Owusu',
+		name: 'Mawuli Owusu Promise',
 		role: 'Design Expert',
-		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
-		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
-		dolor in reprehenderit in voluptate.`,
+		about: `I am an innovative designer who is passionate about creativity and functional user centric products. I
+believe that a well-crafted interface should feel like a calm guided journey rather than a chaotic maze. I
+am experienced in designing experiences for web and mobile applications, as well as rebranding and
+redesigning experiences. I have previously worked on applications that have relevance in transportation,
+E-commerce, FinTech and health sector.`,
 		image: '/images/wuli.jpg',
 	},
 	{
-		icon: [
-			<Icons.FacebookIcon key='1' />,
-			<Icons.TwitterIcon key='2' />,
-			<Icons.LinkedinIcon key='3' />,
-		],
-		name: 'Tope Bamidele',
+		name: 'Temitope Paul-Bamidele',
 		role: 'Cyber Expert',
-		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
-		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
-		dolor in reprehenderit in voluptate.`,
+		about: `Highly experienced cybersecurity analyst with  years of expertise in protecting digital assets from cyber threats. Proven track record of developing and implementing comprehensive security strategies, conducting penetration testing, and incident response. Skilled in threat analysis, vulnerability assessment, and security architecture. Proficient in industry-leading tools and technologies, including firewalls, intrusion detection systems, and encryption protocols.
+		`,
 		image: '/images/tems.jpg',
 	},
 	{
-		icon: [
-			<Icons.FacebookIcon key='1' />,
-			<Icons.TwitterIcon key='2' />,
-			<Icons.LinkedinIcon key='3' />,
-		],
-		name: 'Tope Bamidele',
+		name: 'Temitope Paul-Bamidele',
 		role: 'Home Expert',
-		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
-		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
-		dolor in reprehenderit in voluptate.`,
+		about: `Highly experienced cybersecurity analyst with  years of expertise in protecting digital assets from cyber threats. Proven track record of developing and implementing comprehensive security strategies, conducting penetration testing, and incident response. Skilled in threat analysis, vulnerability assessment, and security architecture. Proficient in industry-leading tools and technologies, including firewalls, intrusion detection systems, and encryption protocols.
+		`,
 		image: '/images/tems.jpg',
 	},
 	{
-		icon: [
-			<Icons.FacebookIcon key='1' />,
-			<Icons.TwitterIcon key='2' />,
-			<Icons.LinkedinIcon key='3' />,
-		],
 		name: 'Emmanuel Akhabue',
 		role: 'Project manager',
 		about: `I thrive on leading teams and projects to successful outcomes. Proficient in utilizing various project management methodologies, including Agile and Waterfall, adapting my approach to suit the specific needs of each project.`,
 		image: '/images/emma.jpg',
 	},
 	{
-		icon: [
-			<Icons.FacebookIcon key='1' />,
-			<Icons.TwitterIcon key='2' />,
-			<Icons.LinkedinIcon key='3' />,
-		],
 		name: 'David Sokeye',
 		role: 'Flutter & Dart Developer',
 		about: `Proficient in Dart programming language and Flutter framework Strong knowledge of object-oriented programming (OOP) principles Experience in developing and implementing UI/UX designs Expertise in integrating RESTful APIs`,
 		image: '/images/david.jpg',
 	},
 	{
-		icon: [
-			<Icons.FacebookIcon key='1' />,
-			<Icons.TwitterIcon key='2' />,
-			<Icons.LinkedinIcon key='3' />,
-		],
 		name: 'Emeka Ignatius',
 		role: 'Digital Specialist',
 		about: `Creative Digital Marketer specializing in crafting compelling content that connects with audiences and drives engagement. Experienced in developing content strategies, writing engaging, and optimizing content for SEO. Adept at social media storytelling and managing online communities.Passionate about leveraging digital tools and trends to promote brands and achieve measurable growth.`,
@@ -1029,7 +1011,7 @@ export const TESTIMONIALS: {
 		userrole: 'Frontend Developer',
 	},
 	{
-		image: '/images/wuli.jpg',
+		image: '/images/tobe.jpg',
 		name: 'Tobechukwu P.',
 		review: `What I gained from the course was the ability to better understand coding and how to work better on a project. Just an amazing place to start your tech career.`,
 		userrole: 'Frontend Developer',
