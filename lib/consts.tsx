@@ -716,7 +716,7 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 	conclusion: `By the end of this course, you'll have the skills and confidence to bring your app ideas to life, whether you're building the next viral sensation or a handy tool for your own personal use.`,
 },
 {
-	title: 'digital-markerting',
+	title: 'digital-marketing',
 	textSnippet:'Understand the Art of Online Influence with our {courseDetails.title} Crash Course!',
 	badgeType: 'Business',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
