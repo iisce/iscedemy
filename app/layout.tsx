@@ -5,6 +5,7 @@ import NavBar from '@/components/layout/nav-bar';
 import Footer from '@/components/layout/footer';
 import { auth } from '@/auth';
 import { SessionProvider } from 'next-auth/react';
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,7 +29,14 @@ export default async function RootLayout({
 			<html lang='en'>
 				<body className={inter.className}>
 					<NavBar />
-					<div className='min-h-[70svh]'>{children}</div>
+					<div className='min-h-[70svh]'>
+						<NextTopLoader
+						color='green'
+						showSpinner={false}
+						/>
+						{children}
+						
+						</div>
 					<Footer />
 				</body>
 			</html>

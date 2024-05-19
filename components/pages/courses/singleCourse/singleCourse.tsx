@@ -13,6 +13,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import CourseRegisterPage from '@/components/component/course-register';
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
 import Link from 'next/link';
+import FormError from '@/components/form-error';
 
 export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	const courseDetails = COURSE_OUTLINE.find(
@@ -23,7 +24,9 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 
 
 	if (!courseDetails) {
-		return <div>Course not found</div>;
+		return <div className='items-center md:w-1/2 w-full my-12 justify-center mx-auto'> 
+			<p><FormError message='Course not available at the moment! Please check back later'/></p>
+			</div>;
 	}
 
 	/**This picks the image in the tutor profile and sets it as the same image in the course header for a particular course */

@@ -353,7 +353,7 @@ export const COURSE_OUTLINE: {
 			}[];
 }[] = [
 	{
-	title: 'web-development',
+	title: 'web-developmentt',
 	badgeType: 'Engineering',
 	textSnippet: 'Take charge of your tech career with our {courseDetails.title} Crash Course!',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
@@ -874,8 +874,8 @@ export const TUTOR_REVIEWS: {
 	name: string;
 	image: StaticImport | string;
 	rating: React.ReactNode[];
-	title: string;
-	description: string;
+	title?: string;
+	description?: string;
 }[] = [
 	{
 		tutorName: 'Paul Ayobami',
@@ -927,7 +927,8 @@ export const TUTOR_REVIEWS: {
 		rating: [
 			<Icons.StarIcon key='11' />,
 			<Icons.StarIcon key='5' />,
-			<Icons.StarIcon key='11' />,			<Icons.StarIcon key='14' />
+			<Icons.StarIcon key='11' />,			
+			<Icons.StarIcon key='14' />
 		],
 		title: 'Great tutor',
 		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et

@@ -85,13 +85,15 @@ export default function Footer() {
 						<ol className="font-bold text-lg"> Contact Us</ol>
 						<ol className="flex gap-2 cursor-pointer">
 							<LucideMapPin className="shrink-0" />
-							<Link href="">
-								{`1st Floor, Chicken Republic building, 22rd ,Festac Town, Lagos, Nigeria`}
+							<Link href="https://maps.app.goo.gl/V3F3m68ZbcWWp8in8">
+								{`1st Floor, (Festac Tower) Chicken Republic building, 22rd ,Festac Town, Lagos, Nigeria`}
 							</Link>
 						</ol>
 						<ol className="flex gap-2 cursor-pointer">
 							<LucideMail className="shrink-0" />
-							<Link href="/"> support@palmtechniq.com</Link>
+							<Link href="mailto:support@palmtechniq.com">
+							support@palmtechniq.com
+							</Link>
 						</ol>
 						<ol className="flex gap-2 cursor-pointer">
 							<LucidePhone className="shrink-0" />
