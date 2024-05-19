@@ -189,7 +189,7 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						height='315'
 						src={courseDetails.tutorVideoUrl}
 						title="Tutor's Explanatory Video"
-					allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+					allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
 					></iframe>
 
 					<div className='space-y-4 px-3 md:px-0 md:w-full w-screen flex flex-col justify-between items-center'>
