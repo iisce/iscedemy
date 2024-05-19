@@ -353,7 +353,7 @@ export const COURSE_OUTLINE: {
 			}[];
 }[] = [
 	{
-	title: 'web-developmentt',
+	title: 'web-development',
 	badgeType: 'Engineering',
 	textSnippet: 'Take charge of your tech career with our {courseDetails.title} Crash Course!',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
