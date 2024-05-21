@@ -914,7 +914,8 @@ export const TUTOR_REVIEWS: {
 		rating: [
 			<Icons.StarIcon key='11' />,
 			<Icons.StarIcon key='5' />,
-			<Icons.StarIcon key='11' />,			<Icons.StarIcon key='14' />
+			<Icons.StarIcon key='11' />,			
+			<Icons.StarIcon key='14' />
 		],
 		title: 'Amazing Course',
 		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et

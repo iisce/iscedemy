@@ -76,3 +76,20 @@ export const CourseRegisterSchema = z.object({
     
     
 });
+
+export const ReviewSchema = z.object({
+  tutorName: z.string({
+    required_error: "Tutor name is required",
+  }),
+  reviewerName: z.string().optional(), 
+  rating: z.number({
+    required_error: "Rating is required",
+  }).min(1, "Rating must be at least 1").max(5, "Rating cannot exceed 5"),
+  title: z.string().min(1, {
+    message: "Title is required",
+  }),
+  description: z.string().min(10, {
+    message: "Description must be at least 10 characters long",
+  }),
+});
+

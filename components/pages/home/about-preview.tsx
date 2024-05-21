@@ -16,10 +16,10 @@ export default function AboutPreview() {
                   {`We're dedicated to providing the best technical education for our students, preparing them for success in the digital age. Our innovative approach, experienced instructors, and hands-on learning opportunities make our institute the perfect place to launch your career in tech.`}
                 </p>
               </div>
-              <div className="xl:p-8 hidden xl:block xl:w-1/2 relative">
+              {/* <div className="xl:p-8 hidden xl:block xl:w-1/2 relative">
                 <video src='/images/aboutsectionvideo.mp4' width={500} height={500}  
                 autoPlay loop className='rounded-xl'></video>
-              </div>
+              </div> */}
             </div>
 
             <div className="relative mt-12 lg:mt-20">

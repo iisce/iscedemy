@@ -4,18 +4,22 @@ import * as Icons from '../../../lib/icons'
 import MaxWidthWrapper from '../../layout/max-width-wrapper'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { FlipWords } from "@/components/ui/flip-words";
 
 export default function HomeHeader() {
+  const words = ["Learn to code?", "Build a portfolio?", "Get hired?", "Start a career!"];
+
+
   return (
     <div className="my-10 py-10 text-primary w-full items-center justify-center mx-auto">
       <MaxWidthWrapper className='flex md:flex-row flex-col lg:flex-row'>
         <div className="flex flex-col justify-center md:mt-16   mx-auto md:items-start md:justify-start md:w-1/2">
           <h1 className="text-3xl font-bold mb-2">{`PalmTechnIQ`}</h1>
-          <h1 className="xl:text-5xl md:text-3xl md:text-wrap text-xl font-bold mb-6">
-            {`Learn to code. 
-            Build a portfolio. 
-            Get hired.`}
-          </h1>
+          <div className="xl:text-4xl md:text-2xl md:text-wrap text-xl font-bold text-neutral-900 dark:text-neutral-400">
+        Ready to 
+        <FlipWords words={words} /> <br />
+        <h1 className="text-3xl font-bold pt-1 mb-2">{`Kick-start your tech career today with PalmTechnIQ`}</h1>
+      </div>
 
           <Link href="/register">
             <Button className="bg-primary text-background px-8 py-4 rounded-full hover:bg-green-600 xl:text-xl md:text-xl text-lg hover:text-white transition duration-300">

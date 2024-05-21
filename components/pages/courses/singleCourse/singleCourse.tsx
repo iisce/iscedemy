@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import SingleCourseCurriculum from './singleCourseCurriculum';
@@ -14,14 +14,37 @@ import CourseRegisterPage from '@/components/component/course-register';
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
 import Link from 'next/link';
 import FormError from '@/components/form-error';
+import { Review } from '@prisma/client';
 
-export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
+export default function SingleCourse({ courseTitle, tutorName }: { courseTitle: string; tutorName?: string}) {
 	const courseDetails = COURSE_OUTLINE.find(
 		(course) => course.title === courseTitle
 	);
 	const [activeTab, setActiveTab] = useState('overview');
 	const [open, setOpen] = useState(false)
 
+		/**This is the Calculation for the total reviews for a particular tutor */
+		const [totalReviewsCount, setTotalReviewsCount] = useState(0);
+		const [tutorReviews, setTutorReviews] = useState<Review[]>([]);
+	
+	  
+		useEffect(() => {
+		  const fetchReviewsCount = async () => {
+			try {
+			  const response = await fetch(`/api/reviews?tutorName=${tutor?.name || ''}`);
+			  if (response.ok) {
+				const data = await response.json();
+				setTotalReviewsCount(data.length);
+			  } else {
+				console.error('Error fecthing review count');
+			  }
+			}catch (error) {
+			  console.error('There was an error getting reviews', error);
+			}
+		  };
+	  
+		  fetchReviewsCount()
+		}, [tutorName])
 
 	if (!courseDetails) {
 		return <div className='items-center md:w-1/2 w-full my-12 justify-center mx-auto'> 
@@ -32,15 +55,17 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 	/**This picks the image in the tutor profile and sets it as the same image in the course header for a particular course */
 	const tutor = TUTOR_PROFILE.find(profile => profile.name === courseDetails.tutorName);
 
-	/**This is the Calculation for the total reviews for a particular tutor */
-	const tutorReviews = TUTOR_REVIEWS.filter(review => review.tutorName === courseDetails.tutorName);
-	const totalReviewsCount = tutorReviews.length;
+
 
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
 	};
 
-	
+	const highestAverageRating = Math.round(
+		tutorReviews.reduce((sum, review) =>
+		 sum + review.rating, 0)/(totalReviewsCount || 1)
+	  )
+	 
 
 	return (
 		<div className='bg-white p-8 justify-center w-full'>
@@ -69,15 +94,16 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 									{courseDetails.tutorName}
 								</div>
 								<div className='flex flex-row items-center'>
-									<div className='flex text-green-600'>
-										<Icons.StarIcon />
-										<Icons.StarIcon />
-										<Icons.StarIcon />
-										<Icons.StarIcon />
-									</div>
-									<div className='text-gray-300'>
-										<Icons.StarIcon />
-									</div>
+								<div className="flex items-center">
+										 {/* Display the highestAverageRating */}
+									{[...Array(highestAverageRating)].map((_, index) => ( 
+									<Icons.StarIcon key={index} className="text-yellow-500 h-4 w-4" /> 
+									))}
+										{/* Display empty stars */}
+									{[...Array(5 - highestAverageRating)].map((_, index) => (
+									<Icons.StarIcon key={index + highestAverageRating} className="text-green-600 h-4 w-4" /> 
+									))}
+								</div>
 
 									<span className='ml-2 text-sm'>
 										({totalReviewsCount}Review{totalReviewsCount !== 1 && 's'})
@@ -177,8 +203,8 @@ export default function SingleCourse({ courseTitle }: { courseTitle: string }) {
 						{activeTab === 'curriculum' && (
 							<SingleCourseCurriculum curriculum={courseDetails.curriculum}/>
 						)}
-						{activeTab === 'instructor' && (<TutorProfile  tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount}/>)}
-						{activeTab === 'reviews' && (<SingleTutorReviews tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount}/>)}
+						{activeTab === 'instructor' && (<TutorProfile  tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount} highestAverageRating={highestAverageRating}/>)}
+						{activeTab === 'reviews' && (<SingleTutorReviews tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount} highestAverageRating={highestAverageRating}/>)}
 					</div>
 				</div>
 

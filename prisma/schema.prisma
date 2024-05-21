@@ -77,3 +77,13 @@ model Subscriber {
   email     String @unique
   createdAt DateTime  @default(now())
 }
+
+model Review {
+  id         String   @id @default(cuid())
+  tutorName  String 
+  reviewerName String
+  rating     Int      @default(0)
+  title      String
+  description String
+  createdAt  DateTime @default(now())
+}
