@@ -2,7 +2,6 @@
 
   import { ReviewSchema } from '@/schemas';
 import { Review } from '@prisma/client';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { Button } from '../ui/button';
@@ -13,14 +12,15 @@ import { Textarea } from '../ui/textarea';
 
   interface ReviewFormProps {
     tutorName: string;
+    reviewerId: string
+    reviewerName: string
     onAddReview: (newReview: Review) => void;
   }
 
-  const ReviewForm: React.FC<ReviewFormProps> = ({ tutorName, onAddReview }) => {
+  const ReviewForm: React.FC<ReviewFormProps> = ({ tutorName, reviewerId, reviewerName, onAddReview }) => {
     const [rating, setRating] = useState(0);
     const [reviewTitle, setReviewTitle] = useState('');
     const [reviewText, setReviewText] = useState('');
-    const [reviewerName, setReviewerName] = useState('');
     const router = useRouter();
     const [formError, setFormError] = useState<string | null>(null);
 
@@ -30,6 +30,7 @@ import { Textarea } from '../ui/textarea';
       const parsed = ReviewSchema.safeParse({
         tutorName,
         reviewerName,
+        reviewerId,
         rating,
         title: reviewTitle,
         description: reviewText,
@@ -42,30 +43,33 @@ import { Textarea } from '../ui/textarea';
       }
       setFormError(null);
 
-      const newReview: Review = {
-        ...parsed.data,
-        reviewerName: reviewerName || '',
-        id: String(Date.now()),
-        createdAt: new Date(),
-      };
+      const payload = parsed.data
 
       // Send newReview data to server-side API route
       try {
         const response = await fetch('/api/reviews', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newReview),
+          body: JSON.stringify(payload),
         });
 
         if (response.ok) {
           // Successfully added review, update state
-          onAddReview(newReview);
+          onAddReview({
+            id: String(Math.random()),
+            createdAt: new Date(),
+            description: payload.description,
+            rating: payload.rating,
+            title: payload.title,
+            tutorName: payload.tutorName,
+            userId: payload.reviewerId,
+            reviewerName: payload.reviewerName
+          });
 
           router.refresh();
           setRating(0);
           setReviewTitle('');
           setReviewText('');
-          setReviewerName('');
         } else {
           const data = await response.json();
           setFormError(data.error || 'An error occurred while submitting the review.')

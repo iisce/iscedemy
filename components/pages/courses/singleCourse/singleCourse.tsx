@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Tabs } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import SingleCourseCurriculum from './singleCourseCurriculum';
 import { COURSE_OUTLINE, TUTOR_PROFILE, TUTOR_REVIEWS } from '@/lib/consts';
@@ -118,7 +118,7 @@ export default function SingleCourse({ courseTitle, tutorName }: { courseTitle: 
 							{courseDetails.badgeType && (<Badge variant={'secondary'}>{courseDetails.badgeType}</Badge>)}
 						</div>
 					</div>
-					<Tabs className='md:w-full min-w-32 md:px-0   justify-center items-center mx-auto '>
+					<Tabs className='md:w-full min-w-32 md:px-0   justify-center items-center mx-auto' defaultValue='overview'>
 						<div className='flex md:space-x-4 border-b'>
 							<Button
 								variant='ghost'
@@ -173,10 +173,14 @@ export default function SingleCourse({ courseTitle, tutorName }: { courseTitle: 
 								Reviews
 							</Button>
 						</div>
-					</Tabs>
-					<div className='py-4 md:px-0 px-4'>
-						{activeTab === 'overview' && (
-							<div className="text-wrap">
+						<TabsList className='grid grid-cols-4 gap-2 '>
+						<TabsTrigger value='overview'>Overview</TabsTrigger>
+						<TabsTrigger value='curriculum'>Curriculum</TabsTrigger>
+						<TabsTrigger value='instructor'>Instructor</TabsTrigger>
+						<TabsTrigger value='reviews'>Reviews</TabsTrigger>
+						</TabsList>
+						<TabsContent value='overview'>
+						<div className="text-wrap">
 								<h2 className='md:text-2xl text-xl font-bold'>
 									Course Description
 								</h2>
@@ -199,13 +203,17 @@ export default function SingleCourse({ courseTitle, tutorName }: { courseTitle: 
 									{courseDetails.conclusion}
 								</p>
 							</div>
-						)}
-						{activeTab === 'curriculum' && (
-							<SingleCourseCurriculum curriculum={courseDetails.curriculum}/>
-						)}
-						{activeTab === 'instructor' && (<TutorProfile  tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount} highestAverageRating={highestAverageRating}/>)}
-						{activeTab === 'reviews' && (<SingleTutorReviews tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount} highestAverageRating={highestAverageRating}/>)}
-					</div>
+						</TabsContent>
+						<TabsContent value='curriculum'>
+						<SingleCourseCurriculum curriculum={courseDetails.curriculum}/>
+						</TabsContent>
+						<TabsContent value='instructor'>
+						<TutorProfile  tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount} highestAverageRating={highestAverageRating}/>
+						</TabsContent>
+						<TabsContent value='reviews'>
+						<SingleTutorReviews tutorName={courseDetails.tutorName} totalReviewsCount={totalReviewsCount} highestAverageRating={highestAverageRating}/>
+						</TabsContent>
+					</Tabs>
 				</div>
 
 				<div className='md:w-full w-screen space-y-6'>

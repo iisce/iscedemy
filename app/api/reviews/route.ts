@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const { tutorName, reviewerName, rating, title, description } = ReviewSchema.parse(body);
+    const { tutorName, reviewerName, rating, title, description, reviewerId } = ReviewSchema.parse(body);
 
     if (!reviewerName) {
         return new NextResponse("Reviewer name is required", { status: 400 });
@@ -36,6 +36,7 @@ export async function POST(req: Request) {
 
     const newReview = await db.review.create({
       data: {
+        userId: reviewerId || '',
         tutorName,
         reviewerName,
         rating,
@@ -63,8 +64,6 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       const updatedReview = await db.review.update({
         where: { id: reviewId },
         data: {
-          tutorName,
-          reviewerName,
           rating,
           title,
           description,

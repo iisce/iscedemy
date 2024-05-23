@@ -81,6 +81,7 @@ model Subscriber {
 model Review {
   id         String   @id @default(cuid())
   tutorName  String 
+  userId     String   
   reviewerName String
   rating     Int      @default(0)
   title      String

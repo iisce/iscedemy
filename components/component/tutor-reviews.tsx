@@ -27,6 +27,7 @@ export function SingleTutorReviews({ tutorName, }: ISingleTutorReviews) {
         if (response.ok) {
           const data = await response.json();
           setTutorReviews(data);
+          setTotalReviewsCount(data.length);
           const currentReview = data.find((review: Review) => review.id === session?.user?.id);
           setEditingReview(currentReview || null);
         } else {
@@ -36,26 +37,11 @@ export function SingleTutorReviews({ tutorName, }: ISingleTutorReviews) {
         console.error('Error fetching reviews:', error);
       }
     };
-
-    const fetchReviewsCount = async () => {
-      try {
-        const response = await fetch(`/api/reviews?tutorName=${tutorName}`);
-        if (response.ok) {
-          const data = await response.json();
-          setTotalReviewsCount(data.length);
-        } else {
-          console.error('Error fecthing review count');
-        }
-      }catch (error) {
-        console.error('There was an error getting reviews', error);
-      }
-    };
     fetchReviews();
-    fetchReviewsCount();
   }, [tutorName, tutorReviews]);
 
 
-  const handleAddReview = (newReview: Review) => {
+  const handleAddReview = (newReview: any) => {
     setTutorReviews([...tutorReviews, newReview]);
     setIsEditing(false);
   };
@@ -153,7 +139,7 @@ export function SingleTutorReviews({ tutorName, }: ISingleTutorReviews) {
            {isEditing && editingReview ? (
             <EditReviewForm review={editingReview} onEditReview={handleEditReview} onCancelEdit={handleCancelEdit}/>
            ): (
-            <ReviewForm tutorName={tutorName} onAddReview={handleAddReview} />  
+            <ReviewForm reviewerId="" reviewerName="" tutorName={tutorName} onAddReview={handleAddReview} />  
            )}
          
         </div>
