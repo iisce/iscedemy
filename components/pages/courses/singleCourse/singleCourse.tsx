@@ -46,7 +46,7 @@ export default async function SingleCourse({
 
 	const reviews = await getAllReviewsByTutorName(tutor?.name);
 	return (
-		<div className='bg-white justify-center w-full'>
+		<div className='bg-white justify-center w-full py-5'>
 			<div className='grid lg:grid-cols-5 gap-5'>
 				<div className='lg:col-span-3 flex flex-col w-full gap-5'>
 					<div className='space-y-2 md:px-0 px-4 w-full '>
@@ -168,88 +168,90 @@ export default async function SingleCourse({
 						<h3 className='text-xl font-semibold'>
 							Course Includes:
 						</h3>
-						<div className='space-y-4 '>
-							<div className='flex flex-row justify-between  items-center'>
-								<div className='text-green-600'>
+						<div className='space-y-4 w-full '>
+							<div className='flex flex-row justify-between items-center'>
+								<span className='text-green-600 flex items-center'>
 									<Icons.NairaSignIcon />
+									Price:
+								</span>
+								<div className='font-bold'>
+									<div className=''>
+										Virtual/Physical
+									</div>
+									<div className=''>
+										{courseDetails.price}
+									</div>
 								</div>
-
-								<span className='ml-2'>
-									Price: Virtual/Physical
-								</span>
-								<span className='ml-auto font-bold'>
-									{courseDetails.price}
-								</span>
 							</div>
 							<hr />
 							<div className='flex justify-between items-center'>
-								<div className='text-green-600'>
+								<div className='text-green-600 flex items-center'>
 									<Icons.UserIcon />
+									<span className=''>
+										Instructor:
+									</span>
 								</div>
 
-								<span className='ml-2'>
-									Instructor:
-								</span>
-								<span className=' ml-6 font-bold'>
+								<span className='font-bold'>
 									{courseDetails.tutorName}
 								</span>
 							</div>
 							<hr />
-							<div className='flex items-center'>
-								<div className='text-green-600'>
+							<div className='flex justify-between items-center'>
+								<div className='text-green-600 flex items-center'>
 									<Icons.ClockIcon />
+									<span className=''>Duration:</span>
 								</div>
 
-								<span className='ml-2'>Duration:</span>
-								<span className='ml-auto font-bold'>
+								<span className='font-bold'>
 									{courseDetails.duration}
 								</span>
 							</div>
 							<hr />
-							<div className='flex items-center'>
-								<div className='text-green-600'>
+							<div className='flex justify-between items-center'>
+								<div className='text-green-600 flex items-center'>
 									<Icons.BookOpenIcon />
+									<span className=''>Classes:</span>
 								</div>
 
-								<span className='ml-2'>Classes:</span>
-								<span className='ml-auto font-bold'>
+								<span className='font-bold'>
 									{courseDetails.classes}
 								</span>
 							</div>
 							<hr />
-							<div className='flex items-center'>
-								<div className='text-green-600'>
+							<div className='flex justify-between items-center'>
+								<div className='text-green-600 flex items-center'>
 									<Icons.UsersIcon />
+									<span className=''>Students:</span>
 								</div>
 
-								<span className='ml-2'>Students:</span>
-								<span className='ml-auto font-bold'>
+								<span className='font-bold'>
 									{
 										courseDetails.numberOfStudentsErolled
 									}
 								</span>
 							</div>
 							<hr />
-							<div className='flex items-center'>
-								<div className='text-green-600 '>
+							<div className='flex justify-between items-center'>
+								<div className='text-green-600 flex items-center'>
 									<Icons.GlobeIcon />
+									<span className=''>Language:</span>
 								</div>
 
-								<span className='ml-2'>Language:</span>
-								<span className='ml-auto font-bold'>
+								<span className='ml-0 font-bold'>
 									{courseDetails.language}
 								</span>
 							</div>
 							<hr />
-							<div className='flex items-center'>
-								<div className='text-green-600'>
+							<div className='flex justify-between items-center'>
+								<div className='text-green-600 flex items-center'>
 									<Icons.BadgeCheckIcon />
+									<span className=''>
+										Certifications:
+									</span>
 								</div>
 
-								<span className='ml-2'>
-									Certifications:
-								</span>
-								<span className='ml-auto font-bold'>
+								<span className='font-bold'>
 									{courseDetails.certification}
 								</span>
 							</div>

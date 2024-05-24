@@ -9,14 +9,14 @@ import OurValues from '@/components/pages/about/our-values';
 export default function About() {
 	return (
 		<>
-			<AboutSection/>
+			<AboutSection />
 			<AboutNav />
-		<MaxWidthWrapper className='text-black grid md:gap-5 relative '>
-			<OurStory />
-			<OurValues />
-			<OurMission />
-			<OurTeam />
-		</MaxWidthWrapper>
+			<MaxWidthWrapper className='text-black grid md:gap-5 relative '>
+				<OurStory />
+				<OurValues />
+				<OurMission />
+				<OurTeam />
+			</MaxWidthWrapper>
 		</>
 	);
 }

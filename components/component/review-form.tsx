@@ -3,7 +3,6 @@
 import { createReview } from '@/actions/reviews';
 import { ReviewSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Review } from '@prisma/client';
 import { LoaderIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
@@ -27,7 +26,6 @@ interface ReviewFormProps {
 	tutorName: string;
 	reviewerId: string;
 	reviewerName: string;
-	onAddReview?: (newReview: Review) => void;
 }
 
 const ReviewForm: React.FC<ReviewFormProps> = ({
@@ -60,10 +58,16 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
 	const onSubmit = (values: z.infer<typeof ReviewSchema>) => {
 		setError('');
 		setSuccess('');
-		console.log(values);
 
 		startTransition(() => {
-			createReview(values)
+			createReview({
+				description: values.description,
+				rating: rating,
+				title: values.title,
+				reviewerId: values.reviewerId,
+				reviewerName: values.reviewerName,
+				tutorName: values.tutorName,
+			})
 				.then((data) => {
 					if (data?.error) {
 						form.reset();
@@ -71,8 +75,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
 					}
 					if (data?.success) {
 						form.reset();
-						setSuccess(data?.success);
 						router.refresh();
+						setSuccess(data?.success);
 					}
 				})
 				.catch(() => setError('Something went wrong!!!'));

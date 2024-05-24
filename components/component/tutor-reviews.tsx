@@ -23,20 +23,6 @@ export function SingleTutorReviews({
 	const reviewByMe = reviews.find(
 		({ userId }) => userId === session.data?.user?.id
 	);
-
-	console.log({ reviewByMe });
-
-	const handleAddReview = (newReview: any) => {};
-
-	const handleEditReview = (updatedReview: Review) => {
-		setIsEditing(true);
-	};
-
-	const handleEditClick = (review: Review) => {
-		setIsEditing(false);
-	};
-
-	const handleCancelEdit = () => {};
 	/**This const will be used to calculate the reviews based on the total and displays it on the progress bar
 	 * Basically; it handles the movement of the progress bar based on number of stars
 	 * on a particular tutors profile
@@ -74,7 +60,6 @@ export function SingleTutorReviews({
 						{totalReviewsCount} Review
 						{totalReviewsCount >= 1 && 's'}
 					</span>
-					
 				</div>
 				<div className='grid gap-2'>
 					{[5, 4, 3, 2, 1].map((numStars) => {
@@ -116,11 +101,28 @@ export function SingleTutorReviews({
 						</Button>
 					)}
 				</div>
+
+				<div className='grid gap-5'>
+					{reviewByMe && isEditing && (
+						<EditReviewForm
+							review={reviewByMe}
+							setIsEditing={setIsEditing}
+						/>
+					)}
+
+					{!reviewByMe && (
+						<ReviewForm
+							reviewerId={session.data?.user?.id ?? ''}
+							reviewerName={session.data?.user?.name ?? ''}
+							tutorName={tutor.name}
+						/>
+					)}
+				</div>
 				<div className='mt-4 '>
 					{!isEditing &&
 						reviews.map((review, i) => (
 							<div
-								className='flex items-center space-x-4'
+								className='flex flex-col items-center space-x-4'
 								key={i}
 							>
 								<div className='flex flex-col w-full space-y-2 py-3'>
@@ -142,43 +144,39 @@ export function SingleTutorReviews({
 									<p className='text-gray-700 mt-1'>
 										{review.description}
 									</p>
-									<Separator className='w-full' />
 								</div>
-								{reviewByMe && (
-									<>
-										<Button
-											onClick={() =>
-												setIsEditing(true)
-											}
-										>
-											Edit
-										</Button>
-										<Button
-											onClick={() =>
-												setIsEditing(false)
-											}
-										>
-											Cancel
-										</Button>
-									</>
-								)}
+								<div className='grid grid-cols-2 gap-2 w-full pb-3'>
+									{reviewByMe &&
+										review.userId ===
+											session.data?.user
+												?.id && (
+											<>
+												<Button
+													className='grid'
+													onClick={() =>
+														setIsEditing(
+															true
+														)
+													}
+												>
+													Edit
+												</Button>
+												<Button
+													className='grid'
+													onClick={() =>
+														setIsEditing(
+															false
+														)
+													}
+												>
+													Cancel
+												</Button>
+											</>
+										)}
+								</div>
+								<Separator className='w-full' />
 							</div>
 						))}
-					{reviewByMe && isEditing && (
-						<EditReviewForm
-							review={reviewByMe}
-							setIsEditing={setIsEditing}
-						/>
-					)}
-
-					{!reviewByMe && (
-						<ReviewForm
-							reviewerId={session.data?.user?.id ?? ''}
-							reviewerName={session.data?.user?.name ?? ''}
-							tutorName={tutor.name}
-							onAddReview={handleAddReview}
-						/>
-					)}
 				</div>
 			</div>
 		</div>

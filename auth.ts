@@ -24,12 +24,7 @@ export const {
 	},
 	callbacks: {
 		async signIn({ user, account }) {
-			console.log({
-				user,
-				account,
-			})
-			
-			if (account?.provider !== "credentials") return true;
+			if (account?.provider !== 'credentials') return true;
 
 			const existingUser = await getUserById(user.id!);
 
@@ -45,14 +40,13 @@ export const {
 		},
 
 		async jwt({ token }) {
-			console.log(token);
 			return token;
 		},
 	},
 	adapter: PrismaAdapter(db),
 	session: {
 		maxAge: 86400,
-		 strategy: 'jwt' 
-		},
+		strategy: 'jwt',
+	},
 	...authConfig,
 });

@@ -4,10 +4,14 @@ import { updateReview } from '@/actions/reviews';
 import { UpdateReviewSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Review } from '@prisma/client';
+import { LoaderIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
+import FormError from '../form-error';
+import FormSuccess from '../form-success';
 import { Button } from '../ui/button';
 import {
 	Form,
@@ -19,10 +23,6 @@ import {
 import { Input } from '../ui/input';
 import StarRating from '../ui/star-rating';
 import { Textarea } from '../ui/textarea';
-import FormError from '../form-error';
-import FormSuccess from '../form-success';
-import { LoaderIcon } from 'lucide-react';
-import { toast } from 'sonner';
 
 interface EditReviewFormProps {
 	review: Review;
@@ -51,10 +51,14 @@ const EditReviewForm: React.FC<EditReviewFormProps> = ({
 	const onSubmit = (values: z.infer<typeof UpdateReviewSchema>) => {
 		setError('');
 		setSuccess('');
-		console.log(values);
 
 		startTransition(() => {
-			updateReview(values)
+			updateReview({
+				description: values.description,
+				rating: rating,
+				title: values.title,
+				id: values.id,
+			})
 				.then((data) => {
 					if (data?.error) {
 						form.reset();
@@ -71,65 +75,6 @@ const EditReviewForm: React.FC<EditReviewFormProps> = ({
 				.catch(() => setError('Something went wrong!!!'));
 		});
 	};
-
-	// const handleSubmit = async (e: FormEvent) => {
-	// 	e.preventDefault();
-
-	// 	const parsed = UpdateReviewSchema.safeParse({
-	// 		tutorName: review.tutorName,
-	// 		rating,
-	// 		title: reviewTitle,
-	// 		description: reviewText,
-	// 	});
-	// 	if (!parsed.success) {
-	// 		const errors: { [key: string]: string } = {};
-
-	// 		parsed.error.issues.forEach((issue) => {
-	// 			const path = issue.path[0]; // Get the field name
-	// 			if (!errors[path]) {
-	// 				// Only set the error if it hasn't been set yet
-	// 				errors[path] = issue.message;
-	// 			}
-	// 		});
-	// 		setFormErrors(errors);
-	// 		return;
-	// 	}
-
-	// 	setFormErrors({});
-
-	// 	const updatedReview: Review = {
-	// 		// Keep existing properties
-	// 		...review,
-	// 		rating: parsed.data.rating,
-	// 		title: parsed.data.title,
-	// 		description: parsed.data.description,
-	// 	};
-
-	// 	// Send newReview data to server-side API route
-	// 	// try {
-	// 	// 	const response = await fetch(`/api/reviews/${review.id}`, {
-	// 	// 		method: 'PATCH',
-	// 	// 		headers: { 'Content-Type': 'application/json' },
-	// 	// 		body: JSON.stringify(updatedReview),
-	// 	// 	});
-
-	// 	// 	if (response.ok) {
-	// 	// 		onEditReview(updatedReview);
-	// 	// 		router.refresh();
-	// 	// 		onCancelEdit();
-	// 	// 	} else {
-	// 	// 		const data = await response.json();
-	// 	// 		setFormErrors(
-	// 	// 			data.error ||
-	// 	// 				'An error occurred while updating the review.'
-	// 	// 		);
-	// 	// 	}
-	// 	// } catch (error) {
-	// 	// 	setFormErrors({
-	// 	// 		general: 'An error occurred while updating the review. Please try again.',
-	// 	// 	});
-	// 	// }
-	// };
 
 	return (
 		<Form {...form}>

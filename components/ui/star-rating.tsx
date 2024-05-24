@@ -9,10 +9,6 @@ interface StarRatingProps {
 const StarRating: React.FC<StarRatingProps> = ({ rating, setRating }) => {
 	const [hoverRating, setHoverRating] = useState(0);
 
-	const handleClick = (rating: number) => {
-		setRating(rating);
-	};
-
 	const handleMouseOver = (rating: number) => {
 		setHoverRating(rating);
 	};
@@ -34,8 +30,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rating, setRating }) => {
 								: 'text-gray-300'
 						}`}
 						onClick={() => {
-							handleClick(ratingValue);
-							setHoverRating(0); // Reset hover rating after click
+							setRating(ratingValue);
 						}}
 						onMouseOver={() => handleMouseOver(ratingValue)}
 						onMouseLeave={handleMouseLeave}
