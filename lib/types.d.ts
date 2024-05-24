@@ -37,12 +37,11 @@ interface IOCCUPATION {
 }
 interface ITutorProfileProps {
 	tutorName: string;
-	totalReviewsCount: number; 
+	totalReviewsCount?: number;
 	highestAverageRating: number;
-  }
+}
 interface ISingleTutorReviews {
 	tutorName: string;
 	totalReviewsCount?: number;
 	highestAverageRating: number;
-  }
-  
+}

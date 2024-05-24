@@ -7,18 +7,18 @@ import CourseItem from '../pages/courses/courseitem';
 import SignOutButton from '../ui/sign-out';
 
 export default function SideBar() {
-	const [click, setClicked] = useState('h-0');
 	return (
-		<div className='hidden md:flex flex-col gap-4 justify-between md:text-left md:h-[calc(100%-80px)] md:w-[16%] '>
+		<div className='hidden lg:grid gap-5 justify-between lg:text-left h-[calc(100%-80px)] lg:w-[300px] '>
 			<div>
-				<div className='flex pb-[10px] items-center gap-3'>
+				<Link
+					href='/courses'
+					className='flex pt-5 items-center gap-3'
+				>
 					<h2 className='font-bold'>All Courses</h2>
-					<Link href='/courses'>
-						<span>{CircleRightArrow}</span>
-					</Link>
-				</div>
+					<span>{CircleRightArrow}</span>
+				</Link>
 				<hr />
-				<ul className='text-[13px] text-[#504f4f] flex gap-3 flex-col pt-[20px] '>
+				<ul className='text-[13px] text-[#504f4f] flex gap-3 flex-col pt-5 '>
 					{COURSEITEM.map((course, k) => (
 						<CourseItem
 							key={k}

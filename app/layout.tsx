@@ -6,6 +6,7 @@ import Footer from '@/components/layout/footer';
 import { auth } from '@/auth';
 import { SessionProvider } from 'next-auth/react';
 import NextTopLoader from 'nextjs-toploader';
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,12 +32,12 @@ export default async function RootLayout({
 					<NavBar />
 					<div className='min-h-[70svh]'>
 						<NextTopLoader
-						color='green'
-						showSpinner={false}
+							color='green'
+							showSpinner={false}
 						/>
 						{children}
-						
-						</div>
+					</div>
+					<Toaster richColors />
 					<Footer />
 				</body>
 			</html>

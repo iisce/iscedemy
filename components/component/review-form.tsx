@@ -1,112 +1,161 @@
-  'use client';
+'use client';
 
-  import { ReviewSchema } from '@/schemas';
+import { createReview } from '@/actions/reviews';
+import { ReviewSchema } from '@/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Review } from '@prisma/client';
+import { LoaderIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { FormEvent, useState } from 'react';
+import { useState, useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import FormError from '../form-error';
+import FormSuccess from '../form-success';
 import { Button } from '../ui/button';
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
+} from '../ui/form';
 import { Input } from '../ui/input';
 import StarRating from '../ui/star-rating';
 import { Textarea } from '../ui/textarea';
 
+interface ReviewFormProps {
+	tutorName: string;
+	reviewerId: string;
+	reviewerName: string;
+	onAddReview?: (newReview: Review) => void;
+}
 
-  interface ReviewFormProps {
-    tutorName: string;
-    reviewerId: string
-    reviewerName: string
-    onAddReview: (newReview: Review) => void;
-  }
+const ReviewForm: React.FC<ReviewFormProps> = ({
+	tutorName,
+	reviewerId,
+	reviewerName,
+}) => {
+	const router = useRouter();
+	const [rating, setRating] = useState(5);
 
-  const ReviewForm: React.FC<ReviewFormProps> = ({ tutorName, reviewerId, reviewerName, onAddReview }) => {
-    const [rating, setRating] = useState(0);
-    const [reviewTitle, setReviewTitle] = useState('');
-    const [reviewText, setReviewText] = useState('');
-    const router = useRouter();
-    const [formError, setFormError] = useState<string | null>(null);
+	const handleRatingChange = (newRating: number) => {
+		setRating(newRating);
+	};
+	const [error, setError] = useState<string | undefined>(undefined);
+	const [success, setSuccess] = useState<string | undefined>(undefined);
+	const [isPending, startTransition] = useTransition();
 
-    const handleSubmit = async (e: FormEvent) => {
-      e.preventDefault();
+	const form = useForm<z.infer<typeof ReviewSchema>>({
+		resolver: zodResolver(ReviewSchema),
+		defaultValues: {
+			tutorName,
+			rating,
+			reviewerId,
+			reviewerName,
+			description: '',
+			title: '',
+		},
+	});
 
-      const parsed = ReviewSchema.safeParse({
-        tutorName,
-        reviewerName,
-        reviewerId,
-        rating,
-        title: reviewTitle,
-        description: reviewText,
-      });
-      if (!parsed.success) {
-        setFormError(parsed.error.message)
-        
-        console.error("Error occured while submitting review:", parsed.error);
-        return;
-      }
-      setFormError(null);
+	const onSubmit = (values: z.infer<typeof ReviewSchema>) => {
+		setError('');
+		setSuccess('');
+		console.log(values);
 
-      const payload = parsed.data
+		startTransition(() => {
+			createReview(values)
+				.then((data) => {
+					if (data?.error) {
+						form.reset();
+						setError(data?.error);
+					}
+					if (data?.success) {
+						form.reset();
+						setSuccess(data?.success);
+						router.refresh();
+					}
+				})
+				.catch(() => setError('Something went wrong!!!'));
+		});
+	};
 
-      // Send newReview data to server-side API route
-      try {
-        const response = await fetch('/api/reviews', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
+	return (
+		<Form {...form}>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className='space-y-6'
+			>
+				<StarRating
+					rating={rating}
+					setRating={handleRatingChange}
+				/>
+				<FormError message={error} />
+				<FormSuccess message={success} />
+				<FormField
+					control={form.control}
+					name='reviewerName'
+					render={({ field }) => (
+						<FormItem>
+							{/* <FormLabel>Two Factor Code</FormLabel> */}
+							<FormControl>
+								<Input
+									{...field}
+									placeholder='Your Name (Optional)'
+									disabled={isPending}
+								/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name='title'
+					render={({ field }) => (
+						<FormItem>
+							{/* <FormLabel>Two Factor Code</FormLabel> */}
+							<FormControl>
+								<Input
+									{...field}
+									placeholder='Review Title'
+									disabled={isPending}
+								/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name='description'
+					render={({ field }) => (
+						<FormItem>
+							{/* <FormLabel>Two Factor Code</FormLabel> */}
+							<FormControl>
+								<Textarea
+									{...field}
+									placeholder='Write your review here...'
+									disabled={isPending}
+								/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 
-        if (response.ok) {
-          // Successfully added review, update state
-          onAddReview({
-            id: String(Math.random()),
-            createdAt: new Date(),
-            description: payload.description,
-            rating: payload.rating,
-            title: payload.title,
-            tutorName: payload.tutorName,
-            userId: payload.reviewerId,
-            reviewerName: payload.reviewerName
-          });
+				<Button
+					disabled={isPending}
+					type='submit'
+				>
+					{isPending ? (
+						<LoaderIcon className='animate-spin' />
+					) : (
+						'Submit Review'
+					)}
+				</Button>
+			</form>
+		</Form>
+	);
+};
 
-          router.refresh();
-          setRating(0);
-          setReviewTitle('');
-          setReviewText('');
-        } else {
-          const data = await response.json();
-          setFormError(data.error || 'An error occurred while submitting the review.')
-        }
-      } catch (error) {
-        setFormError('An error occurred while submitting the review. Please try again.');
-      }
-    };
-
-
-    return (
-      <form onSubmit={handleSubmit} className="space-y-4">
-      <StarRating rating={rating} setRating={setRating} />
-      {formError && <p className="text-destructive/35  text-sm">{formError}</p>}
-        <Input
-          type="text"
-          placeholder="Your Name (Optional)"
-          value={reviewerName}
-          onChange={(e) => setReviewerName(e.target.value)}
-        />
-
-        <Input
-          type="text"
-          placeholder="Review Title"
-          value={reviewTitle}
-          onChange={(e) => setReviewTitle(e.target.value)}
-        />
-
-        <Textarea
-          placeholder="Write your review here..."
-          value={reviewText}
-          onChange={(e) => setReviewText(e.target.value)}
-        />
-
-        <Button type="submit">Submit Review</Button>
-      </form>
-    );
-  };
-
-  export default ReviewForm;
+export default ReviewForm;
