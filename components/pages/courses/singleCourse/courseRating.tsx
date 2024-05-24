@@ -17,6 +17,7 @@ export default function CourseRating({ tutor }: { tutor: any }) {
 				if (response.ok) {
 					const data = await response.json();
 					setTutorReviews(data);
+					setTotalReviewsCount(data.length);
 				} else {
 					console.error('Error fetching reviews');
 				}
@@ -26,7 +27,7 @@ export default function CourseRating({ tutor }: { tutor: any }) {
 		};
 
 		fetchReviewsCount();
-	}, [tutor]);
+	}, [tutor?.name]);
 
 	const highestAverageRating = Math.round(
 		tutorReviews.reduce((sum, review) => sum + review.rating, 0) /

@@ -945,9 +945,8 @@ export const TUTOR_PROFILE: {
 	{
 		name: 'Paul Ayobami',
 		role: 'Senior frontend Developer',
-		about: `Consectetur adipisicing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua enim minim
-		veniam quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure
-		dolor in reprehenderit in voluptate.`,
+		about: `Senior front-end developer with years of expertise crafting exceptional user experiences and building robust, scalable web applications. Proven track record of leading development teams, implementing cutting-edge technologies, and delivering high-quality products that exceed user expectations.
+		Passionate about creating intuitive, visually appealing, and high-performing user interfaces that delight users and drive business results.`,
 		image: '/images/paul.jpg',
 	},
 	{

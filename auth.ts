@@ -50,6 +50,9 @@ export const {
 		},
 	},
 	adapter: PrismaAdapter(db),
-	session: { strategy: 'jwt' },
+	session: {
+		maxAge: 86400,
+		 strategy: 'jwt' 
+		},
 	...authConfig,
 });

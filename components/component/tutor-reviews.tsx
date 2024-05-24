@@ -1,15 +1,13 @@
 'use client';
-
 import { Progress } from '@/components/ui/progress';
 import * as Icons from '@/lib/icons';
 import { Review } from '@prisma/client';
 import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
 import EditReviewForm from './edit-review-form';
 import ReviewForm from './review-form';
-import { calculateAverageRating } from '@/lib/utils';
 
 export function SingleTutorReviews({
 	reviews,
@@ -61,9 +59,9 @@ export function SingleTutorReviews({
 	return (
 		<div className='w-full mx-auto p-5'>
 			<div className='grid overflow-hidden gap-5 items-start'>
-				<div className='bg-white p-4 rounded-lg shadow flex items-center'>
-					<div className='text-3xl font-bold'>
-						{totalReviewsCount}/
+				<div className='bg-white w-40 justify-center min-w-24 grid p-4 rounded-lg shadow items-center'>
+					<div className='text-3xl mx-auto text-center font-bold'>
+						{totalReviewsCount}
 					</div>
 					<div className='flex text-green-600'>
 						{[...Array(highestAverageRating)].map(
@@ -72,6 +70,11 @@ export function SingleTutorReviews({
 							)
 						)}
 					</div>
+					<span className='mx-auto text-center py-2 text-sm'>
+						{totalReviewsCount} Review
+						{totalReviewsCount >= 1 && 's'}
+					</span>
+					
 				</div>
 				<div className='grid gap-2'>
 					{[5, 4, 3, 2, 1].map((numStars) => {
