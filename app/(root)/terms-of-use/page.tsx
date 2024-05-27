@@ -1,6 +1,27 @@
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+
+export const metadata: Metadata = {
+  title: 'Terms Of Use',
+  description: ' Terms of Use',
+  metadataBase: new URL('https://www.palmtechniq.com/terms-of-use'),
+  alternates:{
+    canonical: '/terms-of-use',
+    languages: {
+      'en-US':'/en-US',
+      'de-DE': '/de-DE',
+    },
+  },
+  openGraph: {
+    title: 'Terms Of Use',
+    description: ' Terms of Use',
+    url: 'https://www.palmtechniq.com/terms-of-use',
+    siteName: 'PalmTechnIQ',
+  },
+}
 
 export default function TermsOfUse() {
   return (

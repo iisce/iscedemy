@@ -29,6 +29,7 @@ import {
 } from '../ui/select';
 import { Textarea } from '../ui/textarea';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function CrashCourseRegisterForm() {
 	const [error, setError] = useState<string | undefined>('');
@@ -78,6 +79,13 @@ export default function CrashCourseRegisterForm() {
 		<div>
 			{success ? (
 				<div className='flex flex-col space-y-2'>
+					<Image
+					src='/images/registeroverlay.png'
+					width={50}
+					height={50}
+					alt='Registered Successfully | PalmTechnIQ'
+					className=' h-full w-full  '
+					/>
 					<p>{success}</p>
 					<FormSuccess
 						message={`You should be getting an email from us soon with some instructions on what to do next.`}
@@ -87,7 +95,7 @@ export default function CrashCourseRegisterForm() {
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className='space-y-4 py-4'
+						className='space-y-4 py-4 my-4'
 					>
 						<div className='grid gap-4 sm:grid-cols-2'>
 							<FormField

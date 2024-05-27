@@ -10,7 +10,7 @@ export default function Faq() {
           <div className="text-center">
             <h2 className="text-3xl w-full font-bold md:tracking-tighter  md:text-3xl">Frequently Asked Questions</h2>
             <p className="mt-4 text-gray-700 md:text-md dark:text-gray-700">
-              Get answers to the most common questions about our PalmtechnIQ.
+              Get answers to the most common questions about PalmtechnIQ.
             </p>
           </div>
           <div className="space-y-6 w-full">

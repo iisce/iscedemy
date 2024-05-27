@@ -1,7 +1,28 @@
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import { PRIVACY_POLICY } from "@/lib/consts";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+
+export const metadata: Metadata = {
+  title: 'Privacy & Policy',
+  description: 'At PalmTechnIQ, we are committed to protecting your privacy.',
+  metadataBase: new URL('https://www.palmtechniq.com/privacy-policy'),
+  alternates:{
+    canonical: '/privacy-policy',
+    languages: {
+      'en-US':'/en-US',
+      'de-DE': '/de-DE',
+    },
+  },
+  openGraph: {
+    title: 'Privacy & Policy',
+    description: 'At PalmTechnIQ, we are committed to protecting your privacy.',
+    url: 'https://www.palmtechniq.com/privacy-policy',
+    siteName: 'PalmTechnIQ',
+  },
+}
 
 export default function PrivacyPolicy() {
   return (

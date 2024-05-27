@@ -3,9 +3,30 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { MapPin, Smartphone } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+	title: 'Get In Touch',
+	description: 'Partner with us to strategize ,create a better future and stay ahead of your game!',
+	metadataBase: new URL('https://www.palmtechniq.com/contact'),
+	alternates:{
+	  canonical: '/contact',
+	  languages: {
+		'en-US':'/en-US',
+		'de-DE': '/de-DE',
+	  },
+	},
+	openGraph: {
+	  title: 'Get In Touch',
+	  description: 'Partner with us to strategize ,create a better future and stay ahead of your game!',
+	  url: 'https://www.palmtechniq.com/contact',
+	  siteName: 'PalmTechnIQ',
+	  images: '/contactheader.jpg'
+	}
+  }
 
 export default function ContactPage() {
   return (

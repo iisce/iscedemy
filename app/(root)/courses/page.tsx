@@ -8,6 +8,8 @@ import {
 import { COURSEHEADER, COURSELIST } from "@/lib/consts";
 import Autoplay from "embla-carousel-autoplay";
 
+
+
 export default function CoursesPage() {
   return (
     <main className="lg:w-[83%] flex flex-col justify-center items-center">
