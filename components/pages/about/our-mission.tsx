@@ -1,8 +1,13 @@
+'use client'
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function OurMission() {
 	return (
-		<div
+		<motion.div
+		 initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
 			id='our-mission'
 			className='min-h-fit pt-16 border-b grid gap-10 pb-10'
 		>
@@ -38,6 +43,6 @@ export default function OurMission() {
 					></Image>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 }

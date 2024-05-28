@@ -1,8 +1,13 @@
+'use client'
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function OurStory() {
 	return (
-		<div
+		<motion.div
+		initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: "1", delay: 0.3 }}
 			id='our-story'
 			className='min-h-fit pt-16 border-b'
 		>
@@ -23,6 +28,6 @@ export default function OurStory() {
 					<span>{`We believe in child education because the only way to really change the current world for the better is by enabling them to paint a world of their own.`}</span>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 }

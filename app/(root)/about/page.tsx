@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 	  siteName: 'PalmTechnIQ',
 	  images: '/jopwe.jpg'
 	}
-  }
+}
 
 export default function About() {
 	return (
