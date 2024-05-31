@@ -3,6 +3,8 @@
  * @type {string[]}
  */
 
+
+
 export const publicRoutes = [
     "/",
     "/about",

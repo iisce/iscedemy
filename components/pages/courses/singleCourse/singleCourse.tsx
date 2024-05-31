@@ -19,12 +19,18 @@ import SingleCourseCurriculum from './singleCourseCurriculum';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { getAllReviewsByTutorName } from '@/data/reviews';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
+import { auth } from '@/auth';
+import SignOutButton from '@/components/ui/sign-out';
 
 export default async function SingleCourse({
 	courseTitle,
 }: {
 	courseTitle: string;
 }) {
+
+	const session = await auth();
+	const user = session?.user
+
 	const courseDetails = COURSE_OUTLINE.find(
 		(course) => course.title === courseTitle
 	);
@@ -50,10 +56,10 @@ export default async function SingleCourse({
 			<div className='grid lg:grid-cols-5 gap-5'>
 				<div className='lg:col-span-3 flex flex-col w-full gap-5'>
 					<div className='space-y-2 md:px-0 px-4 w-full '>
-						<h1 className='md:text-4xl text-2xl text-wrap font-bold'>
+						<h1 className='md:text-4xl text-2xl text-wrap font-bold capitalize'>
 							{courseDetails.textSnippet?.replace(
 								'{courseDetails.title}',
-								courseDetails.title
+								decodeURI(courseDetails.title).split('-').join(' ')
 							) ||
 								`Starting ${courseDetails.title} as your Home
 							Based Business`}
@@ -94,7 +100,7 @@ export default async function SingleCourse({
 								<TabsTrigger value='overview'>
 									Overview
 								</TabsTrigger>
-								<TabsTrigger value='curriculum'>
+								<TabsTrigger value='curriculum' >
 									Curriculum
 								</TabsTrigger>
 								<TabsTrigger value='instructor'>
@@ -131,10 +137,10 @@ export default async function SingleCourse({
 								</p>
 							</div>
 						</TabsContent>
-						<TabsContent value='curriculum'>
-							<SingleCourseCurriculum
+						<TabsContent value='curriculum' >
+							{user ? <SingleCourseCurriculum
 								curriculum={courseDetails.curriculum}
-							/>
+							/> : <> <div className='mx-auto items-center justify-center text-center'><p className='py-10 text-base'>{`Please sign in to see this page`}</p> <SignOutButton/></div></>} 
 						</TabsContent>
 						<TabsContent value='instructor'>
 							<TutorProfile

@@ -44,54 +44,72 @@ export default function HomeHeader() {
 						<div className='lg:absolute bottom-0 hidden -left-2 right-0 gap-3 py-2 px-3 rounded-b-lg xl:flex flex-wrap justify-center items-center lg:ml-4 lg:mb-4'>
 							<Badge
 								variant='secondary'
-								className=' cursor-pointer text-lg '
+								className=' cursor-pointer text-sm p-1 '
 							>
-								{`HTML`}
+								{`Web Development`}
 								<div className=' ml-2 bg-tertiary rounded-lg py-3 px-4'>
 									<Icons.HtmlIcon />
 								</div>
 							</Badge>
 							<Badge
 								variant='secondary'
-								className='cursor-pointer text-lg p-2'
+								className='cursor-pointer text-sm p-1'
 							>
-								{`JavaScript`}
+								{`Smart-home Automation`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.JavaScriptIcon />
 								</div>
 							</Badge>
 							<Badge
 								variant='secondary'
-								className=' cursor-pointer text-lg p-2'
+								className=' cursor-pointer text-sm p-1'
 							>
-								{`SQL`}
+								{`UI/UX Design`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.SqlIcon />
 								</div>
 							</Badge>
 							<Badge
 								variant='secondary'
-								className='cursor-pointer text-lg p-2'
+								className='cursor-pointer text-sm p-1'
 							>
-								{`Next.js`}
+								{`CyberSecurity`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.NextJSIcon />
 								</div>
 							</Badge>
 							<Badge
 								variant='secondary'
-								className=' cursor-pointer text-lg p-2'
+								className=' cursor-pointer text-sm p-1'
 							>
-								{`Node.js`}
+								{`Digital Marketing`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.NodeJSIcon />
 								</div>
 							</Badge>
 							<Badge
 								variant='secondary'
-								className='cursor-pointer text-lg p-2'
+								className='cursor-pointer text-sm p-1'
 							>
-								{`React`}
+								{`Graphic Design`}
+								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
+									<Icons.ReactJSIcon />
+								</div>
+							</Badge>
+							<Badge
+								variant='secondary'
+								className='cursor-pointer text-sm p-1'
+							>
+								{`App Development`}
+								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
+									<Icons.ReactJSIcon />
+								</div>
+							</Badge>
+							<Badge
+								variant='secondary'
+								className='cursor-pointer text-sm p-1'
+							>
+								{`Project Management`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.ReactJSIcon />
 								</div>

@@ -59,7 +59,7 @@ export const COURSEITEM: ICOURSEITEM[] = [
 		name: 'Graphic Design',
 	},
 	{
-		link: 'ui%2Fux-designing',
+		link: 'ui-ux-designing',
 		name: 'UI/UX Design',
 	},
 	{
@@ -93,7 +93,7 @@ export const COURSEHEADER: ICOURSEHEADER[] = [
 		header: 'Learn to Create NEAT Experiences.',
 		description:
 			'UI/UX classes are available, indulge in the world of creativity.',
-		link: 'ui%2Fux-designing',
+		link: 'ui-ux-designing',
 	},
 	{
 		image: '/third.jpg',
@@ -298,7 +298,7 @@ export const OTHER_COURSE_PREVIEW: {
 	{
 		icon: <Icons.BookIcon key='9' />,
 		name: 'COURSE',
-		link: 'ui%2Fux-designing',
+		link: 'ui-ux-designing',
 		image: '/images/user-interface-design.jpg',
 		title: 'UI/UX',
 		info: `Create websites and apps that are both beautiful and intuitive. Know the art of user-centric design, ensuring that your products are easy to use and enjoyable to interact with.`,
@@ -540,7 +540,7 @@ conclusion: `By the end of this course, you'll be equipped with the knowledge an
 conclusion: `By the end of this course, you'll have a clear understanding &  foundation in graphic design principles, software proficiency, and the confidence to start creating your own stunning visuals.`,
 	},
 	{
-	title: 'ui%2Fux-designing',
+	title: 'ui-ux-designing',
 	textSnippet:'Design Digital Delights with our {courseDetails.title} Crash Course. A Practical Guide to UI/UX Fundamentals',
 	badgeType: 'Design',
 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
