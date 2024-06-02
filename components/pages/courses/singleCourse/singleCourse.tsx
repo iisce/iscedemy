@@ -140,19 +140,33 @@ export default async function SingleCourse({
 						<TabsContent value='curriculum' >
 							{user ? <SingleCourseCurriculum
 								curriculum={courseDetails.curriculum}
-							/> : <> <div className='mx-auto items-center justify-center text-center'><p className='py-10 text-base'>{`Please sign in to see this page`}</p> <SignOutButton/></div></>} 
+							/> : <> 
+							<div className='mx-auto items-center justify-center text-center'>
+								<p className='py-10 text-base'>{`Please sign in to see this page content`}</p> 
+								<SignOutButton/></div>
+								</>
+							} 
 						</TabsContent>
 						<TabsContent value='instructor'>
-							<TutorProfile
+							{user ? <TutorProfile
 								tutorName={courseDetails.tutorName}
 								highestAverageRating={3}
-							/>
+							/> : <> 
+							<div className='mx-auto items-center justify-center text-center'>
+								<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
+								 <SignOutButton/> </div> 
+								 </>
+							}
 						</TabsContent>
 						<TabsContent value='reviews'>
-							<SingleTutorReviews
+							{user ? <SingleTutorReviews
 								reviews={reviews ?? []}
 								tutor={tutor}
-							/>
+							/> : <> 
+							<div className='mx-auto items-center justify-center text-center'>
+								<p className='py-10 text-base'>{`Please sign in to see this page content`}</p> 
+								<SignOutButton/></div>
+								</> }
 						</TabsContent>
 					</Tabs>
 				</div>

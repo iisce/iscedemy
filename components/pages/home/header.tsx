@@ -48,7 +48,7 @@ export default function HomeHeader() {
 							>
 								{`Web Development`}
 								<div className=' ml-2 bg-tertiary rounded-lg py-3 px-4'>
-									<Icons.HtmlIcon />
+									<Icons.WebDevelopmentIcon />
 								</div>
 							</Badge>
 							<Badge
@@ -57,7 +57,7 @@ export default function HomeHeader() {
 							>
 								{`Smart-home Automation`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
-									<Icons.JavaScriptIcon />
+									<Icons.SmartHomeAutomationIcon />
 								</div>
 							</Badge>
 							<Badge
@@ -66,7 +66,7 @@ export default function HomeHeader() {
 							>
 								{`UI/UX Design`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
-									<Icons.SqlIcon />
+									<Icons.UIDesignIcon />
 								</div>
 							</Badge>
 							<Badge
@@ -75,7 +75,7 @@ export default function HomeHeader() {
 							>
 								{`CyberSecurity`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
-									<Icons.NextJSIcon />
+									<Icons.CyberSecurityIcon />
 								</div>
 							</Badge>
 							<Badge
@@ -84,7 +84,7 @@ export default function HomeHeader() {
 							>
 								{`Digital Marketing`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
-									<Icons.NodeJSIcon />
+									<Icons.DigitalMarketingIcon />
 								</div>
 							</Badge>
 							<Badge
@@ -93,7 +93,7 @@ export default function HomeHeader() {
 							>
 								{`Graphic Design`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
-									<Icons.ReactJSIcon />
+									<Icons.GraphicDesignIcon />
 								</div>
 							</Badge>
 							<Badge
@@ -102,7 +102,7 @@ export default function HomeHeader() {
 							>
 								{`App Development`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
-									<Icons.ReactJSIcon />
+									<Icons.AppDevelopmentIcon />
 								</div>
 							</Badge>
 							<Badge
@@ -111,7 +111,7 @@ export default function HomeHeader() {
 							>
 								{`Project Management`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
-									<Icons.ReactJSIcon />
+									<Icons.ProjectManagementIcon />
 								</div>
 							</Badge>
 						</div>

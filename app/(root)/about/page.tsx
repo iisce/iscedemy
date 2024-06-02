@@ -8,7 +8,9 @@ import OurValues from '@/components/pages/about/our-values';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'About Us',
+	title:{
+		absolute:  'About Us',
+	},
 	description: 'We believe in child education! The way to change the world is by enabling them to paint a world of their own.',
 	metadataBase: new URL('https://www.palmtechniq.com/about'),
 	alternates:{
@@ -19,7 +21,9 @@ export const metadata: Metadata = {
 	  },
 	},
 	openGraph: {
-	  title: 'About Us',
+	  title: {
+		absolute: 'About Us',
+	  },
 	  description: 'We believe in child education! The way to change the world is by enabling them to paint a world of their own.',
 	  url: 'https://www.palmtechniq.com/about',
 	  siteName: 'PalmTechnIQ',

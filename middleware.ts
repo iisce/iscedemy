@@ -12,7 +12,7 @@ export default auth((req) => {
     const isPublicRoutes = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-    const isCourseRoute = nextUrl.pathname.startsWith('/courses')
+    const isCourseRoutes = nextUrl.pathname.startsWith('/courses')
 
     if (isApiAuthRoutes) {
         return;
@@ -25,7 +25,7 @@ export default auth((req) => {
         return;
     }
 
-    if (!isLoggedIn && !isPublicRoutes && !isCourseRoute) {
+    if (!isLoggedIn && !isPublicRoutes && !isCourseRoutes) {
         let callBackUrl = nextUrl.pathname
         if (nextUrl.search) {
             callBackUrl += nextUrl.search

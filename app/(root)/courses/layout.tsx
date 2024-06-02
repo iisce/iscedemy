@@ -4,7 +4,9 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-	title: 'Courses',
+	title: {
+		absolute: 'Courses',
+	},
 	description: 'Take charge of your tech career with our wide range of courses!',
 	metadataBase: new URL('https://www.palmtechniq.com/courses'),
 	alternates:{
@@ -15,7 +17,9 @@ export const metadata: Metadata = {
 	  },
 	},
 	openGraph: {
-	  title: 'Courses',
+		title: {
+			absolute: 'Courses',
+		},
 	  description: 'Take charge of your tech career with our wide range of courses!',
 	  url: 'https://www.palmtechniq.com/courses',
 	  siteName: 'PalmTechnIQ',
