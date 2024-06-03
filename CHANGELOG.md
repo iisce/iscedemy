@@ -16,3 +16,10 @@
 ### Added 
 - Committed package.json file to project
 - Changelog file
+  
+
+## 1.0.2 (2024-06-03)
+### Added
+- sitemap file for seo purposes
+- robots file for google crawling (seo)
+- Added robots on privacy-policy page

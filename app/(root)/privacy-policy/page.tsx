@@ -7,6 +7,10 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: 'Privacy & Policy',
+  robots: {
+    index: false,
+    follow: true,
+  },
   description: 'At PalmTechnIQ, we are committed to protecting your privacy.',
   metadataBase: new URL('https://www.palmtechniq.com/privacy-policy'),
   alternates:{
