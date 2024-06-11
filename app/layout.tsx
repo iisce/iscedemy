@@ -7,6 +7,7 @@ import { auth } from '@/auth';
 import { SessionProvider } from 'next-auth/react';
 import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
+import { Chatbot } from '@/components/component/chatbot';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -127,7 +128,9 @@ export default async function RootLayout({
 							showSpinner={false}
 						/>
 						{children}
+						
 					</div>
+					<Chatbot />
 					<Toaster richColors />
 					<Footer />
 				</body>

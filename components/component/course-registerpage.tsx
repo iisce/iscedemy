@@ -1,6 +1,6 @@
 'use client';
 import { CrashCourse } from '@/actions/crash-course';
-import { COURSES, OCCUPATION } from '@/lib/consts';
+import { COURSES, OCCUPATION, TYPE } from '@/lib/consts';
 import { CourseRegisterSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState, useTransition } from 'react';
@@ -45,6 +45,7 @@ export default function CrashCourseRegisterForm() {
 			lastname: '',
 			email: '',
 			expectations: '',
+			type: '',
 		},
 		mode: 'onChange',
 	});
@@ -250,6 +251,58 @@ export default function CrashCourseRegisterForm() {
 															>
 																{
 																	occupant.name
+																}
+															</SelectItem>
+														</SelectGroup>
+													)
+												)}
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								name='type'
+								control={form.control}
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className='px-3 font-semibold'>
+											{`Which are you registering for?..`}
+										</FormLabel>
+
+										<Select
+											disabled={isPending}
+											onValueChange={
+												field.onChange
+											}
+											defaultValue={
+												field.value
+											}
+										>
+											<FormControl>
+												<SelectTrigger className='w-full'>
+													<SelectValue placeholder='We want to know where you belong' />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												{TYPE.map(
+													(
+														type,
+														i
+													) => (
+														<SelectGroup
+															key={
+																i
+															}
+														>
+															<SelectItem
+																value={
+																	type.name
+																}
+															>
+																{
+																	type.name
 																}
 															</SelectItem>
 														</SelectGroup>

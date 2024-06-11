@@ -7,6 +7,5 @@ export async function fetchCourseDetails(courseTitle: string) {
     return outlineCourse;
   }
 
-  // 3. Handle Case When Course Not Found
-  return // Or return null if you prefer
+  return 
 }

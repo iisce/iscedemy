@@ -86,6 +86,21 @@ export const CourseRegisterSchema = z.object({
 			}
 		),
 	expectations: z.string(),
+	type: z
+		.string({
+			required_error: 'Please select at least 1 category!',
+		})
+		.refine(
+			(value) =>
+				[
+					'Virtual',
+					'Physical',
+					
+				].includes(value),
+			{
+				message: 'Invalid occupation!',
+			}
+		),
 });
 
 export const ReviewSchema = z.object({

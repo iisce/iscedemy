@@ -23,3 +23,11 @@
 - sitemap file for seo purposes
 - robots file for google crawling (seo)
 - Added robots on privacy-policy page
+
+## 1.0.3 (2024-06-12)
+### Added
+- PalmDesk AI Chatbot Widget: Introduced an interactive chatbot widget powered by Google Gemini 1.5 Flash. The chatbot provides information about courses, answers FAQs, and assists with registration and technical support inquiries.
+- Added a new course and tutor for video editing.
+- Added a new entry to the course registration table.
+- Added an email template for successful registration of courses.
+- Visual Enhancements: Improved the visual appearance and user experience of the chatbot widget.

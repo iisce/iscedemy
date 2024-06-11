@@ -70,10 +70,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 		link: 'digital-marketing',
 		name: 'Digital Marketing',
 	},
-	// {
-	// 	link: 'personal-branding',
-	// 	name: 'Personal Branding',
-	// },
+	{
+		link: 'video-editing',
+		name: 'Video Editing',
+	},
 	{
 		link: 'project-management',
 		name: 'Project Management',
@@ -148,13 +148,13 @@ export const COURSELIST: ICOURSELIST2[] = [
     content: `Join the digital revolution and learn how to reach your audience effectively in the online world. Our Digital Marketing crash course the necessary things you need from social media strategies to search engine optimization, equipping you with the fundamental skills to drive traffic, generate leads, and increase sales. Stay ahead of the competition and make your mark in the digital landscape.`,  
 	title: "Digital Marketing",
   },
-//   {
-//     icon: <Icons.TrendIcon />,
-//     image: "/personalbranding.jpeg",
-//     content: `Stand out from the crowd and make a lasting impression with our Personal Branding crash course. Whether you're a freelancer, entrepreneur, or job seeker, building a strong personal brand is essential for success. Learn how to articulate your unique value proposition, establish credibility, and cultivate a compelling online presence that resonates with your target audience.
-// 	`,     
-// 	title: "Personal Branding",
-//   },
+  {
+    icon: <Icons.TrendIcon />,
+    image: "/video-editing.jpg",
+    content: `Become a visual storytelling master with our Video Editing course. Learn editing, and enhancing video footage to create captivating narratives. From basic techniques to advanced effects, our hands-on training will empower you to transform raw footage into polished masterpieces. Bring your video visions to life.
+	`,     
+	title: "Video Editing",
+  },
   {
     icon: <Icons.ReactJSColorIcon />,
     image: "/mobileappdevelopment.jpg",
@@ -203,6 +203,9 @@ export const COURSES: ICOURSES[] = [
 		name: 'Digital Marketing',
 	},
 	{
+		name: 'Video Editing',
+	},
+	{
 		name: 'Smart-home Automation',
 	},
 ]
@@ -221,6 +224,14 @@ export const OCCUPATION: IOCCUPATION[] = [
 	},
 	{
 		name: 'Unemployed and looking to learn new soft skill.',
+	},
+]
+export const TYPE : ITYPE[] = [
+	{
+		name: 'Virtual',
+	},
+	{
+		name: 'Physical'
 	},
 ]
 export const COURSE_PREVIEW: {
@@ -778,38 +789,105 @@ conclusion: `By the end of this course, you'll have a clear understanding &  fou
 ],
 	conclusion: `By the end of this course, you'll be equipped with the right digital marketing skills, ready to launch successful campaigns, grow your online presence, and achieve your marketing goals.`,
 },
-// 	{
-// 	title: 'personal-branding',
-// 	badgeType: 'Business',
-// 	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
-// 	tutorName: 'Mahoussi Ezekiel',
-// 	description: `Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.`,
-// 	summary: [
-// 		'In this course you will learn',
-// 		'In this course you will learn',
-// 		'In this course you will learn',
-// 		'In this course you will learn',
-// 	], 
-// 	price: '30,000/50,000',
-// 	classes: '3',
-// 	duration: '1 week',
-// 	numberOfStudentsErolled: '40',
-// 	language: 'English',
-// 	certification: 'Yes',
-// 	curriculum: [
-// 		{
-// 		title: 'Basic Introduction',
-// 		topics: [
-// 			{ name: 'Brush up on Java concepts', },
-// 			{
-// 			name: `A Quick Introduction to Excel's Pivot Tables`,
-// 		  },
+	{
+	title: 'video-editing',
+	badgeType: 'Technology',
+	textSnippet: `Learn How To Make & Edit Videos Like A Pro in 3 days: get
+	jobs and start earning. With this {courseDetails.title} Crash Course!`,
+	tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+	tutorName: 'Anthony Nnamdi O.',
+	description: `This intensive three-day crash course in video editing provides you with a comprehensive
+	introduction to videography, the art and techniques of editing digital video content. Designed for
+	beginners and aspiring YouTubers, content creator and editors, this course covers everything
+	from the basics of editing software to advanced editing techniques, enabling students to create
+	polished and professional looking videos.`,
+	summary: [
+		'How to make/shoot good video. (Basic Video Making Tips)',
+		`Proficiency in using a popular editing software such as Adobe Premiere Pro, Cap Cut, Film or
+		a, Final Cut Pro, or DaVinci Resolve etc`,
+		`Understanding of fundamental editing techniques such as cutting, trimming, and organizing
+		footage on the timeline.`,
+		`Mastery of intermediate editing skills including transitions, effects, audio manipulation, color
+		correction, and titling.
+		`,
+		`Ability to apply advanced editing techniques such as graphics application and advanced
+		transitions for creative storytelling.
+		`,
+		`Competence in exporting and rendering projects for various platforms, ensuring optimal
+		playback quality and file size.`,
+		`Confidence in producing professional-quality videos, whether for personal projects, social
+		media content, or professional endeavors.`,
+		`Bonus: Learn how to make or shoot a video
+		(Basic Videography Tips)`,
+	], 
+	price: '30,000/50,000',
+	classes: '3',
+	duration: '1 week',
+	numberOfStudentsErolled: '40',
+	language: 'English',
+	certification: 'Yes',
+	curriculum: [
+		{
+		title: ' Introduction to Video Editing',
+		topics: [
+			{ name: 'Introduction to video editing software', },
+			{ name: `Overview of popular editing platforms (Adobe Premiere Pro, Final Cut Pro, DaVinci Resolve
+				etc)
+				`,},
+			{ name: `- Understanding the importance of editing in storytelling`,},
+			{ name: `Tour of the editing workspace`,},
+			{ name: `Understanding the timeline, preview window, and tool panels`,},
+			{ name: `Customizing the interface for efficient workflow`,},
+			{ name: `Importing media files into the project`,},
+			{ name: `Organizing footage in the project panel`,},
+			{ name: `Creating bins and folders for efficient media management`,},
+			{ name: `Cutting, trimming, and rearranging clips on the timeline`,},
+			{ name: `Using the razor tool for precise cuts`,},
+			{ name: `Understanding the ripple and roll edit tools for seamless editing transitions`,},
 		  
-// 		]
-// 	}
-// ],
-// conclusion: ``,
-//   },
+		]
+	},
+	{
+		title: 'Intermediate Editing Techniques',
+		topics : [
+			{ name: `Adding transitions between clips for smooth visual flow`},
+			{ name: `Applying video and audio effects to enhance the footage`},
+			{ name: `Exploring preset effects and creating custom effects`},
+			{ name: `Adjusting audio levels and volume keyframes
+			`},
+			{ name: `Adding music tracks and sound effects to enhance the audio experience`},
+			{ name: `Syncing audio with video clips for perfect timing`},
+			{ name: `Correcting color balance, exposure, and white balance issues`},
+			{ name: `- Applying color grading techniques to enhance the mood and tone of the footage`},
+			{ name: `Using color scopes and waveform monitors for precise color adjustments
+			`},
+			{ name: `Creating and customizing text titles for video projects`},
+			{ name: `Adding lower thirds, overlays, and other graphic elements`},
+			{ name: `Animating text and graphics for dynamic visual effects`},
+		]
+	},
+	{
+		title: 'Advanced Editing and Project Completion',
+		topics : [
+			{ name: `Exploring advanced transition effects for creative storytelling
+			`},
+			{ name: `Understanding export settings and formats for different platforms (YouTube, Vimeo, etc.)`},
+			{ name: `Rendering options for optimal playback quality and file size`},
+			{ name: `Exporting projects for final delivery and sharing`},
+			{ name: `Reviewing participants' editing projects`},
+			{ name: `Providing constructive feedback and tips for improvement`},
+			{ name: `Addressing any questions or concerns from participants`},
+			{ name: `Assigning a final editing project to participants`},
+			{ name: `Participants work on their final projects with guidance and support`},
+			{ name: `- Reviewing and presenting final projects, celebrating achievements, and discussing next steps`},
+		]
+	},
+],
+conclusion: `By the end of this course you must have learned how to make a video, mastered a video editing
+software, understand editing and moved from a novice or a beginner to a good video editor who
+edits polished and professional-looking videos.
+`,
+  },
 	{
 	title: 'project-management',
 	textSnippet:'Lead with Confidence! Conquer Project Chaos with Our {courseDetails.title} Crash Course',
@@ -869,73 +947,6 @@ conclusion: `By the end of this crash course, you'll be equipped with the essent
   },
 	];
 
-export const TUTOR_REVIEWS: {
-	tutorName: string;
-	name: string;
-	image: StaticImport | string;
-	rating: React.ReactNode[];
-	title?: string;
-	description?: string;
-}[] = [
-	{
-		tutorName: 'Paul Ayobami',
-		name: 'James Paul',
-		image: '/images/lekan.jpg',
-		rating: [
-			<Icons.StarIcon key='1' />,
-			<Icons.StarIcon key='2'  />,
-			<Icons.StarIcon key='3' />,
-			<Icons.StarIcon key='4' />,
-			<Icons.StarIcon key='5' />,
-		],
-		title: 'Amazing Course',
-		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
-		dolore magna aliqua.`
-	},
-	{
-		tutorName: ' Paul Ayobami',
-		name: 'Nicolas Bassey',
-		image: '/images/lekan.jpg',
-		rating: [
-			<Icons.StarIcon key='6' />,
-			<Icons.StarIcon key='7' />,
-			<Icons.StarIcon key='8' />,
-			<Icons.StarIcon key='9' />,
-			<Icons.StarIcon key='10' />,
-		],
-		title: 'Amazing Course',
-		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
-		dolore magna aliqua.`
-	},
-	{
-		tutorName: 'David Sokeye',
-		name: 'Adam Pearce',
-		image: '/images/lekan.jpg',
-		rating: [
-			<Icons.StarIcon key='11' />,
-			<Icons.StarIcon key='5' />,
-			<Icons.StarIcon key='11' />,			
-			<Icons.StarIcon key='14' />
-		],
-		title: 'Amazing Course',
-		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
-		dolore magna aliqua.`
-	},
-	{
-		tutorName: 'David Sokeye',
-		name: 'Adam Pearce',
-		image: '/images/lekan.jpg',
-		rating: [
-			<Icons.StarIcon key='11' />,
-			<Icons.StarIcon key='5' />,
-			<Icons.StarIcon key='11' />,			
-			<Icons.StarIcon key='14' />
-		],
-		title: 'Great tutor',
-		description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et
-		dolore magna aliqua.`
-	},
-]
 export const TUTOR_PROFILE: {
 	name: string;
 	about: string;
@@ -998,6 +1009,20 @@ E-commerce, FinTech and health sector.`,
 		about: `Creative Digital Marketer specializing in crafting compelling content that connects with audiences and drives engagement. Experienced in developing content strategies, writing engaging, and optimizing content for SEO. Adept at social media storytelling and managing online communities.Passionate about leveraging digital tools and trends to promote brands and achieve measurable growth.`,
 		image: '/images/emeka.jpg',
 	},
+	{
+		name: 'Anthony Nnamdi O.',
+		role: 'Content Creator',
+		about: `Anthony Nnamdi is a digital/visual content consultant and creator with vast knowledge and experience in Media/Tech.
+		Specialises on Videography/Video Editing,
+		Photography/Retouching,
+		Graphics Design/UI/UX,
+		 Social Media Marketing, 
+		I have worked with a number of individual brands, startups and companies (Real Estate, Tech, Beverage, Cosmetic, logistics, FX etc).
+		
+		I am ever ready to share my years of experience and to teach students or anyone who is intrested or ready to start a career in the media space.
+		`,
+		image: '/images/anthony.jpg',
+	},
 ];
 export const TESTIMONIALS: {
 	image?: StaticImport | string;
@@ -1020,7 +1045,7 @@ export const TESTIMONIALS: {
 	{
 		image: '/images/favour.jpg',
 		name: 'Favour Mbegbu',
-		review: `I highly recommend PalmTechnIQ to anyone looking to learn a beginner friendly course. This is where you go from beginner to PRO. I promise you will not regret it.`,
+		review: `I highly recommend PalmTechnIQ to anyone looking to learn a beginner friendly course. This is where you go from beginner to PRO`,
 		userrole: 'Social media manager',
 	},
 ];

@@ -49,6 +49,7 @@ model CourseRegistration {
   email      String @unique
   occupation String
   course     String
+  type       String @default("physical")
 
   @@map("courseRegistrations")
 }

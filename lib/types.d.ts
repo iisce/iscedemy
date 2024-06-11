@@ -35,6 +35,9 @@ interface ICOURSES {
 interface IOCCUPATION {
 	name: string;
 }
+interface ITYPE{
+	name:string;
+}
 interface ITutorProfileProps {
 	tutorName: string;
 	totalReviewsCount?: number;

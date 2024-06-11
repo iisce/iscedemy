@@ -1,3 +1,7 @@
 {
-	"cSpell.words": ["Palmtechn"]
+	"cSpell.words": [
+		"Palmtechn"
+	],
+	"prettier.bracketSameLine": true,
+	"prettier.withNodeModules": true
 }

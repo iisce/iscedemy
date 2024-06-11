@@ -22,8 +22,8 @@ export default function OurTeam() {
 						className='w-full object-cover'
 					/>
 				</div>
-				<div className='md:text-2xl text-md text-wrap grid font-normal md:gap-4 space-y-2 '>
-					<p className=''>{`We exist specifically for our customers because we know heroes such as yourselves deserve only the best sidekicks.`}</p>
+				<div className='md:text-xl text-sm text-wrap grid font-normal md:gap-4 space-y-2 '>
+					<p className=''>{`At PalmtechnIQ, we are proud of our team of qualified instructors who bring their expertise and practical experience to the classroom. Our teaching approach involves hands-on projects that help students grasp and apply the concepts they learn. This method ensures that our students gain a thorough understanding and are prepared for real-life applications.`}</p>
 				</div>
 			</div>
 		</motion.div>

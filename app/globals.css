@@ -82,3 +82,10 @@
     animation-delay: 4s;
   }
 }
+.message-bubble.bg-green-600::after {
+  @apply border-b-green-600; 
+}
+
+.message-bubble.bg-black::after {
+  @apply border-b-black;
+}

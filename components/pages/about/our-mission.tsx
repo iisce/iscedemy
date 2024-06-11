@@ -21,14 +21,14 @@ export default function OurMission() {
 						className='h-96 w-full aspect-video object-cover'
 					></Image>
 				</div>
-				<div className='md:text-2xl text-md text-wrap grid font-normal gap-4 '>
+				<div className='md:text-xl text-sm text-wrap grid font-normal gap-4 '>
 					<h1 className='text-2xl font-bold  '>{`Our Mission`}</h1>
 
 					<p className=''>{`We are constantly evolving and improving by breaking down problems and solving themin the most effecient way.`}</p>
 				</div>
 			</div>
 			<div className='grid lg:grid-cols-2 gap-10'>
-				<div className='md:text-2xl text-md font-normal grid place-items-center'>
+				<div className='md:text-xl text-sm font-normal grid place-items-center'>
 					We believe in child education because the only way to
 					really change the current world for the better is by
 					enabling them to paint a world of their own.

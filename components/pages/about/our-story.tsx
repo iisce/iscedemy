@@ -22,10 +22,9 @@ export default function OurStory() {
 						className='w-full h-96 object-cover'
 					/>
 				</div>
-				<div className='md:text-2xl text-md text-wrap  w-full grid font-normal md:gap-4 space-y-2 '>
-					<span>{`We exist specifically for our customers because we know heroes such as yourselves deserve only the best sidekicks.`}</span>
-					<span>{`We believe that everyone has the right to change the world we want to give the younger generation the ability to affect their world using tech.`}</span>
-					<span>{`We believe in child education because the only way to really change the current world for the better is by enabling them to paint a world of their own.`}</span>
+				<div className='md:text-xl text-sm text-wrap  w-full grid font-normal md:gap-4 space-y-2 '>
+					<span>{`PalmtechnIQ, a project by ISCE Digital Concept, is dedicated to providing high-quality digital skills training for teens and adults. Our goal is to help individuals improve their job prospects and achieve their personal and professional goals. We focus on offering top-notch education that meets industry standards, ensuring our students are well-equipped to succeed in today's digital world.`}</span>
+					
 				</div>
 			</div>
 		</motion.div>
