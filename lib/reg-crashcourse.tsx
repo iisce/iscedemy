@@ -65,7 +65,7 @@ const RegCrashCourse = ({
               <Section className="text-center">
                 <Button
                   href={chatLink}
-                  className=" cursor-pointer rounded-full text-white text-[13px] bg-[#00DB80] "
+                  className=" cursor-pointer rounded-full text-white text-[20px] bg-green-600 "
                   style={{ padding: "10px 20px", margin: "0 auto" }}
                 >
                   Speak with adminstration
@@ -74,21 +74,21 @@ const RegCrashCourse = ({
               <Hr className="mt-[30px]" />
               <Section className="text-center text-[#333333]">
                 <Text>
-                  <p>Copyright © 2024 PalmTechnIQ, All Rights Reserved.</p>
+                  <p>{`Copyright © 2024 PalmTechnIQ, All Rights Reserved.`}</p>
                   <p>
-                    You are recieving this mail because you opted in via our
-                    website.
+                    {`You are recieving this mail because you opted in via our
+                    website.`}
                   </p>
                   <p>
-                    Mailing Address: 1st Floor, (Festac Tower) Chicken Republic
-                    Building, 22Rd ,Festac Town, Lagos, Nigeria.
+                    {`Mailing Address: 1st Floor, (Festac Tower) Chicken Republic
+                    Building, 22Rd ,Festac Town, Lagos, Nigeria.`}
                   </p>
                 </Text>
               </Section>
               <Section className="pb-[40px] text-center ">
                 <Button
                   href="https://web.facebook.com/profile.php?id=61560523394595"
-                  className="bg-[#00DB80] m-[5px] py-[8px] px-[10px] rounded-full "
+                  className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img
                     width="23"
@@ -98,8 +98,8 @@ const RegCrashCourse = ({
                   />
                 </Button>
                 <Button
-                  href="/"
-                  className="bg-[#00DB80] m-[5px] py-[8px] px-[10px] rounded-full "
+                  href="https://www.linkedin.com/in/palm-techniq-03839b313/"
+                  className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img
                     width="23"
@@ -109,8 +109,8 @@ const RegCrashCourse = ({
                   />
                 </Button>
                 <Button
-                  href="/"
-                  className="bg-[#00DB80] m-[5px] py-[8px] px-[10px] rounded-full "
+                  href="https://www.instagram.com/palmtechniq/"
+                  className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img
                     width="23"
@@ -119,9 +119,9 @@ const RegCrashCourse = ({
                     src={`https://static-00.iconduck.com/assets.00/instagram-icon-256x256-ubgz701g.png`}
                   />
                 </Button>
-                <Button
+                {/* <Button
                   href="/"
-                  className="bg-[#00DB80] m-[5px] py-[8px] px-[10px] rounded-full "
+                  className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img
                     width="23"
@@ -129,10 +129,10 @@ const RegCrashCourse = ({
                     alt="X"
                     src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-white-round-icon.png`}
                   />
-                </Button>
+                </Button> */}
                 <Button
                   href="https://app.slack.com/client/T076LDT7109/C0764SE3VB7"
-                  className="bg-[#00DB80] m-[5px] py-[8px] px-[10px] rounded-full "
+                  className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img
                     width="23"

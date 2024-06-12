@@ -46,6 +46,7 @@ export default function CrashCourseRegisterForm() {
 			email: '',
 			expectations: '',
 			type: '',
+			phone:  '',
 		},
 		mode: 'onChange',
 	});
@@ -63,7 +64,7 @@ export default function CrashCourseRegisterForm() {
 					if (data.success) {
 						setTimeout(() => {
 							router.push('/');
-						}, 3000);
+						}, 6000 );
 						form.reset();
 					}
 				})
@@ -79,11 +80,11 @@ export default function CrashCourseRegisterForm() {
 	return (
 		<div>
 			{success ? (
-				<div className='flex flex-col space-y-2'>
+				<div className='flex flex-col w-full space-y-2'>
 					<Image
 					src='/images/registeroverlay.png'
-					width={50}
-					height={50}
+					width={100}
+					height={100}
 					alt='Registered Successfully | PalmTechnIQ'
 					className=' h-full w-full  '
 					/>
@@ -152,6 +153,26 @@ export default function CrashCourseRegisterForm() {
 												disabled={isPending}
 												placeholder='Enter your email address'
 												type='email'
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name='phone'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className='px-3 font-semibold'>
+											Phone number
+										</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												disabled={isPending}
+												placeholder='Enter your phone number'
+												type='phone'
 											/>
 										</FormControl>
 										<FormMessage />

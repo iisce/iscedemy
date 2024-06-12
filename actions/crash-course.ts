@@ -22,7 +22,7 @@ export const CrashCourse = async (values: z.infer<typeof CourseRegisterSchema>) 
     if (!validatedFields.success) {
         return { error: 'Invalid fields!'};
     }
-    const {course,email,expectations,firstname,lastname,occupation} = validatedFields.data
+    const {course,email,expectations,firstname,lastname,occupation, type, phone} = validatedFields.data
 
     /**This constant gets the validated fields in registration form and sends the submitted information to 
      * the provided TO_EMAIL_ADDRESS.
@@ -36,6 +36,8 @@ export const CrashCourse = async (values: z.infer<typeof CourseRegisterSchema>) 
         Course: ${course}
         Occupation: ${occupation}
         Expectations: ${expectations}
+        Type: ${type}
+        Phone number: ${phone}
         `;
 
         await resend.emails.send({
@@ -53,7 +55,7 @@ export const CrashCourse = async (values: z.infer<typeof CourseRegisterSchema>) 
 
         await resend.emails.send({
             from: process.env.FROM_EMAIL_ADDRESS!,
-            to: validatedFields.data.email,
+            to: email,
             subject: 'Crash Course Registration',
             react: RegCrashCourse({courseName: course,email, firstname})
 

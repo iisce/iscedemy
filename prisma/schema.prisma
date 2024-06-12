@@ -50,6 +50,7 @@ model CourseRegistration {
   occupation String
   course     String
   type       String @default("physical")
+  phone      String @default("")
 
   @@map("courseRegistrations")
 }

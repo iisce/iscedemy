@@ -14,6 +14,7 @@ export const publicRoutes = [
     "/new-verification",
     "/privacy-policy",
     "/terms-of-use",
+    "/api/chat",
 ]
 
 

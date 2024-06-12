@@ -98,9 +98,15 @@ export const CourseRegisterSchema = z.object({
 					
 				].includes(value),
 			{
-				message: 'Invalid occupation!',
+				message: 'Invalid selection!',
 			}
 		),
+
+		phone: z
+		.string({
+			required_error: 'Phone number is required',
+		})
+		.max(11, 'Rating cannot exceed 11'),
 });
 
 export const ReviewSchema = z.object({
