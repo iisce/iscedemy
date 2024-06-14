@@ -112,7 +112,7 @@ export function Chatbot() {
             key={index}
             className={cn('flex w-full gap-2', message.role === 'user' && 'justify-end')}
           >
-            <div className={cn('flex w-fit max-w-[75%] rounded-lg px-3  text-sm text-white', message.role === 'user' && 'bg-black rounded-br-none after:right-[-10px]', message.role === 'assistant' && 'bg-green-600 rounded-bl-none after:left-[-10px]')}>
+            <div className={cn('flex w-fit max-w-[75%] rounded-lg px-3  text-sm text-white', message.role === 'user' && 'bg-black rounded-br-none after:right-[-10px]', message.role === 'assistant' && 'bg-green-600 rounded-bl-none after:left-[-10px] px-4')}>
               {message.role === 'assistant' && isLoading && index === messages.length - 1 ? ( <BeatLoader className="text-green-600"/>) : (
               <div className="text-sm text-white ">
                 {markdownToReact({markdown: message.content})}</div>

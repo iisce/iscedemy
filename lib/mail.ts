@@ -1,4 +1,7 @@
 import { Resend } from "resend";
+import EmailVerification from "./email-verification";
+import EmailNewsLetter from "./newsletter-subs";
+import PasswordReset from "./password-reset";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -6,7 +9,7 @@ const domain = process.env.NEXT_PUBLIC_URL;
 
 export const sendPasswordResetToken= async (
     email: string,
-    token: string
+    token: string,
 ) => {
     const resetLink = `${domain}/new-password?token=${token}`;
 
@@ -14,8 +17,7 @@ export const sendPasswordResetToken= async (
         from: process.env.FROM_EMAIL_ADDRESS!,
         to: email,
         subject: "Password Reset",
-        html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`
-        
+        react: PasswordReset({email, token})
     })
 }
 export const sendVerificationEmail = async (
@@ -28,8 +30,7 @@ export const sendVerificationEmail = async (
         from: process.env.FROM_EMAIL_ADDRESS!,
         to: email,
         subject: "Confirm your email",
-        html: `<p>Click <a href="${confrimLink}">here</a> to confirm email.</p>`
-        
+        react: EmailVerification({email, token})
     })
 }
 
@@ -39,7 +40,7 @@ export const subscribeToNewsletter = async (email: string) => {
             from: process.env.FROM_EMAIL_ADDRESS!,
             to: email,
             subject: "Welcome to our newsletter system",
-            html: `<p>Thank you for subscribing to our newsletter! You'll now receive our latest updates and news.</p>`,
+            react: EmailNewsLetter({email})
         });
         return { success: "Subcribed successfully!"};
     } catch (error) {
