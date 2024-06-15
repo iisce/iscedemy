@@ -17,23 +17,35 @@ import Link from 'next/link';
 import CourseRating from './courseRating';
 import SingleCourseCurriculum from './singleCourseCurriculum';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { getAllReviewsByTutorName } from '@/data/reviews';
+import {
+	getAllReviewsByTutorName,
+	getAllReviewsByUserId,
+} from '@/data/reviews';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
 import { auth } from '@/auth';
 import SignOutButton from '@/components/ui/sign-out';
+import { getCourseBySlug } from '@/data/course';
+import { getUserByCourseId, getUserById } from '@/data/user';
+import { notFound } from 'next/navigation';
+import { formatToNaira } from '@/lib/utils';
+import { getAllCurriculumByCourseId } from '@/data/curriculum';
 
 export default async function SingleCourse({
 	courseTitle,
+	tab,
 }: {
 	courseTitle: string;
+	tab?: string;
 }) {
-
 	const session = await auth();
-	const user = session?.user
+	const user = session?.user;
 
-	const courseDetails = COURSE_OUTLINE.find(
-		(course) => course.title === courseTitle
-	);
+	const currentUser = await getUserById(user?.id ?? '');
+
+	const courseDetails = await getCourseBySlug(courseTitle);
+	if (!courseDetails) return notFound();
+	const tutor = await getUserById(courseDetails.tutorId);
+	if (!tutor) return notFound();
 
 	if (!courseDetails) {
 		return (
@@ -44,13 +56,17 @@ export default async function SingleCourse({
 			</div>
 		);
 	}
+	const curriculum = await getAllCurriculumByCourseId(courseDetails.id);
 
-	/**This picks the image in the tutor profile and sets it as the same image in the course header for a particular course */
-	const tutor = TUTOR_PROFILE.find(
-		(profile) => profile.name === courseDetails.tutorName
+	const reviews = await getAllReviewsByTutorName(tutor.name!);
+
+	const numberOfRegistration = await getUserByCourseId(courseDetails.id);
+
+	const totalRating = reviews?.reduce(
+		(total, review) => total + review.rating,
+		0
 	);
-
-	const reviews = await getAllReviewsByTutorName(tutor?.name);
+	const isPaid = currentUser?.courses?.includes(courseDetails.id);
 	return (
 		<div className='bg-white justify-center w-full py-5'>
 			<div className='grid lg:grid-cols-5 gap-5'>
@@ -59,7 +75,9 @@ export default async function SingleCourse({
 						<h1 className='md:text-4xl text-2xl text-wrap font-bold capitalize'>
 							{courseDetails.textSnippet?.replace(
 								'{courseDetails.title}',
-								decodeURI(courseDetails.title).split('-').join(' ')
+								decodeURI(courseDetails.title)
+									.split('-')
+									.join(' ')
 							) ||
 								`Starting ${courseDetails.title} as your Home
 							Based Business`}
@@ -75,7 +93,7 @@ export default async function SingleCourse({
 
 							<div className='flex flex-col my-2 space-y-1'>
 								<div className='text-sm font-bold'>
-									{courseDetails.tutorName}
+									{tutor.name}
 								</div>
 								<CourseRating tutor={tutor} />
 							</div>
@@ -84,23 +102,22 @@ export default async function SingleCourse({
 							<div className='text-green-600'>
 								<Icons.BookOpenIcon />
 							</div>
-							{courseDetails.badgeType && (
+							{courseDetails.category && (
 								<Badge variant={'secondary'}>
-									{courseDetails.badgeType}
+									{courseDetails.category}
 								</Badge>
 							)}
 						</div>
 					</div>
 					<Tabs
 						className='md:px-0 justify-center items-center mx-auto w-full'
-						defaultValue='overview'
-					>
+						defaultValue={tab}>
 						<ScrollArea className=''>
 							<TabsList className='grid grid-cols-4 gap-2 '>
 								<TabsTrigger value='overview'>
 									Overview
 								</TabsTrigger>
-								<TabsTrigger value='curriculum' >
+								<TabsTrigger value='curriculum'>
 									Curriculum
 								</TabsTrigger>
 								<TabsTrigger value='instructor'>
@@ -124,49 +141,64 @@ export default async function SingleCourse({
 									What You&apos;ll Learn?
 								</h3>
 								<ul className='list-disc pl-6 mt-4 space-y-2 text-gray-600'>
-									{courseDetails.summary.map(
-										(summaryList, i) => (
+									{courseDetails.summary
+										.split('---')
+										.map((summaryList, i) => (
 											<li key={i}>
 												{summaryList}
 											</li>
-										)
-									)}
+										))}
 								</ul>
 								<p className='mt-4 text-gray-700'>
 									{courseDetails.conclusion}
 								</p>
 							</div>
 						</TabsContent>
-						<TabsContent value='curriculum' >
-							{user ? <SingleCourseCurriculum
-								curriculum={courseDetails.curriculum}
-							/> : <> 
-							<div className='mx-auto items-center justify-center text-center'>
-								<p className='py-10 text-base'>{`Please sign in to see this page content`}</p> 
-								<SignOutButton/></div>
+						<TabsContent value='curriculum'>
+							{user && isPaid ? (
+								<SingleCourseCurriculum
+									curriculum={curriculum}
+								/>
+							) : (
+								<>
+									<div className='mx-auto items-center justify-center text-center'>
+										<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
+										<SignOutButton />
+									</div>
 								</>
-							} 
+							)}
 						</TabsContent>
 						<TabsContent value='instructor'>
-							{user ? <TutorProfile
-								tutorName={courseDetails.tutorName}
-								highestAverageRating={3}
-							/> : <> 
-							<div className='mx-auto items-center justify-center text-center'>
-								<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
-								 <SignOutButton/> </div> 
-								 </>
-							}
+							{user && isPaid ? (
+								<TutorProfile
+									tutorName={tutor.name ?? 'Tutor'}
+									highestAverageRating={
+										totalRating ?? 0
+									}
+								/>
+							) : (
+								<>
+									<div className='mx-auto items-center justify-center text-center'>
+										<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
+										<SignOutButton />{' '}
+									</div>
+								</>
+							)}
 						</TabsContent>
 						<TabsContent value='reviews'>
-							{user ? <SingleTutorReviews
-								reviews={reviews ?? []}
-								tutor={tutor}
-							/> : <> 
-							<div className='mx-auto items-center justify-center text-center'>
-								<p className='py-10 text-base'>{`Please sign in to see this page content`}</p> 
-								<SignOutButton/></div>
-								</> }
+							{user && isPaid ? (
+								<SingleTutorReviews
+									reviews={reviews ?? []}
+									tutor={tutor}
+								/>
+							) : (
+								<>
+									<div className='mx-auto items-center justify-center text-center'>
+										<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
+										<SignOutButton />
+									</div>
+								</>
+							)}
 						</TabsContent>
 					</Tabs>
 				</div>
@@ -176,10 +208,9 @@ export default async function SingleCourse({
 						width='400'
 						height='315'
 						controls
-						className='w-full aspect-video'
-					>
+						className='w-full aspect-video'>
 						<source
-							src={courseDetails.tutorVideoUrl}
+							src={courseDetails.videoUrl}
 							type='video/mp4'
 						/>
 					</video>
@@ -199,7 +230,11 @@ export default async function SingleCourse({
 										Virtual/Physical
 									</div>
 									<div className=''>
-										{courseDetails.price}
+										{`${formatToNaira(
+											courseDetails.virtualPrice
+										)}/${formatToNaira(
+											courseDetails.physicalPrice
+										)}`}
 									</div>
 								</div>
 							</div>
@@ -213,7 +248,7 @@ export default async function SingleCourse({
 								</div>
 
 								<span className='font-bold'>
-									{courseDetails.tutorName}
+									{tutor.name}
 								</span>
 							</div>
 							<hr />
@@ -235,7 +270,7 @@ export default async function SingleCourse({
 								</div>
 
 								<span className='font-bold'>
-									{courseDetails.classes}
+									{courseDetails.noOfClass}
 								</span>
 							</div>
 							<hr />
@@ -244,11 +279,8 @@ export default async function SingleCourse({
 									<Icons.UsersIcon />
 									<span className=''>Students:</span>
 								</div>
-
 								<span className='font-bold'>
-									{
-										courseDetails.numberOfStudentsErolled
-									}
+									{numberOfRegistration?.length ?? 0}
 								</span>
 							</div>
 							<hr />
@@ -259,7 +291,7 @@ export default async function SingleCourse({
 								</div>
 
 								<span className='ml-0 font-bold'>
-									{courseDetails.language}
+									{'English'}
 								</span>
 							</div>
 							<hr />
@@ -272,7 +304,9 @@ export default async function SingleCourse({
 								</div>
 
 								<span className='font-bold'>
-									{courseDetails.certification}
+									{courseDetails.certificate
+										? 'Yes'
+										: 'No'}
 								</span>
 							</div>
 						</div>
@@ -285,12 +319,10 @@ export default async function SingleCourse({
 								<CourseRegisterPage />
 								<DrawerClose
 									asChild
-									className='mx-auto max-w-2xl mb-10'
-								>
+									className='mx-auto max-w-2xl mb-10'>
 									<Button
 										className='w-full rounded-full'
-										variant='outline'
-									>{`Cancel`}</Button>
+										variant='outline'>{`Cancel`}</Button>
 								</DrawerClose>
 							</DrawerContent>
 						</Drawer>

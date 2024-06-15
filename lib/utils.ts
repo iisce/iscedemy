@@ -27,3 +27,11 @@ export function calculateAverageRating(reviews: Review[]): number {
 
 	return averageRating;
 }
+
+export const formatToNaira = (amount: number): string => {
+	if (typeof amount !== 'number') return amount;
+	return amount.toLocaleString('en-NG', {
+		style: 'currency',
+		currency: 'NGN',
+	});
+};

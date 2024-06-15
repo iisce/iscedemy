@@ -61,15 +61,12 @@ const EditReviewForm: React.FC<EditReviewFormProps> = ({
 			})
 				.then((data) => {
 					if (data?.error) {
-						form.reset();
 						setError(data?.error);
-					}
-					if (data?.success) {
+					} else {
 						form.reset();
-						setSuccess(data?.success);
+						setSuccess('Successful');
 						toast.success('Review updated successfully');
 						setIsEditing(false);
-						router.refresh();
 					}
 				})
 				.catch(() => setError('Something went wrong!!!'));
@@ -80,8 +77,7 @@ const EditReviewForm: React.FC<EditReviewFormProps> = ({
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className='space-y-6'
-			>
+				className='space-y-6'>
 				<StarRating
 					rating={rating}
 					setRating={setRating}
@@ -128,8 +124,7 @@ const EditReviewForm: React.FC<EditReviewFormProps> = ({
 				<div className='grid'>
 					<Button
 						disabled={isPending}
-						type='submit'
-					>
+						type='submit'>
 						{isPending ? (
 							<LoaderIcon className='animate-spin' />
 						) : (

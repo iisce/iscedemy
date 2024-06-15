@@ -2,6 +2,7 @@
 
 import { db } from '@/lib/db';
 import { ReviewSchema, UpdateReviewSchema } from '@/schemas';
+import { revalidatePath } from 'next/cache';
 import * as z from 'zod';
 
 export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
@@ -31,7 +32,7 @@ export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
 		}
 
 		// Handle successful payment response
-		return { success: 'Review added successfully' };
+		return revalidatePath(`/courses/${title}`);
 	} catch (error) {
 		console.error(error);
 
@@ -64,7 +65,7 @@ export const updateReview = async (
 		}
 
 		// Handle successful payment response
-		return { success: 'Review added successfully' };
+		return revalidatePath(`/courses/${title}`);
 	} catch (error) {
 		console.error(error);
 

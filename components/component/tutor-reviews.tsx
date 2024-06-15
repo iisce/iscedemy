@@ -1,7 +1,7 @@
 'use client';
 import { Progress } from '@/components/ui/progress';
 import * as Icons from '@/lib/icons';
-import { Review } from '@prisma/client';
+import { Review, User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { Button } from '../ui/button';
@@ -14,10 +14,10 @@ export function SingleTutorReviews({
 	tutor,
 }: {
 	reviews: Review[];
-	tutor: any;
+	tutor: User;
 }) {
-	const [totalReviewsCount, setTotalReviewsCount] = useState(reviews.length);
 	const [isEditing, setIsEditing] = useState<boolean>(false);
+	console.log({ reviews });
 
 	const session = useSession();
 	const reviewByMe = reviews.find(
@@ -33,13 +33,13 @@ export function SingleTutorReviews({
 	});
 	const totalRatings = reviews.length;
 
-	/** This const handles the average sume of stars on a tutuor profile reviews
+	/** This const handles the average sum of stars on a tutor profile reviews
 	 * rounded average star rating as the number of filled stars,
 	 * giving a clearer representation of the tutor's overall performance.
 	 */
 	const highestAverageRating = Math.round(
 		reviews.reduce((sum, review) => sum + review.rating, 0) /
-			(totalReviewsCount || 1)
+			(reviews.length || 1)
 	);
 
 	return (
@@ -47,7 +47,7 @@ export function SingleTutorReviews({
 			<div className='grid overflow-hidden gap-5 items-start'>
 				<div className='bg-white w-40 justify-center min-w-24 grid p-4 rounded-lg shadow items-center'>
 					<div className='text-3xl mx-auto text-center font-bold'>
-						{totalReviewsCount}
+						{reviews.length}
 					</div>
 					<div className='flex text-green-600'>
 						{[...Array(highestAverageRating)].map(
@@ -57,8 +57,8 @@ export function SingleTutorReviews({
 						)}
 					</div>
 					<span className='mx-auto text-center py-2 text-sm'>
-						{totalReviewsCount} Review
-						{totalReviewsCount >= 1 && 's'}
+						{reviews.length} Review
+						{reviews.length >= 1 && 's'}
 					</span>
 				</div>
 				<div className='grid gap-2'>
@@ -72,8 +72,7 @@ export function SingleTutorReviews({
 						return (
 							<div
 								key={numStars}
-								className='flex w-full items-center gap-3'
-							>
+								className='flex w-full items-center gap-3'>
 								<div className='text-green-600 gap-3 flex flex-row'>
 									{numStars} <Icons.StarIcon />
 								</div>
@@ -95,8 +94,7 @@ export function SingleTutorReviews({
 					{isEditing && (
 						<Button
 							variant={'destructive'}
-							onClick={() => setIsEditing(false)}
-						>
+							onClick={() => setIsEditing(false)}>
 							Cancel Editing
 						</Button>
 					)}
@@ -114,7 +112,7 @@ export function SingleTutorReviews({
 						<ReviewForm
 							reviewerId={session.data?.user?.id ?? ''}
 							reviewerName={session.data?.user?.name ?? ''}
-							tutorName={tutor.name}
+							tutorName={tutor.name ?? 'Tutor'}
 						/>
 					)}
 				</div>
@@ -123,8 +121,7 @@ export function SingleTutorReviews({
 						reviews.map((review, i) => (
 							<div
 								className='flex flex-col items-center space-x-4'
-								key={i}
-							>
+								key={i}>
 								<div className='flex flex-col w-full space-y-2 py-3'>
 									<div className='text-lg font-semibold'>
 										{review.reviewerName}
@@ -157,8 +154,7 @@ export function SingleTutorReviews({
 														setIsEditing(
 															true
 														)
-													}
-												>
+													}>
 													Edit
 												</Button>
 												<Button
@@ -167,8 +163,7 @@ export function SingleTutorReviews({
 														setIsEditing(
 															false
 														)
-													}
-												>
+													}>
 													Cancel
 												</Button>
 											</>

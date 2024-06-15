@@ -27,3 +27,18 @@ export async function getAllReviewsByTutorName(tutorName?: string) {
 		return null;
 	}
 }
+export async function getAllReviewsByUserId(id?: string) {
+	if (!id) {
+		return null;
+	}
+	try {
+		const reviews = await db.review.findMany({
+			where: { userId: id },
+			orderBy: { createdAt: 'desc' },
+		});
+
+		return reviews;
+	} catch (error) {
+		return null;
+	}
+}
