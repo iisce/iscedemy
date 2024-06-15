@@ -90,19 +90,53 @@ export const CourseRegisterSchema = z.object({
 		.string({
 			required_error: 'Please select at least 1 category!',
 		})
+		.refine((value) => ['Virtual', 'Physical'].includes(value), {
+			message: 'Invalid selection!',
+		}),
+
+	phone: z
+		.string({
+			required_error: 'Phone number is required',
+		})
+		.max(11, 'Rating cannot exceed 11'),
+});
+export const PurchaseCourseSchema = z.object({
+	name: z.string().min(1, {
+		message: 'Name is required',
+	}),
+
+	email: z.string().email({
+		message: 'Email is required',
+	}),
+
+	course: z
+		.string({
+			required_error: 'Please select at least 1 course!',
+		})
 		.refine(
 			(value) =>
 				[
-					'Virtual',
-					'Physical',
-					
+					'Web Development',
+					'CyberSecurity',
+					'Graphic Design',
+					'UI/UX Design',
+					'Mobile Development',
+					'Project Management',
+					'Smart-home Automation',
+					'Digital Marketing',
 				].includes(value),
 			{
-				message: 'Invalid selection!',
+				message: 'Invalid course selected!',
 			}
 		),
-
-		phone: z
+	type: z
+		.string({
+			required_error: 'Please select at least 1 category!',
+		})
+		.refine((value) => ['Virtual', 'Physical'].includes(value), {
+			message: 'Invalid selection!',
+		}),
+	phone: z
 		.string({
 			required_error: 'Phone number is required',
 		})

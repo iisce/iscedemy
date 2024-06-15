@@ -215,7 +215,7 @@ export default async function SingleCourse({
 						/>
 					</video>
 
-					<div className='space-y-4 px-3 grid place-items-start'>
+					<div className='space-y-4 px-3 grid'>
 						<h3 className='text-xl font-semibold'>
 							Course Includes:
 						</h3>
@@ -223,6 +223,7 @@ export default async function SingleCourse({
 							<div className='flex flex-row justify-between items-center'>
 								<span className='text-green-600 flex items-center'>
 									<Icons.NairaSignIcon />
+									{'  '}
 									Price:
 								</span>
 								<div className='font-bold'>
@@ -240,7 +241,7 @@ export default async function SingleCourse({
 							</div>
 							<hr />
 							<div className='flex justify-between items-center'>
-								<div className='text-green-600 flex items-center'>
+								<div className='text-green-600 flex items-center gap-1.5'>
 									<Icons.UserIcon />
 									<span className=''>
 										Instructor:
@@ -253,7 +254,7 @@ export default async function SingleCourse({
 							</div>
 							<hr />
 							<div className='flex justify-between items-center'>
-								<div className='text-green-600 flex items-center'>
+								<div className='text-green-600 flex items-center gap-1.5'>
 									<Icons.ClockIcon />
 									<span className=''>Duration:</span>
 								</div>
@@ -264,7 +265,7 @@ export default async function SingleCourse({
 							</div>
 							<hr />
 							<div className='flex justify-between items-center'>
-								<div className='text-green-600 flex items-center'>
+								<div className='text-green-600 flex items-center gap-1.5'>
 									<Icons.BookOpenIcon />
 									<span className=''>Classes:</span>
 								</div>
@@ -275,7 +276,7 @@ export default async function SingleCourse({
 							</div>
 							<hr />
 							<div className='flex justify-between items-center'>
-								<div className='text-green-600 flex items-center'>
+								<div className='text-green-600 flex items-center gap-1.5'>
 									<Icons.UsersIcon />
 									<span className=''>Students:</span>
 								</div>
@@ -285,7 +286,7 @@ export default async function SingleCourse({
 							</div>
 							<hr />
 							<div className='flex justify-between items-center'>
-								<div className='text-green-600 flex items-center'>
+								<div className='text-green-600 flex items-center gap-1.5'>
 									<Icons.GlobeIcon />
 									<span className=''>Language:</span>
 								</div>
@@ -296,7 +297,7 @@ export default async function SingleCourse({
 							</div>
 							<hr />
 							<div className='flex justify-between items-center'>
-								<div className='text-green-600 flex items-center'>
+								<div className='text-green-600 flex items-center gap-1.5'>
 									<Icons.BadgeCheckIcon />
 									<span className=''>
 										Certifications:
@@ -311,7 +312,7 @@ export default async function SingleCourse({
 							</div>
 						</div>
 						<hr />
-						<Drawer>
+						{/* <Drawer>
 							<DrawerTrigger className='grid w-full bg-black text-background font-medium text-xl px-5 py-3 rounded-full'>
 								Register Now
 							</DrawerTrigger>
@@ -325,7 +326,17 @@ export default async function SingleCourse({
 										variant='outline'>{`Cancel`}</Button>
 								</DrawerClose>
 							</DrawerContent>
-						</Drawer>
+						</Drawer> */}
+						<div className='grid'>
+							<Button
+								className=''
+								asChild>
+								<Link
+									href={`/courses/${courseDetails.title}/pay`}>
+									Register Now
+								</Link>
+							</Button>
+						</div>
 					</div>
 					<div className=' md:px-0 px-4'>
 						<h3 className='text-xl font-semibold'>

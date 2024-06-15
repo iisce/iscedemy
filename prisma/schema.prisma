@@ -70,6 +70,7 @@ model CourseRegistration {
 model Course {
   id            String  @id @default(cuid())
   title         String
+  image         String  @default("/course-placeholder.jpg")
   category      String
   textSnippet   String
   videoUrl      String

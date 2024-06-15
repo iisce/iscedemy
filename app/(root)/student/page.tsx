@@ -1,14 +1,15 @@
 import { auth } from '@/auth';
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { getAllCourses, getCourseById } from '@/data/course';
+import { getAllCurriculumByCourseId } from '@/data/curriculum';
 import { getUserById } from '@/data/user';
 import { cn } from '@/lib/utils';
+import { Curriculum } from '@prisma/client';
 import { BookIcon, ClockIcon } from 'lucide-react';
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 function Badge({
 	children,
@@ -18,7 +19,7 @@ function Badge({
 	variant: 'blue-purple' | 'green-teal' | 'yellow-orange';
 }) {
 	const bluePurpleClasses = 'from-blue-500 to-purple-500';
-	const greenTealClasses = 'from-green-500 to-teal-500';
+	const greenTealClasses = 'from-green-500 to-teal-600';
 	const yellowOrangeClasses = 'from-yellow-500 to-orange-500';
 
 	return (
@@ -43,6 +44,7 @@ function CourseCard({
 	timeLeft,
 	duration,
 	variant,
+	isBought,
 }: {
 	badgeText?: string;
 	timeLeft: string;
@@ -52,6 +54,7 @@ function CourseCard({
 	courseId?: string;
 	courseSlug: string;
 	variant: 'blue-purple' | 'green-teal' | 'yellow-orange';
+	isBought?: boolean;
 }) {
 	return (
 		<Card>
@@ -67,24 +70,32 @@ function CourseCard({
 					{courseDescription}
 				</p>
 				<div className='flex items-center justify-between'>
-					<Button
-						asChild
-						size='sm'>
-						<Link href={`/courses/${courseSlug}/enroll`}>
-							Enroll
-						</Link>
-					</Button>
 					<div className='flex items-center gap-2'>
 						<ClockIcon className='w-4 h-4 text-gray-500' />
 						<span className='text-gray-500'>{duration}</span>
 					</div>
+					{!isBought && (
+						<Button
+							asChild
+							size='sm'>
+							<Link href={`/courses/${courseSlug}/pay`}>
+								Enroll
+							</Link>
+						</Button>
+					)}
 				</div>
 			</CardContent>
 		</Card>
 	);
 }
 
-function CoursePaid({ title }: { title: string }) {
+function CoursePaid({
+	title,
+	curriculum,
+}: {
+	title: string;
+	curriculum?: Curriculum[];
+}) {
 	return (
 		<Card>
 			<CardContent>
@@ -99,13 +110,14 @@ function CoursePaid({ title }: { title: string }) {
 						size='sm'
 						asChild>
 						<Link href={`/courses/${title}?tab=curriculum`}>
-							{' '}
 							Resume
 						</Link>
 					</Button>
 					<div className='flex items-center gap-2'>
 						<BookIcon className='w-4 h-4 text-gray-500' />
-						<span className='text-gray-500'>12 lessons</span>
+						<span className='text-gray-500'>
+							{curriculum?.length} lessons
+						</span>
 					</div>
 				</div>
 			</CardContent>
@@ -131,9 +143,12 @@ export default async function StudentDashboard() {
 							const currentCourse = await getCourseById(
 								id
 							);
+							const curriculum =
+								await getAllCurriculumByCourseId(id);
 							return (
 								<CoursePaid
 									title={currentCourse!.title}
+									curriculum={curriculum}
 									key={b}
 								/>
 							);
@@ -160,6 +175,8 @@ export default async function StudentDashboard() {
 							courseId={''}
 							courseSlug={course.title}
 							variant={'green-teal'}
+							badgeText='HOT'
+							isBought={paidCourses?.includes(course.id)}
 						/>
 					))}
 				</div>

@@ -16,10 +16,10 @@ export async function generateMetadata({
 	}
 
 	return {
-		title: courseDetails.title,
+		title: courseDetails.title.split('-').join(' '),
 		description: courseDetails.description,
 		openGraph: {
-			title: courseDetails.title,
+			title: courseDetails.title.split('-').join(' '),
 			description: courseDetails.description,
 			url: `https://www.palmtechniq.com/courses/${params.course}`,
 			siteName: 'PalmTechnIQ',
