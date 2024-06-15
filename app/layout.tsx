@@ -8,6 +8,7 @@ import { SessionProvider } from 'next-auth/react';
 import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
 import { Chatbot } from '@/components/component/chatbot';
+import { getUserById } from '@/data/user';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
 		'app development course',
 		'online app development',
 		'online mobile app development',
-		'free mobile app development course',	
+		'free mobile app development course',
 		'mobile app development course',
 		'free app development course',
 		'graphic design',
@@ -87,8 +88,8 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: '/',
 		languages: {
-			'en-US' : '/en-US',
-			'de-DE' : '/de-DE',
+			'en-US': '/en-US',
+			'de-DE': '/de-DE',
 		},
 	},
 
@@ -107,9 +108,8 @@ export const metadata: Metadata = {
 	},
 
 	manifest: 'https://nextjs.org/manifest.json',
-	category: 'technology'
+	category: 'technology',
 };
-
 
 export default async function RootLayout({
 	children,
@@ -117,18 +117,19 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const session = await auth();
+
+	const dbUser = await getUserById(session?.user?.id ?? '');
 	return (
 		<SessionProvider session={session}>
 			<html lang='en'>
 				<body className={inter.className}>
-					<NavBar />
+					<NavBar user={dbUser} />
 					<div className='min-h-[70svh]'>
 						<NextTopLoader
 							color='green'
 							showSpinner={false}
 						/>
 						{children}
-						
 					</div>
 					<Chatbot />
 					<Toaster richColors />
