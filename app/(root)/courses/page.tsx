@@ -14,7 +14,7 @@ export default async function CoursesPage() {
 							key={k}
 							// icon={value.icon}
 							image={value.image}
-							content={value.description}
+							content={value.overView ?? ''}
 							title={value.title.split('-').join(' ')}
 							link={`/courses/${value.title}`}
 						/>

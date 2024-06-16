@@ -10,6 +10,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum PaymentStatus {
+  SUCCESSFUL
+  FAILED
+  PENDING
+}
+
 enum UserRole {
   STUDENT
   TUTOR
@@ -18,18 +24,19 @@ enum UserRole {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String          @id @default(cuid())
   name          String?
   description   String?
   phone         String?
   position      String?
   courses       String?
-  role          UserRole  @default(USER)
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
+  role          UserRole        @default(USER)
+  email         String?         @unique
+  emailVerified DateTime?       @map("email_verified")
   image         String?
   password      String?
   accounts      Account[]
+  CoursePayment CoursePayment[]
 
   @@map("users")
 }
@@ -84,9 +91,11 @@ model Course {
   classDays     String
   duration      String
   certificate   Boolean
+  overView      String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now()) @updatedAt
+  CoursePayment CoursePayment[]
 }
 
 model Curriculum {
@@ -131,4 +140,18 @@ model Review {
   description  String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model CoursePayment {
+  id            String        @id @default(cuid())
+  transactionId String // Unique identifier for the Paystack transaction reference
+  userId        String // ID of the user who made the payment
+  courseId      String // ID of the course for which payment is made
+  amount        Float // Amount paid
+  currency      String // Currency of the payment (e.g. NGN)
+  status        PaymentStatus @default(PENDING) // Status of the transaction (e.g., successful, failed)
+  paymentDate   DateTime      @default(now()) // Date and time of payment
+  verifiedAt    DateTime      @updatedAt
+  User          User          @relation(fields: [userId], references: [id])
+  Course        Course        @relation(fields: [courseId], references: [id])
 }

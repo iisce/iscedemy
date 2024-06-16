@@ -23,6 +23,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TYPE } from '@/lib/consts';
 import { PurchaseCourseSchema } from '@/schemas';
+import { initiatePayment } from '@/actions/initialize-payment';
 
 export default function PurchaseCourseForm({
 	course,

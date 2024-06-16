@@ -194,7 +194,7 @@ export default async function SingleCourse({
 							) : (
 								<>
 									<div className='mx-auto items-center justify-center text-center'>
-										<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
+										<p className='py-10 text-base'>{`Enroll for this course to get complete access!`}</p>
 										<SignOutButton />
 									</div>
 								</>
@@ -329,7 +329,7 @@ export default async function SingleCourse({
 						</Drawer> */}
 						<div className='grid'>
 							<Button
-								className=''
+								className=' rounded-full'
 								asChild>
 								<Link
 									href={`/courses/${courseDetails.title}/pay`}>

@@ -2,7 +2,7 @@
 	"name": "PalmTechnIQ",
 	"version": "1.1.0",
 	"private": true,
-	"type": "commonjs",
+	"type": "module",
 	"scripts": {
 		"dev": "next dev -p 2024",
 		"build": "prisma generate && next build",
@@ -62,6 +62,7 @@
 		"next-auth": "^5.0.0-beta.17",
 		"next-themes": "^0.2.1",
 		"nextjs-toploader": "^1.6.12",
+		"paystack": "^2.0.1",
 		"react": "^18",
 		"react-day-picker": "^8.10.0",
 		"react-dom": "^18",

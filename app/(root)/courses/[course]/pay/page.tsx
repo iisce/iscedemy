@@ -1,13 +1,9 @@
-import { logout } from '@/actions/main';
 import { auth } from '@/auth';
 import PurchaseCourseForm from '@/components/component/purchase-course-form';
 import { getCourseBySlug } from '@/data/course';
 import { getUserById } from '@/data/user';
-import { formatToNaira } from '@/lib/utils';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import React from 'react';
 
 export default async function EnrollPage({
 	params,
@@ -42,7 +38,7 @@ export default async function EnrollPage({
 					<div className='md:w-1/2'>
 						<Image
 							src={course.image}
-							alt='Video Editing Course'
+							alt='Register Course || PalmTechnIQ'
 							className='w-full h-full object-cover'
 							height={600}
 							width={600}
