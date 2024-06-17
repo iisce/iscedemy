@@ -24,6 +24,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { TYPE } from '@/lib/consts';
 import { PurchaseCourseSchema } from '@/schemas';
 import { initiatePayment } from '@/actions/initialize-payment';
+import { useRouter } from 'next/navigation';
 
 export default function PurchaseCourseForm({
 	course,
@@ -35,14 +36,13 @@ export default function PurchaseCourseForm({
 	const [error, setError] = useState<string | undefined>('');
 	const [success, setSuccess] = useState<string | undefined>('');
 	const [isPending, startTransition] = useTransition();
-	const [open, setOpen] = useState(false);
+	const router = useRouter();
 
 	const form = useForm<z.infer<typeof PurchaseCourseSchema>>({
 		resolver: zodResolver(PurchaseCourseSchema),
 		defaultValues: {
-			name: student.name ?? '',
-			email: student.email ?? '',
-			course: course.id,
+			courseId: course.id,
+			userId: student.id,
 		},
 		mode: 'onChange',
 	});
@@ -52,24 +52,24 @@ export default function PurchaseCourseForm({
 		setSuccess('');
 
 		startTransition(() => {
-			// CrashCourse(values)
-			// 	.then((data) => {
-			// 		setError(data.error);
-			// 		setSuccess(data.success);
-
-			// 		if (data.success) {
-			// 			setTimeout(() => {
-			// 				router.push('/');
-			// 			}, 6000);
-			// 			form.reset();
-			// 		}
-			// 	})
-			// 	.catch((error) => {
-			// 		console.error(
-			// 			'Error occured while submitting your form. Please try again!',
-			// 			error
-			// 		);
-			// 	});
+			initiatePayment(values)
+				.then((data) => {
+					if (data?.error) {
+						setError(data.error);
+						return;
+					} else if (data.success) {
+						setTimeout(() => {
+							router.push(data.authorization_url);
+						}, 2000);
+						form.reset();
+					}
+				})
+				.catch((error) => {
+					console.error(
+						'Error occured while submitting your form. Please try again!',
+						error
+					);
+				});
 			console.log(values);
 		});
 	};
@@ -126,6 +126,7 @@ export default function PurchaseCourseForm({
 						)}
 					/>
 					<Button
+						disabled={isPending}
 						type='submit'
 						className='inline-flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'>
 						Pay Now

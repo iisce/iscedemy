@@ -101,46 +101,13 @@ export const CourseRegisterSchema = z.object({
 		.max(11, 'Rating cannot exceed 11'),
 });
 export const PurchaseCourseSchema = z.object({
-	name: z.string().min(1, {
-		message: 'Name is required',
+	userId: z.string(),
+	courseId: z.string({
+		required_error: 'Please select at least 1 course!',
 	}),
-
-	email: z.string().email({
-		message: 'Email is required',
+	type: z.string({
+		required_error: 'Please select at least 1 category!',
 	}),
-
-	course: z
-		.string({
-			required_error: 'Please select at least 1 course!',
-		})
-		.refine(
-			(value) =>
-				[
-					'Web Development',
-					'CyberSecurity',
-					'Graphic Design',
-					'UI/UX Design',
-					'Mobile Development',
-					'Project Management',
-					'Smart-home Automation',
-					'Digital Marketing',
-				].includes(value),
-			{
-				message: 'Invalid course selected!',
-			}
-		),
-	type: z
-		.string({
-			required_error: 'Please select at least 1 category!',
-		})
-		.refine((value) => ['Virtual', 'Physical'].includes(value), {
-			message: 'Invalid selection!',
-		}),
-	phone: z
-		.string({
-			required_error: 'Phone number is required',
-		})
-		.max(11, 'Rating cannot exceed 11'),
 });
 
 export const ReviewSchema = z.object({
