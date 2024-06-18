@@ -137,7 +137,7 @@ export default async function StudentDashboard() {
 				<h2 className='text-2xl font-bold mb-4'>
 					Purchased Course
 				</h2>
-				{paidCourses ? (
+				{paidCourses && paidCourses.length > 0 ? (
 					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
 						{paidCourses.map(async (id, b) => {
 							const currentCourse = await getCourseById(

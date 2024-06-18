@@ -20,7 +20,7 @@ export default function CardWrapper({
 	showSocial,
 }: CardWrapperprops) {
 	return (
-		<Card className='w-full max-w-[400px] shadow-md '>
+		<Card className='w-[350px] shadow-md '>
 			<CardHeader>
 				<HeaderComp label={headerLabel} />
 			</CardHeader>
