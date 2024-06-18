@@ -3,13 +3,14 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { fetchCourseDetails } from '@/actions/metadata-course';
 import FormError from '@/components/form-error';
+import { getCourseBySlug } from '@/data/course';
 
 export async function generateMetadata({
 	params,
 }: {
 	params: { course: string };
 }): Promise<Metadata> {
-	const courseDetails = await fetchCourseDetails(params.course);
+	const courseDetails = await getCourseBySlug(params.course);
 
 	if (!courseDetails) {
 		notFound();
@@ -45,7 +46,7 @@ export default async function CoursePage({
 	};
 }) {
 	const tab = searchParams?.tab || 'overview';
-	const courseDetails = await fetchCourseDetails(params.course);
+	const courseDetails = await getCourseBySlug(params.course);
 	if (!courseDetails) {
 		return <FormError message='Course not found!' />;
 	}

@@ -1,5 +1,7 @@
 import { db } from '@/lib/db';
 
+export const revalidate = 0;
+
 export default async function getUserByEmail(email: string) {
 	try {
 		const user = await db.user.findUnique({
