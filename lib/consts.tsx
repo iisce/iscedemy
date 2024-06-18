@@ -490,7 +490,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Become a Cyber Guardian with our {courseDetails.title} Crash Course.Your Essential Guide to Online Security',
 		badgeType: 'Security',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/cybersecurity.mp4',
 		tutorName: 'Temitope Paul-Bamidele',
 		description: `Become a digital defender! Protect your online world from sneaky cyber villains. Learn how to safeguard your information, spot online scams, and keep your devices safe from harm.`,
 		summary: [
@@ -524,7 +524,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'From Doodles to Designs! Jumpstart Your Design Career with Our {courseDetails.title} Crash Course!',
 		badgeType: 'Design',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/aboutsectionvideo.mp4',
 		tutorName: 'Ezekiel Mahoussi',
 		description: `Make your ideas come to life! Learn to design amazing logos, posters, and images that grab attention and tell your story. Express yourself through colors, shapes, and stunning visuals.`,
 		summary: [
