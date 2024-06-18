@@ -139,7 +139,7 @@ async function seed() {
                 title: `cybersecurity`,
                 category: `Security`,
                 textSnippet: 'Become a Cyber Guardian with our {courseDetails.title} Crash Course.Your Essential Guide to Online Security',
-                videoUrl: `/images/aboutsectionvideo.mp4`,
+                videoUrl: `/videos/cybersecurity.mp4`,
                 tutorId: `clxdcdwu70003nv12vdw09or9`,
                 description: `Become a digital defender! Protect your online world from sneaky cyber villains. Learn how to safeguard your information, spot online scams, and keep your devices safe from harm.`,
                 overView: `Protect yourself and your digital assets from cyber threats with our Cybersecurity crash course. From safeguarding personal information to securing business networks, our comprehensive training will guide you to the latest techniques and best practices in cybersecurity. Gain peace of mind knowing that you're equipped to defend against hackers and keep your data safe.`,

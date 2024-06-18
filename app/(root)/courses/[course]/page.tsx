@@ -1,9 +1,8 @@
-import SingleCourse from '@/components/pages/courses/singleCourse/singleCourse';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-import { fetchCourseDetails } from '@/actions/metadata-course';
 import FormError from '@/components/form-error';
+import SingleCourse from '@/components/pages/courses/singleCourse/singleCourse';
 import { getCourseBySlug } from '@/data/course';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export async function generateMetadata({
 	params,
