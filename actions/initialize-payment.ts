@@ -44,7 +44,7 @@ export async function initiatePayment(
 				userId: student.id,
 				courseId: course.id,
 				currency: 'NGN',
-				amount: coursePrice / 100,
+				amount: coursePrice,
 				status: 'PENDING',
 				transactionId: reference,
 			},

@@ -1,34 +1,25 @@
-import CourseRegisterPage from '@/components/component/course-register';
+import { auth } from '@/auth';
 import TutorProfile from '@/components/component/tutor-profile';
+import { SingleTutorReviews } from '@/components/component/tutor-reviews';
 import FormError from '@/components/form-error';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-	Drawer,
-	DrawerClose,
-	DrawerContent,
-	DrawerTrigger,
-} from '@/components/ui/drawer';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import SignOutButton from '@/components/ui/sign-out';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { COURSE_OUTLINE, TUTOR_PROFILE } from '@/lib/consts';
+import { getCourseBySlug } from '@/data/course';
+import { getAllCurriculumByCourseId } from '@/data/curriculum';
+import {
+	getAllReviewsByTutorName
+} from '@/data/reviews';
+import { getUserByCourseId, getUserById } from '@/data/user';
 import * as Icons from '@/lib/icons';
+import { formatToNaira } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import CourseRating from './courseRating';
 import SingleCourseCurriculum from './singleCourseCurriculum';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import {
-	getAllReviewsByTutorName,
-	getAllReviewsByUserId,
-} from '@/data/reviews';
-import { SingleTutorReviews } from '@/components/component/tutor-reviews';
-import { auth } from '@/auth';
-import SignOutButton from '@/components/ui/sign-out';
-import { getCourseBySlug } from '@/data/course';
-import { getUserByCourseId, getUserById } from '@/data/user';
-import { notFound } from 'next/navigation';
-import { formatToNaira } from '@/lib/utils';
-import { getAllCurriculumByCourseId } from '@/data/curriculum';
 
 export default async function SingleCourse({
 	courseTitle,
