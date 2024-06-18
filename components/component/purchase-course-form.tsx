@@ -127,8 +127,7 @@ export default function PurchaseCourseForm({
 					/>
 					<Button
 						disabled={isPending}
-						type='submit'
-						className='inline-flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'>
+						type='submit'>
 						Pay Now
 					</Button>
 				</div>

@@ -9,9 +9,7 @@ import SignOutButton from '@/components/ui/sign-out';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getCourseBySlug } from '@/data/course';
 import { getAllCurriculumByCourseId } from '@/data/curriculum';
-import {
-	getAllReviewsByTutorName
-} from '@/data/reviews';
+import { getAllReviewsByTutorName } from '@/data/reviews';
 import { getUserByCourseId, getUserById } from '@/data/user';
 import * as Icons from '@/lib/icons';
 import { formatToNaira } from '@/lib/utils';
@@ -150,13 +148,23 @@ export default async function SingleCourse({
 								<SingleCourseCurriculum
 									curriculum={curriculum}
 								/>
-							) : (
+							) : !isPaid ? (
 								<>
 									<div className='mx-auto items-center justify-center text-center'>
-										<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
-										<SignOutButton />
+										<p className='py-10 text-base'>{`Enroll for this course to get complete access!`}</p>
+										<Button asChild>
+											<Link
+												href={`/courses/${courseDetails.title}/pay`}>
+												Enroll Now
+											</Link>
+										</Button>
 									</div>
 								</>
+							) : (
+								<div className='mx-auto items-center justify-center text-center'>
+									<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
+									<SignOutButton />
+								</div>
 							)}
 						</TabsContent>
 						<TabsContent value='instructor'>
@@ -167,13 +175,23 @@ export default async function SingleCourse({
 										totalRating ?? 0
 									}
 								/>
-							) : (
+							) : !isPaid ? (
 								<>
 									<div className='mx-auto items-center justify-center text-center'>
-										<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
-										<SignOutButton />{' '}
+										<p className='py-10 text-base'>{`Enroll for this course to get complete access!`}</p>
+										<Button asChild>
+											<Link
+												href={`/courses/${courseDetails.title}/pay`}>
+												Enroll Now
+											</Link>
+										</Button>
 									</div>
 								</>
+							) : (
+								<div className='mx-auto items-center justify-center text-center'>
+									<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
+									<SignOutButton />
+								</div>
 							)}
 						</TabsContent>
 						<TabsContent value='reviews'>
@@ -182,13 +200,23 @@ export default async function SingleCourse({
 									reviews={reviews ?? []}
 									tutor={tutor}
 								/>
-							) : (
+							) : !isPaid ? (
 								<>
 									<div className='mx-auto items-center justify-center text-center'>
 										<p className='py-10 text-base'>{`Enroll for this course to get complete access!`}</p>
-										<SignOutButton />
+										<Button asChild>
+											<Link
+												href={`/courses/${courseDetails.title}/pay`}>
+												Enroll Now
+											</Link>
+										</Button>
 									</div>
 								</>
+							) : (
+								<div className='mx-auto items-center justify-center text-center'>
+									<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
+									<SignOutButton />
+								</div>
 							)}
 						</TabsContent>
 					</Tabs>
@@ -318,16 +346,18 @@ export default async function SingleCourse({
 								</DrawerClose>
 							</DrawerContent>
 						</Drawer> */}
-						<div className='grid'>
-							<Button
-								className=' rounded-full'
-								asChild>
-								<Link
-									href={`/courses/${courseDetails.title}/pay`}>
-									Register Now
-								</Link>
-							</Button>
-						</div>
+						{!isPaid && (
+							<div className='grid'>
+								<Button
+									className=' rounded-full'
+									asChild>
+									<Link
+										href={`/courses/${courseDetails.title}/pay`}>
+										Register Now
+									</Link>
+								</Button>
+							</div>
+						)}
 					</div>
 					<div className=' md:px-0 px-4'>
 						<h3 className='text-xl font-semibold'>

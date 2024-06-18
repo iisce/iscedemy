@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { Register } from '@/actions/register';
 import { RegisterSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,120 +8,139 @@ import * as z from 'zod';
 import FormError from '../form-error';
 import FormSuccess from '../form-success';
 import { Button } from '../ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from '../ui/form';
 import { Input } from '../ui/input';
 import CardWrapper from './card-wrapper';
 
-
 export default function SignUpForm() {
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
-  const [isPending, startTransition] = useTransition();
+	const [error, setError] = useState<string | undefined>('');
+	const [success, setSuccess] = useState<string | undefined>('');
+	const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof RegisterSchema>>({
-    resolver: zodResolver(RegisterSchema),
-    defaultValues: {
-      email: "",
-      password:"", 
-      name: "",  
-     }
-  });
+	const form = useForm<z.infer<typeof RegisterSchema>>({
+		resolver: zodResolver(RegisterSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+			name: '',
+			phone: '',
+		},
+	});
 
-  const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    setError("");
-    setSuccess("");
+	const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
+		setError('');
+		setSuccess('');
 
-    startTransition(() => {
-     Register(values)
-      .then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
-        if (data.success) {
-          form.reset();
-        }
-      })
-    });
-  };
+		startTransition(() => {
+			Register(values).then((data) => {
+				setError(data.error);
+				setSuccess(data.success);
+				if (data.success) {
+					form.reset();
+				}
+			});
+		});
+	};
 
-  return (
-    <CardWrapper 
-    headerLabel='Create an account'
-    backButtonLabel="Already have an account? Login"
-    backButtonHref='/login'
-    showSocial 
-    >
-      <Form {...form}>
-        <form 
-        onSubmit={form.handleSubmit(( onSubmit))}
-        className='space-y-6'
-        >
-            <div className="space-y-4">
-              <FormField
-              control={form.control}
-              name='email'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                    {...field}
-                    disabled={isPending}
-                    placeholder='email@example.com'
-                    type='email'
-                    />
-                  </FormControl>
-                  <FormMessage/>
-                </FormItem>
-              )}
-              />
-              <FormField
-              control={form.control}
-              name='name'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                    {...field}
-                    disabled={isPending}
-                    placeholder='adam perce'
-                    />
-                  </FormControl>
-                  <FormMessage/>
-                </FormItem>
-              )}
-              />
-              <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                    {...field}
-                    disabled={isPending}
-                    placeholder='*****'
-                    type='password'
-                    />
-                  </FormControl>
-                  <FormMessage/>
-                </FormItem>
-              )}
-              />
-            </div>
-            <FormError message={error}/>
-            <FormSuccess message={success}/>
-            <Button 
-            type='submit'
-            className='w-full'
-            disabled={isPending}
-            >
-              
-              {`Create an account`}
-            </Button>
-        </form>
-      </Form>
-    </CardWrapper>
-  )
+	return (
+		<CardWrapper
+			headerLabel='Create an account'
+			backButtonLabel='Already have an account? Login'
+			backButtonHref='/login'
+			showSocial>
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className='space-y-6'>
+					<div className='space-y-4'>
+						<FormField
+							control={form.control}
+							name='email'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Email</FormLabel>
+									<FormControl>
+										<Input
+											{...field}
+											disabled={isPending}
+											placeholder='email@example.com'
+											type='email'
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name='name'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Name</FormLabel>
+									<FormControl>
+										<Input
+											{...field}
+											disabled={isPending}
+											placeholder='adam perce'
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name='phone'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Phone</FormLabel>
+									<FormControl>
+										<Input
+											{...field}
+											disabled={isPending}
+											placeholder='+2348078765653'
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name='password'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Password</FormLabel>
+									<FormControl>
+										<Input
+											{...field}
+											disabled={isPending}
+											placeholder='*****'
+											type='password'
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</div>
+					<FormError message={error} />
+					<FormSuccess message={success} />
+					<Button
+						type='submit'
+						className='w-full'
+						disabled={isPending}>
+						{`Create an account`}
+					</Button>
+				</form>
+			</Form>
+		</CardWrapper>
+	);
 }

@@ -33,6 +33,15 @@ export const RegisterSchema = z.object({
 	name: z.string().min(1, {
 		message: 'Name is required',
 	}),
+	phone: z
+		.string()
+		.min(1, {
+			message: 'Phone number is required',
+		})
+		.regex(
+			/^(0|\+?234)?[789][01]\d{8}$/,
+			'Phone format (+2348012345678/08012345678)'
+		),
 });
 export const CourseRegisterSchema = z.object({
 	firstname: z.string().min(1, {
