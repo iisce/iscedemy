@@ -490,7 +490,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Become a Cyber Guardian with our {courseDetails.title} Crash Course.Your Essential Guide to Online Security',
 		badgeType: 'Security',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/CyberSecurity.mp4',
 		tutorName: 'Temitope Paul-Bamidele',
 		description: `Become a digital defender! Protect your online world from sneaky cyber villains. Learn how to safeguard your information, spot online scams, and keep your devices safe from harm.`,
 		summary: [
