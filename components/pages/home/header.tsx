@@ -24,7 +24,7 @@ export default function HomeHeader() {
 						<h1 className='text-3xl font-bold pt-1 mb-2'>{`Kick-start your tech career today with PalmTechnIQ`}</h1>
 					</div>
 
-					<Link href='/register'>
+					<Link href='/courses'>
 						<Button className='bg-primary text-background px-8 py-4 rounded-full hover:bg-green-600 xl:text-xl md:text-xl text-lg hover:text-white transition duration-300'>
 							{`Get OnBoard`}
 						</Button>
@@ -44,8 +44,7 @@ export default function HomeHeader() {
 						<div className='lg:absolute bottom-0 hidden -left-2 right-0 gap-3 py-2 px-3 rounded-b-lg xl:flex flex-wrap justify-center items-center lg:ml-4 lg:mb-4'>
 							<Badge
 								variant='secondary'
-								className=' cursor-pointer text-sm p-1 '
-							>
+								className=' cursor-pointer text-sm p-1 '>
 								{`Web Development`}
 								<div className=' ml-2 bg-tertiary rounded-lg py-3 px-4'>
 									<Icons.WebDevelopmentIcon />
@@ -53,8 +52,7 @@ export default function HomeHeader() {
 							</Badge>
 							<Badge
 								variant='secondary'
-								className='cursor-pointer text-sm p-1'
-							>
+								className='cursor-pointer text-sm p-1'>
 								{`Smart-home Automation`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.SmartHomeAutomationIcon />
@@ -62,8 +60,7 @@ export default function HomeHeader() {
 							</Badge>
 							<Badge
 								variant='secondary'
-								className=' cursor-pointer text-sm p-1'
-							>
+								className=' cursor-pointer text-sm p-1'>
 								{`UI/UX Design`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.UIDesignIcon />
@@ -71,8 +68,7 @@ export default function HomeHeader() {
 							</Badge>
 							<Badge
 								variant='secondary'
-								className='cursor-pointer text-sm p-1'
-							>
+								className='cursor-pointer text-sm p-1'>
 								{`CyberSecurity`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.CyberSecurityIcon />
@@ -80,8 +76,7 @@ export default function HomeHeader() {
 							</Badge>
 							<Badge
 								variant='secondary'
-								className=' cursor-pointer text-sm p-1'
-							>
+								className=' cursor-pointer text-sm p-1'>
 								{`Digital Marketing`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.DigitalMarketingIcon />
@@ -89,8 +84,7 @@ export default function HomeHeader() {
 							</Badge>
 							<Badge
 								variant='secondary'
-								className='cursor-pointer text-sm p-1'
-							>
+								className='cursor-pointer text-sm p-1'>
 								{`Graphic Design`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.GraphicDesignIcon />
@@ -98,8 +92,7 @@ export default function HomeHeader() {
 							</Badge>
 							<Badge
 								variant='secondary'
-								className='cursor-pointer text-sm p-1'
-							>
+								className='cursor-pointer text-sm p-1'>
 								{`App Development`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.AppDevelopmentIcon />
@@ -107,8 +100,7 @@ export default function HomeHeader() {
 							</Badge>
 							<Badge
 								variant='secondary'
-								className='cursor-pointer text-sm p-1'
-							>
+								className='cursor-pointer text-sm p-1'>
 								{`Project Management`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.ProjectManagementIcon />
