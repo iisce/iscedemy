@@ -168,7 +168,7 @@ async function seed() {
                 title: `graphic-design`,
                 category: `Design`,
                 textSnippet: 'From Doodles to Designs! Jumpstart Your Design Career with Our {courseDetails.title} Crash Course!',
-                videoUrl: `/images/aboutsectionvideo.mp4`,
+                videoUrl: `/videos/GraphicsDesign.mp4`,
                 tutorId: `ezekiel-mahoussi`,
                 description: `Make your ideas come to life! Learn to design amazing logos, posters, and images that grab attention and tell your story. Express yourself through colors, shapes, and stunning visuals.`,
                 overView: `Showcase your creativity and bring your ideas to life with our Graphic Design crash course. Whether you're a budding artist or a business owner looking to enhance your brand, our crash course will teach you the fundamentals of design principles, typography, color theory, and industry-standard software. Unlock the power to communicate visually and make a lasting impression.`,

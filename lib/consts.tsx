@@ -524,7 +524,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'From Doodles to Designs! Jumpstart Your Design Career with Our {courseDetails.title} Crash Course!',
 		badgeType: 'Design',
-		tutorVideoUrl: '/videos/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/GraphicsDesign.mp4',
 		tutorName: 'Ezekiel Mahoussi',
 		description: `Make your ideas come to life! Learn to design amazing logos, posters, and images that grab attention and tell your story. Express yourself through colors, shapes, and stunning visuals.`,
 		summary: [
