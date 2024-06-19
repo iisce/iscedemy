@@ -97,7 +97,7 @@ export default function Footer() {
 						</ol>
 						<ol className="flex gap-2 cursor-pointer">
 							<LucidePhone className="shrink-0" />
-							<Link href="tel:+2348163453826"> 08163453826 </Link>
+							<Link href="tel:+2349137206365"> 09137206365 </Link>
 						</ol>
 					</div>
 
