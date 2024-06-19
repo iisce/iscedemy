@@ -90,7 +90,7 @@ export function Chatbot() {
     <CardHeader className="flex flex-row items-center justify-between">
       <div className="flex items-center space-x-4">
         <Avatar>
-          <AvatarImage alt="Image" src="/avatars/01.png" />
+          <AvatarImage alt="PalmTechnIQ" src="/avatars/01.png" />
           <AvatarFallback><RiRobot3Fill /></AvatarFallback>
         </Avatar>
         

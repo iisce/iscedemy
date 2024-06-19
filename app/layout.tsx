@@ -26,6 +26,7 @@ export const metadata: Metadata = {
 		'PalmTechnIQ',
 		'palmtechniq',
 		'online learning platform',
+		'PalmTechnIQ online learning platform',
 		'free online learning platform',
 		'online tech school',
 		'online alt school',

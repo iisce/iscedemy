@@ -22,9 +22,8 @@ export function TestimonialPreview() {
 										width={50}
 										height={50}
 										src={testimonial.image}
-										alt='PalmTechnIQ | Wilhelm F.'
-										className='
-                   object-cover rounded-full'
+										alt='PalmTechnIQ'
+										className='object-cover rounded-full'
 									/>
 								</div>
 							)}

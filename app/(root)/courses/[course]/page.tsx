@@ -28,7 +28,7 @@ export async function generateMetadata({
 					url: courseDetails.description || '/innovation.jpg',
 					width: 800,
 					height: 600,
-					alt: courseDetails.title,
+					alt: courseDetails.title || "PalmTechnIQ",
 				},
 			],
 		},

@@ -26,7 +26,7 @@ export default function OurValues() {
 							src='/innovation.jpg'
 							width={400}
 							height={400}
-							alt='arin'
+							alt='PalmTechnIQ'
 							className='w-full h-96 object-cover'
 						/>
 					</div>

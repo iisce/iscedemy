@@ -85,7 +85,7 @@ const EmailNewsLetter = ({
                   <Img
                     width="23"
                     height="23"
-                    alt="facebook"
+                    alt="PalmTechnIQ"
                     src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/facebook-app-round-white-icon.png`}
                   />
                 </Button>
@@ -96,7 +96,7 @@ const EmailNewsLetter = ({
                   <Img
                     width="23"
                     height="23"
-                    alt="facebook"
+                    alt="PalmTechnIQ"
                     src={`https://static-00.iconduck.com/assets.00/linkedin-icon-512x512-a7sf08js.png`}
                   />
                 </Button>
@@ -107,7 +107,7 @@ const EmailNewsLetter = ({
                   <Img
                     width="23"
                     height="23"
-                    alt="facebook"
+                    alt="PalmTechnIQ"
                     src={`https://static-00.iconduck.com/assets.00/instagram-icon-256x256-ubgz701g.png`}
                   />
                 </Button>
@@ -118,7 +118,7 @@ const EmailNewsLetter = ({
                   <Img
                     width="23"
                     height="23"
-                    alt="facebook"
+                    alt="PalmTechnIQ"
                     src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/slack-icon.png`}
                   />
                 </Button>
