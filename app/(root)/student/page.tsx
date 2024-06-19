@@ -1,187 +1,182 @@
-import { auth } from '@/auth';
-import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { getAllCourses, getCourseById } from '@/data/course';
-import { getAllCurriculumByCourseId } from '@/data/curriculum';
-import { getUserById } from '@/data/user';
-import { cn } from '@/lib/utils';
-import { Curriculum } from '@prisma/client';
-import { BookIcon, ClockIcon } from 'lucide-react';
-import Link from 'next/link';
-import { ReactNode } from 'react';
+import { auth } from "@/auth";
+import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { getAllCourses, getCourseById } from "@/data/course";
+import { getAllCurriculumByCourseId } from "@/data/curriculum";
+import { getUserById } from "@/data/user";
+import { cn } from "@/lib/utils";
+import { Curriculum } from "@prisma/client";
+import { BookIcon, ClockIcon } from "lucide-react";
+import Link from "next/link";
+import { ReactNode } from "react";
 
 function Badge({
-	children,
-	variant,
+     children,
+     variant,
 }: {
-	children: ReactNode;
-	variant: 'blue-purple' | 'green-teal' | 'yellow-orange';
+     children: ReactNode;
+     variant: "blue-purple" | "green-teal" | "yellow-orange";
 }) {
-	const bluePurpleClasses = 'from-blue-500 to-purple-500';
-	const greenTealClasses = 'from-green-500 to-teal-600';
-	const yellowOrangeClasses = 'from-yellow-500 to-orange-500';
+     const bluePurpleClasses = "from-blue-500 to-purple-500";
+     const greenTealClasses = "from-green-500 to-teal-600";
+     const yellowOrangeClasses = "from-yellow-500 to-orange-500";
 
-	return (
-		<div
-			className={cn(
-				'bg-gradient-to-r text-white px-3 py-1 rounded-full text-sm',
-				variant === 'blue-purple' && bluePurpleClasses,
-				variant === 'green-teal' && greenTealClasses,
-				variant === 'yellow-orange' && yellowOrangeClasses
-			)}>
-			{children}
-		</div>
-	);
+     return (
+          <div
+               className={cn(
+                    "rounded-full bg-gradient-to-r px-3 py-1 text-sm text-white",
+                    variant === "blue-purple" && bluePurpleClasses,
+                    variant === "green-teal" && greenTealClasses,
+                    variant === "yellow-orange" && yellowOrangeClasses,
+               )}
+          >
+               {children}
+          </div>
+     );
 }
 
 function CourseCard({
-	badgeText,
-	courseId,
-	courseSlug,
-	courseTitle,
-	courseDescription,
-	timeLeft,
-	duration,
-	variant,
-	isBought,
+     badgeText,
+     courseId,
+     courseSlug,
+     courseTitle,
+     courseDescription,
+     timeLeft,
+     duration,
+     variant,
+     isBought,
 }: {
-	badgeText?: string;
-	timeLeft: string;
-	duration: string;
-	courseTitle: string;
-	courseDescription: string;
-	courseId?: string;
-	courseSlug: string;
-	variant: 'blue-purple' | 'green-teal' | 'yellow-orange';
-	isBought?: boolean;
+     badgeText?: string;
+     timeLeft: string;
+     duration: string;
+     courseTitle: string;
+     courseDescription: string;
+     courseId?: string;
+     courseSlug: string;
+     variant: "blue-purple" | "green-teal" | "yellow-orange";
+     isBought?: boolean;
 }) {
-	return (
-		<Card>
-			<CardContent>
-				<div className='flex items-center justify-between my-4'>
-					<Badge variant={variant}>{badgeText}</Badge>
-					<div className='text-gray-500'>{timeLeft}</div>
-				</div>
-				<h3 className='text-xl font-bold mb-2 capitalize'>
-					{courseTitle}
-				</h3>
-				<p className='text-gray-500 mb-4 line-clamp-2'>
-					{courseDescription}
-				</p>
-				<div className='flex items-center justify-between'>
-					<div className='flex items-center gap-2'>
-						<ClockIcon className='w-4 h-4 text-gray-500' />
-						<span className='text-gray-500'>{duration}</span>
-					</div>
-					{!isBought && (
-						<Button
-							asChild
-							size='sm'>
-							<Link href={`/courses/${courseSlug}/pay`}>
-								Enroll
-							</Link>
-						</Button>
-					)}
-				</div>
-			</CardContent>
-		</Card>
-	);
+     return (
+          <Card>
+               <CardContent>
+                    <div className="my-4 flex items-center justify-between">
+                         <Badge variant={variant}>{badgeText}</Badge>
+                         <div className="text-gray-500">{timeLeft}</div>
+                    </div>
+                    <h3 className="mb-2 text-xl font-bold capitalize">
+                         {courseTitle}
+                    </h3>
+                    <p className="mb-4 line-clamp-2 text-gray-500">
+                         {courseDescription}
+                    </p>
+                    <div className="flex items-center justify-between">
+                         <div className="flex items-center gap-2">
+                              <ClockIcon className="h-4 w-4 text-gray-500" />
+                              <span className="text-gray-500">{duration}</span>
+                         </div>
+                         {!isBought && (
+                              <Button asChild size="sm">
+                                   <Link href={`/courses/${courseSlug}/pay`}>
+                                        Enroll
+                                   </Link>
+                              </Button>
+                         )}
+                    </div>
+               </CardContent>
+          </Card>
+     );
 }
 
 function CoursePaid({
-	title,
-	curriculum,
+     title,
+     curriculum,
 }: {
-	title: string;
-	curriculum?: Curriculum[];
+     title: string;
+     curriculum?: Curriculum[];
 }) {
-	return (
-		<Card>
-			<CardContent>
-				<div className='flex items-center justify-between my-4'>
-					<h3 className='text-xl font-bold capitalize'>
-						{title.split('-').join(' ')}
-					</h3>
-				</div>
-				<div className='flex items-center justify-between'>
-					<Button
-						variant='outline'
-						size='sm'
-						asChild>
-						<Link href={`/courses/${title}?tab=curriculum`}>
-							Resume
-						</Link>
-					</Button>
-					<div className='flex items-center gap-2'>
-						<BookIcon className='w-4 h-4 text-gray-500' />
-						<span className='text-gray-500'>
-							{curriculum?.length} lessons
-						</span>
-					</div>
-				</div>
-			</CardContent>
-		</Card>
-	);
+     return (
+          <Card>
+               <CardContent>
+                    <div className="my-4 flex items-center justify-between">
+                         <h3 className="text-xl font-bold capitalize">
+                              {title.split("-").join(" ")}
+                         </h3>
+                    </div>
+                    <div className="flex items-center justify-between">
+                         <Button variant="outline" size="sm" asChild>
+                              <Link href={`/courses/${title}?tab=curriculum`}>
+                                   Resume
+                              </Link>
+                         </Button>
+                         <div className="flex items-center gap-2">
+                              <BookIcon className="h-4 w-4 text-gray-500" />
+                              <span className="text-gray-500">
+                                   {curriculum?.length} lessons
+                              </span>
+                         </div>
+                    </div>
+               </CardContent>
+          </Card>
+     );
 }
 
 export default async function StudentDashboard() {
-	const session = await auth();
-	const student = await getUserById(session?.user?.id ?? '');
-	const courses = await getAllCourses();
-	const paidCourses = student?.courses?.split('---');
+     const session = await auth();
+     const student = await getUserById(session?.user?.id ?? "");
+     const courses = await getAllCourses();
+     const paidCourses = student?.courses?.split("---");
 
-	return (
-		<MaxWidthWrapper className='py-6'>
-			<section className='mb-8'>
-				<h2 className='text-2xl font-bold mb-4'>
-					Purchased Course
-				</h2>
-				{paidCourses && paidCourses.length > 0 ? (
-					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-						{paidCourses.map(async (id, b) => {
-							const currentCourse = await getCourseById(
-								id
-							);
-							const curriculum =
-								await getAllCurriculumByCourseId(id);
-							return (
-								<CoursePaid
-									title={currentCourse!.title}
-									curriculum={curriculum}
-									key={b}
-								/>
-							);
-						})}
-					</div>
-				) : (
-					<div>No courses purchased yet</div>
-				)}
-			</section>
-			<section className='mb-8'>
-				<h2 className='text-2xl font-bold mb-4'>All Courses</h2>
-				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-					{courses.map((course, b) => (
-						<CourseCard
-							key={b}
-							timeLeft={`${
-								course.classDays.split('---').length
-							} Days`}
-							duration={course.duration}
-							courseTitle={course.title
-								.split('-')
-								.join(' ')}
-							courseDescription={course.description}
-							courseId={''}
-							courseSlug={course.title}
-							variant={'green-teal'}
-							badgeText='HOT'
-							isBought={paidCourses?.includes(course.id)}
-						/>
-					))}
-				</div>
-			</section>
-			{/* <section>
+     return (
+          <MaxWidthWrapper className="py-6">
+               <section className="mb-8">
+                    <h2 className="mb-4 text-2xl font-bold">
+                         Purchased Course
+                    </h2>
+                    {paidCourses && paidCourses.length > 0 ? (
+                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                              {paidCourses.map(async (id, b) => {
+                                   const currentCourse =
+                                        await getCourseById(id);
+                                   const curriculum =
+                                        await getAllCurriculumByCourseId(id);
+                                   return (
+                                        <CoursePaid
+                                             title={currentCourse!.title}
+                                             curriculum={curriculum}
+                                             key={b}
+                                        />
+                                   );
+                              })}
+                         </div>
+                    ) : (
+                         <div>No courses purchased yet</div>
+                    )}
+               </section>
+               <section className="mb-8">
+                    <h2 className="mb-4 text-2xl font-bold">All Courses</h2>
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                         {courses.map((course, b) => (
+                              <CourseCard
+                                   key={b}
+                                   timeLeft={`${
+                                        course.classDays.split("---").length
+                                   } Days`}
+                                   duration={course.duration}
+                                   courseTitle={course.title
+                                        .split("-")
+                                        .join(" ")}
+                                   courseDescription={course.description}
+                                   courseId={""}
+                                   courseSlug={course.title}
+                                   variant={"green-teal"}
+                                   badgeText="HOT"
+                                   isBought={paidCourses?.includes(course.id)}
+                              />
+                         ))}
+                    </div>
+               </section>
+               {/* <section>
 				<h2 className='text-2xl font-bold mb-4'>
 					Course Recommendations
 				</h2>
@@ -274,6 +269,6 @@ export default async function StudentDashboard() {
 					</Card>
 				</div>
 			</section> */}
-		</MaxWidthWrapper>
-	);
+          </MaxWidthWrapper>
+     );
 }
