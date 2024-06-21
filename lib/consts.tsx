@@ -379,7 +379,7 @@ export const COURSE_OUTLINE: {
 		badgeType: 'Engineering',
 		textSnippet:
 			'Take charge of your tech career with our {courseDetails.title} Crash Course!',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: 'https://www.youtube.com/watch?v=yQ-kcn49r7s',
 		tutorName: 'Paul Ayobami',
 		description: `You'll master the fundamental languages of the web (HTML, CSS, and JavaScript) and dive into React, a powerful tool for creating dynamic user interfaces. Learn to craft stunning layouts, bring your designs to life with interactive elements, and create responsive websites that look amazing on any device. No prior coding experience is required – just a passion for building awesome things on the web!`,
 		summary: [
@@ -524,7 +524,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'From Doodles to Designs! Jumpstart Your Design Career with Our {courseDetails.title} Crash Course!',
 		badgeType: 'Design',
-		tutorVideoUrl: '/videos/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/GraphicsDesign.mp4',
 		tutorName: 'Ezekiel Mahoussi',
 		description: `Make your ideas come to life! Learn to design amazing logos, posters, and images that grab attention and tell your story. Express yourself through colors, shapes, and stunning visuals.`,
 		summary: [
@@ -669,7 +669,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Build Your App-titude! A Hands-On {courseDetails.title} Crash Course for Aspiring Developers.',
 		badgeType: 'Application',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: 'https://www.youtube.com/watch?v=4tnR5oR_4EM',
 		tutorName: 'David Sokeye',
 		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 		summary: [

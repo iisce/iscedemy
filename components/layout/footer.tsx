@@ -122,13 +122,13 @@ export default function Footer() {
 					{`Subscribe To Our Newsletter`}
 				</div>
 				<form onSubmit={handleSubmit} >
-					<div className='border-b-2 rounded-lg h-12 my-4'>
+					<div className=' rounded-full h-12 my-4'>
 						<input
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder='Email Address'
 							type='email' 
-							className='px-3 w-full h-full border-none bg-slate-100 text-black rounded-lg placeholder:text-black'
+							className='px-3 w-full h-full border-none bg-slate-100 text-black rounded-full placeholder:text-black'
 						/>
 					</div>
 					<Button 
@@ -149,10 +149,10 @@ export default function Footer() {
 					<Link href='https://www.twitter.com/'>
 						<LucideTwitter />
 					</Link>
-					<Link href='https://www.facebook.com/'>
+					<Link href='https://www.facebook.com//profile.php?id=61560523394595'>
 						<LucideFacebook />
 					</Link>
-					<Link href='https://www.instagram.com/'>
+					<Link href='https://www.instagram.com/palmtechniq/'>
 						<LucideInstagram />
 					</Link>
 					<Link href='https://www.linkedin.com/'>
