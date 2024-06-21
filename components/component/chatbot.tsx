@@ -19,8 +19,19 @@ export function Chatbot() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [lastMessageIndexPlayed, setLastMessageIndexPlayed] = useState<number | null>(null);
 
   const messageContainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const lastMessage =  messages[messages.length - 1];
+
+   if (lastMessage.role === "assistant" && lastMessageIndexPlayed !== messages.length - 1) {
+    const audio = new Audio("/assets/bot_response.mp3");
+    audio.play();
+    setLastMessageIndexPlayed(messages.length - 1);
+   }
+  }, [messages, lastMessageIndexPlayed]);
 
   useEffect(() => { 
     // Scroll to the bottom whenever messages update
@@ -28,6 +39,7 @@ export function Chatbot() {
       messageContainRef.current.scrollTop = messageContainRef.current.scrollHeight;
     }
   }, [messages]);
+  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,7 +60,7 @@ export function Chatbot() {
         throw new Error(response.statusText);
       }
       const data = await response.json();
-      const botMessage = { role: "assistant", content: data.response };
+      const botMessage = { role: "assistant", content: data.response, };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
       console.error("Error sending message:", error);
@@ -108,18 +120,16 @@ export function Chatbot() {
     </CardHeader>
     <CardContent className="prose space-y-4  max-h-96 overflow-y-auto" ref={messageContainRef} >
     {messages.map((message, index) => (
-          <div
-            key={index}
-            className={cn('flex w-full gap-2', message.role === 'user' && 'justify-end')}
-          >
-            <div className={cn('flex w-fit max-w-[75%] rounded-lg px-3  text-sm text-white', message.role === 'user' && 'bg-black rounded-br-none after:right-[-10px]', message.role === 'assistant' && 'bg-green-600 rounded-bl-none after:left-[-10px] px-4')}>
-              {message.role === 'assistant' && isLoading && index === messages.length - 1 ? ( <BeatLoader className="text-green-600"/>) : (
-              <div className="text-sm text-white ">
-                {markdownToReact({markdown: message.content})}</div>
-                )}
-            </div>
-          </div>
-        ))}
+              <div key={index} className={cn("flex w-full gap-2", message.role === "user" && "justify-end")}>
+                <div className={cn("flex w-fit max-w-[75%] rounded-lg px-3 text-sm text-white", message.role === "user" && "bg-black rounded-br-none after:right-[-10px]", message.role === "assistant" && "bg-green-600 rounded-bl-none after:left-[-10px] px-4")}>
+                  {message.role === "assistant" && isLoading && index === messages.length - 1 ? (
+                    <BeatLoader className="text-green-600" />
+                  ) : (
+                    <div className="text-sm text-white">{markdownToReact({ markdown: message.content })}</div>
+                  )}
+                </div>
+              </div>
+            ))}
     </CardContent>
     <CardFooter>
       <form className="flex w-full items-center space-x-2" onSubmit={handleSubmit}>
