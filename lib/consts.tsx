@@ -580,7 +580,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Design Digital Delights with our {courseDetails.title} Crash Course. A Practical Guide to UI/UX Fundamentals',
 		badgeType: 'Design',
-		tutorVideoUrl: '/videos/UIDesign.mp4',
+		tutorVideoUrl: '/videos/UIDesign.mov',
 		tutorName: 'Mawuli Owusu Promise',
 		description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
 		summary: [

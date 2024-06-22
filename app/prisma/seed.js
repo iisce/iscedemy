@@ -186,7 +186,7 @@ async function seed() {
                 title: `ui-ux-designing`,
                 category: `Design`,
                 textSnippet: 'Design Digital Delights with our {courseDetails.title} Crash Course. A Practical Guide to UI/UX Fundamentals',
-                videoUrl: `/videos/UIDesign.mp4`,
+                videoUrl: `/videos/UIDesign.mov`,
                 tutorId: `mawuli-owusu-promise`,
                 description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
                 overView: `Create seamless, user-friendly experiences that delight and engage with our UI/UX course.Learn the principles of user interface and user experience design, and how to apply them to websites, apps, and digital products. From wireframing to prototyping, our hands-on training will equip you with the basic skills to design intuitive interfaces that users love to interact with.`,
