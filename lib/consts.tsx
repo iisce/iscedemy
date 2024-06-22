@@ -580,7 +580,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Design Digital Delights with our {courseDetails.title} Crash Course. A Practical Guide to UI/UX Fundamentals',
 		badgeType: 'Design',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/UIDesign.mp4',
 		tutorName: 'Mawuli Owusu Promise',
 		description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
 		summary: [
@@ -745,7 +745,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Understand the Art of Online Influence with our {courseDetails.title} Crash Course!',
 		badgeType: 'Business',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/DigitalMarketing.mp4',
 		tutorName: 'Emeka Ignatius',
 		description: `Become a digital marketing whiz and learn how to take your message to the masses in this exciting, hands-on course. Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.Whether you're promoting a business, a product, a cause, or even yourself, this course will equip you with the tools you need to make a real impact online.`,
 		summary: [

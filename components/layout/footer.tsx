@@ -146,10 +146,10 @@ export default function Footer() {
 			</div>
 			<div className='pt-10  space-y-2'>
 				<div className='flex items-center gap-4 justify-center py-2'>
-					<Link href='https://www.twitter.com/'>
+					{/* <Link href='https://www.twitter.com/'>
 						<LucideTwitter />
-					</Link>
-					<Link href='https://www.facebook.com//profile.php?id=61560523394595'>
+					</Link> */}
+					<Link href='https://www.facebook.com/profile.php?id=61560523394595'>
 						<LucideFacebook />
 					</Link>
 					<Link href='https://www.instagram.com/palmtechniq/'>
