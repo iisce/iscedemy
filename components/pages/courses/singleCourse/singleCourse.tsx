@@ -229,8 +229,8 @@ export default async function SingleCourse({
 						controls
 						className='w-full aspect-video'>
 						<source
-							src={courseDetails.videoUrl}
-							type='video/mp4'
+							src={courseDetails.videoUrl.replace("watch?v=", "embed/")}
+							type='video/mp4/mov'
 						/>
 					</video>
 
