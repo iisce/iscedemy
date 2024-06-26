@@ -41,6 +41,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 	// 	name: 'Backend Development',
 	// },
 	{
+		link: 'data-analytics',
+		name: 'Data Analytics',
+	},
+	{
 		link: 'web-development',
 		name: 'Web Development',
 	},
@@ -184,6 +188,9 @@ export const COURSES: ICOURSES[] = [
 	},
 	{
 		name: 'CyberSecurity',
+	},
+	{
+		name: 'Data Analytics',
 	},
 	{
 		name: 'Graphic Design',
@@ -960,6 +967,26 @@ export const COURSE_OUTLINE: {
 `,
 	},
 	{
+		title: `data-analytics`,
+		textSnippet: ``,
+		badgeType: 'Technology',
+		tutorVideoUrl: `/images/aboutsectionvideo.mp4`,
+		tutorName: `Oziegbe Rapheal Ehimen`,
+		description: ``,
+		summary: [
+
+		],
+		price: `30,000/50,000`,
+		classes: `3`,
+		duration: `1 week`,
+		numberOfStudentsErolled: `40`,
+		language: `English`,
+		certification: `Yes`,
+		curriculum: [
+
+		]
+	},
+	{
 		title: 'project-management',
 		textSnippet:
 			'Lead with Confidence! Conquer Project Chaos with Our {courseDetails.title} Crash Course',
@@ -1326,6 +1353,8 @@ export const PRIVACY_POLICY: {
 // 		role: 'TUTOR'
 // 	},
 // ]
+
+
 // export const DEFAULT_COURSE: Omit<Course, 'id'> [] =
 // [
 // 	{
