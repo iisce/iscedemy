@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import TutorProfile from '@/components/component/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
 import FormError from '@/components/form-error';
+import { YouTubeEmbed } from '@next/third-parties/google';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -223,7 +224,10 @@ export default async function SingleCourse({
 				</div>
 
 				<div className='lg:col-span-2 flex flex-col gap-5'>
-					<video
+							
+				<YouTubeEmbed  videoid={courseDetails.videoUrl} height={315} width={400}
+					params="controls=1"/>
+					{/* <video
 						width='400'
 						height='315'
 						controls
@@ -232,7 +236,7 @@ export default async function SingleCourse({
 							src={courseDetails.videoUrl.replace("watch?v=", "embed/")}
 							type='video/mp4'
 						/>
-					</video>
+					</video> */}
 
 					<div className='space-y-4 px-3 grid'>
 						<h3 className='text-xl font-semibold'>
