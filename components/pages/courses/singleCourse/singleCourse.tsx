@@ -3,7 +3,6 @@ import TutorProfile from '@/components/component/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
 import { YouTubeEmbed } from '@next/third-parties/google';
 import FormError from '@/components/form-error';
-import { YouTubeEmbed } from '@next/third-parties/google';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
