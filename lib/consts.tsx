@@ -41,6 +41,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 	// 	name: 'Backend Development',
 	// },
 	{
+		link: 'data-analytics',
+		name: 'Data Analytics',
+	},
+	{
 		link: 'web-development',
 		name: 'Web Development',
 	},
@@ -184,6 +188,9 @@ export const COURSES: ICOURSES[] = [
 	},
 	{
 		name: 'CyberSecurity',
+	},
+	{
+		name: 'Data Analytics',
 	},
 	{
 		name: 'Graphic Design',
@@ -580,7 +587,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Design Digital Delights with our {courseDetails.title} Crash Course. A Practical Guide to UI/UX Fundamentals',
 		badgeType: 'Design',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/UIDesign.mov',
 		tutorName: 'Mawuli Owusu Promise',
 		description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
 		summary: [
@@ -745,7 +752,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Understand the Art of Online Influence with our {courseDetails.title} Crash Course!',
 		badgeType: 'Business',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/DigitalMarketing.mp4',
 		tutorName: 'Emeka Ignatius',
 		description: `Become a digital marketing whiz and learn how to take your message to the masses in this exciting, hands-on course. Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.Whether you're promoting a business, a product, a cause, or even yourself, this course will equip you with the tools you need to make a real impact online.`,
 		summary: [
@@ -958,6 +965,26 @@ export const COURSE_OUTLINE: {
 		],
 		conclusion: `By the end of this course you must have learned how to make a video, mastered a video editing software, understand editing and moved from a novice or a beginner to a good video editor who edits polished and professional-looking videos.
 `,
+	},
+	{
+		title: `data-analytics`,
+		textSnippet: ``,
+		badgeType: 'Technology',
+		tutorVideoUrl: `/images/aboutsectionvideo.mp4`,
+		tutorName: `Oziegbe Rapheal Ehimen`,
+		description: ``,
+		summary: [
+
+		],
+		price: `30,000/50,000`,
+		classes: `3`,
+		duration: `1 week`,
+		numberOfStudentsErolled: `40`,
+		language: `English`,
+		certification: `Yes`,
+		curriculum: [
+
+		]
 	},
 	{
 		title: 'project-management',
@@ -1326,6 +1353,8 @@ export const PRIVACY_POLICY: {
 // 		role: 'TUTOR'
 // 	},
 // ]
+
+
 // export const DEFAULT_COURSE: Omit<Course, 'id'> [] =
 // [
 // 	{

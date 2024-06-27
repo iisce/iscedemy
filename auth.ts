@@ -45,7 +45,7 @@ export const {
 	},
 	adapter: PrismaAdapter(db),
 	session: {
-		maxAge: 86400,
+		maxAge: 1800000, //30 minutes
 		strategy: 'jwt',
 	},
 	...authConfig,
