@@ -1114,6 +1114,35 @@ export const TUTOR_PROFILE: {
 		image: '/images/anthony.jpg',
 	},
 ];
+export const BOT_MENU_BUTTON: {
+	text:  string;
+	link: string;
+}[] = [
+	{
+		text: 'Create Account',
+		link: '',
+	},
+	{
+		text: 'Courses',
+		link: '',
+	},
+	{
+		text: 'Register',
+		link: '',
+	},
+	{
+		text: 'Payment',
+		link: '',
+	},
+	{
+		text: 'Speak with Admission',
+		link: '',
+	},
+	{
+		text: 'Dashboard',
+		link: '',
+	},
+];
 export const TESTIMONIALS: {
 	image?: StaticImport | string;
 	name: string;

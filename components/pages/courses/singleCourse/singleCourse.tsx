@@ -57,6 +57,8 @@ export default async function SingleCourse({
 		0
 	);
 	const isPaid = currentUser?.courses?.includes(courseDetails.id);
+
+	
 	return (
 		<div className='bg-white justify-center w-full py-5'>
 			<div className='grid lg:grid-cols-5 gap-5'>
@@ -224,9 +226,10 @@ export default async function SingleCourse({
 				</div>
 
 				<div className='lg:col-span-2 flex flex-col gap-5'>
-							
-				<YouTubeEmbed  videoid={courseDetails.videoUrl} height={315} width={400}
+				 <div className='w-full aspect-video'>	
+				<YouTubeEmbed videoid={courseDetails.videoUrl} height={315} width={400}
 					params="controls=1"/>
+					</div>
 					{/* <video
 						width='400'
 						height='315'
@@ -353,7 +356,7 @@ export default async function SingleCourse({
 						{!isPaid && (
 							<div className='grid'>
 								<Button
-									className=' rounded-full'
+									className='rounded-full'
 									asChild>
 									<Link
 										href={`/courses/${courseDetails.title}/pay`}>
