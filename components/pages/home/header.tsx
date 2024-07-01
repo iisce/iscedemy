@@ -34,7 +34,7 @@ export default function HomeHeader() {
 				<div className='md:w-1/2 flex justify-center py-3'>
 					<div className='relative rounded-lg '>
 						<Image
-							alt='Person coding'
+							alt='PalmTechnIQ'
 							className='rounded-lg aspect-square object-cover'
 							height='450'
 							src='/images/careerpath1.jpg'
@@ -68,6 +68,14 @@ export default function HomeHeader() {
 							</Badge>
 							<Badge
 								variant='secondary'
+								className=' cursor-pointer text-sm p-1'>
+								{`Video editing`}
+								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
+									<Icons.UIDesignIcon />
+								</div>
+							</Badge>
+							<Badge
+								variant='secondary'
 								className='cursor-pointer text-sm p-1'>
 								{`CyberSecurity`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
@@ -78,6 +86,14 @@ export default function HomeHeader() {
 								variant='secondary'
 								className=' cursor-pointer text-sm p-1'>
 								{`Digital Marketing`}
+								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
+									<Icons.DigitalMarketingIcon />
+								</div>
+							</Badge>
+							<Badge
+								variant='secondary'
+								className=' cursor-pointer text-sm p-1'>
+								{`Videography`}
 								<div className='rounded-lg ml-2 bg-tertiary py-3 px-4'>
 									<Icons.DigitalMarketingIcon />
 								</div>

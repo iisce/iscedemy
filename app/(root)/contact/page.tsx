@@ -65,7 +65,7 @@ export default function ContactPage() {
             </div>
             <div className="flex gap-2">
               <Smartphone />
-              <Link href="tel:+2348163453826"> 08163453826 </Link>
+              <Link href="tel:+2349137206365"> 09137206365 </Link>
             </div>
             <div className="">{`We build a better system to empower and facilitate younger generation on the right path to be on!`}</div>
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
               src="/contact.jpg"
               width={500}
               height={500}
-              alt="Picture of the author"
+              alt="PalmTechnIQ"
             />
           </div>
 

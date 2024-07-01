@@ -18,7 +18,7 @@ export default function OurStory() {
 						src='/jopwe.jpg'
 						width={400}
 						height={400}
-						alt='arin'
+						alt='PalmTechnIQ'
 						className='w-full h-96 object-cover'
 					/>
 				</div>

@@ -39,7 +39,7 @@ export default function AboutSection() {
 						src='/right.png'
 						height='1000'
 						width='1000'			
-						alt=''
+						alt='PalmTechnIQ'
 					/>
 				</div>
 			</motion.div>

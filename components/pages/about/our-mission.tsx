@@ -17,7 +17,7 @@ export default function OurMission() {
 						src='/pixabay.jpg'
 						width={400}
 						height={400}
-						alt='arin'
+						alt='PalmTechnIQ'
 						className='h-96 w-full aspect-video object-cover'
 					></Image>
 				</div>
@@ -38,7 +38,7 @@ export default function OurMission() {
 						src='/gomes.jpg'
 						width={400}
 						height={400}
-						alt='arin'
+						alt='PalmTechnIQ'
 						className='w-full h-96 aspect-video object-cover'
 					></Image>
 				</div>

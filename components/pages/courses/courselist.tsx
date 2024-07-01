@@ -24,7 +24,7 @@ export default function CourseList({
 						className=' rounded-md'
 						width='1000'
 						height='1000'
-						alt='image'
+						alt='PalmTechnIQ'
 						src={image}
 					/>
 					<div className=' w-full absolute top-0 rounded-md bg-[#0000009e] group-hover:opacity-100 transition duration-300 ease-in-out opacity-0 h-full '>

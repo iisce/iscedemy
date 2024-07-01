@@ -41,6 +41,10 @@ export const COURSEITEM: ICOURSEITEM[] = [
 	// 	name: 'Backend Development',
 	// },
 	{
+		link: 'data-analytics',
+		name: 'Data Analytics',
+	},
+	{
 		link: 'web-development',
 		name: 'Web Development',
 	},
@@ -184,6 +188,9 @@ export const COURSES: ICOURSES[] = [
 	},
 	{
 		name: 'CyberSecurity',
+	},
+	{
+		name: 'Data Analytics',
 	},
 	{
 		name: 'Graphic Design',
@@ -379,7 +386,7 @@ export const COURSE_OUTLINE: {
 		badgeType: 'Engineering',
 		textSnippet:
 			'Take charge of your tech career with our {courseDetails.title} Crash Course!',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: 'https://www.youtube.com/watch?v=yQ-kcn49r7s',
 		tutorName: 'Paul Ayobami',
 		description: `You'll master the fundamental languages of the web (HTML, CSS, and JavaScript) and dive into React, a powerful tool for creating dynamic user interfaces. Learn to craft stunning layouts, bring your designs to life with interactive elements, and create responsive websites that look amazing on any device. No prior coding experience is required – just a passion for building awesome things on the web!`,
 		summary: [
@@ -524,7 +531,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'From Doodles to Designs! Jumpstart Your Design Career with Our {courseDetails.title} Crash Course!',
 		badgeType: 'Design',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/GraphicsDesign.mp4',
 		tutorName: 'Ezekiel Mahoussi',
 		description: `Make your ideas come to life! Learn to design amazing logos, posters, and images that grab attention and tell your story. Express yourself through colors, shapes, and stunning visuals.`,
 		summary: [
@@ -580,7 +587,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Design Digital Delights with our {courseDetails.title} Crash Course. A Practical Guide to UI/UX Fundamentals',
 		badgeType: 'Design',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/UIDesign.mov',
 		tutorName: 'Mawuli Owusu Promise',
 		description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
 		summary: [
@@ -669,7 +676,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Build Your App-titude! A Hands-On {courseDetails.title} Crash Course for Aspiring Developers.',
 		badgeType: 'Application',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: 'https://www.youtube.com/watch?v=4tnR5oR_4EM',
 		tutorName: 'David Sokeye',
 		description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques.`,
 		summary: [
@@ -745,7 +752,7 @@ export const COURSE_OUTLINE: {
 		textSnippet:
 			'Understand the Art of Online Influence with our {courseDetails.title} Crash Course!',
 		badgeType: 'Business',
-		tutorVideoUrl: '/images/aboutsectionvideo.mp4',
+		tutorVideoUrl: '/videos/DigitalMarketing.mp4',
 		tutorName: 'Emeka Ignatius',
 		description: `Become a digital marketing whiz and learn how to take your message to the masses in this exciting, hands-on course. Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.Whether you're promoting a business, a product, a cause, or even yourself, this course will equip you with the tools you need to make a real impact online.`,
 		summary: [
@@ -960,6 +967,26 @@ export const COURSE_OUTLINE: {
 `,
 	},
 	{
+		title: `data-analytics`,
+		textSnippet: ``,
+		badgeType: 'Technology',
+		tutorVideoUrl: `/images/aboutsectionvideo.mp4`,
+		tutorName: `Oziegbe Rapheal Ehimen`,
+		description: ``,
+		summary: [
+
+		],
+		price: `30,000/50,000`,
+		classes: `3`,
+		duration: `1 week`,
+		numberOfStudentsErolled: `40`,
+		language: `English`,
+		certification: `Yes`,
+		curriculum: [
+
+		]
+	},
+	{
 		title: 'project-management',
 		textSnippet:
 			'Lead with Confidence! Conquer Project Chaos with Our {courseDetails.title} Crash Course',
@@ -1085,6 +1112,35 @@ export const TUTOR_PROFILE: {
 		role: 'Content Creator',
 		about: `Anthony Nnamdi is a digital/visual content consultant and creator with vast knowledge and experience in Media/Tech. Specialises on Videography/Video Editing, Photography/Retouching, Graphics Design/UI/UX, Social Media Marketing, I have worked with a number of individual brands, startups and companies (Real Estate, Tech, Beverage, Cosmetic, logistics, FX etc). I am ever ready to share my years of experience and to teach students or anyone who is intrested or ready to start a career in the media space.`,
 		image: '/images/anthony.jpg',
+	},
+];
+export const BOT_MENU_BUTTON: {
+	text:  string;
+	link: string;
+}[] = [
+	{
+		text: 'Create Account',
+		link: '',
+	},
+	{
+		text: 'Courses',
+		link: '',
+	},
+	{
+		text: 'Register',
+		link: '',
+	},
+	{
+		text: 'Payment',
+		link: '',
+	},
+	{
+		text: 'Speak with Admission',
+		link: '',
+	},
+	{
+		text: 'Dashboard',
+		link: '',
 	},
 ];
 export const TESTIMONIALS: {
@@ -1326,6 +1382,8 @@ export const PRIVACY_POLICY: {
 // 		role: 'TUTOR'
 // 	},
 // ]
+
+
 // export const DEFAULT_COURSE: Omit<Course, 'id'> [] =
 // [
 // 	{

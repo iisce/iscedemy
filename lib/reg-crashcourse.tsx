@@ -93,7 +93,7 @@ const RegCrashCourse = ({
                   <Img
                     width="23"
                     height="23"
-                    alt="facebook"
+                    alt="PalmTechnIQ"
                     src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/facebook-app-round-white-icon.png`}
                   />
                 </Button>

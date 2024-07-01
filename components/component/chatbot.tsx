@@ -10,6 +10,7 @@ import * as Icons from "@/lib/icons"
 import { cn } from "@/lib/utils";
 import markdownToReact from "@/lib/markdown-util";
 import { BeatLoader } from "react-spinners";
+import { BOT_MENU_BUTTON } from "@/lib/consts";
 
 export function Chatbot() {
   const [userInput, setUserInput] = useState("");
@@ -17,10 +18,23 @@ export function Chatbot() {
     { role: "assistant", content: "Hello there! 👋 I am PalmDesk Assistant. Welcome to PalmTechnIQ!  What can I help you with today? 😊" },
   ]);
 
+  const [quickReplies, setQuickReplies] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [showMenuOptions, setShowMenuOptions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [lastMessageIndexPlayed, setLastMessageIndexPlayed] = useState<number | null>(null);
 
   const messageContainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const lastMessage =  messages[messages.length - 1];
+
+   if (lastMessage.role === "assistant" && lastMessageIndexPlayed !== messages.length - 1) {
+    const audio = new Audio("/assets/bot_response.mp3");
+    audio.play();
+    setLastMessageIndexPlayed(messages.length - 1);
+   }
+  }, [messages, lastMessageIndexPlayed]);
 
   useEffect(() => { 
     // Scroll to the bottom whenever messages update
@@ -28,10 +42,16 @@ export function Chatbot() {
       messageContainRef.current.scrollTop = messageContainRef.current.scrollHeight;
     }
   }, [messages]);
+  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const userMessage = { role: "user", content: userInput };
+    sendMessage(userInput);
+    setUserInput("");
+  };
+  const sendMessage = async (messageContent: string) => {
+    
+    const userMessage = { role: "user", content: messageContent};
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setIsLoading(true);
 
@@ -41,7 +61,7 @@ export function Chatbot() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: userInput }),
+        body: JSON.stringify({ message: messageContent }),
       });
 
       if (!response.ok) {
@@ -50,6 +70,7 @@ export function Chatbot() {
       const data = await response.json();
       const botMessage = { role: "assistant", content: data.response };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
+      setQuickReplies(data.quickReplies || []);
     } catch (error) {
       console.error("Error sending message:", error);
       setMessages((prevMessages) => [
@@ -59,8 +80,9 @@ export function Chatbot() {
       ]);
     } finally {
       setIsLoading(false);
-      setUserInput("");}
-  };
+  }
+};
+    
 
   //Helper function to convert urls to links
   const formatMessage = (message: string) => {
@@ -90,7 +112,7 @@ export function Chatbot() {
     <CardHeader className="flex flex-row items-center justify-between">
       <div className="flex items-center space-x-4">
         <Avatar>
-          <AvatarImage alt="Image" src="/avatars/01.png" />
+          <AvatarImage alt="PalmTechnIQ" src="/avatars/01.png" />
           <AvatarFallback><RiRobot3Fill /></AvatarFallback>
         </Avatar>
         
@@ -106,36 +128,51 @@ export function Chatbot() {
         </div>
       </Button>
     </CardHeader>
+
     <CardContent className="prose space-y-4  max-h-96 overflow-y-auto" ref={messageContainRef} >
     {messages.map((message, index) => (
-          <div
-            key={index}
-            className={cn('flex w-full gap-2', message.role === 'user' && 'justify-end')}
-          >
-            <div className={cn('flex w-fit max-w-[75%] rounded-lg px-3  text-sm text-white', message.role === 'user' && 'bg-black rounded-br-none after:right-[-10px]', message.role === 'assistant' && 'bg-green-600 rounded-bl-none after:left-[-10px] px-4')}>
-              {message.role === 'assistant' && isLoading && index === messages.length - 1 ? ( <BeatLoader className="text-green-600"/>) : (
-              <div className="text-sm text-white ">
-                {markdownToReact({markdown: message.content})}</div>
-                )}
+            <div key={index} className={cn("flex w-full gap-2", message.role === "user" && "justify-end" ? "flex-row-reverse " : "flex-row")}>
+              <Avatar>
+                <AvatarImage alt="PalmTechnIQ" src={message.role === "assistant" ? "/avatars/01.png" : "/avatar/02.png"}/>
+                <AvatarFallback><RiRobot3Fill/></AvatarFallback>
+              </Avatar>
+              <div className={cn("flex w-fit xl:max-w-[75%] rounded-lg px-3 text-sm text-white", message.role === "user" && "bg-black rounded-br-none after:right-[-10px]", message.role === "assistant" && "bg-green-600 rounded-bl-none after:left-[-10px] px-4")}>
+                <div className="text-sm text-white">{markdownToReact({ markdown: message.content })}</div>
+              </div>
             </div>
-          </div>
-        ))}
+            ))}
+            
+            <div className="grid grid-cols-2 gap-3">
+             {quickReplies.map((reply, i) => (
+    <Button
+    key={i}
+    onClick={() => {
+    sendMessage(reply);
+    setQuickReplies([]);
+  }}
+    className="w-full gap-2 text-center text-wrap justify-start"
+    variant="secondary"
+    >
+      {reply}
+    </Button>
+  ))}
+  </div>
     </CardContent>
     <CardFooter>
       <form className="flex w-full items-center space-x-2" onSubmit={handleSubmit}>
-        <Input autoComplete="off" className="flex-1" id="message" placeholder="Type your message..." value={userInput}
+        <Input autoComplete="off" type="text" className="flex-grow" id="message" placeholder="Type a message..." value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
            />
-        <Button size="icon" type="submit" className=" rounded-lg justify-self-center px-2 items-center">
-          <div className="">
-          <Icons.SendIcon  />
-          <span className="sr-only ">Send</span>
-          </div>
-        </Button>
+<Button size="icon" type="submit" className=" rounded-lg justify-self-center px-2  items-center">
+      {isLoading ? <BeatLoader size={8} className="px-2" color="#ffffff"/>: <Icons.SendIcon/>}
+      <span className="sr-only ">Send</span>
+    </Button>
+
       </form>
     </CardFooter>
   </Card>
   ) : (
+    
     <Button
           onClick={() => setIsOpen(true)} 
           className="rounded-full w-full px-3 py-8 bg-green-600 text-white"
@@ -145,6 +182,7 @@ export function Chatbot() {
           <span className="sr-only">Open Chat</span>
         </Button>
   )}
+ 
   </div>
   );
 }
