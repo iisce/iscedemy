@@ -10,7 +10,7 @@ import { formatToNaira } from "@/lib/utils";
 import { DollarSignIcon, SearchIcon, StarIcon, UserIcon } from "lucide-react";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import ViewReview from "./tutor-single-review";
 import { Review } from "@prisma/client";
 
@@ -96,9 +96,16 @@ export default function TutorDashboard({
   const [editingCourse, setEditingCourse] = useState<any | null>(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalReviews, setModalReviews] = useState<Review[]>([]);
+  const [showInput, setShowInput] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
 
-  console.log('Total Earnings:', totalEarnings);
+  // console.log('Total Earnings:', totalEarnings);
+
+  const handleSearchIconClick = () => {
+    setShowInput((prev) => !prev);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  }
 
 
   const filteredCourses = useMemo(() => {
@@ -116,13 +123,20 @@ export default function TutorDashboard({
         <div className="flex items-center justify-between mb-6">
           <h2 className="mb-4 text-lg md:text-2xl font-bold">Uploaded Courses</h2>
           <div className="relative">
-            <SearchIcon  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <SearchIcon  
+            onClick={handleSearchIconClick
+            }
+            className="absolute right-4 md:left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="text"
               placeholder="Search courses..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 rounded-md border border-green-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+              className={`pl-10 pr-4 py-2 rounded-md border border-green-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+              ${
+                showInput ? 'block' : 'hidden'
+              } md:block`}
+              ref={inputRef}
             />
           </div>
         </div>

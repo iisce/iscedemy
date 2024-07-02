@@ -74,7 +74,10 @@ interface EditCourseFormProps {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input {...field} placeholder='Course Title' disabled={isPending} />
+                  <Input 
+                  {...field} 
+                  placeholder='Course Title' 
+                  disabled={isPending} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -86,7 +89,11 @@ interface EditCourseFormProps {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input {...field} placeholder='Header Text' disabled={isPending} />
+                  <Textarea 
+                  {...field} 
+                  placeholder='Header Text' 
+                  disabled={isPending} 
+                  className=" overflow-y-scroll h-32 break-all"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -98,7 +105,11 @@ interface EditCourseFormProps {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea {...field} placeholder='Description' disabled={isPending} />
+                  <Textarea 
+                  {...field} 
+                  placeholder='Description' 
+                  disabled={isPending} 
+                  className=" overflow-y-scroll h-32 break-all"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -110,7 +121,11 @@ interface EditCourseFormProps {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea {...field} placeholder='Conclusion' disabled={isPending} />
+                  <Textarea 
+                  {...field} 
+                  placeholder='Conclusion' 
+                  disabled={isPending} 
+                  className=" overflow-y-scroll h-32 break-all"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -122,7 +137,11 @@ interface EditCourseFormProps {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea {...field} placeholder='Summary' disabled={isPending} />
+                  <Textarea 
+                  {...field} 
+                  placeholder='Summary' 
+                  disabled={isPending} 
+                  className=" overflow-y-scroll h-32 break-words "/>
                 </FormControl>
                 <FormMessage />
               </FormItem>

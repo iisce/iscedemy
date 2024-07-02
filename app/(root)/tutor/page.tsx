@@ -26,7 +26,7 @@ export default async function TutorDashboardPage() {
     earningsData[course.id] = earnings;
     totalEarnings += earnings;
   }
-  console.log('Total Earnings:', totalEarnings);
+  // console.log('Total Earnings:', totalEarnings);
 
   return (
     <>
