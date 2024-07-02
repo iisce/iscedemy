@@ -1,16 +1,15 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar"
-import { RiRobot3Fill } from "react-icons/ri";
-import { Button } from "@/components/ui/button"
-import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'
-import { CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import * as Icons from "@/lib/icons"
-import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import * as Icons from "@/lib/icons";
 import markdownToReact from "@/lib/markdown-util";
+import { cn } from "@/lib/utils";
+import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
+import React, { useEffect, useRef, useState } from "react";
+import { RiRobot3Fill } from "react-icons/ri";
 import { BeatLoader } from "react-spinners";
-import { BOT_MENU_BUTTON } from "@/lib/consts";
 
 export function Chatbot() {
   const [userInput, setUserInput] = useState("");

@@ -37,6 +37,7 @@ model User {
   password      String?
   accounts      Account[]
   CoursePayment CoursePayment[]
+  Course        Course[]
 
   @@map("users")
 }
@@ -82,6 +83,7 @@ model Course {
   textSnippet   String
   videoUrl      String
   tutorId       String
+  tutor         User    @relation(fields: [tutorId], references: [id])
   description   String
   conclusion    String
   summary       String
