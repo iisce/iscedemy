@@ -53,7 +53,7 @@ export default async function SingleCourse({
 	const numberOfRegistration = await getUserByCourseId(courseDetails.id);
 
 	const totalRating = reviews?.reduce(
-		(total, review) => total + review.rating,
+		(total: number, review: any) => total + review.rating,
 		0
 	);
 	const isPaid = currentUser?.courses?.includes(courseDetails.id);
@@ -135,7 +135,7 @@ export default async function SingleCourse({
 								<ul className='list-disc pl-6 mt-4 space-y-2 text-gray-600'>
 									{courseDetails.summary
 										.split('---')
-										.map((summaryList, i) => (
+										.map((summaryList: string, i: number) => (
 											<li key={i}>
 												{summaryList}
 											</li>
