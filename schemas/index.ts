@@ -159,3 +159,11 @@ export const UpdateReviewSchema = z.object({
 		message: 'Description must be at least 10 characters long',
 	}),
 });
+export const UpdateCourseSchema = z.object({
+	id: z.string(),
+	title: z.string().min(1, 'Title is required'),
+	textSnippet: z.string().min(1, 'Text Snippet is required'),
+	description: z.string().min(1, 'Description is required'),
+	conclusion: z.string().min(1, 'Conclusion is required'),
+	summary: z.string().min(1, 'Summary is required'),
+  });

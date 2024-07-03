@@ -72,3 +72,16 @@ export const updateReview = async (
 		return { error: 'something went wrong' };
 	}
 };
+
+export const getReviewsForTutor = async (tutorId: string) => {
+	try {
+	  const reviews = await db.review.findMany({
+		where: { id: tutorId },
+		orderBy: { createdAt: 'desc' },
+	  });
+	  return reviews ?? [];
+	} catch (error) {
+	  console.error(error);
+	  return [];
+	}
+  };
