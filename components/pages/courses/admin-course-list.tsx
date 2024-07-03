@@ -25,6 +25,7 @@ import { FilterIcon, ListOrderedIcon } from "lucide-react";
 import { Course } from "@prisma/client";
 import { CourseCard } from "@/app/(root)/student/page";
 import Link from "next/link";
+import { AdminCourseCard } from "@/components/pages/courses/admin-course-card";
 
 export default function AdminCourseList({ courses }: { courses: Course[] }) {
      const [searchTerm, setSearchTerm] = useState("");
@@ -265,21 +266,7 @@ export default function AdminCourseList({ courses }: { courses: Course[] }) {
                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                     {filteredCourses.map((course, b) => (
                          <Link href={`/admin/courses/${course.title}`} key={b}>
-                              <CourseCard
-                                   timeLeft={`${
-                                        course.classDays.split("---").length
-                                   } Days`}
-                                   duration={course.duration}
-                                   courseTitle={course.title
-                                        .split("-")
-                                        .join(" ")}
-                                   courseDescription={course.description}
-                                   courseId={""}
-                                   courseSlug={course.title}
-                                   variant={"green-teal"}
-                                   badgeText="HOT"
-                                   isBought
-                              />
+                              <AdminCourseCard course={course} />
                          </Link>
                     ))}
                </div>
