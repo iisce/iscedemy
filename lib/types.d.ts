@@ -1,50 +1,56 @@
 interface IMaxWidthWrapper {
-	className?: string;
-	children: React.ReactNode;
+     className?: string;
+     children: React.ReactNode;
 }
 
 interface ICOURSEITEM {
-	link: string;
-	name: string;
+     link: string;
+     name: string;
 }
 
 interface ICOURSEHEADER {
-	image: string;
-	header: string;
-	description: string;
-	link: string;
+     image: string;
+     header: string;
+     description: string;
+     link: string;
 }
 
 interface ICOURSELIST {
-	icon?: React.ReactNode[];
-	image: string;
-	link?: string;
-	title: string;
-	content: string;
+     icon?: React.ReactNode[];
+     image: string;
+     link?: string;
+     title: string;
+     content: string;
 }
 interface ICOURSELIST2 {
-	icon?: React.ReactNode;
-	image: string;
-	link?: string;
-	title: string;
-	content: string;
+     icon?: React.ReactNode;
+     image: string;
+     link?: string;
+     title: string;
+     content: string;
 }
 interface ICOURSES {
-	name: string;
+     name: string;
 }
 interface IOCCUPATION {
-	name: string;
+     name: string;
 }
-interface ITYPE{
-	name:string;
+interface ITYPE {
+     name: string;
 }
 interface ITutorProfileProps {
-	tutorName: string;
-	totalReviewsCount?: number;
-	highestAverageRating: number;
+     tutorName: string;
+     totalReviewsCount?: number;
+     highestAverageRating: number;
 }
 interface ISingleTutorReviews {
-	tutorName: string;
-	totalReviewsCount?: number;
-	highestAverageRating: number;
+     tutorName: string;
+     totalReviewsCount?: number;
+     highestAverageRating: number;
+}
+
+interface IFilter {
+     status: string[];
+     startDate: string | null;
+     endDate: string | null;
 }

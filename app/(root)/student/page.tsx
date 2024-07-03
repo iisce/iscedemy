@@ -11,7 +11,7 @@ import { BookIcon, ClockIcon } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
 
-function Badge({
+export function Badge({
      children,
      variant,
 }: {
@@ -36,7 +36,7 @@ function Badge({
      );
 }
 
-function CourseCard({
+export function CourseCard({
      badgeText,
      courseId,
      courseSlug,
@@ -88,7 +88,7 @@ function CourseCard({
      );
 }
 
-function CoursePaid({
+export function CoursePaid({
      title,
      curriculum,
 }: {
