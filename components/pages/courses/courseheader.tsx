@@ -14,7 +14,7 @@ export default function CourseHeader({
     <CarouselItem>
       <div className={`h-[300px] w-full rounded-md`}>
         <Image
-          alt="image"
+          alt="PalmTechnIQ"
           height="1000"
           width="1000"
           className=" h-[300px] w-full rounded-md relative"

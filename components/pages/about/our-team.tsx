@@ -18,7 +18,7 @@ export default function OurTeam() {
 						src='/christina.jpg'
 						width={400}
 						height={400}
-						alt='arin'
+						alt='PalmTechnIQ'
 						className='w-full object-cover'
 					/>
 				</div>

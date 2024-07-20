@@ -97,7 +97,7 @@ export default function Footer() {
 						</ol>
 						<ol className="flex gap-2 cursor-pointer">
 							<LucidePhone className="shrink-0" />
-							<Link href="tel:+2348163453826"> 08163453826 </Link>
+							<Link href="tel:+2349137206365"> 09137206365 </Link>
 						</ol>
 					</div>
 
@@ -122,13 +122,13 @@ export default function Footer() {
 					{`Subscribe To Our Newsletter`}
 				</div>
 				<form onSubmit={handleSubmit} >
-					<div className='border-b-2 rounded-lg h-12 my-4'>
+					<div className=' rounded-full h-12 my-4'>
 						<input
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder='Email Address'
 							type='email' 
-							className='px-3 w-full h-full border-none bg-slate-100 text-black rounded-lg placeholder:text-black'
+							className='px-3 w-full h-full border-none bg-slate-100 text-black rounded-full placeholder:text-black'
 						/>
 					</div>
 					<Button 
@@ -146,13 +146,13 @@ export default function Footer() {
 			</div>
 			<div className='pt-10  space-y-2'>
 				<div className='flex items-center gap-4 justify-center py-2'>
-					<Link href='https://www.twitter.com/'>
+					{/* <Link href='https://www.twitter.com/'>
 						<LucideTwitter />
-					</Link>
-					<Link href='https://www.facebook.com/'>
+					</Link> */}
+					<Link href='https://www.facebook.com/profile.php?id=61560523394595'>
 						<LucideFacebook />
 					</Link>
-					<Link href='https://www.instagram.com/'>
+					<Link href='https://www.instagram.com/palmtechniq/'>
 						<LucideInstagram />
 					</Link>
 					<Link href='https://www.linkedin.com/'>

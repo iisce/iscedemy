@@ -12,6 +12,7 @@ export default async function getUserByEmail(email: string) {
 		return user;
 	} catch {
 		return null;
+		
 	}
 }
 export async function getUserById(id: string) {

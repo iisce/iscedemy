@@ -1,6 +1,7 @@
 import { auth } from '@/auth';
 import TutorProfile from '@/components/component/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
+import { YouTubeEmbed } from '@next/third-parties/google';
 import FormError from '@/components/form-error';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -52,10 +53,12 @@ export default async function SingleCourse({
 	const numberOfRegistration = await getUserByCourseId(courseDetails.id);
 
 	const totalRating = reviews?.reduce(
-		(total, review) => total + review.rating,
+		(total: number, review: any) => total + review.rating,
 		0
 	);
 	const isPaid = currentUser?.courses?.includes(courseDetails.id);
+
+	
 	return (
 		<div className='bg-white justify-center w-full py-5'>
 			<div className='grid lg:grid-cols-5 gap-5'>
@@ -132,7 +135,7 @@ export default async function SingleCourse({
 								<ul className='list-disc pl-6 mt-4 space-y-2 text-gray-600'>
 									{courseDetails.summary
 										.split('---')
-										.map((summaryList, i) => (
+										.map((summaryList: string, i: number) => (
 											<li key={i}>
 												{summaryList}
 											</li>
@@ -223,16 +226,20 @@ export default async function SingleCourse({
 				</div>
 
 				<div className='lg:col-span-2 flex flex-col gap-5'>
-					<video
+				 <div className='w-full aspect-video'>	
+				<YouTubeEmbed videoid={courseDetails.videoUrl} height={315} width={400}
+					params="controls=1"/>
+					</div>
+					{/* <video
 						width='400'
 						height='315'
 						controls
 						className='w-full aspect-video'>
 						<source
-							src={courseDetails.videoUrl}
+							src={courseDetails.videoUrl.replace("watch?v=", "embed/")}
 							type='video/mp4'
 						/>
-					</video>
+					</video> */}
 
 					<div className='space-y-4 px-3 grid'>
 						<h3 className='text-xl font-semibold'>
@@ -349,7 +356,7 @@ export default async function SingleCourse({
 						{!isPaid && (
 							<div className='grid'>
 								<Button
-									className=' rounded-full'
+									className='rounded-full'
 									asChild>
 									<Link
 										href={`/courses/${courseDetails.title}/pay`}>

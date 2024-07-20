@@ -35,3 +35,13 @@
  ### Changed
 - Updated metadata for course pages to improve SEO.
 - Several UI improvements and bug fixes.
+  
+## 1.2.0 (2024-07-02)
+### Added
+- Tutor Dashboard : Now tutors can now access their dashboard and will be able to perform CRUD aside adding and deleting of course.
+- Added and completed tutor dashboard. 
+- Added quick replies for the chatbot to improve user experience
+- Added a new course and new tutor
+
+### Changed
+- Chnaged the interface of the PalmDesk AI Chatbot

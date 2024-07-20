@@ -3,6 +3,9 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient();
 
 async function seed() {
+
+   
+
     const tutor = await prisma.user.createMany({
         data: [
             {
@@ -106,7 +109,6 @@ async function seed() {
 
     console.log(`${tutor.count} Tutor Created`)
 
-
     const course = await prisma.course.createMany({
         data: [
             {
@@ -114,7 +116,7 @@ async function seed() {
                 title: `web-development`,
                 category: `Engineering`,
                 textSnippet: 'Take charge of your tech career with our {courseDetails.title} Crash Course!',
-                videoUrl: `/images/aboutsectionvideo.mp4`,
+                videoUrl: `https://www.youtube.com/watch?v=yQ-kcn49r7s`,
                 tutorId: `paul-ayobami`,
                 description: `You'll master the fundamental languages of the web (HTML, CSS, and JavaScript) and dive into React, a powerful tool for creating dynamic user interfaces. Learn to craft stunning layouts, bring your designs to life with interactive elements, and create responsive websites that look amazing on any device. No prior coding experience is required – just a passion for building awesome things on the web!`,
                 overView: `Ready to build websites from scratch? Our crash course covers everything you need, from basic HTML and CSS to JavaScript. Learn to create sites that work on any device and look great too. Plus, we'll teach you how to make your sites easy . Whether you're a beginner, join us and start coding your way to success!`,
@@ -168,7 +170,7 @@ async function seed() {
                 title: `graphic-design`,
                 category: `Design`,
                 textSnippet: 'From Doodles to Designs! Jumpstart Your Design Career with Our {courseDetails.title} Crash Course!',
-                videoUrl: `/images/aboutsectionvideo.mp4`,
+                videoUrl: `/videos/GraphicsDesign.mp4`,
                 tutorId: `ezekiel-mahoussi`,
                 description: `Make your ideas come to life! Learn to design amazing logos, posters, and images that grab attention and tell your story. Express yourself through colors, shapes, and stunning visuals.`,
                 overView: `Showcase your creativity and bring your ideas to life with our Graphic Design crash course. Whether you're a budding artist or a business owner looking to enhance your brand, our crash course will teach you the fundamentals of design principles, typography, color theory, and industry-standard software. Unlock the power to communicate visually and make a lasting impression.`,
@@ -186,7 +188,7 @@ async function seed() {
                 title: `ui-ux-designing`,
                 category: `Design`,
                 textSnippet: 'Design Digital Delights with our {courseDetails.title} Crash Course. A Practical Guide to UI/UX Fundamentals',
-                videoUrl: `/images/aboutsectionvideo.mp4`,
+                videoUrl: `/videos/UIDesign.mov`,
                 tutorId: `mawuli-owusu-promise`,
                 description: `Learn how to make websites look beautiful and work smoothly! In this class, you'll discover the secrets to designing websites that people love to use. We'll cover the basics of website building and teach you how to create stylish layouts, eye-catching visuals, and simple navigation. Can't wait to see you in class. Register now lets build something magical.`,
                 overView: `Create seamless, user-friendly experiences that delight and engage with our UI/UX course.Learn the principles of user interface and user experience design, and how to apply them to websites, apps, and digital products. From wireframing to prototyping, our hands-on training will equip you with the basic skills to design intuitive interfaces that users love to interact with.`,
@@ -204,7 +206,7 @@ async function seed() {
                 title: `mobile-app-development`,
                 category: `Application`,
                 textSnippet: 'Build Your App-titude! A Hands-On {courseDetails.title} Crash Course for Aspiring Developers.',
-                videoUrl: `/images/aboutsectionvideo.mp4`,
+                videoUrl: `https://www.youtube.com/watch?v=4tnR5oR_4EM`,
                 tutorId: `david-sokeye`,
                 description: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React develop engaging user-focused web applications.Get skills in creating dynamic and responsive interfaces. Learn efficient styling and layout techniques. `,
                 overView: `Turn your app idea into reality with our Mobile App Development crash course. No coding experience? No problem. Our beginner-friendly course will guide you through the fundamental level of app development process, from concept to launch. Discover the tools and techniques used by professional developers and bring your innovative app to the fingertips of users worldwide.`,
@@ -222,7 +224,7 @@ async function seed() {
                 title: `digital-marketing`,
                 category: `Business`,
                 textSnippet: 'Understand the Art of Online Influence with our {courseDetails.title} Crash Course!',
-                videoUrl: `/images/aboutsectionvideo.mp4`,
+                videoUrl: `/videos/DigitalMarketing.mp4`,
                 tutorId: `emeka-ignatius`,
                 description: `Become a digital marketing whiz and learn how to take your message to the masses in this exciting, hands-on course. Reach the world with your message! Discover the exciting ways to promote products, ideas, or even yourself online. Learn how to use social media, create awesome ads, and attract fans and followers.Whether you're promoting a business, a product, a cause, or even yourself, this course will equip you with the tools you need to make a real impact online.`,
                 overView: `Join the digital revolution and learn how to reach your audience effectively in the online world. Our Digital Marketing crash course the necessary things you need from social media strategies to search engine optimization, equipping you with the fundamental skills to drive traffic, generate leads, and increase sales. Stay ahead of the competition and make your mark in the digital landscape.`,
@@ -283,6 +285,78 @@ async function seed() {
 
     console.log(`${course.count} Courses Created`)
 
+    // const course = await prisma.course.create({
+    //     data: {
+    //         title: `data-analytics`,
+    //         image: `/images/data-analytics.jpeg`,
+    //         category: `Technology`,
+    //         textSnippet: `Master datasets and build interactive dashboards with our {courseDetails.title} Crash Course!`,
+    //         videoUrl: `/videos/data-analytics.mp4`,
+    //         tutorId: `clxovcvtk0000kro2uyfmso86`,
+    //         description: `This course is designed to provide a comprehensive introduction to the world of data analysis.
+    //         You will learn the essential skills and tools needed to become a data analyst, including data
+    //         cleaning, Data visualization, Data manipulation. The course covers the key concepts and
+    //         techniques used in data analysis to enable analyst drive meaningful insight.`,
+    //         overView: `Imagine transforming numbers and figures into captivating narratives that ignite change. Data surrounds us, but its true power lies dormant until unlocked by the magic of data analytics.
+
+    //         This course is designed for anyone eager to harness the power of data. Whether you're a complete novice or looking to refine your existing skills, we'll guide you through a step-by-step process.`,
+    //         conclusion: `At the end of this crash course, you'll have a solid foundation in data analytics and will have
+    //         created at least one fully interactive dashboard using any of the visualization tools. With this
+    //         skill, you'll be able to analyze datasets and build interactive dashboards, taking your data
+    //         analysis to the next level.`,
+    //         summary: `Explain the role of a data analyst and the key steps in the data analysis process.----Data Analysis Process: Understand the steps involved in data analysis, including data collection, cleaning, transformation, and visualization.---Data Visualization: Learn to create effective data visualizations using tools like Tableau,Power BI, and Excel---Data Manipulation: Master data manipulation techniques using SQL and R`,
+    //         virtualPrice: 30000,
+    //         physicalPrice: 50000,
+    //         noOfClass:`3`,
+    //         classDays: `Monday---Wednesday---Friday`,
+    //         duration: `6 hrs`,
+    //         certificate: true,
+
+    //     }
+    // })
+    // console.log(`${course.count} Course Updated`)
+
+    // const curriculum = await prisma.curriculum.createMany({
+    //     data: [
+    //         {
+    //             courseId: `data-analytics`,
+    //             headingNumber: `1`,
+    //             headingName: `Introduction to Data Analytics`,
+    //             headingDescription: `Overview of data analytics and its role in business---Understanding the data analysis process---Differentiating between data roles (data analyst, data scientist, business analyst, etc.)---Exploring data types, data structures, and data sources`,
+    //         },
+    //         {
+    //             courseId: `data-analytics`,
+    //             headingNumber: `2`,
+    //             headingName: `Data Manipulation with Excel`,
+    //             headingDescription: `Importing and cleaning data in Excel---Performing data transformations and calculations---Using Excel functions for data analysis---Creating pivot tables and charts`,
+    //         },
+    //         {
+    //             courseId: `data-analytics`,
+    //             headingNumber: `3`,
+    //             headingName: `Data Visualization with Power BI`,
+    //             headingDescription: `Connecting to data sources in Power BI---Creating interactive reports and dashboards---Implementing advanced visualization techniques---Sharing and publishing Power BI reports`,
+    //         },
+    //         {
+    //             courseId: `data-analytics`,
+    //             headingNumber: `4`,
+    //             headingName: `Data Visualization with Tableau`,
+    //             headingDescription: `Connecting to data sources in Tableau---Creating basic visualizations (bar charts, line charts, scatter plots, etc.)---Designing interactive dashboards`,
+    //         },
+    //         {
+    //             courseId: `data-analytics`,
+    //             headingNumber: `5`,
+    //             headingName: `Data Manipulation with SQL (PostgreSQL)`,
+    //             headingDescription: `Introduction to SQL and database concepts---Querying data using SELECT, FROM, WHERE, JOIN, and other SQL clauses---Performing data aggregation and filtering---Handling complex SQL queries`,
+    //         },
+    //         {
+    //             courseId: `data-analytics`,
+    //             headingNumber: `6`,
+    //             headingName: `Statistical Analysis with R`,
+    //             headingDescription: `Introduction to the R programming language---Importing and manipulating data in R---Performing descriptive and inferential statistics---Implementing regression analysis and forecasting`,
+    //         },
+    //     ]
+    // })
+    // console.log(`${curriculum.count} Curriculum Created`)
 
     const curriculum = await prisma.curriculum.createMany({
         data: [
@@ -485,6 +559,30 @@ async function seed() {
     })
 
     console.log(`${curriculum.count} Curriculum Created`)
+
+    // const tutor = await prisma.user.update({
+    //     where: {
+    //         id: 'clxovcvtk0000kro2uyfmso86'
+    //     },
+    //     data :
+    //         {
+    //             name: 'Oziegbe Rapheal Ehimen',
+    //             description: `I am a passionate and results-driven data analyst with a strong proficiency in leveraging various
+    //             data analysis tools to extract actionable insights from raw data. With a keen eye for detail and a
+    //             knack for problem-solving, I excel in transforming complex datasets into clear and concise
+    //             reports that drive informed decision-making for organizations.`,
+    //             email: 'ehimenrapheal47@gmail.com',
+    //             position: 'Data Analyst',
+    //             emailVerified: new Date(),
+    //             image: '/images/rapheal.jpg',
+    //             password: '',
+    //             phone: '08108391909',
+    //             role: 'TUTOR',
+    //         }
+        
+    // })
+    // console.log(`${tutor.count} Tutor Info Updated`)
+    
 }
 seed().catch((error) => {
     console.log({ error })

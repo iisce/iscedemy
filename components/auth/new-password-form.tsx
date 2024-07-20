@@ -36,12 +36,12 @@ export default function NewPasswordForm() {
       newPassword(values, token)
       .then((data) => {
         if (data?.error){
-          setError(data?.error)
-          setSuccess(data?.success);
-          if(data.success) {
-            form.reset();
-          }
+          setError(data?.error) 
         };
+        setSuccess(data?.success);
+        if(data.success) {
+          form.reset();
+        }
       })
     });
   };
