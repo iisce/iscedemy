@@ -1,16 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Badge } from "@/components/ui/badge";
+import { AdminCourseCard } from "@/components/pages/courses/admin-course-card";
 import { Button } from "@/components/ui/button";
-import {
-     Card,
-     CardContent,
-     CardDescription,
-     CardFooter,
-     CardHeader,
-     CardTitle,
-} from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
      DropdownMenu,
@@ -21,11 +12,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FilterIcon, ListOrderedIcon } from "lucide-react";
 import { Course } from "@prisma/client";
-import { CourseCard } from "@/app/(root)/student/page";
+import { FilterIcon, ListOrderedIcon } from "lucide-react";
 import Link from "next/link";
-import { AdminCourseCard } from "@/components/pages/courses/admin-course-card";
+import { useMemo, useState } from "react";
 
 export default function AdminCourseList({ courses }: { courses: Course[] }) {
      const [searchTerm, setSearchTerm] = useState("");

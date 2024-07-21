@@ -1,8 +1,6 @@
-import React from 'react';
+import DOMPurify from 'dompurify';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'; // Support GitHub Flavored Markdown (optional)
-import { JsxElement } from 'typescript';
-import DOMPurify from 'dompurify';
 
 interface MarkdownToReactProps {
     markdown: string;
