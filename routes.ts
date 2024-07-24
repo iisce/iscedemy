@@ -6,16 +6,19 @@
 
 
 export const publicRoutes = [
-    "/",
-    "/about",
-    "/contact",
-    "/courses",
-    "/register",
-    "/new-verification",
-    "/privacy-policy",
-    "/terms-of-use",
-    "/api/chat",
-]
+     "/",
+     "/about",
+     "/contact",
+     "/courses",
+     "/register",
+     "/new-verification",
+     "/privacy-policy",
+     "/terms-of-use",
+     "/api/chat",
+     "/blog",
+     "/blog/studio",
+     "/blog/studio/structure",
+];
 
 
 /**
