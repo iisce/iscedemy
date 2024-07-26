@@ -1,19 +1,28 @@
-import { Card } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 
 function BlogCard({ post }: IBlogCard) {
+     const imageURL = urlFor(post.overviewImage).url() || "/no-image.jpg";
      return (
-          <div className="flex flex-col justify-between border p-[20px] shadow-md">
+          <div className="flex flex-col justify-between rounded-md border p-2 shadow-md">
                <div>
-                    <div>
-                         <h2 className="text-[25px] font-bold">{post.title}</h2>
-                         <p className="line-clamp-4 border-l-4 pl-[10px] text-[13px]">
-                              {post.excerpt}
-                         </p>
-                    </div>
-                    <div className="my-[20px] flex flex-wrap gap-2 text-[9px] font-bold">
+                    <Image
+                         src={imageURL}
+                         alt={post.slug.current}
+                         width="1000"
+                         height="1000"
+                         className="rounded-md"
+                    />
+                    <h2 className="mt-[10px] text-[23px] font-bold">
+                         {post.title}
+                    </h2>
+                    <p className="line-clamp-3 border-l-4 pl-[10px] text-[13px]">
+                         {post.excerpt}
+                    </p>
+                    <div className="my-5 flex cursor-default flex-wrap gap-2 text-[9px] font-bold">
                          {post?.tag?.map((tag) => (
                               <span
                                    className="rounded-full bg-[#01613F] px-[11px] py-[7px] text-white"
@@ -24,7 +33,7 @@ function BlogCard({ post }: IBlogCard) {
                          ))}
                     </div>
                </div>
-               <div className="">
+               <div>
                     <hr />
                     <div className="flex items-center justify-between py-[10px]">
                          <p className="text-[12px] font-bold text-[#333]">
@@ -45,3 +54,5 @@ function BlogCard({ post }: IBlogCard) {
 }
 
 export default BlogCard;
+
+//Update addition: Author Name, Author dp,

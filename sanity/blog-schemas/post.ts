@@ -36,6 +36,13 @@ export const post = {
                     ),
           },
           {
+               name: "overviewImage",
+               title: "Title Image",
+               type: "image",
+               validation: (Rule: Rule) =>
+                    Rule.required().error("An image is required"),
+          },
+          {
                name: "body",
                title: "Body",
                type: "array",
