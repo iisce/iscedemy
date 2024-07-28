@@ -1,10 +1,9 @@
 "use server";
+import { getCourseById } from "@/data/course";
+import { getUserById } from "@/data/user";
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
 import { verifyTransaction } from "./paystack";
-import { getUserById } from "@/data/user";
-import { getCourseById } from "@/data/course";
 
 export async function verifyPayment(reference: string) {
   if (!reference) {

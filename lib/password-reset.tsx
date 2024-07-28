@@ -88,7 +88,7 @@ const PasswordReset = ({
               </Section>
               <Section className="pb-[40px] text-center ">
                 <Button
-                  href="https://web.facebook.com/profile.php?id=61560523394595"
+                  href="https://www.facebook.com/profile.php?id=61561459226438&mibextid=ZbWKwL"
                   className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img

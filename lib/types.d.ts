@@ -54,3 +54,16 @@ interface IFilter {
      startDate: string | null;
      endDate: string | null;
 }
+export interface Course {
+     id: string;
+     title: string;
+   }
+   
+   export interface Student {
+     id: string ;
+     name: string ;
+     image?: string | StaticImport;
+     email: string ;
+     phone: string ;
+     courses: Course[];
+   }

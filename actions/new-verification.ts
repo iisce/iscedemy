@@ -2,6 +2,7 @@
 import getUserByEmail from "@/data/user";
 import { getVerificationTokenByToken } from "@/data/verification-token";
 import { db } from "@/lib/db";
+import { onBoardingMail } from "@/lib/mail";
 
 export const newVerification = async ( token: string) => {
     
@@ -29,7 +30,8 @@ export const newVerification = async ( token: string) => {
         where: {id: existingUser.id},
         data: {
           emailVerified: new Date(),
-          email: existingToken.email
+          email: existingToken.email,
+          isVerified: true
         }
       });
 
@@ -37,5 +39,13 @@ export const newVerification = async ( token: string) => {
       await db.verificationToken.delete({
         where: {id: existingToken.id}
       });
+
+        // Ensure the user's name and email are not null before sending the onboarding email
+      if(existingUser.email && existingUser.name) {
+        await onBoardingMail(existingUser.email, existingUser.name);
+      } else {
+        console.error('User email or name not found, cannot send onboarding email')
+      }
+
       return { success: "Email verified" };
   };

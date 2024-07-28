@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
     const result = await model.generateContent(request);
     const aiMessage = await result.response.text()
 
-    const quickReplies = ["Tell me more", "How can I register", "What courses do you offer", "Contact support", "How do I make payment?"];
+    const quickReplies = ["Tell me more about PalmTechnIQ", "How can I register", "What courses do you offer", "Contact support", "How do I make payment?"];
 
     return NextResponse.json(
       {

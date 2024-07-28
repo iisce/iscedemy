@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import EmailVerification from "./email-verification";
 import EmailNewsLetter from "./newsletter-subs";
 import PasswordReset from "./password-reset";
+import SignIn from "./signin";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -46,5 +47,19 @@ export const subscribeToNewsletter = async (email: string) => {
     } catch (error) {
         console.error('Error subcribing to newsletter!', error);
         return {error: "Subcription failed! Try again"};
+    }
+};
+export const onBoardingMail = async ( email: string, fullName: string) => {
+    try {
+        await resend.emails.send({
+            from: process.env.FROM_EMAIL_ADDRESS!,
+            to: email,
+            subject: "Welcome to PalmTechnIQ",
+            react: SignIn({fullName})
+        });
+        return { success: "Signed-Up successfully!"};
+    } catch (error) {
+        console.error('Error creating account!', error);
+        return {error: "Account Creation failed! Try again"};
     }
 };

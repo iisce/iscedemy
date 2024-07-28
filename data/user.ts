@@ -43,3 +43,20 @@ export async function getUserByCourseId(course: string) {
 		return null;
 	}
 }
+
+export async function getTotalUsersExcludingTutors() {
+	try {
+		const count = await db.user.count({
+			where: {
+				role: {
+					not: 'TUTOR' || 'ADMIN',
+				},
+			},
+		});
+		return count;
+
+	} catch(error) {
+		console.log({error})
+		return 0
+	}
+}

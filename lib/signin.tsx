@@ -3,28 +3,24 @@ import {
   Button,
   Container,
   Head,
+  Hr,
   Html,
   Img,
-  Hr,
-  Link,
-  Section,
-  Column,
-  Row,
-  Text,
-  Tailwind,
   Preview,
+  Section,
+  Tailwind,
+  Text
 } from "@react-email/components";
-import React from "react";
 
 interface SignInProps {
-  fullName: string;
+  fullName?: string;
 }
 
 const baseUrl = process.env.VERCEL_URL
   ? `${process.env.VERCEL_URL}`
   : "/static";
 
-const SignIn = ({ fullName = "Nweke Ifeagwu" }: SignInProps) => {
+const SignIn = ({ fullName = "" }: SignInProps) => {
   return (
     <Tailwind>
       <Html>
@@ -66,7 +62,7 @@ const SignIn = ({ fullName = "Nweke Ifeagwu" }: SignInProps) => {
               </Section>
               <Section className=" md:text-left text-center">
                 <Button
-                  href="https://wa.me/qr/GHKMMDKEJZNEF1" /*Admin whatsapp link*/
+                  href="https://www.palmtechniq.com/courses" 
                   className=" cursor-pointer rounded-full text-white text-[13px] bg-green-600 "
                   style={{ padding: "10px 20px", margin: "0 auto" }}
                 >
@@ -97,7 +93,7 @@ const SignIn = ({ fullName = "Nweke Ifeagwu" }: SignInProps) => {
               </Section>
               <Section className="pb-[40px] text-center ">
                 <Button
-                  href="/"
+                  href="https://www.facebook.com/profile.php?id=61561459226438&mibextid=ZbWKwL"
                   className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img
@@ -108,7 +104,7 @@ const SignIn = ({ fullName = "Nweke Ifeagwu" }: SignInProps) => {
                   />
                 </Button>
                 <Button
-                  href="/"
+                  href="https://www.linkedin.com/in/palm-techniq-03839b313/"
                   className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img
@@ -119,7 +115,7 @@ const SignIn = ({ fullName = "Nweke Ifeagwu" }: SignInProps) => {
                   />
                 </Button>
                 <Button
-                  href="/"
+                  href="https://www.instagram.com/palmtechniq/"
                   className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
                 >
                   <Img
@@ -127,6 +123,17 @@ const SignIn = ({ fullName = "Nweke Ifeagwu" }: SignInProps) => {
                     height="23"
                     alt="PalmTechnIQ"
                     src={`https://static-00.iconduck.com/assets.00/instagram-icon-256x256-ubgz701g.png`}
+                  />
+                </Button>
+                <Button
+                  href="https://app.slack.com/client/T076LDT7109/C0764SE3VB7"
+                  className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
+                >
+                  <Img
+                    width="23"
+                    height="23"
+                    alt="PalmTechnIQ"
+                    src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/slack-icon.png`}
                   />
                 </Button>
               </Section>

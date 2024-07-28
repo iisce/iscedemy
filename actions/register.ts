@@ -23,21 +23,26 @@ export const Register = async (values: z.infer<typeof RegisterSchema>) => {
 		return { error: 'Email already in use!' };
 	}
 
+	const verificationToken = await generateverificationToken(email);
+
 	await db.user.create({
 		data: {
 			name,
 			email,
 			password: hashedPassword,
 			phone,
-			role: 'STUDENT',
+			role: 'USER',
+			verificationToken: verificationToken.token,
+			isVerified: false,
+			
 		},
 	});
 
-	const verificationToken = await generateverificationToken(email);
 	await sendVerificationEmail(
 		verificationToken.email,
 		verificationToken.token
 	);
+	
 
 	return { success: 'Confirmation email sent!' };
 };
