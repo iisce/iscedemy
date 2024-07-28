@@ -25,6 +25,11 @@ export const NAVLINKS: {
 		title: 'Courses',
 	},
 	{
+		name: 'blog',
+		href: '/blog',
+		title: 'Blogs',
+	},
+	{
 		name: 'contact',
 		href: '/contact',
 		title: 'Contact',

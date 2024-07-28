@@ -49,6 +49,33 @@ interface ISingleTutorReviews {
      highestAverageRating: number;
 }
 
+interface IPost {
+     _id: string;
+     title: string;
+     slug: { current: string };
+     publisheddatetime: string;
+     excerpt: string;
+     overviewImage;
+     body: any[];
+     tag: Array<ITag>;
+}
+
+interface ITag {
+     name: string;
+     slug: { current: string };
+     _id: string;
+}
+
+interface IBlogCard {
+     post: IPost;
+}
+
+interface ISingleBlog {
+     params: {
+          slug: string;
+     };
+}
+
 interface IFilter {
      status: string[];
      startDate: string | null;
