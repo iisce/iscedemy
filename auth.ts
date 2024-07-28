@@ -38,7 +38,6 @@ export const {
 			}
 			return session;
 		},
-
 		async jwt({ token }) {
 			return token;
 		},

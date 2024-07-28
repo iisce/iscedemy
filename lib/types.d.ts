@@ -69,3 +69,9 @@ interface ITag {
 interface IBlogCard {
      post: IPost;
 }
+
+interface ISingleBlog {
+     params: {
+          slug: string;
+     };
+}

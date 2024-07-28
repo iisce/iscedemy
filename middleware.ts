@@ -5,37 +5,42 @@ import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, authRoutes, publicRoutes } from 
 const { auth } = NextAuth(authConfig)
 
 export default auth((req) => {
-    const { nextUrl } = req;
-    const isLoggedIn = !!req.auth;
+     const { nextUrl } = req;
+     const isLoggedIn = !!req.auth;
 
-    const isApiAuthRoutes = nextUrl.pathname.startsWith(apiAuthPrefix);
-    const isPublicRoutes = publicRoutes.includes(nextUrl.pathname);
-    const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+     const isApiAuthRoutes = nextUrl.pathname.startsWith(apiAuthPrefix);
+     const isPublicRoutes = publicRoutes.includes(nextUrl.pathname);
+     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-    const isCourseRoutes = nextUrl.pathname.startsWith('/courses')
+     const isBlogPage = publicRoutes.includes("/blog");
+     const isCourseRoutes = nextUrl.pathname.startsWith("/courses");
 
-    if (isApiAuthRoutes) {
-        return;
-    }
+     if (isApiAuthRoutes) {
+          return;
+     }
 
-    if (isAuthRoute) {
-        if (isLoggedIn) {
-            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
-        }
-        return;
-    }
+     if (isAuthRoute) {
+          if (isLoggedIn) {
+               return Response.redirect(
+                    new URL(DEFAULT_LOGIN_REDIRECT, nextUrl),
+               );
+          }
+          return;
+     }
 
-    if (!isLoggedIn && !isPublicRoutes && !isCourseRoutes) {
-        let callBackUrl = nextUrl.pathname
-        if (nextUrl.search) {
-            callBackUrl += nextUrl.search
-        }
+     if (!isLoggedIn && !isPublicRoutes && !isCourseRoutes && !isBlogPage) {
+          let callBackUrl = nextUrl.pathname;
+          if (nextUrl.search) {
+               callBackUrl += nextUrl.search;
+          }
 
-        const encodedCallBackUrl = encodeURIComponent(callBackUrl)
-        return Response.redirect(new URL(`/login?callBackUrl=${encodedCallBackUrl}`, nextUrl));
-    }
+          const encodedCallBackUrl = encodeURIComponent(callBackUrl);
+          return Response.redirect(
+               new URL(`/login?callBackUrl=${encodedCallBackUrl}`, nextUrl),
+          );
+     }
 
-    return;
+     return;
 }) 
 
 
