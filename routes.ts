@@ -21,7 +21,7 @@ import { NextResponse } from "next/server";
      ];
      /**
       * These are array of routes that requires authentication
-      * These routes wil redirect logged in users to /settings
+      * These routes wil redirect logged in users to /courses
       * @type {string[]}
       */
      export const authRoutes = [
