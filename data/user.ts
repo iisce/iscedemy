@@ -22,10 +22,12 @@ export async function getUserById(id: string) {
 				id,
 			},
 		});
+		console.log(`Fetched user data:`, user);
 		return user;
-	} catch {
+	}  catch (error) {
+		console.error(`Error fetching user with ID ${id}:`, error);
 		return null;
-	}
+	  }
 }
 
 export async function getUserByCourseId(course: string) {

@@ -1,125 +1,11 @@
 import { auth } from "@/auth";
+import { CoursePaid } from "@/components/component/student/course-paid";
+import { CourseCard } from "@/components/component/student/student-card";
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { getAllCourses, getCourseById } from "@/data/course";
 import { getAllCurriculumByCourseId } from "@/data/curriculum";
 import { getUserById } from "@/data/user";
-import { cn } from "@/lib/utils";
-import { Curriculum } from "@prisma/client";
-import { BookIcon, ClockIcon } from "lucide-react";
-import Link from "next/link";
-import { ReactNode } from "react";
 
-export function Badge({
-     children,
-     variant,
-}: {
-     children: ReactNode;
-     variant: "blue-purple" | "green-teal" | "yellow-orange";
-}) {
-     const bluePurpleClasses = "from-blue-500 to-purple-500";
-     const greenTealClasses = "from-green-500 to-teal-600";
-     const yellowOrangeClasses = "from-yellow-500 to-orange-500";
-
-     return (
-          <div
-               className={cn(
-                    "rounded-full bg-gradient-to-r px-3 py-1 text-sm text-white",
-                    variant === "blue-purple" && bluePurpleClasses,
-                    variant === "green-teal" && greenTealClasses,
-                    variant === "yellow-orange" && yellowOrangeClasses,
-               )}
-          >
-               {children}
-          </div>
-     );
-}
-
-export function CourseCard({
-     badgeText,
-     courseId,
-     courseSlug,
-     courseTitle,
-     courseDescription,
-     timeLeft,
-     duration,
-     variant,
-     isBought,
-}: {
-     badgeText?: string;
-     timeLeft: string;
-     duration: string;
-     courseTitle: string;
-     courseDescription: string;
-     courseId?: string;
-     courseSlug: string;
-     variant: "blue-purple" | "green-teal" | "yellow-orange";
-     isBought?: boolean;
-}) {
-     return (
-          <Card>
-               <CardContent>
-                    <div className="my-4 flex items-center justify-between">
-                         <Badge variant={variant}>{badgeText}</Badge>
-                         <div className="text-gray-500">{timeLeft}</div>
-                    </div>
-                    <h3 className="mb-2 text-xl font-bold capitalize">
-                         {courseTitle}
-                    </h3>
-                    <p className="mb-4 line-clamp-2 text-gray-500">
-                         {courseDescription}
-                    </p>
-                    <div className="flex items-center justify-between">
-                         <div className="flex items-center gap-2">
-                              <ClockIcon className="h-4 w-4 text-gray-500" />
-                              <span className="text-gray-500">{duration}</span>
-                         </div>
-                         {!isBought && (
-                              <Button asChild size="sm">
-                                   <Link href={`/courses/${courseSlug}/pay`}>
-                                        Enroll
-                                   </Link>
-                              </Button>
-                         )}
-                    </div>
-               </CardContent>
-          </Card>
-     );
-}
-
-export function CoursePaid({
-     title,
-     curriculum,
-}: {
-     title: string;
-     curriculum?: Curriculum[];
-}) {
-     return (
-          <Card>
-               <CardContent>
-                    <div className="my-4 flex items-center justify-between">
-                         <h3 className="text-xl font-bold capitalize">
-                              {title.split("-").join(" ")}
-                         </h3>
-                    </div>
-                    <div className="flex items-center justify-between">
-                         <Button variant="outline" size="sm" asChild>
-                              <Link href={`/courses/${title}?tab=curriculum`}>
-                                   Resume
-                              </Link>
-                         </Button>
-                         <div className="flex items-center gap-2">
-                              <BookIcon className="h-4 w-4 text-gray-500" />
-                              <span className="text-gray-500">
-                                   {curriculum?.length} lessons
-                              </span>
-                         </div>
-                    </div>
-               </CardContent>
-          </Card>
-     );
-}
 
 export default async function StudentDashboard() {
      const session = await auth();
@@ -135,7 +21,7 @@ export default async function StudentDashboard() {
                     </h2>
                     {paidCourses && paidCourses.length > 0 ? (
                          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                              {paidCourses.map(async (id, b) => {
+                              {await paidCourses.map(async (id, b) => {
                                    const currentCourse =
                                         await getCourseById(id);
                                    const curriculum =
@@ -169,7 +55,6 @@ export default async function StudentDashboard() {
                                    courseDescription={course.description}
                                    courseId={""}
                                    courseSlug={course.title}
-                                   variant={"green-teal"}
                                    badgeText="HOT"
                                    isBought={paidCourses?.includes(course.id)}
                               />
@@ -272,3 +157,5 @@ export default async function StudentDashboard() {
           </MaxWidthWrapper>
      );
 }
+
+

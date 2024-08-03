@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from '@/lib/icons';
+import { ICOURSELIST2 } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 

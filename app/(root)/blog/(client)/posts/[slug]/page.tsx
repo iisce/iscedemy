@@ -8,6 +8,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
+import { IPost, ISingleBlog } from "@/lib/types";
 
 async function getPost(slug: string) {
      const query = `*[_type == "post" && slug.current== "${slug}"][0]{

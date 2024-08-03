@@ -2,6 +2,7 @@ import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import * as Icons from './icons';
 import React from 'react';
 import { User, Course, Curriculum } from '@prisma/client';
+import { ICOURSEHEADER, ICOURSEITEM, ICOURSELIST2, ICOURSES, IOCCUPATION, ITYPE } from './types';
 
 export const NAVLINKS: {
 	name: string;

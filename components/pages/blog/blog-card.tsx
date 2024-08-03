@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import { IBlogCard } from "@/lib/types";
 
 function BlogCard({ post }: IBlogCard) {
      const imageURL = urlFor(post.overviewImage).url();

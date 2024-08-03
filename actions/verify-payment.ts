@@ -50,21 +50,13 @@ export async function verifyPayment(reference: string) {
         data: { status: "SUCCESSFUL" },
       });
 
-	//   let existingCourses = buyer.courses
-
-	//   if(existingCourses) {
-	// 	existingCourses = existingCourses.concat('---',transaction.courseId) 
-	//   } else {
-	// 	existingCourses=transaction.courseId
-	//   }
-
 	const registeredCourses = buyer.courses? `${buyer.courses}---${transaction.courseId}`: transaction.courseId
 
 	console.log({registeredCourses})
 
 	  await db.user.update({
 		where : {id: buyer.id},
-		data: {courses: registeredCourses},
+		data: {courses: registeredCourses, role: 'STUDENT'},
 	  })
       revalidatePath(`/courses/${courseTitle}`);
 

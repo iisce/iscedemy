@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { IFilter } from "@/lib/types";
 import { Course } from "@prisma/client";
 import { FilterIcon, ListOrderedIcon } from "lucide-react";
 import Link from "next/link";
@@ -33,20 +34,9 @@ export default function AdminCourseList({ courses }: { courses: Course[] }) {
                     const nameMatch = course.title
                          .toLowerCase()
                          .includes(searchTerm.toLowerCase());
-                    // const statusMatch =
-                    //      filters.status.length === 0 ||
-                    //      filters.status.includes(course.status);
-                    // const startDateMatch =
-                    //      !filters.startDate ||
-                    //      new Date(course.startDate) >=
-                    //           new Date(filters.startDate);
-                    // const endDateMatch =
-                    //      !filters.endDate ||
-                    //      new Date(course.endDate) <= new Date(filters.endDate);
+                   
                     return nameMatch;
-                    // &&statusMatch
-                    // && startDateMatch &&
-                    // endDateMatch
+                   
                })
                .sort((a, b) => {
                     if (sortBy === "name") {
@@ -54,19 +44,7 @@ export default function AdminCourseList({ courses }: { courses: Course[] }) {
                               ? a.title.localeCompare(b.title)
                               : b.title.localeCompare(a.title);
                     }
-                    // else if (sortBy === "startDate") {
-                    //      return sortOrder === "asc"
-                    //           ? Number(new Date(a.startDate)) -
-                    //                  Number(new Date(b.startDate))
-                    //           : Number(new Date(b.startDate)) -
-                    //                  Number(new Date(a.startDate));
-                    // } else if (sortBy === "endDate") {
-                    //      return sortOrder === "asc"
-                    //           ? Number(new Date(a.endDate)) -
-                    //                  Number(new Date(b.endDate))
-                    //           : Number(new Date(b.endDate)) -
-                    //                  Number(new Date(a.endDate));
-                    // }
+                    
                     else {
                          return 0;
                     }
@@ -201,53 +179,7 @@ export default function AdminCourseList({ courses }: { courses: Course[] }) {
                                                   </Label>
                                              </div>
                                         </div>
-                                        {/* <div>
-                                             <h3 className="mb-2 text-lg font-semibold">
-                                                  Date Range
-                                             </h3>
-                                             <div className="grid gap-4">
-                                                  <div>
-                                                       <Label htmlFor="startDate">
-                                                            Start Date
-                                                       </Label>
-                                                       <Input
-                                                            type="date"
-                                                            id="startDate"
-                                                            value={
-                                                                 filters.startDate ||
-                                                                 ""
-                                                            }
-                                                            onChange={(e) =>
-                                                                 handleFilter(
-                                                                      "startDate",
-                                                                      e.target
-                                                                           .value,
-                                                                 )
-                                                            }
-                                                       />
-                                                  </div>
-                                                  <div>
-                                                       <Label htmlFor="endDate">
-                                                            End Date
-                                                       </Label>
-                                                       <Input
-                                                            type="date"
-                                                            id="endDate"
-                                                            value={
-                                                                 filters.endDate ||
-                                                                 ""
-                                                            }
-                                                            onChange={(e) =>
-                                                                 handleFilter(
-                                                                      "endDate",
-                                                                      e.target
-                                                                           .value,
-                                                                 )
-                                                            }
-                                                       />
-                                                  </div>
-                                             </div>
-                                        </div> */}
+                                       
                                    </div>
                               </DropdownMenuContent>
                          </DropdownMenu>
@@ -255,7 +187,10 @@ export default function AdminCourseList({ courses }: { courses: Course[] }) {
                </div>
                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                     {filteredCourses.map((course, b) => (
-                         <Link href={`/admin/courses/${course.title}`} key={b}>
+                         // <Link href={`/admin/courses/${course.title}`} key={b}>
+                         //      <AdminCourseCard course={course} />
+                         // </Link>
+                         <Link href='/courses' key={b}>
                               <AdminCourseCard course={course} />
                          </Link>
                     ))}
