@@ -56,4 +56,3 @@ function BlogCard({ post }: IBlogCard) {
 
 export default BlogCard;
 
-//Update addition: Author Name, Author dp,
