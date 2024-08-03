@@ -2,8 +2,8 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
-import { IBlogCard } from "@/lib/types";
+import { IBlogCard } from "../../../lib/types";
+import { urlFor } from "../../../sanity/lib/image";
 
 function BlogCard({ post }: IBlogCard) {
      const imageURL = urlFor(post.overviewImage).url();
