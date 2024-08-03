@@ -1,6 +1,6 @@
-import { ICOURSEITEM } from "@/lib/types";
 import Link from "next/link";
 import React from "react";
+import { ICOURSEITEM } from "../../../lib/types";
 
 export default function CourseItem({ link, name }: ICOURSEITEM) {
   

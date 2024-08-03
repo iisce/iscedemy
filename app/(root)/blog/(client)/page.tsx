@@ -1,6 +1,6 @@
-import BlogCard from "@/components/pages/blog/blog-card";
-import { IPost } from "@/lib/types";
-import { client } from "@/sanity/lib/client";
+import BlogCard from "../../../../components/pages/blog/blog-card";
+import { IPost } from "../../../../lib/types";
+import { client } from "../../../../sanity/lib/client";
 import Image from "next/image";
 import React from "react";
 

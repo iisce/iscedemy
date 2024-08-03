@@ -4,11 +4,11 @@ import { FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import Link from "next/link";
 import React from "react";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
+import { client} from '../../../../../../sanity/lib/client'
 import Image from "next/image";
 import { PortableText } from "next-sanity";
-import { IPost, ISingleBlog } from "@/lib/types";
+import { urlFor } from "../../../../../../sanity/lib/image";
+import { IPost, ISingleBlog } from "../../../../../../lib/types";
 
 async function getPost(slug: string) {
      const query = `*[_type == "post" && slug.current== "${slug}"][0]{

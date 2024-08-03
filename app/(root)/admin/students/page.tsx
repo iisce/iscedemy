@@ -1,6 +1,6 @@
-import StudentCard from "@/components/pages/dashboard/student-card";
-import { getAllStudents } from "@/data/student";
-import { Student } from "@/lib/types";
+import StudentCard from "../../../../components/pages/dashboard/student-card";
+import { getAllStudents } from "../../../../data/student";
+import { Student } from "../../../../lib/types";
 import React from "react";
 
 export default async function AdminStudents() {

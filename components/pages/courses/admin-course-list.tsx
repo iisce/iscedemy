@@ -1,18 +1,20 @@
 "use client";
-
-import { AdminCourseCard } from "@/components/pages/courses/admin-course-card";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import React from "react";
+import { AdminCourseCard } from '../../../components/pages/courses/admin-course-card'
+// import { Button } from "@/components/ui/button";
+// import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from '../../../components/ui/button';
+import {Checkbox } from '../../../components/ui/checkbox';
 import {
      DropdownMenu,
      DropdownMenuContent,
      DropdownMenuRadioGroup,
      DropdownMenuRadioItem,
      DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { IFilter } from "@/lib/types";
+} from "../../../components/ui/dropdown-menu";
+import { Input } from "../../../components/ui/input";
+import { Label } from "../../../components/ui/label";
+import { IFilter } from "../../../lib/types";
 import { Course } from "@prisma/client";
 import { FilterIcon, ListOrderedIcon } from "lucide-react";
 import Link from "next/link";

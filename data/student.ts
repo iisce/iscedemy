@@ -1,7 +1,7 @@
 // data/student.ts
 
-import { db } from "@/lib/db";
-import { Student } from "@/lib/types";
+import { db } from "../lib/db";
+import { Student } from "../lib/types";
 
 export async function getAllStudents(): Promise<Student[]> {
   try {

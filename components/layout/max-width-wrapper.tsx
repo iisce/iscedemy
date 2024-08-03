@@ -1,6 +1,6 @@
-import { IMaxWidthWrapper } from '@/lib/types';
-import { cn } from '@/lib/utils';
 import React from 'react';
+import { IMaxWidthWrapper } from '../../lib/types';
+import { cn } from '../../lib/utils'
 
 export default function MaxWidthWrapper({
 	className,

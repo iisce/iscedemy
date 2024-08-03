@@ -1,8 +1,9 @@
 'use client'
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import Modal from "@/components/ui/modal";
-import { Student } from "@/lib/types";
+import React from "react";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../../components/ui/card";
+import Modal from "../../../components/ui/modal";
+import { Student } from "../../../lib/types";
 import { useState } from "react";
 
 
