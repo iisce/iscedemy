@@ -5,7 +5,28 @@ import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import { getAllCourses, getCourseById } from "@/data/course";
 import { getAllCurriculumByCourseId } from "@/data/curriculum";
 import { getUserById } from "@/data/user";
+import { Metadata } from "next";
 
+
+export const metadata: Metadata = {
+	title: 'Student Dashboard',
+	description: 'Stay in-charge of your courses and monitor your learning process!',
+	metadataBase: new URL('https://www.palmtechniq.com/student'),
+	alternates:{
+	  canonical: '/student',
+	  languages: {
+		'en-US':'/en-US',
+		'de-DE': '/de-DE',
+	  },
+	},
+	openGraph: {
+	  title: 'Student Dashboard',
+	  description: 'Stay in-charge of your courses and monitor your learning process!',
+	  url: 'https://www.palmtechniq.com/student',
+	  siteName: 'PalmTechnIQ',
+	  images: '/innovation.jpg'
+	}
+  }
 
 export default async function StudentDashboard() {
      const session = await auth();

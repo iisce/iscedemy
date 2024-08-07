@@ -43,8 +43,8 @@ function BlogCard({ post }: IBlogCard) {
                          <Link href={`blog/posts/${post.slug.current}/`}>
                               <span>
                                    <p className="flex items-center gap-1 text-[12px]">
-                                        READ MORE{" "}
-                                        <ArrowRight className="h-3 w-3" />{" "}
+                                        READ MORE
+                                        <ArrowRight className="h-3 w-3" />
                                    </p>
                               </span>
                          </Link>

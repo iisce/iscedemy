@@ -3,6 +3,28 @@ import TutorDashboard from "@/components/pages/dashboard/tutor-dashboard";
 import { getAllReviewsByTutorName } from "@/data/reviews";
 import { getAllCoursesByTutor, getEarningsForCourse, getEnrollmentsForCourse } from "@/data/tutor";
 import { getUserById } from "@/data/user";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+	title: 'Tutor Dashboard',
+	description: 'Stay in-charge of your courses and keep track of your revenue!',
+	metadataBase: new URL('https://www.palmtechniq.com/tutor'),
+	alternates:{
+	  canonical: '/tutor',
+	  languages: {
+		'en-US':'/en-US',
+		'de-DE': '/de-DE',
+	  },
+	},
+	openGraph: {
+	  title: 'Tutor Dashboard',
+	  description: 'Stay in-charge of your courses and keep track of your revenue!',
+	  url: 'https://www.palmtechniq.com/tutor',
+	  siteName: 'PalmTechnIQ',
+	  images: '/christina.jpg'
+	}
+  }
 
 export default async function TutorDashboardPage() {
   const session = await auth();

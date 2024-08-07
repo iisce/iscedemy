@@ -3,9 +3,42 @@ import PurchaseCourseForm from '@/components/component/purchase-course-form';
 import { Button } from '@/components/ui/button';
 import { getCourseBySlug } from '@/data/course';
 import { getUserById } from '@/data/user';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { course: string };
+}): Promise<Metadata> {
+	const courseDetails = await getCourseBySlug(params.course);
+
+	if (!courseDetails) {
+		notFound();
+	}
+
+	return {
+		title: courseDetails.title.split('-').join(' '),
+		description: courseDetails.description,
+		openGraph: {
+			title: courseDetails.title.split('-').join(' '),
+			description: courseDetails.description,
+			url: `https://www.palmtechniq.com/courses/${params.course}`,
+			siteName: 'PalmTechnIQ',
+			images: [
+				{
+					url: courseDetails.description || '/innovation.jpg',
+					width: 800,
+					height: 600,
+					alt: courseDetails.title || "PalmTechnIQ",
+				},
+			],
+		},
+	};
+}
+
 
 export default async function EnrollPage({
 	params,

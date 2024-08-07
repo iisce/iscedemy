@@ -1,6 +1,32 @@
 import CourseCarousel from "@/components/pages/courses/course-carousel";
 import CourseList from "@/components/pages/courses/courselist";
 import { getAllCourses } from "@/data/course";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+	title:{
+		absolute:  'Explore Courses',
+	},
+	description: 'We believe in child education! The way to change the world is by enabling them to paint a world of their own.',
+	metadataBase: new URL('https://www.palmtechniq.com/courses'),
+	alternates:{
+	  canonical: '/courses',
+	  languages: {
+		'en-US':'/en-US',
+		'de-DE': '/de-DE',
+	  },
+	},
+	openGraph: {
+	  title: {
+		absolute: 'Explore Courses',
+	  },
+	  description: 'We believe in child education! The way to change the world is by enabling them to paint a world of their own.',
+	  url: 'https://www.palmtechniq.com/courses',
+	  siteName: 'PalmTechnIQ',
+	  images: '/jopwe.jpg'
+	}
+}
 
 export default async function CoursesPage() {
      const courses = await getAllCourses();

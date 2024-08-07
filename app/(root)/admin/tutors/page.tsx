@@ -1,5 +1,28 @@
 import { getAllTutors } from "@/actions/tutor";
 import { TutorCard } from "@/components/pages/courses/admin-tutorcard";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+	title: 'Tutor Dashboard',
+	description: 'Stay in-charge of your courses and keep track of your revenue!',
+	metadataBase: new URL('https://www.palmtechniq.com/tutor'),
+	alternates:{
+	  canonical: '/tutor',
+	  languages: {
+		'en-US':'/en-US',
+		'de-DE': '/de-DE',
+	  },
+	},
+	openGraph: {
+	  title: 'Tutor Dashboard',
+	  description: 'Stay in-charge of your courses and keep track of your revenue!',
+	  url: 'https://www.palmtechniq.com/tutor',
+	  siteName: 'PalmTechnIQ',
+	  images: '/christina.jpg'
+	}
+  }
+
 
 export default async function TutorPage() {
   const tutors = await getAllTutors();

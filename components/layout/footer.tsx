@@ -55,30 +55,6 @@ export default function Footer() {
 							<div className=" font-normal text-sm">
 								{`PalmTechnIQ is an educational platform that offers a wide range of courses and resources in various fields such as technology, business, arts, and more. Our mission is to provide accessible and high-quality education to learners worldwide. `}
 						</div>
-						{/* <ol className='grid grid-cols-2 gap-4'>
-					<li className='bg-black h-12 justify-center gap-2 flex items-center text-white rounded-lg'>
-						<LucideApple />
-						<div>
-							<div className='text-white text-[9px]'>
-								Download On The
-							</div>
-							<div className='text-white text-[16px] font-bold'>
-								App Store
-							</div>
-						</div>
-					</li>
-					<li className='bg-black h-12 justify-center gap-2 flex items-center text-white rounded-lg'>
-						<LucideApple />
-						<div>
-							<div className='text-white text-[11px]'>
-								Get it In
-							</div>
-							<div className='text-white text-[16px] font-bold'>
-								Google Play
-							</div>
-						</div>
-					</li>
-				</ol> */}
 					</div>
 
 					<div className="w-full flex flex-col gap-4 text-sm">
@@ -160,6 +136,7 @@ export default function Footer() {
 					</Link>
 				</div>
 				<div className='grid justify-center'>
+					{`Powered by ISCE`}
 					{`2024 PalmTechnIQ. All Rights Reserved.`}
 				</div>
 			</div>
