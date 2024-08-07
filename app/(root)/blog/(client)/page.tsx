@@ -8,8 +8,8 @@ import { notFound } from "next/navigation";
 
 
 // Function to fetch a specific post by slug
-async function getPost(slug: string) {
-     const query = `*[_type == "post" && slug.current == $slug][0]{
+async function getPost() {
+     const query = `*[_type == "post"]{
   title,
   slug,
   publisheddatetime,
@@ -22,42 +22,42 @@ async function getPost(slug: string) {
     slug
   }
 }`;
-     const data = await client.fetch(query, {slug});
+     const data = await client.fetch(query);
      return data;
 }
 
 
-// Generate metadata based on post data
-export async function generateMetadata({
-     params,
-}: {
-     params: {blog: string};
-}): Promise<Metadata> {
-     const blogPost = await getPost(params.blog);
+// // Generate metadata based on post data
+// export async function generateMetadata({
+//      params,
+// }: {
+//      params: {blog: string};
+// }): Promise<Metadata> {
+//      const blogPost = await getPost();
      
-     if (!blogPost) {
-          notFound();
-     }
+//      if (!blogPost) {
+//           notFound();
+//      }
 
-     return {
-          title: blogPost.title,
-          description: blogPost.excerpt,
-          openGraph: {
-               title: blogPost.title,
-               description: blogPost.excerpt,
-               url: `https://www.palmtechniq.com/blog/${params.blog}`,
-               siteName: 'PalmTechnIQ',
-               images: [
-                    {
-                         url: blogPost.description || '/innovation.jpg',
-                         width: 800,
-					height: 600,
-					alt: blogPost.title || "PalmTechnIQ",
-                    }
-               ]
-          }
-     }
-}
+//      return {
+//           title: blogPost.title,
+//           description: blogPost.excerpt,
+//           openGraph: {
+//                title: blogPost.title,
+//                description: blogPost.excerpt,
+//                url: `https://www.palmtechniq.com/blog/${params.blog}`,
+//                siteName: 'PalmTechnIQ',
+//                images: [
+//                     {
+//                          url: blogPost.description || '/innovation.jpg',
+//                          width: 800,
+// 					height: 600,
+// 					alt: blogPost.title || "PalmTechnIQ",
+//                     }
+//                ]
+//           }
+//      }
+// }
 
 
 // Define revalidate period
@@ -65,7 +65,7 @@ export const revalidate = 60;
 
 export default async function Blog() {
      // Fetch all posts or adjust if needed
-     const posts: IPost[] = await getPost('');
+     const posts: IPost[] = await getPost();
      return (
           <div className="mx-auto max-w-5xl p-[20px]">
                <h1 className="text-[50px] font-bold">The Blog Square</h1>
