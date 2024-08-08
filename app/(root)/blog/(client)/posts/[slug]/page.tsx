@@ -26,45 +26,45 @@ async function getPost(slug: string) {
     slug
   }
 }`;
-     const post = await client.fetch(query, {slug});
+     const post = await client.fetch(query);
      return post;
 }
 
 
 
-// Generate metadata based on post data
-export async function generateMetadata({
-     params,
-}: {
-     params: {blog: string};
-}): Promise<Metadata> {
-     const blogPost = await getPost(params.blog);
+// // Generate metadata based on post data
+// export async function generateMetadata({
+//      params,
+// }: {
+//      params: {blog: string};
+// }): Promise<Metadata> {
+//      const blogPost = await getPost(params.blog);
      
-     if (!blogPost) {
-          notFound();
-     }
+//      if (!blogPost) {
+//           notFound();
+//      }
 
-     return {
-          title: blogPost.title,
-          description: blogPost.excerpt,
-          openGraph: {
-               title: blogPost.title,
-               description: blogPost.excerpt,
-               url: `https://www.palmtechniq.com/blog/${params.blog}`,
-               siteName: 'PalmTechnIQ',
-               images: [
-                    {
-                         url: blogPost.overviewImage || '/innovation.jpg',
-                         width: 800,
-					height: 600,
-					alt: blogPost.title || "PalmTechnIQ",
-                    }
-               ]
-          }
-     }
-}
+//      return {
+//           title: blogPost.title,
+//           description: blogPost.excerpt,
+//           openGraph: {
+//                title: blogPost.title,
+//                description: blogPost.excerpt,
+//                url: `https://www.palmtechniq.com/blog/${params.blog}`,
+//                siteName: 'PalmTechnIQ',
+//                images: [
+//                     {
+//                          url: blogPost.overviewImage || '/innovation.jpg',
+//                          width: 800,
+// 					height: 600,
+// 					alt: blogPost.title || "PalmTechnIQ",
+//                     }
+//                ]
+//           }
+//      }
+// }
 
-const SinglePage = async ({ params }: {params: { slug: string}}) => {
+const SinglePage = async ({ params }: ISingleBlog) => {
      const PortableTextComponent = {
           types: {
                image: ({ value }: any) => (
@@ -79,11 +79,6 @@ const SinglePage = async ({ params }: {params: { slug: string}}) => {
           },
      };
      const post: IPost = await getPost(params.slug);
-
-     if(!post) {
-          notFound();
-     }
-     
      return (
           <div className="mx-auto max-w-4xl p-[20px]">
                <h3 className="pb-[20px] text-center text-[27px] font-bold">
