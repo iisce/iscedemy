@@ -26,7 +26,7 @@ async function getPost(slug: string) {
     slug
   }
 }`;
-     const post = await client.fetch(query);
+     const post = await client.fetch(query, {slug});
      return post;
 }
 
@@ -64,7 +64,7 @@ export async function generateMetadata({
      }
 }
 
-const SinglePage = async ({ params }: ISingleBlog) => {
+const SinglePage = async ({ params }: {params: { slug: string}}) => {
      const PortableTextComponent = {
           types: {
                image: ({ value }: any) => (
@@ -79,6 +79,11 @@ const SinglePage = async ({ params }: ISingleBlog) => {
           },
      };
      const post: IPost = await getPost(params.slug);
+
+     if(!post) {
+          notFound();
+     }
+     
      return (
           <div className="mx-auto max-w-4xl p-[20px]">
                <h3 className="pb-[20px] text-center text-[27px] font-bold">
