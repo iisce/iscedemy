@@ -27,38 +27,6 @@ async function getPost() {
 }
 
 
-// // Generate metadata based on post data
-// export async function generateMetadata({
-//      params,
-// }: {
-//      params: {blog: string};
-// }): Promise<Metadata> {
-//      const blogPost = await getPost();
-     
-//      if (!blogPost) {
-//           notFound();
-//      }
-
-//      return {
-//           title: blogPost.title,
-//           description: blogPost.excerpt,
-//           openGraph: {
-//                title: blogPost.title,
-//                description: blogPost.excerpt,
-//                url: `https://www.palmtechniq.com/blog/${params.blog}`,
-//                siteName: 'PalmTechnIQ',
-//                images: [
-//                     {
-//                          url: blogPost.description || '/innovation.jpg',
-//                          width: 800,
-// 					height: 600,
-// 					alt: blogPost.title || "PalmTechnIQ",
-//                     }
-//                ]
-//           }
-//      }
-// }
-
 
 // Define revalidate period
 export const revalidate = 60;

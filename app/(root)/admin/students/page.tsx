@@ -8,7 +8,7 @@ import React from "react";
 export const metadata: Metadata = {
 	title: 'Student Dashboard',
 	description: 'Stay in-charge of your courses and monitor your learning process!',
-	metadataBase: new URL('https://www.palmtechniq.com/student'),
+	metadataBase: new URL('https://www.palmtechniq.com/admin/student'),
 	alternates:{
 	  canonical: '/student',
 	  languages: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 	openGraph: {
 	  title: 'Student Dashboard',
 	  description: 'Stay in-charge of your courses and monitor your learning process!',
-	  url: 'https://www.palmtechniq.com/student',
+	  url: 'https://www.palmtechniq.com/admin/student',
 	  siteName: 'PalmTechnIQ',
 	  images: '/innovation.jpg'
 	}

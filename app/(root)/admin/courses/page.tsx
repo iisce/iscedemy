@@ -21,7 +21,7 @@ export async function generateMetadata({
 		openGraph: {
 			title: courseDetails.title.split('-').join(' '),
 			description: courseDetails.description,
-			url: `https://www.palmtechniq.com/courses/${params.course}`,
+			url: `https://www.palmtechniq.com/admin/courses/${params.course}`,
 			siteName: 'PalmTechnIQ',
 			images: [
 				{

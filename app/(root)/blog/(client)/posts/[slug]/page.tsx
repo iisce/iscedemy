@@ -9,6 +9,8 @@ import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { urlFor } from "../../../../../../sanity/lib/image";
 import { IPost, ISingleBlog } from "../../../../../../lib/types";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 async function getPost(slug: string) {
      const query = `*[_type == "post" && slug.current== "${slug}"][0]{
@@ -26,6 +28,40 @@ async function getPost(slug: string) {
 }`;
      const post = await client.fetch(query);
      return post;
+}
+
+
+
+// Generate metadata based on post data
+export async function generateMetadata({
+     params,
+}: {
+     params: {blog: string};
+}): Promise<Metadata> {
+     const blogPost = await getPost(params.blog);
+     
+     if (!blogPost) {
+          notFound();
+     }
+
+     return {
+          title: blogPost.title,
+          description: blogPost.excerpt,
+          openGraph: {
+               title: blogPost.title,
+               description: blogPost.excerpt,
+               url: `https://www.palmtechniq.com/blog/${params.blog}`,
+               siteName: 'PalmTechnIQ',
+               images: [
+                    {
+                         url: blogPost.overviewImage || '/innovation.jpg',
+                         width: 800,
+					height: 600,
+					alt: blogPost.title || "PalmTechnIQ",
+                    }
+               ]
+          }
+     }
 }
 
 const SinglePage = async ({ params }: ISingleBlog) => {

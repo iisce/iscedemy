@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
 	title: 'Tutor Dashboard',
 	description: 'Stay in-charge of your courses and keep track of your revenue!',
-	metadataBase: new URL('https://www.palmtechniq.com/tutor'),
+	metadataBase: new URL('https://www.palmtechniq.com/admin/tutor'),
 	alternates:{
 	  canonical: '/tutor',
 	  languages: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 	openGraph: {
 	  title: 'Tutor Dashboard',
 	  description: 'Stay in-charge of your courses and keep track of your revenue!',
-	  url: 'https://www.palmtechniq.com/tutor',
+	  url: 'https://www.palmtechniq.com/admin/tutor',
 	  siteName: 'PalmTechnIQ',
 	  images: '/christina.jpg'
 	}
