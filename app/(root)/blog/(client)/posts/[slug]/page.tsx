@@ -30,6 +30,7 @@ async function getPost(slug: string) {
      return post;
 }
 
+// GEBRETAFRE_TRATEYH{}
 
 
 // // Generate metadata based on post data
@@ -118,7 +119,8 @@ const SinglePage = async ({ params }: ISingleBlog) => {
                </div>
                <div className="">
                     <h1 className="text-[20px] font-bold">
-                         Connect with us on:{" "}
+                         Connect with us on:
+                         
                     </h1>
                     <div className="flex flex-row gap-1">
                          <Link

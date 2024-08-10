@@ -1,7 +1,9 @@
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper'
+import CompareAutoplay from '@/components/layout/compare-autoplay'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import * as Icons from '../../../lib/icons'
+import { TextGenerateEffectDemo } from '@/components/layout/text-generate-effect'
 
 export default function AboutPreview() {
   return (
@@ -12,14 +14,11 @@ export default function AboutPreview() {
             <h2 className="text-3xl font-bold tracking-tighter xl:text-4xl underline">{`At PalmTechnIQ`}</h2>
             <div className="space-y-2 flex flex-col-reverse items-center xl:flex-row xl:justify-between w-full">
               <div className="relative w-full xl:w-1/2 xl:px-4">
-                <p className="w-full text-primary text-lg text-center xl:mx-8 py-2 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-700">
-                  {`We're dedicated to providing the best technical education for our students, preparing them for success in the digital age. Our innovative approach, experienced instructors, and hands-on learning opportunities make our institute the perfect place to launch your career in tech.`}
-                </p>
+                <TextGenerateEffectDemo/>
               </div>
-              {/* <div className="xl:p-8 hidden xl:block xl:w-1/2 relative">
-                <video src='/images/aboutsectionvideo.mp4' width={500} height={500}  
-                autoPlay loop className='rounded-xl'></video>
-              </div> */}
+              <div className="xl:p-8 hidden xl:block xl:w-1/2 relative">
+                <CompareAutoplay/>
+              </div>
             </div>
 
             <div className="relative mt-12 lg:mt-20">

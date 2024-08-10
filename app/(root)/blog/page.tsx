@@ -74,7 +74,7 @@ export default async function Blog() {
                               <Image
                                    className="mx-auto mt-[20px]"
                                    src="/no-blog.png"
-                                   alt="no blog"
+                                   alt="PalmTechnIQ || No Blog Post Found"
                                    height="100"
                                    width="1000"
                               />
