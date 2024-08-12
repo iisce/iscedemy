@@ -129,44 +129,41 @@ export function Chatbot() {
     </CardHeader>
 
     <CardContent className="prose space-y-4  max-h-96 overflow-y-auto" ref={messageContainRef} >
-    {messages.map((message, index) => (
-            <div key={index} className={cn("flex w-full gap-2", message.role === "user" && "justify-end" ? "flex-row-reverse " : "flex-row")}>
-              <Avatar>
-                <AvatarImage alt="PalmTechnIQ" src={message.role === "assistant" ? "/avatars/01.png" : "/avatar/02.png"}/>
-                <AvatarFallback><RiRobot3Fill/></AvatarFallback>
-              </Avatar>
-              <div className={cn("flex w-fit xl:max-w-[75%] rounded-lg px-3 text-sm text-white", message.role === "user" && "bg-black rounded-br-none after:right-[-10px]", message.role === "assistant" && "bg-green-600 rounded-bl-none after:left-[-10px] px-4")}>
-                <div className="text-sm text-white">{markdownToReact({ markdown: message.content })}</div>
+      {messages.map((message, index) => (
+              <div key={index} className={cn("flex w-full gap-2", message.role === "user" && "justify-end" ? "flex-row-reverse " : "flex-row")}>
+                <Avatar>
+                  <AvatarImage alt="PalmTechnIQ" src={message.role === "assistant" ? "/avatars/01.png" : "/avatar/02.png"}/>
+                  <AvatarFallback><RiRobot3Fill/></AvatarFallback>
+                </Avatar>
+                <div className={cn("flex w-fit xl:max-w-[75%] rounded-lg px-3 text-sm text-white", message.role === "user" && "bg-black rounded-br-none after:right-[-10px]", message.role === "assistant" && "bg-green-600 rounded-bl-none after:left-[-10px] px-4")}>
+                  <div className="text-sm text-white">{markdownToReact({ markdown: message.content })}</div>
+                </div>
               </div>
-            </div>
-            ))}
-            
-            <div className="grid grid-cols-2 gap-3">
+      ))}
+        <div className="grid grid-cols-2 gap-3">
              {quickReplies.map((reply, i) => (
-    <Button
-    key={i}
-    onClick={() => {
-    sendMessage(reply);
-    setQuickReplies([]);
-  }}
-    className="w-full gap-2 text-center text-wrap justify-start"
-    variant="secondary"
-    >
-      {reply}
-    </Button>
-  ))}
+            <Button
+              key={i}
+              onClick={() => {
+              sendMessage(reply);
+              setQuickReplies([]);
+            }}
+              className="w-full gap-2 text-center text-wrap justify-start"
+              variant="secondary"
+              >
+                {reply}
+            </Button>
+        ))}
   </div>
     </CardContent>
     <CardFooter>
       <form className="flex w-full items-center space-x-2" onSubmit={handleSubmit}>
         <Input autoComplete="off" type="text" className="flex-grow" id="message" placeholder="Type a message..." value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-           />
-<Button size="icon" type="submit" className=" rounded-lg justify-self-center px-2  items-center">
-      {isLoading ? <BeatLoader size={8} className="px-2" color="#ffffff"/>: <Icons.SendIcon/>}
-      <span className="sr-only ">Send</span>
-    </Button>
-
+          onChange={(e) => setUserInput(e.target.value)}/>
+          <Button size="icon" type="submit" className=" rounded-lg justify-self-center px-2  items-center">
+            {isLoading ? <BeatLoader size={8} className="px-2" color="#ffffff"/>: <Icons.SendIcon/>}
+            <span className="sr-only ">Send</span>
+          </Button>
       </form>
     </CardFooter>
   </Card>
@@ -179,7 +176,7 @@ export function Chatbot() {
         >
           <ChatBubbleLeftRightIcon className="h-10 w-10 " />
           <span className="sr-only">Open Chat</span>
-        </Button>
+    </Button>
   )}
  
   </div>
