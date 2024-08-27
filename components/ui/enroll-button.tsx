@@ -18,7 +18,7 @@ const EnrollButton = ({userId, courseId}: {userId:string; courseId: string}) => 
                 console.log('Attempting to enroll with userId:', userId, 'and courseId:', courseId);
                 const response = await addToCourse(userId, courseId);
                 toast.success('Successfully Enrolled');
-                revalidatePath(`/student`);
+                revalidatePath('/student');
 
             } catch (error) {
                 console.error('Error during enrollment:', error);
