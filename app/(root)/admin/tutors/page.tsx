@@ -1,6 +1,8 @@
 import { getAllTutors } from "@/actions/tutor";
+import { auth } from "@/auth";
 import { TutorCard } from "@/components/pages/courses/admin-tutorcard";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
@@ -25,8 +27,14 @@ export const metadata: Metadata = {
 
 
 export default async function TutorPage() {
+	const session = await auth();
   const tutors = await getAllTutors();
 
+  if(session?.user?.name !== 'ADMIN') {
+    redirect('/unauthorized');
+
+    return null;
+  }
   return (
     <div className="min-h-screen grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 items-center justify">
       {tutors.length > 0 ? (

@@ -3,6 +3,8 @@ import StudentCard from "../../../../components/pages/dashboard/student-card";
 import { getAllStudents } from "../../../../data/student";
 import { Student } from "../../../../lib/types";
 import React from "react";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
@@ -26,8 +28,15 @@ export const metadata: Metadata = {
   }
 
 export default async function AdminStudents() {
+	const session = await auth();
+
 	const students: Student[] = await getAllStudents();
 
+	if(session?.user?.name !== 'ADMIN') {
+		redirect('/unauthorized');
+	
+		return null;
+	  }
 	return (
           <div className="grid gap-4 py-4 lg:col-span-4">
                {students.map(student => (

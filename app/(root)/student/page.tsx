@@ -6,6 +6,7 @@ import { getAllCourses, getCourseById } from "@/data/course";
 import { getAllCurriculumByCourseId } from "@/data/curriculum";
 import { getUserById } from "@/data/user";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
@@ -30,6 +31,13 @@ export const metadata: Metadata = {
 
 export default async function StudentDashboard() {
      const session = await auth();
+
+	 if(session?.user?.name !== 'STUDENT') {
+		redirect('/unauthorized');
+	
+		return null;
+	  }
+
      const student = await getUserById(session?.user?.id ?? "");
      const courses = await getAllCourses();
      const paidCourses = student?.courses?.split("---");

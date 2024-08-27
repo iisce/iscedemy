@@ -1,8 +1,10 @@
 import { auth } from "@/auth";
 import AdminDashboard from "@/components/pages/dashboard/admin-dashbaord";
 import { getTotalEarnings, getTotalCourses, getTotalRegistrations, getTotalTutors, getTutorCourses, getStudentsPerTutor } from "@/data/admin";
+import { getRecentTransactions } from "@/data/course-payment";
 import { getTotalUsersExcludingTutors } from "@/data/user";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
@@ -32,6 +34,11 @@ export const metadata: Metadata = {
 export default async function AdminDashboardPage() {
   const session = await auth();
 
+  if(session?.user?.name !== 'ADMIN') {
+    redirect('/unauthorized');
+
+    return null;
+  }
   // Fetching data
   const totalEarnings = await getTotalEarnings();
   const totalCourses = await getTotalCourses();
@@ -40,6 +47,7 @@ export default async function AdminDashboardPage() {
   const tutorCourses = await getTutorCourses();
   const studentsPerTutor = await getStudentsPerTutor();
   const totalUsersExcludingTutors = await getTotalUsersExcludingTutors(); 
+  const transaction = await getRecentTransactions();
 
   // Formatting data for the dashboard
   const data = {
@@ -60,6 +68,7 @@ export default async function AdminDashboardPage() {
     users: {
       thetotalUsersExcludingTutors: totalUsersExcludingTutors,
     },
+    transaction,
   };
 
   return (

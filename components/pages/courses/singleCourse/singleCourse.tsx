@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import SignOutButton from '@/components/ui/sign-out';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { getCourseBySlug } from '@/data/course';
+import { enrollInCourse, getCourseBySlug } from '@/data/course';
 import { getAllCurriculumByCourseId } from '@/data/curriculum';
 import { getAllReviewsByTutorName } from '@/data/reviews';
 import { getUserByCourseId, getUserById } from '@/data/user';
@@ -19,6 +19,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CourseRating from './courseRating';
 import SingleCourseCurriculum from './singleCourseCurriculum';
+import FormSuccess from '@/components/form-success';
+import EnrollButton from '@/components/ui/enroll-button';
 
 export default async function SingleCourse({
 	courseTitle,
@@ -56,7 +58,13 @@ export default async function SingleCourse({
 		(total: number, review: any) => total + review.rating,
 		0
 	);
+
+		// Determine if the user has paid and their course selection status
 	const isPaid = currentUser?.courses?.includes(courseDetails.id);
+	const selectedCourses = currentUser?.courses ? currentUser?.courses.split('---') : [];
+	const hasSelectedThreeCourses = selectedCourses.length % 3 === 0;
+
+	console.log({hasSelectedThreeCourses})
 
 	
 	return (
@@ -226,21 +234,11 @@ export default async function SingleCourse({
 				</div>
 
 				<div className='lg:col-span-2 flex flex-col gap-5'>
-				 <div className='w-full aspect-video'>	
+				<div className='w-full aspect-video'>	
 				<YouTubeEmbed videoid={courseDetails.videoUrl} height={315} width={400}
 					params="controls=1"/>
-					</div>
-					{/* <video
-						width='400'
-						height='315'
-						controls
-						className='w-full aspect-video'>
-						<source
-							src={courseDetails.videoUrl.replace("watch?v=", "embed/")}
-							type='video/mp4'
-						/>
-					</video> */}
-
+				</div>
+					
 					<div className='space-y-4 px-3 grid'>
 						<h3 className='text-xl font-semibold'>
 							Course Includes:
@@ -338,33 +336,34 @@ export default async function SingleCourse({
 							</div>
 						</div>
 						<hr />
-						{/* <Drawer>
-							<DrawerTrigger className='grid w-full bg-black text-background font-medium text-xl px-5 py-3 rounded-full'>
-								Register Now
-							</DrawerTrigger>
-							<DrawerContent>
-								<CourseRegisterPage />
-								<DrawerClose
-									asChild
-									className='mx-auto max-w-2xl mb-10'>
-									<Button
-										className='w-full rounded-full'
-										variant='outline'>{`Cancel`}</Button>
-								</DrawerClose>
-							</DrawerContent>
-						</Drawer> */}
-						{!isPaid && (
-							<div className='grid'>
-								<Button
-									className='rounded-full'
-									asChild>
-									<Link
-										href={`/courses/${courseDetails.title}/pay`}>
-										Register Now
-									</Link>
-								</Button>
+						{user && (
+							<div className="space-y-2">
+								{isPaid && (
+									<div className="text-sm text-gray-500">	
+									<FormSuccess message='You are enrolled in this course'/>
+									</div>
+								)}
+								{/* Check if user has selected three courses */}
+								{!isPaid && !hasSelectedThreeCourses && (
+									<div className='grid'>
+									<EnrollButton courseId={courseDetails.id} userId={user.id!} />
+									</div>
+								)}
+								{/* This checks if a user hasn't taken any course yet and allows them error for a course after check  */}
+								{!isPaid && hasSelectedThreeCourses && (
+									<div className='grid'>
+									<Button asChild className='rounded-full'>
+										<Link href={`/courses/${courseDetails.title}/pay`}>
+											Enroll Now
+										</Link>
+									</Button>
+									</div>
+								)}
+
+								
 							</div>
 						)}
+						
 					</div>
 					<div className=' md:px-0 px-4'>
 						<h3 className='text-xl font-semibold'>

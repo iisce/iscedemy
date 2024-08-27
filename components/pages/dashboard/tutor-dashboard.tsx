@@ -7,15 +7,15 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Input } from "@/components/ui/input";
 import Modal from "@/components/ui/modal";
 import { formatToNaira } from "@/lib/utils";
-import { DollarSignIcon, SearchIcon, StarIcon, UserIcon } from "lucide-react";
+import { Review } from "@prisma/client";
+import { SearchIcon, StarIcon, UserIcon } from "lucide-react";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import ViewReview from "./tutor-single-review";
-import { Review } from "@prisma/client";
 
 function TutorCard({
-  title,
+  title,  
   description,
   image,
   earnings,

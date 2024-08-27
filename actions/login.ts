@@ -29,6 +29,7 @@ export const Login = async (values: z.infer<typeof LoginSchema>, callBackUrl?: s
         );
         
         await sendVerificationEmail(
+            verificationToken.id,
             verificationToken.email,
             verificationToken.token
         );

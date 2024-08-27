@@ -48,6 +48,9 @@ export const {
 		async session({ session,  token }) {
 			if (token.sub && session.user) {
 				session.user.id = token.sub;
+
+				const user = await getUserById(token.sub);
+				session.user.name = user?.role || 'USER'
 			}
 			return session;
 		},

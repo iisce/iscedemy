@@ -62,3 +62,48 @@ export async function getTotalUsersExcludingTutors() {
 		return 0
 	}
 }
+
+
+
+//This function adds course to a user that hasn't selected up to 3 courses
+export async function enrollUserInCourse(userId: string, courseId: string) {
+    try {
+		 // Fetch the user's current courses
+        console.log('Fetching user by ID:', userId);
+        const user = await getUserById(userId);
+        console.log('User fetched:', user);
+
+		if (!user) {
+            throw new Error('User not found');
+        }
+
+		let currentCourses = user?.courses
+       
+		// Check if the user is already enrolled in the course
+        if (currentCourses && currentCourses.includes(courseId)) {
+            throw new Error('User is already enrolled in this course.');
+        }
+
+		// Add the new course to the array
+		currentCourses = currentCourses ? currentCourses + '---' + courseId : courseId;
+
+        // Convert the array back to a string
+        console.log('Updated courses string:', currentCourses);
+
+        // Update user's courses
+        await db.user.update({
+            where: { id: userId },
+            data: {
+                courses: currentCourses,
+            },
+        });
+        console.log('User successfully enrolled in course');
+        return true;
+    } catch (error) {
+        console.error('Failed to enroll user in course:', error);
+        return false;
+    }
+}
+
+
+

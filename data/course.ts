@@ -1,4 +1,6 @@
 import { db } from '@/lib/db';
+import { getSession } from 'next-auth/react';
+import { enrollUserInCourse } from './user';
 
 export const revalidate = 0;
 
@@ -38,5 +40,26 @@ export async function getCourseBySlug(slug: string) {
 	} catch (error) {
 		console.log({ error });
 		return null;
+	}
+}
+
+export async function enrollInCourse(courseId: string){
+	try{
+		const session = await getSession();
+
+		if(!session?.user?.id){
+			throw new Error('User is not authenticated');
+		}
+
+		const success = await enrollUserInCourse(session.user.id, courseId);
+		console.log(success);
+		if (!success) {
+            throw new Error('Could not enroll user in course');
+        }
+		return {success: true};
+	} catch (error) {
+		console.error('Error enrolling in course:', error);
+		console.log('Detailed error:', error);
+		return { success: false, error: error };
 	}
 }

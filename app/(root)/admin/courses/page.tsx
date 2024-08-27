@@ -1,7 +1,8 @@
+import { auth } from "@/auth";
 import AdminCourseList from "@/components/pages/courses/admin-course-list";
 import { getAllCourses, getCourseBySlug } from "@/data/course";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 
 export async function generateMetadata({
@@ -9,6 +10,7 @@ export async function generateMetadata({
 }: {
 	params: { course: string };
 }): Promise<Metadata> {
+	
 	const courseDetails = await getCourseBySlug(params.course);
 
 	if (!courseDetails) {
@@ -36,6 +38,13 @@ export async function generateMetadata({
 }
 
 export default async function Component() {
+	const session = await auth();
      const courses = await getAllCourses();
+
+	 if(session?.user?.name !== 'ADMIN') {
+		redirect('/unauthorized');
+	
+		return null;
+	  }
      return <AdminCourseList courses={courses} />;
 }

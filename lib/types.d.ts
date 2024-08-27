@@ -51,6 +51,18 @@ interface ISingleTutorReviews {
      highestAverageRating: number;
 }
 
+interface AuthorCardI {
+	_id: string;
+	slug: { current: string; _type: string };
+	_createdAt: Date;
+	name: string;
+	bio: any;
+	_updatedAt: string;
+	image: { _type: string; alt: string; asset: {} };
+	_rev: string;
+	_type: string;
+}
+
 interface IPost {
      _id: string;
      title: string;
@@ -58,6 +70,7 @@ interface IPost {
      publisheddatetime: string;
      excerpt: string;
      overviewImage;
+     author: AuthorCardI;
      body: any[];
      tag: Array<ITag>;
 }

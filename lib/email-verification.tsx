@@ -19,6 +19,7 @@ import React from "react";
 interface EmailVerificationProps {
   email: string;
   token: string;
+  fullName: string
 }
 const domain = process.env.NEXT_PUBLIC_URL;
 
@@ -26,6 +27,7 @@ const domain = process.env.NEXT_PUBLIC_URL;
 const EmailVerification = ({
   email,
   token,
+  fullName,
   
 }: EmailVerificationProps) => {
   const confrimLink = `${domain}/new-verification?token=${token}`;
@@ -63,7 +65,7 @@ const EmailVerification = ({
                   className=" cursor-pointer rounded-full text-white text-[13px] bg-green-600 "
                   style={{ padding: "10px 20px", margin: "0 auto" }}
                 >
-                  Verify Email
+                 Click To Verify Email
                 </Button>
               </Section>
               <Section className="md:text-left text-center">

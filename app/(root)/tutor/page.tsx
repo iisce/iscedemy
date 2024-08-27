@@ -4,6 +4,7 @@ import { getAllReviewsByTutorName } from "@/data/reviews";
 import { getAllCoursesByTutor, getEarningsForCourse, getEnrollmentsForCourse } from "@/data/tutor";
 import { getUserById } from "@/data/user";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
@@ -28,6 +29,13 @@ export const metadata: Metadata = {
 
 export default async function TutorDashboardPage() {
   const session = await auth();
+
+  if(session?.user?.name !== 'TUTOR') {
+    redirect('/unauthorized');
+
+    return null;
+  }
+
   const tutor = await getUserById(session?.user?.id ?? '');
   const courses = await getAllCoursesByTutor(tutor?.id!);
 
