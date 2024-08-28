@@ -1,16 +1,15 @@
 'use client'
 import { addToCourse } from "@/actions/add-to-course";
-import { db } from "@/lib/db";
-import { revalidatePath } from "next/cache";
+import { useRouter } from "next/router";
 import { useTransition } from "react";
 import { toast } from "sonner";
 import { Button } from "./button";
-import { getCourseBySlug } from "@/data/course";
 
 
 
 const EnrollButton = ({userId, courseId}: {userId:string; courseId: string}) => {
     const [isPending, startTransition] = useTransition()
+    const router = useRouter();
     const handleEnroll = async () => {
 
         startTransition(async ()=> {
@@ -18,7 +17,9 @@ const EnrollButton = ({userId, courseId}: {userId:string; courseId: string}) => 
                 console.log('Attempting to enroll with userId:', userId, 'and courseId:', courseId);
                 const response = await addToCourse(userId, courseId);
                 toast.success('Successfully Enrolled');
-                revalidatePath('/student');
+                router.push('/student')
+                
+
 
             } catch (error) {
                 console.error('Error during enrollment:', error);

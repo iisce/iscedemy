@@ -1,14 +1,8 @@
-import { auth } from "@/auth";
-import FormSuccess from "@/components/form-success";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import EnrollButton from "@/components/ui/enroll-button";
-import { getCourseBySlug } from "@/data/course";
-import { getUserById } from "@/data/user";
 import { ClockIcon } from "lucide-react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
 export function CourseCard({
 	badgeText,
