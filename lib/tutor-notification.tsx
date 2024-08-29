@@ -12,22 +12,23 @@ import {
   Text
 } from "@react-email/components";
 
-interface RegCrashCourseProps {
+interface tutorNotificationProps {
   tutorName : string;
   studentName: string;
   email: string;
   courseName: string;
 }
 
+
 const chatLink = `https://wa.me/qr/GHKMMDKEJZNEF1`;
 
 
-const RegCrashCourse = ({
+const tutorNotification = ({
   tutorName = "",
   studentName = "",
   email = "",
   courseName = "",
-}: RegCrashCourseProps) => {
+}: tutorNotificationProps) => {
   return (
     <Tailwind>
       <Html>
@@ -71,6 +72,7 @@ const RegCrashCourse = ({
                 </Text>
               </Section>
               <Section className="text-center">
+                <Text>Have a question?</Text>
                 <Button
                   href={chatLink}
                   className=" cursor-pointer rounded-full text-white text-[20px] bg-green-600 "
@@ -158,4 +160,4 @@ const RegCrashCourse = ({
   );
 };
 
-export default RegCrashCourse;
+export default tutorNotification;
