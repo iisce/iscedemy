@@ -1,6 +1,6 @@
 'use client'
 import { addToCourse } from "@/actions/add-to-course";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { toast } from "sonner";
 import { Button } from "./button";
@@ -17,7 +17,9 @@ const EnrollButton = ({userId, courseId}: {userId:string; courseId: string}) => 
                 console.log('Attempting to enroll with userId:', userId, 'and courseId:', courseId);
                 const response = await addToCourse(userId, courseId);
                 toast.success('Successfully Enrolled');
-                router.push('/student')
+                setTimeout(() => {
+                    router.push('/student');
+                }, 1000);
                 
 
 

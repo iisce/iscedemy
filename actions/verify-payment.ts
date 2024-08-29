@@ -4,8 +4,10 @@ import { getUserById } from "@/data/user";
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { verifyTransaction } from "./paystack";
+import { tutorNotificationMail } from "@/lib/mail";
+import { getTutorById } from "./tutor";
 
-export async function verifyPayment(reference: string) {
+export async function verifyPayment(reference: string, tutorId: string, studentName: string, courseName: string) {
   if (!reference) {
     console.error("Transaction reference not found");
     return { error: "Transaction reference not found" };
@@ -30,7 +32,11 @@ export async function verifyPayment(reference: string) {
         return { error: "Transaction not found"};
       }
 
+      const tutor = await getTutorById(tutorId)
+      const student = await getUserById(studentName)
+      const course = await getCourseById(courseName)
 	  if (transaction.status === 'SUCCESSFUL' ) {
+      await tutorNotificationMail(tutor?.name!, student?.name! ,tutor?.email!, course?.title!)
 		return {error: 'Attempting Duplication transaction!'}
 	  }
 
