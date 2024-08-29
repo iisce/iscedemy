@@ -85,7 +85,7 @@ export async function getStudentsPerTutor() {
         let totalStudentsPerTutor = 0;
 
         for (const tutor of tutors) {
-            const courseIds = tutor.Course.map(course => course.id);
+            const courseIds = tutor.Course.map((course: { id: string; }) => course.id);
             const students = await db.coursePayment.count({
                 where: {
                     courseId: {
