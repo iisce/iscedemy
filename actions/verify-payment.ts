@@ -36,8 +36,12 @@ export async function verifyPayment(reference: string, tutorId?: string, student
       const student = await getUserById(studentName!)
       const course = await getCourseById(courseName!)
 	  if (transaction.status === 'SUCCESSFUL' ) {
-      await tutorNotificationMail(tutor?.name!, student?.name! ,tutor?.email!, course?.title!)
-		return {error: 'Attempting Duplication transaction!'}
+      if (tutor && student && course) {
+      await tutorNotificationMail(tutor?.name!, student?.name! ,tutor?.email!, course.title)
+      } else {
+        console.error('Tutor, student, or course information is missing.');
+		  return {error: 'Attempting Duplication transaction!'}
+      }
 	  }
 
 	  const buyer = await getUserById(transaction.userId)

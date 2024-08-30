@@ -1,26 +1,26 @@
 import { auth } from '@/auth';
 import TutorProfile from '@/components/component/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor-reviews';
-import { YouTubeEmbed } from '@next/third-parties/google';
 import FormError from '@/components/form-error';
+import FormSuccess from '@/components/form-success';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import EnrollButton from '@/components/ui/enroll-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import SignOutButton from '@/components/ui/sign-out';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { enrollInCourse, getCourseBySlug } from '@/data/course';
+import { getCourseBySlug } from '@/data/course';
 import { getAllCurriculumByCourseId } from '@/data/curriculum';
 import { getAllReviewsByTutorName } from '@/data/reviews';
 import { getUserByCourseId, getUserById } from '@/data/user';
 import * as Icons from '@/lib/icons';
 import { formatToNaira } from '@/lib/utils';
+import { YouTubeEmbed } from '@next/third-parties/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CourseRating from './courseRating';
 import SingleCourseCurriculum from './singleCourseCurriculum';
-import FormSuccess from '@/components/form-success';
-import EnrollButton from '@/components/ui/enroll-button';
 
 export default async function SingleCourse({
 	courseTitle,
