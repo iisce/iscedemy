@@ -27,7 +27,7 @@ export default auth((req) => {
      const isCourseRoutes = nextUrl.pathname.startsWith("/courses");
 
      // Check if the route is under the /admin path
-     const isAdminRoutes = nextUrl.pathname.startsWith("/admin");
+     // const isAdminRoutes = nextUrl.pathname.startsWith("/admin");
      // const isTutorRoute = nextUrl.pathname.startsWith("/tutor");
      // const isStudentRoute = nextUrl.pathname.startsWith("/student")
 
@@ -49,15 +49,15 @@ export default auth((req) => {
 
 
      // If the route is an admin route and the user is logged in
-     if (isAdminRoutes && isLoggedIn){
-      // Check if the logged-in user is an ADMIN
-      if (req.auth?.user?.name !== 'ADMIN'){
+     // if (isAdminRoutes && isLoggedIn){
+     //  // Check if the logged-in user is an ADMIN
+     //  if (req.auth?.user?.name !== 'ADMIN'){
 
-      // If not an ADMIN, redirect to the unauthorized page
-     return Response.redirect(new URL('/unauthorized', nextUrl));
-      }
-      return;
-     }
+     //  // If not an ADMIN, redirect to the unauthorized page
+     // return Response.redirect(new URL('/unauthorized', nextUrl));
+     //  }
+     //  return;
+     // }
 
      // If the user is not logged in and tries to access a protected route (not public, not courses, not blog)
      if (!isLoggedIn && !isPublicRoutes && !isCourseRoutes && !isBlogPage) {
