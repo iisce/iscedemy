@@ -25,7 +25,6 @@ export const sendPasswordResetToken= async (
 export const sendVerificationEmail = async (
     email: string,
     token: string,
-    fullName: string
 ) => {
     const confrimLink = `${domain}/new-verification?token=${token}`;
 
@@ -33,7 +32,7 @@ export const sendVerificationEmail = async (
         from: process.env.FROM_EMAIL_ADDRESS!,
         to: email,
         subject: "Confirm your email",
-        react: EmailVerification({email, token, fullName})
+        react: EmailVerification({email, token})
     })
 }
 
