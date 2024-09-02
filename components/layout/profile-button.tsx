@@ -63,7 +63,9 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 				<DropdownMenuItem asChild>
 					<Link
 						href={
-							user?.role === 'TUTOR'
+							user?.role === 'ADMIN' 
+								? '/admin'
+								: user?.role === 'TUTOR'
 								? '/tutor'
 								: '/student'
 						}>
