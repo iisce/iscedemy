@@ -7,6 +7,13 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+enum CertificateType {
+  CertificateOfCompletion
+  CertificateOfAchievement
+  ProfessionalCertification
+  MicroCredentials
+
+}
 
 enum PaymentStatus {
   SUCCESSFUL
@@ -38,6 +45,7 @@ model User {
   accounts      Account[]
   CoursePayment CoursePayment[]
   Course        Course[]
+  Certificate Certificate[]
 
   @@map("users")
 }
@@ -98,6 +106,7 @@ model Course {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt
   CoursePayment CoursePayment[]
+  Certificate Certificate[]
 }
 
 model Curriculum {
@@ -156,4 +165,15 @@ model CoursePayment {
   verifiedAt    DateTime      @updatedAt
   User          User          @relation(fields: [userId], references: [id])
   Course        Course        @relation(fields: [courseId], references: [id])
+}
+model Certificate{
+  id    String    @id @default(cuid())
+  studentName   String
+  issuedDate    DateTime  @default(now())
+  platform      String
+  userId        String
+  courseId      String
+  type          CertificateType   @default(CertificateOfCompletion)
+  User        User      @relation(fields: [userId], references: [id])
+  Course      Course    @relation(fields: [courseId], references: [id])
 }
