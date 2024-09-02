@@ -77,11 +77,13 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 				</DropdownMenuItem>
 				)}
 				<DropdownMenuSeparator />
+				{(user?.role === 'USER') && (
 				<DropdownMenuItem asChild>
 					<Link href='/courses'>
 					Purchase a course
 					</Link>
 				</DropdownMenuItem>
+				)}
 				<DropdownMenuSeparator />
 				<DropdownMenuItem onClick={async () => logout()}>
 					Logout
