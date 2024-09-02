@@ -91,6 +91,9 @@ export default function Footer() {
 						<Link href="/faq" className="cursor-pointer">
 							{`Frequently Asked Question`}
 						</Link>
+						<Link href="/become-tutor" className="cursor-pointer">
+							{`Become A Tutor`}
+						</Link>
 					</div>
 
 			<div className='flex flex-col gap-4 text-sm'>
