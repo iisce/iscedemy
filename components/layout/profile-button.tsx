@@ -60,6 +60,7 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 					</div>
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
+				{(user?.role === 'ADMIN' || user?.role === 'TUTOR' || user?.role === 'STUDENT') && (
 				<DropdownMenuItem asChild>
 					<Link
 						href={
@@ -67,9 +68,18 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 								? '/admin'
 								: user?.role === 'TUTOR'
 								? '/tutor'
-								: '/student'
+								: user?.role === 'STUDENT'
+								? '/student'
+								: '/courses'
 						}>
 						Dashboard
+					</Link>
+				</DropdownMenuItem>
+				)}
+				<DropdownMenuSeparator />
+				<DropdownMenuItem asChild>
+					<Link href='/courses'>
+					Purchase a course
 					</Link>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
