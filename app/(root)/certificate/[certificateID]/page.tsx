@@ -1,8 +1,5 @@
-import { auth } from "@/auth"
 import getCertificate from "@/data/certificate";
-import { db } from "@/lib/db";
-import Image from "next/image"
-import React from 'react'
+import Image from "next/image";
 
 export default async function VerifyCert({
     params, 
@@ -10,7 +7,6 @@ export default async function VerifyCert({
     params: { certid : string }
     
 }){
-    const session = await auth();
     const certificate = await getCertificate(params.certid)
     return(
         <>
@@ -69,7 +65,7 @@ export default async function VerifyCert({
                     <Image src="/verify.png" alt='cert logo' width={500} height={500} className=" w-[100px] absolute h-[100px] right-[60px] top-[400px] "/>  
                         <div className=' grid gap-1  mx-4 mt-[200px]'>
                             <p className='font-bold text-[10px]'>CONGRATULATIONS</p>
-                            <p className='font-bold text-green-800 text-[20px]' >YOUR RECEPIENT</p>
+                            <p className='font-bold text-green-800 text-[20px]' >{certificate?.studentName}</p>
                             <p className='font-bold w-[350px] text-[10px]' >This certificate can be validated at any
                                                         time and serves as proof of competence. The course follws
                                                         Individual Standard and uses provided Method
