@@ -19,7 +19,6 @@ import React from "react";
 interface EmailVerificationProps {
   email: string;
   token: string;
-  fullName: string
 }
 const domain = process.env.NEXT_PUBLIC_URL;
 
@@ -27,7 +26,6 @@ const domain = process.env.NEXT_PUBLIC_URL;
 const EmailVerification = ({
   email,
   token,
-  fullName,
   
 }: EmailVerificationProps) => {
   const confrimLink = `${domain}/new-verification?token=${token}`;
