@@ -1,10 +1,11 @@
 import { db } from '@/lib/db'
 
-export default async function getCertificate(certid: string) {
+export default async function getCertificate(certficateID: string) {
     try {
+        console.log('Student Id :', certficateID)
         const graduation = await db.certificate.findUnique({
             where: {
-                id: certid,
+                id: certficateID,
             },
             include: {
                 User: true,

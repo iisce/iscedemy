@@ -4,10 +4,13 @@ import Image from "next/image";
 export default async function VerifyCert({
     params, 
 }:{
-    params: { certid : string }
+    params: { certficateID : string }
     
 }){
-    const certificate = await getCertificate(params.certid)
+  console.log({certficateID: params.certficateID})
+    const certificate = await getCertificate(params.certficateID)
+    // console.log('Student ID is:', certificate?.id)
+    console.log('Certificate Data:', certificate);
     return(
         <>
         
@@ -65,7 +68,7 @@ export default async function VerifyCert({
                     <Image src="/verify.png" alt='cert logo' width={500} height={500} className=" w-[100px] absolute h-[100px] right-[60px] top-[400px] "/>  
                         <div className=' grid gap-1  mx-4 mt-[200px]'>
                             <p className='font-bold text-[10px]'>CONGRATULATIONS</p>
-                            <p className='font-bold text-green-800 text-[20px]' >{certificate?.studentName}</p>
+                            <p className='font-bold text-green-800 text-xl' >{certificate?.studentName}</p>
                             <p className='font-bold w-[350px] text-[10px]' >This certificate can be validated at any
                                                         time and serves as proof of competence. The course follws
                                                         Individual Standard and uses provided Method
