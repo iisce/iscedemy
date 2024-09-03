@@ -1,94 +1,113 @@
 import getCertificate from "@/data/certificate";
+import { capitalizeWords } from "@/lib/utils";
 import Image from "next/image";
 
 export default async function VerifyCert({
-    params, 
-}:{
-    params: { certficateID : string }
-    
-}){
-  console.log({certficateID: params.certficateID})
-    const certificate = await getCertificate(params.certficateID)
-    // console.log('Student ID is:', certificate?.id)
-    console.log('Certificate Data:', certificate);
-    return(
-        <>
-        
-      <div className='flex max-w-6xl mx-auto mt-6 mb-5'>
+     params,
+}: {
+     params: { certificateID: string };
+}) {
+     const certificate = await getCertificate(params.certificateID);
+     return (
+          <>
+               <div className="mx-auto mb-5 mt-6 flex max-w-6xl">
+                    <div className="relative w-1/2">
+                         <Image
+                              src="/pa.png"
+                              alt="cert logo"
+                              width={500}
+                              height={500}
+                              className="absolute right-[60px] top-[300px] h-[200px] w-[200px]"
+                         />
+                         <div className="relative mx-10 mt-10 grid gap-10">
+                              <div>
+                                   <p className="font-bold uppercase">
+                                        {capitalizeWords(certificate?.type!)}
+                                   </p>
+                              </div>
 
-      <div className=' w-1/2 relative  '>
-            <Image src="/pa.png" alt='cert logo' width={500} height={500} className=" w-[200px] absolute h-[200px] right-[60px] top-[300px] "/>  
-                <div className=' mx-10 mt-10 grid gap-10 relative'>
-                <div>
-                        
-                        <p className='font-bold capitalize'>{certificate?.type.split(' ')}</p>
-                    </div> 
+                              <div>
+                                   <p>This Certificate was Issued for:</p>
+                                   <p className="font-bold">
+                                        {certificate?.studentName}
+                                   </p>
+                              </div>
 
-                    <div>
-                        <p>This Certificate was Issued for:</p>
-                        <p className='font-bold'>{certificate?.studentName}</p>
+                              <div>
+                                   <p>Certification:</p>
+                                   <p className="font-bold">
+                                        {certificate?.Course.title.toUpperCase()}
+                                   </p>
+                              </div>
+                              <div>
+                                   <p>Issue Date:</p>
+                                   <p className="font-bold">
+                                        {certificate?.issuedDate.toDateString()}
+                                   </p>
+                              </div>
+
+                              <div>
+                                   <p>This Certificate was issued by:</p>
+                                   <p className="font-bold">
+                                        {certificate?.platform}
+                                   </p>
+                              </div>
+
+                              <div>
+                                   <p>Credential ID:</p>
+                                   <p className="font-bold">
+                                        {" "}
+                                        {certificate?.userId}
+                                   </p>
+                              </div>
+                         </div>
                     </div>
 
-                    <div>
-                        <p>Certification:</p>
-                        <p className='font-bold'>{certificate?.Course.title.toUpperCase()}</p>
-                    </div> 
-                    <div>
-                        <p>Issue Date:</p>
-                        <p className='font-bold'>{certificate?.issuedDate.toDateString()}</p>
-                    </div> 
+                    <div className="w-1/2">
+                         <div className="border-5 relative h-full border">
+                              <div className="">
+                                   <Image
+                                        src="/pic3.png"
+                                        alt="cert logo"
+                                        width={500}
+                                        height={500}
+                                        className="h-full w-full"
+                                   />
+                              </div>
 
-                    
-                    <div>
-                        <p>This Certificate was issued by:</p>
-                        <p className='font-bold'>{certificate?.platform}</p>
-                    </div> 
+                              <div className="absolute right-[12px] top-[300px]">
+                                   <p className="text-[20px] font-bold text-green-800">
+                                        CERTIFICATE
+                                   </p>
+                                   <p className="text-[30px] font-bold text-green-800">
+                                        VALIDATED
+                                   </p>
+                              </div>
 
-
-                    <div>
-                        <p>Credential ID:</p>
-                        <p className='font-bold'> {certificate?.userId}</p>
-                    </div> 
-
-                </div>
-        </div>
-           
-            <div className='w-1/2 '>
-                <div className=' border border-5 h-full relative '>
-                    <div className=''>
-                        <Image src="/pic3.png" alt='cert logo' width={500} height={500} className=" w-full h-full"/>  
+                              <Image
+                                   src="/verify.png"
+                                   alt="cert logo"
+                                   width={500}
+                                   height={500}
+                                   className="absolute right-[60px] top-[400px] h-[100px] w-[100px]"
+                              />
+                              <div className="mx-4 mt-[200px] grid gap-1">
+                                   <p className="text-[10px] font-bold">
+                                        CONGRATULATIONS
+                                   </p>
+                                   <p className="text-xl font-bold text-green-800">
+                                        {certificate?.studentName}
+                                   </p>
+                                   <p className="w-[350px] text-[10px] font-bold">
+                                        This certificate can be validated at any
+                                        time and serves as proof of competence.
+                                        The course follws Individual Standard
+                                        and uses provided Method
+                                   </p>
+                              </div>
+                         </div>
                     </div>
-                   
-    
-                    <div className='right-[12px] top-[300px] absolute'>
-                            <p className='font-bold text-green-800 text-[20px]'>CERTIFICATE</p>
-                            <p className='font-bold text-green-800 text-[30px]' >VALIDATED</p>
-                    </div> 
-                       
-                    <Image src="/verify.png" alt='cert logo' width={500} height={500} className=" w-[100px] absolute h-[100px] right-[60px] top-[400px] "/>  
-                        <div className=' grid gap-1  mx-4 mt-[200px]'>
-                            <p className='font-bold text-[10px]'>CONGRATULATIONS</p>
-                            <p className='font-bold text-green-800 text-xl' >{certificate?.studentName}</p>
-                            <p className='font-bold w-[350px] text-[10px]' >This certificate can be validated at any
-                                                        time and serves as proof of competence. The course follws
-                                                        Individual Standard and uses provided Method
-                            </p>
-                        </div>
-                   </div>
-
-        
-            </div>
-            
-      </div>
-          
-      </>
-        
-
-
-
-    )
-
+               </div>
+          </>
+     );
 }
-
-
-

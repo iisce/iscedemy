@@ -7,12 +7,11 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
 enum CertificateType {
   CertificateOfCompletion
-  CertificateOfAchievement
   ProfessionalCertification
   MicroCredentials
-
 }
 
 enum PaymentStatus {
@@ -29,23 +28,23 @@ enum UserRole {
 }
 
 model User {
-  id            String          @id @default(cuid())
-  name          String?
-  description   String?
-  phone         String?
-  position      String?
-  courses       String?
-  role          UserRole        @default(USER)
-  email         String?         @unique
-  emailVerified DateTime?       @map("email_verified")
-  image         String?
-  verificationToken   String  @default("")
-  isVerified    Boolean       @default(false)
-  password      String?
-  accounts      Account[]
-  CoursePayment CoursePayment[]
-  Course        Course[]
-  Certificate Certificate[]
+  id                String          @id @default(cuid())
+  name              String?
+  description       String?
+  phone             String?
+  position          String?
+  courses           String?
+  role              UserRole        @default(USER)
+  email             String?         @unique
+  emailVerified     DateTime?       @map("email_verified")
+  image             String?
+  verificationToken String          @default("")
+  isVerified        Boolean         @default(false)
+  password          String?
+  accounts          Account[]
+  CoursePayment     CoursePayment[]
+  Course            Course[]
+  Certificate       Certificate[]
 
   @@map("users")
 }
@@ -106,7 +105,7 @@ model Course {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt
   CoursePayment CoursePayment[]
-  Certificate Certificate[]
+  Certificate   Certificate[]
 }
 
 model Curriculum {
@@ -166,14 +165,15 @@ model CoursePayment {
   User          User          @relation(fields: [userId], references: [id])
   Course        Course        @relation(fields: [courseId], references: [id])
 }
-model Certificate{
-  id    String    @id @default(cuid())
-  studentName   String
-  issuedDate    DateTime  @default(now())
-  platform      String
-  userId        String
-  courseId      String
-  type          CertificateType   @default(CertificateOfCompletion)
-  User        User      @relation(fields: [userId], references: [id])
-  Course      Course    @relation(fields: [courseId], references: [id])
+
+model Certificate {
+  id          String          @id @default(cuid())
+  studentName String
+  issuedDate  DateTime        @default(now())
+  platform    String
+  userId      String
+  courseId    String
+  type        CertificateType @default(CertificateOfCompletion)
+  User        User            @relation(fields: [userId], references: [id])
+  Course      Course          @relation(fields: [courseId], references: [id])
 }
