@@ -9,7 +9,6 @@ export default async function getCertificate(certficateID: string) {
             },
             include: {
                 User: true,
-                Course: true,
             }
         });
         return  graduation

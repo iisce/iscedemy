@@ -584,7 +584,7 @@ async function seed() {
     // console.log(`${tutor.count} Tutor Info Updated`)
     
 
-    /**FOR ORIGINAL DB */
+    // /**FOR ORIGINAL DB */
     // const certificate = await prisma.certificate.createMany({
     //     data:[
     //         {
@@ -625,7 +625,7 @@ async function seed() {
         data:[
             {
                 userId: 'cm0kgrxv00001cli0htb2zi3g',
-                courseId: 'clxhmambm0006j121jxkhucml',
+                courseId: 'clxhmambm0006j121jxkhucml---clxhmambl0002j1218cethm1z---clxhmambl0003j121xn0qo008---clxhmambm0007j1210sgyb0af',
                 studentName: 'ISCE Official',
                 platform: 'PalmTechnIQ',
             },

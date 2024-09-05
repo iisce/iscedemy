@@ -105,7 +105,6 @@ model Course {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt
   CoursePayment CoursePayment[]
-  Certificate   Certificate[]
 }
 
 model Curriculum {
@@ -175,5 +174,4 @@ model Certificate {
   courseId    String
   type        CertificateType @default(CertificateOfCompletion)
   User        User            @relation(fields: [userId], references: [id])
-  Course      Course          @relation(fields: [courseId], references: [id])
 }

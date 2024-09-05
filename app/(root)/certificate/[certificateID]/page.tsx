@@ -1,7 +1,9 @@
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import getCertificate from "@/data/certificate";
+import { getCourseById } from "@/data/course";
 import { capitalizeWords } from "@/lib/utils";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export default async function VerifyCert({
      params,
@@ -9,6 +11,12 @@ export default async function VerifyCert({
      params: { certificateID: string };
 }) {
      const certificate = await getCertificate(params.certificateID);
+     const courseIds = certificate?.courseId.split('---')
+     if (!courseIds || courseIds.length < 1){
+          return notFound()
+     }
+     const course = await getCourseById(courseIds[0]) 
+     const courses = await Promise.all(courseIds.map(courseId => getCourseById(courseId)))
      return (
           <MaxWidthWrapper>
                <div className="mx-auto mb-5 mt-6 flex max-w-6xl">
@@ -37,7 +45,7 @@ export default async function VerifyCert({
                               <div>
                                    <p>Certification:</p>
                                    <p className="font-bold">
-                                        {certificate?.Course.title.toUpperCase()}
+                                        {courses.map((a)=> a?.title).join(', ')}
                                    </p>
                               </div>
                               <div>

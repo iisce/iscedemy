@@ -2,7 +2,7 @@
 	"name": "PalmTechnIQ",
 	"version": "2.0.0",
 	"private": true,
-	"type": "commonjs",
+	"type": "module",
 	"scripts": {
 		"dev": "next dev -p 2024",
 		"build": "prisma generate && next build",
