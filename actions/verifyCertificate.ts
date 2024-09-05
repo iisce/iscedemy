@@ -12,7 +12,6 @@ export const getCertificate = async (certificateID: string) => {
             },
             include: {
                 User: true,
-                Course: true,
             },
         });
 
