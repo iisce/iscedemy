@@ -16,6 +16,7 @@ import FormError from "../form-error";
 import FormSuccess from "../form-success";
 import { Button } from "../ui/button";
 import MaxWidthWrapper from "./max-width-wrapper";
+import { IconCertificate } from "@tabler/icons-react";
 
 export default function Footer() {
 	const [email, setEmail] = useState('');
@@ -93,6 +94,9 @@ export default function Footer() {
 						</Link>
 						<Link href="/become-tutor" className="cursor-pointer">
 							{`Become A Tutor`}
+						</Link>
+						<Link href="/certificate" className="cursor-pointer">
+							{`Verify Certificate`}
 						</Link>
 					</div>
 

@@ -48,7 +48,10 @@ export function getInitials(name: string): string {
      return words[0].charAt(0);
 }
 
-export function capitalizeWords(inputString: string): string {
+export function capitalizeWords(inputString: string | undefined): string {
+     if(!inputString || typeof inputString !== 'string') {
+          return '';
+     }
      return inputString.replace(/[A-Z]/g, (match, index) => {
           return index === 0 ? match : ` ${match}`;
      });

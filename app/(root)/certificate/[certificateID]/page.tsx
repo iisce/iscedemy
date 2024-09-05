@@ -1,3 +1,4 @@
+import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import getCertificate from "@/data/certificate";
 import { capitalizeWords } from "@/lib/utils";
 import Image from "next/image";
@@ -9,7 +10,7 @@ export default async function VerifyCert({
 }) {
      const certificate = await getCertificate(params.certificateID);
      return (
-          <>
+          <MaxWidthWrapper>
                <div className="mx-auto mb-5 mt-6 flex max-w-6xl">
                     <div className="relative w-1/2">
                          <Image
@@ -108,6 +109,6 @@ export default async function VerifyCert({
                          </div>
                     </div>
                </div>
-          </>
+               </MaxWidthWrapper>
      );
 }

@@ -12,7 +12,7 @@ export default async function getCertificate(certficateID: string) {
                 Course: true,
             }
         });
-        return graduation
+        return  graduation
     } catch(error){
         console.log({error})
         return null
