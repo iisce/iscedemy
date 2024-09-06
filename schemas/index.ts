@@ -109,6 +109,37 @@ export const CourseRegisterSchema = z.object({
 		})
 		.max(11, 'Rating cannot exceed 11'),
 });
+export const TutorRegisterSchema = z.object({
+	fullname: z.string().min(1, {
+		message: 'Fullname is required',
+	}),
+
+	email: z.string().email({
+		message: 'Email is required',
+	}),
+
+	course: z
+		.string({
+			required_error: 'Please select a course!',
+		}),
+		
+	phone: z
+		.string({
+			required_error: 'Phone number is required',
+		})
+		.max(11, 'Rating cannot exceed 11'),
+
+	uploadcv: z.record(z.string(), {
+		required_error: 'Upload CV is required',
+	}),
+
+	coverletter: z
+		.string({
+			required_error: 'Cover letter is required',
+		})
+		.max(200, 'Rating cannot exceed 200'),
+});
+
 export const PurchaseCourseSchema = z.object({
 	userId: z.string(),
 	courseId: z.string({

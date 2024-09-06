@@ -1,131 +1,304 @@
+'use client'
+
 import * as React from "react";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { TutorRegisterSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+     Select,
+     SelectContent,
+     SelectGroup,
+     SelectItem,
+     SelectTrigger,
+     SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import {
+     Form,
+     FormControl,
+     FormField,
+     FormItem,
+     FormLabel,
+     FormMessage,
+} from "../ui/form";
+import { COURSES } from "@/lib/consts";
+import FormError from "../form-error";
+import FormSuccess from "../form-success";
+import { Loader2 } from "lucide-react";
 
 export default function BecomeTutorForm() {
-  return (
-    <div className="flex flex-col w-full my-10 px-4 md:px-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="flex items-center justify-center">
-          <h1 className="text-7xl md:text-8xl font-bold text-left leading-tight md:leading-none">
-            Want to Become a Tutor?
-          </h1>
-        </div>
+     const [error, setError] = useState<string | undefined>("");
+     const [success, setSuccess] = useState<string | undefined>("");
+     const [isPending, startTransition] = useTransition();
+     const router = useRouter();
 
-        <div>
-          <Card className="w-full">
-            <CardContent>
-              <form>
-                <div className="grid w-full items-center gap-4 mt-3 font">
-                  <div className="flex flex-col space-y-1.5 font">
-                    <Label htmlFor="name" className="font-bold">
-                      Full Name
-                    </Label>
-                    <Input
-                      id="name"
-                      placeholder="John Doe"
-                      className="shadow-md"
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="flex flex-col space-y-1.5">
-                      <Label htmlFor="email" className="font-bold">
-                        Email Address
-                      </Label>
-                      <Input
-                        id="email"
-                        placeholder="johndoe@gmail.com"
-                        className="shadow-md"
-                      />
+     const form = useForm<z.infer<typeof TutorRegisterSchema>>({
+          resolver: zodResolver(TutorRegisterSchema),
+          defaultValues: {
+               fullname: "",
+               email: "",
+               phone: "",
+               coverletter: "",
+          },
+          mode: "onChange",
+     });
+
+     const onSubmit = (values: z.infer<typeof TutorRegisterSchema>) => {
+          setError("");
+          setSuccess("");
+
+          // startTransition(() => {
+          //   registerTutor(values)
+          //     .then((data) => {
+          //       if (data?.error) {
+          //         setError(data.error);
+          //       } else {
+          //         setSuccess('Tutor registered successfully!');
+          //         router.push('/tutor-dashboard');
+          //       }
+          //     })
+          //     .catch((error) => {
+          //         console.error('Error registering tutor. Please try', error);
+          //     });
+          // });
+     };
+
+     return (
+          <div className="my-10 flex w-full flex-col px-4 md:px-8">
+               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <div className="flex items-center justify-center">
+                         <h1 className="text-left text-7xl font-bold leading-tight md:text-8xl md:leading-none">
+                              Want to Become a Tutor?
+                         </h1>
                     </div>
-                    <div className="flex flex-col space-y-1.5">
-                      <Label htmlFor="phone" className="font-bold">
-                        Phone Number
-                      </Label>
-                      <Input
-                        id="phone"
-                        placeholder="0123456789"
-                        className="shadow-md"
-                      />
+
+                    <div className="">
+                         <Form {...form}>
+                              <form
+                                   className="w-full shadow-lg px-6 py-3 outline-2"
+                                   onSubmit={form.handleSubmit(onSubmit)}
+                              >
+                                   <div className="font mt-3 grid w-full items-center gap-4">
+                                        <div className="font flex flex-col space-y-1.5">
+                                             <FormField
+                                                  control={form.control}
+                                                  name="fullname"
+                                                  render={({ field }) => (
+                                                       <FormItem>
+                                                            <FormLabel className="font-bold">
+                                                                 Full Name
+                                                            </FormLabel>
+                                                            <FormControl>
+                                                                 <Input
+                                                                      {...field}
+                                                                      disabled={
+                                                                           isPending
+                                                                      }
+                                                                      className="shadow-lg"
+                                                                      placeholder="Enter your full name"
+                                                                 />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                       </FormItem>
+                                                  )}
+                                             />
+                                        </div>
+
+                                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                                             <div className="flex flex-col space-y-1.5">
+                                                  <FormField
+                                                       control={form.control}
+                                                       name="email"
+                                                       render={({ field }) => (
+                                                            <FormItem>
+                                                                 <FormLabel className="font-bold">
+                                                                      Email
+                                                                      Address
+                                                                 </FormLabel>
+                                                                 <FormControl>
+                                                                      <Input
+                                                                           {...field}
+                                                                           disabled={
+                                                                                isPending
+                                                                           }
+                                                                           className="shadow-lg"
+                                                                           placeholder="johndoe@gmail.com"
+                                                                      />
+                                                                 </FormControl>
+                                                                 <FormMessage />
+                                                            </FormItem>
+                                                       )}
+                                                  />
+                                             </div>
+
+                                             <div className="flex flex-col space-y-1.5">
+                                                  <FormField
+                                                       control={form.control}
+                                                       name="phone"
+                                                       render={({ field }) => (
+                                                            <FormItem>
+                                                                 <FormLabel className="font-bold">
+                                                                      Phone
+                                                                      Number
+                                                                 </FormLabel>
+                                                                 <FormControl>
+                                                                      <Input
+                                                                           {...field}
+                                                                           disabled={
+                                                                                isPending
+                                                                           }
+                                                                           className="shadow-lg"
+                                                                           placeholder="0123456789"
+                                                                      />
+                                                                 </FormControl>
+                                                                 <FormMessage />
+                                                            </FormItem>
+                                                       )}
+                                                  />
+                                             </div>
+
+                                             <div className="flex flex-col space-y-1.5">
+                                                  <FormField
+                                                       control={form.control}
+                                                       name="course"
+                                                       render={({ field }) => (
+                                                            <FormItem>
+                                                                 <FormLabel className="font-bold">
+                                                                      Course
+                                                                      Specialty
+                                                                 </FormLabel>
+
+                                                                 <Select
+                                                                      disabled={
+                                                                           isPending
+                                                                      }
+                                                                      onValueChange={
+                                                                           field.onChange
+                                                                      }
+                                                                      defaultValue={
+                                                                           field.value
+                                                                      }
+                                                                 >
+                                                                      <FormControl>
+                                                                           <SelectTrigger
+                                                                                id="course"
+                                                                                className="shadow-lg"
+                                                                           >
+                                                                                <SelectValue placeholder="Choose a course" />
+                                                                           </SelectTrigger>
+                                                                      </FormControl>
+                                                                      <SelectContent position="popper">
+                                                                           {COURSES.map(
+                                                                                (
+                                                                                     course,
+                                                                                     i,
+                                                                                ) => (
+                                                                                     <SelectGroup
+                                                                                          key={
+                                                                                               i
+                                                                                          }
+                                                                                     >
+                                                                                          <SelectItem
+                                                                                               value={
+                                                                                                    course.name
+                                                                                               }
+                                                                                          >
+                                                                                               {
+                                                                                                    course.name
+                                                                                               }
+                                                                                          </SelectItem>
+                                                                                     </SelectGroup>
+                                                                                ),
+                                                                           )}
+                                                                      </SelectContent>
+                                                                 </Select>
+                                                                 <FormMessage />
+                                                            </FormItem>
+                                                       )}
+                                                  />
+                                             </div>
+
+                                             <div className="flex flex-col space-y-1.5">
+                                                  <FormField
+                                                       control={form.control}
+                                                       name="uploadcv"
+                                                       render={({ field }) => (
+                                                            <FormItem>
+                                                                 <FormLabel className="font-bold">
+                                                                      Upload CV
+                                                                 </FormLabel>
+                                                                 <FormControl>
+                                                                      <Input
+                                                                           type="file"
+                                                                           disabled={
+                                                                                isPending
+                                                                           }
+                                                                           onBlur={
+                                                                                field.onBlur
+                                                                           }
+                                                                           ref={
+                                                                                field.ref
+                                                                           }
+                                                                           className="shadow-lg"
+                                                                           placeholder="Select a file"
+                                                                      />
+                                                                 </FormControl>
+                                                                 <FormMessage />
+                                                            </FormItem>
+                                                       )}
+                                                  />
+                                             </div>
+
+                                             <div className="flex flex-col py-5 space-y-2">
+                                                  <FormField
+                                                       control={form.control}
+                                                       name="coverletter"
+                                                       render={({ field }) => (
+                                                            <FormItem>
+                                                                 <FormLabel className="font-bold">
+                                                                      Cover
+                                                                      Letter {" "}
+                                                                 </FormLabel>
+                                                                 <FormControl>
+                                                                      <Textarea
+                                                                           {...field}
+                                                                           disabled={
+                                                                                isPending
+                                                                           }
+                                                                           className="h-40 w-[90svh] p-3 shadow-lg"
+                                                                           placeholder="Max. 200 words"
+                                                                      />
+                                                                 </FormControl>
+                                                                 <FormMessage />
+                                                            </FormItem>
+                                                       )}
+                                                  />
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <FormError message={error} />
+                                   <FormSuccess message={success} />
+                                   <Button
+                                      type="submit" 
+                                      className="w-full bg-black md:w-auto">
+                                      {isPending ? (
+                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        ) : (
+                                             "Register"
+                                        )}
+                                   </Button>
+                              </form>
+                         </Form>
                     </div>
-                    <div className="flex flex-col space-y-1.5">
-                      <Label htmlFor="course" className="font-bold">
-                        Course Specialty
-                      </Label>
-                      <Select>
-                        <SelectTrigger id="course" className="shadow-md">
-                          <SelectValue placeholder="Choose course" />
-                        </SelectTrigger>
-                        <SelectContent position="popper">
-                          <SelectItem value="webdevelopment">
-                            Web Development
-                          </SelectItem>
-                          <SelectItem value="cybersecurity">
-                            Cybersecurity
-                          </SelectItem>
-                          <SelectItem value="videoediting">
-                            Video Editing
-                          </SelectItem>
-                          <SelectItem value="uiuxdesigning">
-                            UI UX Designing
-                          </SelectItem>
-                          <SelectItem value="smarthomeautomation">
-                            Smart Home Automation
-                          </SelectItem>
-                          <SelectItem value="mobileappdevelopment">
-                            Mobile App Development
-                          </SelectItem>
-                          <SelectItem value="projectmanagement">
-                            Project Management
-                          </SelectItem>
-                          <SelectItem value="graphicsdesign">
-                            Graphics Design
-                          </SelectItem>
-                          <SelectItem value="dataanalysis">
-                            Data Analysis
-                          </SelectItem>
-                          <SelectItem value="digitalmarketing">
-                            Digital Marketing
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="flex flex-col space-y-1.5">
-                      <Label htmlFor="uploadcv" className="font-bold">
-                        Upload CV
-                      </Label>
-                      <Input
-                        id="uploadcv"
-                        type="file"
-                        className="shadow-md rounded-md file:bg-black file:rounded-md file:text-white file:font-semibold file:border-none hover: cursor-pointer"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col space-y-2">
-                    <Label htmlFor="coverletter" className="font-bold">
-                      Cover Letter
-                    </Label>
-                    <Textarea id="coverletter" className="shadow-md h-40 p-3" />
-                  </div>
-                </div>
-              </form>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button className="w-full md:w-auto bg-black">Submit</Button>
-            </CardFooter>
-          </Card>
-        </div>
-      </div>
-    </div>
-  );
+               </div>
+          </div>
+     );
 }
