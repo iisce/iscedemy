@@ -11,12 +11,15 @@ export default async function VerifyCert({
      params: { certificateID: string };
 }) {
      const certificate = await getCertificate(params.certificateID);
-     const courseIds = certificate?.courseId.split('---')
-     if (!courseIds || courseIds.length < 1){
-          return notFound()
+     const courseIds = certificate?.courseId.split("---");
+     console.log({ courseIds, certificate });
+     if (!courseIds || courseIds.length < 1) {
+          return notFound();
      }
-     const course = await getCourseById(courseIds[0]) 
-     const courses = await Promise.all(courseIds.map(courseId => getCourseById(courseId)))
+     const course = await getCourseById(courseIds[0]);
+     const courses = await Promise.all(
+          courseIds.map((courseId) => getCourseById(courseId)),
+     );
      return (
           <MaxWidthWrapper>
                <div className="mx-auto mb-5 mt-6 flex max-w-6xl">
@@ -45,7 +48,9 @@ export default async function VerifyCert({
                               <div>
                                    <p>Certification:</p>
                                    <p className="font-bold">
-                                        {courses.map((a)=> a?.title).join(', ')}
+                                        {courses
+                                             .map((a) => a?.title)
+                                             .join(", ")}
                                    </p>
                               </div>
                               <div>
@@ -117,6 +122,6 @@ export default async function VerifyCert({
                          </div>
                     </div>
                </div>
-               </MaxWidthWrapper>
+          </MaxWidthWrapper>
      );
 }
