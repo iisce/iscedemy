@@ -585,60 +585,56 @@ async function seed() {
     
 
     // /**FOR ORIGINAL DB */
-    // const certificate = await prisma.certificate.createMany({
-    //     data:[
-    //         {
-    //             userId: 'clxkpox9z00006k5ieqprj9u0',
-    //             courseId: 'clxgfalll00026prq7rg4dhhl',
-    //             studentName: 'Ovoke ivon Nobaje',
-    //             platform: 'PalmTechnIQ',
-    //             issuedDate: '20/08/2024',
-    //         },
-    //         {
-    //             userId: 'clzgvpmbd00014ma9p4z7vgij',
-    //             courseId: 'clxgfalfb00006prq0wkbkzzx---clxgfalll00056prq3w80fz54---clxgfalll00036prq20hc3odi',
-    //             studentName: 'jude kenechukwu',
-    //             platform: 'PalmTechnIQ',
-    //             issuedDate: '20/08/2024',
-    //         },
-    //         {
-    //             userId: 'clzeon3qq0002t9vf1jtcws00',
-    //             courseId: 'clxgfalll00066prq9y7ie54m---clxgfalll00026prq7rg4dhhl---clxgfalll00036prq20hc3odi',
-    //             studentName: 'Preciousgift Chukwujekwu',
-    //             platform: 'PalmTechnIQ',
-    //             issuedDate: '20/08/2024',
-    //         },
-    //         {
-    //             userId: 'clx7y4qpu0000tz80wvbplixp',
-    //             courseId: 'clxgfalll00026prq7rg4dhhl',
-    //             studentName: 'Ifeagwu Patrick',
-    //             platform: 'PalmTechnIQ',
-    //             issuedDate: '20/08/2024',
-    //         },
-    //     ]
-    // })
-
-    // console.log(`${certificate.count} Student certificate created!`)
-   
-    /** FOR TEST DB */
     const certificate = await prisma.certificate.createMany({
         data:[
             {
-                userId: 'cm0kgrxv00001cli0htb2zi3g',
-                courseId: 'clxhmambm0006j121jxkhucml---clxhmambl0002j1218cethm1z---clxhmambl0003j121xn0qo008---clxhmambm0007j1210sgyb0af',
-                studentName: 'ISCE Official',
+                userId: 'clxkpox9z00006k5ieqprj9u0',
+                courseId: 'clxgfalll00026prq7rg4dhhl',
+                studentName: 'Ovoke ivon Nobaje',
                 platform: 'PalmTechnIQ',
             },
             {
-                userId: 'cm0k730ij0001pldqawab3xb1',
-                courseId: 'clxhmambm0006j121jxkhucml',
-                studentName: 'Fusco IG',
+                userId: 'clzgvpmbd00014ma9p4z7vgij',
+                courseId: 'clxgfalfb00006prq0wkbkzzx---clxgfalll00056prq3w80fz54---clxgfalll00036prq20hc3odi',
+                studentName: 'jude kenechukwu',
+                platform: 'PalmTechnIQ',
+            },
+            {
+                userId: 'clzeon3qq0002t9vf1jtcws00',
+                courseId: 'clxgfalll00066prq9y7ie54m---clxgfalll00026prq7rg4dhhl---clxgfalll00036prq20hc3odi',
+                studentName: 'Preciousgift Chukwujekwu',
+                platform: 'PalmTechnIQ',
+            },
+            {
+                userId: 'clx7y4qpu0000tz80wvbplixp',
+                courseId: 'clxgfalll00026prq7rg4dhhl',
+                studentName: 'Ifeagwu Patrick',
                 platform: 'PalmTechnIQ',
             },
         ]
     })
 
-    console.log(`${certificate.count} Student certificate created!`)
+    console.log(`${certificate.count} Original Student certificate created!`)
+   
+    /** FOR TEST DB */
+    // const certificate = await prisma.certificate.createMany({
+    //     data:[
+    //         {
+    //             userId: 'cm0kgrxv00001cli0htb2zi3g',
+    //             courseId: 'clxhmambm0006j121jxkhucml---clxhmambl0002j1218cethm1z---clxhmambl0003j121xn0qo008---clxhmambm0007j1210sgyb0af',
+    //             studentName: 'ISCE Official',
+    //             platform: 'PalmTechnIQ',
+    //         },
+    //         {
+    //             userId: 'cm0k730ij0001pldqawab3xb1',
+    //             courseId: 'clxhmambm0006j121jxkhucml',
+    //             studentName: 'Fusco IG',
+    //             platform: 'PalmTechnIQ',
+    //         },
+    //     ]
+    // })
+
+    // console.log(`${certificate.count} Student certificate created!`)
 }
 seed().catch((error) => {
     console.log({ error })

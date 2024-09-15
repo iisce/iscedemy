@@ -1,13 +1,14 @@
 'use client';
+import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import * as Icons from '@/lib/icons';
 import { Review, User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-import { Button } from '../ui/button';
-import { Separator } from '../ui/separator';
-import EditReviewForm from './edit-review-form';
-import ReviewForm from './review-form';
+import EditReviewForm from '../forms/edit-review-form';
+import ReviewForm from '../forms/review-form';
+import { Separator } from '@/components/ui/separator';
+
 
 export function SingleTutorReviews({
 	reviews,

@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import PurchaseCourseForm from '@/components/component/purchase-course-form';
+import PurchaseCourseForm from '@/components/component/forms/purchase-course-form';
 import { Button } from '@/components/ui/button';
 import { getCourseBySlug } from '@/data/course';
 import { getUserById } from '@/data/user';

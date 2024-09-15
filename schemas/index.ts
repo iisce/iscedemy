@@ -8,21 +8,29 @@ export const LoginSchema = z.object({
 		message: 'Password is required',
 	}),
 });
+
+
 export const NewPasswordSchema = z.object({
 	password: z.string().min(6, {
 		message: 'Minimum of 6 character required!',
 	}),
 });
+
+
 export const ResetSchema = z.object({
 	email: z.string().email({
 		message: 'Email is required',
 	}),
 });
+
+
 export const SubscribeSchema = z.object({
 	email: z.string().email({
 		message: 'Email is required',
 	}),
 });
+
+
 export const RegisterSchema = z.object({
 	email: z.string().email({
 		message: 'Email is required',
@@ -43,6 +51,8 @@ export const RegisterSchema = z.object({
 			'Phone format (+2348012345678/08012345678)'
 		),
 });
+
+
 export const CourseRegisterSchema = z.object({
 	firstname: z.string().min(1, {
 		message: 'Firstname is required',
@@ -109,6 +119,8 @@ export const CourseRegisterSchema = z.object({
 		})
 		.max(11, 'Rating cannot exceed 11'),
 });
+
+
 export const TutorRegisterSchema = z.object({
 	fullname: z.string().min(1, {
 		message: 'Fullname is required',
@@ -129,7 +141,7 @@ export const TutorRegisterSchema = z.object({
 		})
 		.max(11, 'Rating cannot exceed 11'),
 
-	uploadcv: z.record(z.string(), {
+	uploadcv: z.string({
 		required_error: 'Upload CV is required',
 	}),
 
@@ -140,6 +152,8 @@ export const TutorRegisterSchema = z.object({
 		.max(200, 'Rating cannot exceed 200'),
 });
 
+
+
 export const PurchaseCourseSchema = z.object({
 	userId: z.string(),
 	courseId: z.string({
@@ -149,6 +163,8 @@ export const PurchaseCourseSchema = z.object({
 		required_error: 'Please select at least 1 category!',
 	}),
 });
+
+
 
 export const ReviewSchema = z.object({
 	tutorName: z.string({
@@ -175,6 +191,8 @@ export const ReviewSchema = z.object({
 	}),
 });
 
+
+
 export const UpdateReviewSchema = z.object({
 	id: z.string().optional(),
 	rating: z
@@ -190,6 +208,8 @@ export const UpdateReviewSchema = z.object({
 		message: 'Description must be at least 10 characters long',
 	}),
 });
+
+
 export const UpdateCourseSchema = z.object({
 	id: z.string(),
 	title: z.string().min(1, 'Title is required'),

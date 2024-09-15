@@ -28,13 +28,16 @@ import {
      FormItem,
      FormLabel,
      FormMessage,
-} from "../ui/form";
+} from "../../ui/form";
 import { COURSES } from "@/lib/consts";
-import FormError from "../form-error";
-import FormSuccess from "../form-success";
+import FormError from "../../form-error";
+import FormSuccess from "../../form-success";
 import { Loader2 } from "lucide-react";
+import { BecomeTutor } from "@/actions/become-tutor";
+import UploadFile from "./tutor-upload-file";
 
 export default function BecomeTutorForm() {
+     const [uploading, setUploading] = useState(false);
      const [error, setError] = useState<string | undefined>("");
      const [success, setSuccess] = useState<string | undefined>("");
      const [isPending, startTransition] = useTransition();
@@ -47,28 +50,36 @@ export default function BecomeTutorForm() {
                email: "",
                phone: "",
                coverletter: "",
+               uploadcv: "",
           },
           mode: "onChange",
      });
+
+     console.log(form.getValues())
+
+     const handleCVUpload = async (url: string) => {
+          console.log("Uploaded Cv:", url)
+          form.setValue('uploadcv', url);
+     }
 
      const onSubmit = (values: z.infer<typeof TutorRegisterSchema>) => {
           setError("");
           setSuccess("");
 
-          // startTransition(() => {
-          //   registerTutor(values)
-          //     .then((data) => {
-          //       if (data?.error) {
-          //         setError(data.error);
-          //       } else {
-          //         setSuccess('Tutor registered successfully!');
-          //         router.push('/tutor-dashboard');
-          //       }
-          //     })
-          //     .catch((error) => {
-          //         console.error('Error registering tutor. Please try', error);
-          //     });
-          // });
+          startTransition(() => {
+            BecomeTutor(values)
+              .then((data) => {
+                if (data?.error) {
+                  setError(data.error);
+                } else {
+                  setSuccess('Tutor registered successfully!');
+                  router.push('/tutor-dashboard');
+                }
+              })
+              .catch((error) => {
+                  console.error('Error registering tutor. Please try', error);
+              });
+          });
      };
 
      return (
@@ -235,21 +246,10 @@ export default function BecomeTutorForm() {
                                                                  <FormLabel className="font-bold">
                                                                       Upload CV
                                                                  </FormLabel>
-                                                                 <FormControl>
-                                                                      <Input
-                                                                           type="file"
-                                                                           disabled={
-                                                                                isPending
-                                                                           }
-                                                                           onBlur={
-                                                                                field.onBlur
-                                                                           }
-                                                                           ref={
-                                                                                field.ref
-                                                                           }
-                                                                           className="shadow-lg"
-                                                                           placeholder="Select a file"
-                                                                      />
+                                                                 
+                                                                 <FormControl >
+                                                                       
+                                                                     <UploadFile setUploading={setUploading} uploading={uploading} uploadCV={handleCVUpload }  />
                                                                  </FormControl>
                                                                  <FormMessage />
                                                             </FormItem>
@@ -273,7 +273,7 @@ export default function BecomeTutorForm() {
                                                                            disabled={
                                                                                 isPending
                                                                            }
-                                                                           className="h-40 w-[90svh] p-3 shadow-lg"
+                                                                           className="h-40 xl:w-[90svh] md:w-[50svh] w-full p-3 shadow-lg"
                                                                            placeholder="Max. 200 words"
                                                                       />
                                                                  </FormControl>
@@ -288,8 +288,9 @@ export default function BecomeTutorForm() {
                                    <FormSuccess message={success} />
                                    <Button
                                       type="submit" 
+                                      disabled={uploading}
                                       className="w-full bg-black md:w-auto">
-                                      {isPending ? (
+                                      {isPending || uploading  ? (
                                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                         ) : (
                                              "Register"

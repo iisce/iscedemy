@@ -7,12 +7,12 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import FormError from "../form-error";
-import FormSuccess from "../form-success";
-import { Button } from "../ui/button";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "../../ui/form";
+import { Input } from "../../ui/input";
+import { Textarea } from "../../ui/textarea";
+import FormError from "../../form-error";
+import FormSuccess from "../../form-success";
+import { Button } from "../../ui/button";
 import { LoaderIcon } from "lucide-react";
 
 interface EditCourseFormProps {

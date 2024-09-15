@@ -2,14 +2,14 @@
 import { formatToNaira } from '@/lib/utils';
 import { Course, User } from '@prisma/client';
 import React, { useState, useTransition } from 'react';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../ui/select';
+} from '../../ui/select';
 import {
 	Form,
 	FormControl,
@@ -17,7 +17,7 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../ui/form';
+} from '../../ui/form';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';

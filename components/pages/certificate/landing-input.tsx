@@ -24,7 +24,7 @@ export default function CertificateSearchInput() {
 
           startTransition(async () => {
                try {
-                    const certificate = await getCertificate(certificateID); //want to replac with server action instead
+                    const certificate = await getCertificate(certificateID); 
 
                     if (certificate.error) {
                          setError(certificate.error);

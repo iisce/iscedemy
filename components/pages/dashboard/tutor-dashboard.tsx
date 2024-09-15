@@ -1,6 +1,6 @@
 'use client'
 
-import EditCourseForm from "@/components/component/edit-course-form";
+import EditCourseForm from "@/components/component/forms/edit-course-form";
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";

@@ -45,9 +45,9 @@ export default async function VerifyCert({
                                    </p>
                               </div>
 
-                              <div>
+                              <div className="">
                                    <p>Certification:</p>
-                                   <p className="font-bold">
+                                   <p className="font-bold flex-col">
                                         {courses
                                              .map((a) => a?.title)
                                              .join(", ")}

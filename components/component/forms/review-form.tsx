@@ -8,19 +8,19 @@ import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import FormError from '../form-error';
-import FormSuccess from '../form-success';
-import { Button } from '../ui/button';
+import FormError from '../../form-error';
+import FormSuccess from '../../form-success';
+import { Button } from '../../ui/button';
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
-import StarRating from '../ui/star-rating';
-import { Textarea } from '../ui/textarea';
+} from '../../ui/form';
+import { Input } from '../../ui/input';
+import StarRating from '../../ui/star-rating';
+import { Textarea } from '../../ui/textarea';
 
 interface ReviewFormProps {
 	tutorName: string;

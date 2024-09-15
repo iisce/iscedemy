@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import FormError from '../form-error';
-import { ITutorProfileProps } from '../../lib/types';
-import { TUTOR_PROFILE } from '../../lib/consts';
+import FormError from '../../form-error';
+import { ITutorProfileProps } from '../../../lib/types';
+import { TUTOR_PROFILE } from '../../../lib/consts';
 import React from 'react';
 
 export default function TutorProfile({ tutorName }: ITutorProfileProps) {

@@ -1,6 +1,4 @@
 import { auth } from '@/auth';
-import TutorProfile from '@/components/component/tutor-profile';
-import { SingleTutorReviews } from '@/components/component/tutor-reviews';
 import FormError from '@/components/form-error';
 import FormSuccess from '@/components/form-success';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +19,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CourseRating from './courseRating';
 import SingleCourseCurriculum from './singleCourseCurriculum';
+import TutorProfile from '@/components/component/tutor/tutor-profile';
+import { SingleTutorReviews } from '@/components/component/tutor/tutor-reviews';
 
 export default async function SingleCourse({
 	courseTitle,

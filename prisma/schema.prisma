@@ -175,3 +175,14 @@ model Certificate {
   type        CertificateType @default(CertificateOfCompletion)
   User        User            @relation(fields: [userId], references: [id])
 }
+
+model TutorApplication {
+  id      String    @id @default(cuid())
+  fullname  String
+  email     String  @unique
+  phone     String
+  coverletter   String
+  uploadcv        String  
+
+  @@map("tutorApplications")
+}
