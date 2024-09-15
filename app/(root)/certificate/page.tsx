@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 
 export const metadata: Metadata = {
-	title: 'PalmTechnIQ | Validate Student',
+	title: 'Validate Student',
 	description: 'Confirm if its our student! Scan / Tap To verify',
 	metadataBase: new URL('https://www.palmtechniq.com/certificate'),
 	alternates:{
