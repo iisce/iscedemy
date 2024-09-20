@@ -8,7 +8,8 @@ import {
 	LucideMail,
 	LucideMapPin,
 	LucidePhone,
-	LucideTwitter
+	LucideTwitter,
+	LucideYoutube
 } from "lucide-react";
 import Link from "next/link";
 import React, { useState, useTransition } from "react";
@@ -50,7 +51,7 @@ export default function Footer() {
 		return (
 			<div className="pt-8 bg-primary text-background">
 				<MaxWidthWrapper>
-					<div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-7 justify-between">
+					<div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5  gap-7 justify-between">
 						<div className="w-full flex flex-col gap-4">
 							<div className="font-bold text-lg">{`PalmTechnIQ`}</div>
 							<div className=" font-normal text-sm">
@@ -92,15 +93,24 @@ export default function Footer() {
 						<Link href="/faq" className="cursor-pointer">
 							{`Frequently Asked Question`}
 						</Link>
+					</div>
+					<div className=" w-full flex flex-col gap-4 text-sm">
+						<ol className="font-bold text-lg">Resources</ol>
+						<Link href="https://www.palmtechniq.com/podcast" className="cursor-pointer">
+							Podcast
+						</Link>
 						<Link href="/become-tutor" className="cursor-pointer">
 							{`Become A Tutor`}
 						</Link>
 						<Link href="/certificate" className="cursor-pointer">
 							{`Verify Certificate`}
 						</Link>
+						<Link href="/blog" className="cursor-pointer">
+							{`Blog`}
+						</Link>
 					</div>
 
-			<div className='flex flex-col gap-4 text-sm'>
+			<div className='w-full flex flex-col gap-4 text-sm'>
 				<div className='font-bold text-lg'>
 					{`Subscribe To Our Newsletter`}
 				</div>
@@ -127,7 +137,7 @@ export default function Footer() {
 				</form>
 				</div>
 			</div>
-			<div className='pt-10  space-y-2'>
+			<div className='pt-10 pb-2 space-y-2'>
 				<div className='flex items-center gap-4 justify-center py-2'>
 					{/* <Link href='https://www.twitter.com/'>
 						<LucideTwitter />
@@ -141,9 +151,13 @@ export default function Footer() {
 					<Link href='https://www.linkedin.com/'>
 						<LucideLinkedin />
 					</Link>
+					<Link href='https://www.youtube.com/@isceapp'>
+						<LucideYoutube />
+					</Link>
 				</div>
-				<div className='grid justify-center'>
-					{`Powered by ISCE`}
+				<div className='grid items-center text-center justify-center'>
+					{`Powered by ISCE`} 
+					<br />
 					{`2024 PalmTechnIQ. All Rights Reserved.`}
 				</div>
 			</div>
