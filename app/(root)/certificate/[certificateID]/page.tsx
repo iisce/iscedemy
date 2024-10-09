@@ -116,7 +116,7 @@ export default async function VerifyCert({
                                         <p className=" w-full text-[10px] font-bold">
                                              This certificate can be validated at any
                                              time and serves as proof of competence.
-                                             The course follws Individual Standard
+                                             The course follows Individual Standard
                                              and uses provided Method
                                         </p>
                                    </div>
