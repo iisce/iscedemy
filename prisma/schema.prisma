@@ -173,6 +173,7 @@ model Certificate {
   userId      String
   courseId    String
   type        CertificateType @default(CertificateOfCompletion)
+  certificateUrl  String      @default("")
   User        User            @relation(fields: [userId], references: [id])
 }
 

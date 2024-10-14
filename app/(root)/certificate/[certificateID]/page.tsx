@@ -1,8 +1,10 @@
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
+import { Button } from "@/components/ui/button";
 import getCertificate from "@/data/certificate";
 import { getCourseById } from "@/data/course";
 import { capitalizeWords } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function VerifyCert({
@@ -20,6 +22,7 @@ export default async function VerifyCert({
      const courses = await Promise.all(
           courseIds.map((courseId) => getCourseById(courseId)),
      );
+     const certificateUrl = certificate?.certificateUrl;
      return (
           <MaxWidthWrapper>
                <div className="mx-auto my-6 w-full md:flex max-w-6xl">
@@ -74,6 +77,17 @@ export default async function VerifyCert({
                                         {certificate?.userId}
                                    </p>
                               </div>
+
+                              {certificateUrl && (
+                         <div className="mt-6">
+                         <Button asChild variant="default">
+                              <Link href={certificateUrl} className="px-2 py-2 rounded-full font-bold">
+                                   Download Certificate
+                              </Link>
+                         </Button>
+
+                         </div>
+                    )}
                          </div>
                     </div>
 
@@ -122,6 +136,7 @@ export default async function VerifyCert({
                                    </div>
                          </div>
                     </div>
+                  
                </div>
           </MaxWidthWrapper>
      );
