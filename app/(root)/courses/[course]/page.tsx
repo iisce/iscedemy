@@ -4,6 +4,10 @@ import { getCourseBySlug } from '@/data/course';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+
+/**
+ * This function is used to dynamically generate metadata for each blog post
+ */
 export async function generateMetadata({
 	params,
 }: {

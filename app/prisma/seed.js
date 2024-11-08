@@ -584,37 +584,55 @@ async function seed() {
     // console.log(`${tutor.count} Tutor Info Updated`)
     
 
-    // /**FOR ORIGINAL DB */
-    const certificate = await prisma.certificate.createMany({
-        data:[
-            {
-                userId: 'clxkpox9z00006k5ieqprj9u0',
-                courseId: 'clxgfalll00026prq7rg4dhhl',
-                studentName: 'Ovoke ivon Nobaje',
-                platform: 'PalmTechnIQ',
-            },
-            {
-                userId: 'clzgvpmbd00014ma9p4z7vgij',
-                courseId: 'clxgfalfb00006prq0wkbkzzx---clxgfalll00056prq3w80fz54---clxgfalll00036prq20hc3odi',
-                studentName: 'jude kenechukwu',
-                platform: 'PalmTechnIQ',
-            },
-            {
-                userId: 'clzeon3qq0002t9vf1jtcws00',
-                courseId: 'clxgfalll00066prq9y7ie54m---clxgfalll00026prq7rg4dhhl---clxgfalll00036prq20hc3odi',
-                studentName: 'Preciousgift Chukwujekwu',
-                platform: 'PalmTechnIQ',
-            },
-            {
-                userId: 'clx7y4qpu0000tz80wvbplixp',
-                courseId: 'clxgfalll00026prq7rg4dhhl',
-                studentName: 'Ifeagwu Patrick',
-                platform: 'PalmTechnIQ',
-            },
-        ]
+    /**FOR ORIGINAL DB */
+    // const certificate = await prisma.certificate.createMany({
+    //     data:[
+    //         {
+    //             userId: 'clxkpox9z00006k5ieqprj9u0',
+    //             courseId: 'clxgfalll00026prq7rg4dhhl',
+    //             studentName: 'Ovoke ivon Nobaje',
+    //             platform: 'PalmTechnIQ',
+    //         },
+    //         {
+    //             userId: 'clzgvpmbd00014ma9p4z7vgij',
+    //             courseId: 'clxgfalfb00006prq0wkbkzzx---clxgfalll00056prq3w80fz54---clxgfalll00036prq20hc3odi',
+    //             studentName: 'jude kenechukwu',
+    //             platform: 'PalmTechnIQ',
+    //         },
+    //         {
+    //             userId: 'clzeon3qq0002t9vf1jtcws00',
+    //             courseId: 'clxgfalll00066prq9y7ie54m---clxgfalll00026prq7rg4dhhl---clxgfalll00036prq20hc3odi',
+    //             studentName: 'Preciousgift Chukwujekwu',
+    //             platform: 'PalmTechnIQ',
+    //         },
+    //         {
+    //             userId: 'clx7y4qpu0000tz80wvbplixp',
+    //             courseId: 'clxgfalll00026prq7rg4dhhl',
+    //             studentName: 'Ifeagwu Patrick',
+    //             platform: 'PalmTechnIQ',
+    //         },
+    //     ]
+    // })
+    // console.log(`${certificate.count} Original Student certificate created!`)
+
+
+    
+    /**
+     * Updating certificate table
+     */
+
+    const certificate = await prisma.certificate.create({
+        data: {
+            userId: 'cm2f860lg000150fjobl09mlv',
+            courseId: 'clxgfalll00066prq9y7ie54m',
+            studentName: 'Kelvin Udemezue ',
+            platform: 'PalmTechnIQ',
+            type: 'CertificateOfCompletion',
+            certificateUrl: '',
+        }
     })
 
-    console.log(`${certificate.count} Original Student certificate created!`)
+    console.log(`${certificate.count} Certificate Updated Successfully!`)
    
     /** FOR TEST DB */
     // const certificate = await prisma.certificate.createMany({

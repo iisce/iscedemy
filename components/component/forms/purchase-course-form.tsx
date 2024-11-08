@@ -1,7 +1,7 @@
 'use client';
 import { formatToNaira } from '@/lib/utils';
 import { Course, User } from '@prisma/client';
-import React, { useState, useTransition } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import { Button } from '../../ui/button';
 import {
 	Select,
@@ -38,6 +38,9 @@ export default function PurchaseCourseForm({
 	const [isPending, startTransition] = useTransition();
 	const router = useRouter();
 
+	const [additionalCostMessage, setAdditionalCostMessage] = useState<string | null>(null);
+
+
 	const form = useForm<z.infer<typeof PurchaseCourseSchema>>({
 		resolver: zodResolver(PurchaseCourseSchema),
 		defaultValues: {
@@ -46,6 +49,19 @@ export default function PurchaseCourseForm({
 		},
 		mode: 'onChange',
 	});
+
+	useEffect(() => {
+		// Update message based on selected type
+		const courseType = form.getValues('type');
+		if (courseType === 'Physical') {
+			setAdditionalCostMessage('An additional 20,000 Naira is charged for certificate and Digital Student ID.');
+		} else if (courseType === 'Virtual') {
+			
+			setAdditionalCostMessage('An additional 20,000 Naira is charged for certificate and Digital Student ID.');
+		} else {
+			setAdditionalCostMessage(null)
+		}
+	}, [form.watch('type')]);
 
 	const onSubmit = (values: z.infer<typeof PurchaseCourseSchema>) => {
 		setError('');
@@ -74,6 +90,7 @@ export default function PurchaseCourseForm({
 		});
 	};
 
+	
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)}>
@@ -92,6 +109,12 @@ export default function PurchaseCourseForm({
 									: 50000
 							)}
 						</div>
+					)}
+
+					{additionalCostMessage && (
+						<p className="text-sm text-gray-600 dark:text-gray-400">
+							{additionalCostMessage}
+						</p>
 					)}
 					<FormField
 						name='type'

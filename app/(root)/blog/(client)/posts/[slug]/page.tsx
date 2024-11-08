@@ -1,16 +1,76 @@
-import { PiInstagramLogoFill } from "react-icons/pi";
-import { IoLogoWhatsapp } from "react-icons/io";
-import { FaFacebook, FaLinkedinIn } from "react-icons/fa";
-import { BiLogoGmail } from "react-icons/bi";
-import Link from "next/link";
-import React from "react";
-import { client} from '../../../../../../sanity/lib/client'
-import Image from "next/image";
-import { PortableText } from "next-sanity";
-import { urlFor } from "../../../../../../sanity/lib/image";
-import { IPost, ISingleBlog } from "../../../../../../lib/types";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
+import Image from "next/image";
+import Link from "next/link";
+import { BiLogoGmail } from "react-icons/bi";
+import { FaFacebook, FaLinkedinIn } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { PiInstagramLogoFill } from "react-icons/pi";
+import { IPost, ISingleBlog } from "../../../../../../lib/types";
+import { client } from '../../../../../../sanity/lib/client';
+import { urlFor } from "../../../../../../sanity/lib/image";
+
+/**
+ * This function aids the caching of the blog posts
+ */
+async function getAllPost(): Promise<IPost[]> {
+     const query = `*[ _type == "post"] {
+  title,
+  slug,
+  publisheddatetime,
+  excerpt,
+  overviewImage,
+  body,
+  tag[]->{
+    name,
+    _id,
+    slug
+  }
+}`;
+const data = await client.fetch(query);
+
+return data;
+}
+
+export async function generateStaticParams() {
+     const posts: IPost[] = await getAllPost();
+
+     return posts.map(post=> {
+          post.slug
+     })
+
+}
+
+
+/**
+ * This function is used to dynamically generate metadata for each blog post
+ */
+export async function generateMetadata({
+     params: {slug},
+     }: ISingleBlog ): Promise<Metadata> {
+          const blogPost: IPost = await getPost(slug);
+     
+          return {
+               title: blogPost.title,
+               description: blogPost.excerpt,
+               // openGraph: {
+               //      title: blogPost.title,
+               //      description: blogPost.excerpt,
+               //      url: `https://www.obikelscreations.co.uk/blog/${slug}`,
+               //      siteName: 'Obikels Creations',
+               //      images: [
+               //           {
+               //                url: blogPost.overviewImage,
+               //                width: 800,
+               //                height: 600,
+               //                alt: blogPost.title
+               //           }
+               //      ]
+               // }
+          }
+}
+
+
 
 async function getPost(slug: string) {
      const query = `*[_type == "post" && slug.current== "${slug}"][0]{

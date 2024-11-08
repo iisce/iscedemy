@@ -33,10 +33,10 @@ export async function initiatePayment(
 	});
 	if (!student) return { error: 'No student found' };
 
-	const coursePrice =
+	let coursePrice =
 		type.toLowerCase() === 'physical'
-			? course.physicalPrice * 100
-			: course.virtualPrice * 100;
+			? course.physicalPrice * 100 + 2000000
+			: course.virtualPrice * 100 + 2000000;
 	const reference = `course-${course.title}-${Date.now()}`;
 	try {
 		const newTransaction = await db.coursePayment.create({
@@ -84,6 +84,13 @@ export async function initiatePayment(
 						variable_name: 'course_amount',
 						value: coursePrice,
 					},
+					{
+						display_name: 'Additional Fee Explanation',
+						veriable_name: 'additional_fee_explanation',
+						value: type.toLowerCase() === 'physical' || 'Virtual'
+						? 'Includes additional 20,000 Naira for certificate and Digital Student ID.'
+						: 'No additional charges.',
+					}
 				],
 			},
 		};
