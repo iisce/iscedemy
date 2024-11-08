@@ -57,7 +57,7 @@ export default function NavBar({ user }: { user?: User | null }) {
 							variant='outline'
 							className='rounded-full h-12 hidden hover:text-primary hover:bg-none bg-background text-primary  lg:flex'
 							asChild>
-							<Link href='https://wa.me/qr/GHKMMDKEJZNEF1'>
+							<Link href='https://wa.me/qr/'>
 								{`Speak to admissions`}
 							</Link>
 						</Button>

@@ -112,7 +112,7 @@ export default function PurchaseCourseForm({
 					)}
 
 					{additionalCostMessage && (
-						<p className="text-sm text-gray-600 dark:text-gray-400">
+						<p className="text-sm text-destructive/70">
 							{additionalCostMessage}
 						</p>
 					)}
