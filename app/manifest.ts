@@ -8,7 +8,7 @@ export default function manifest(): MetadataRoute.Manifest {
 		start_url: '/',
 		display: 'fullscreen',
 		background_color: '#16a34a',
-		theme_color: '#fff',
+		theme_color: '#16a34a',
 		icons: [
 			{
 				src: '/assets/palmtechniqlogo.png',
