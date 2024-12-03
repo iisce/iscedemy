@@ -1,13 +1,7 @@
 'use client'
-
-import * as React from "react";
-
+import { BecomeTutor } from "@/actions/become-tutor";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { TutorRegisterSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
      Select,
      SelectContent,
@@ -17,10 +11,16 @@ import {
      SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { COURSES } from "@/lib/consts";
+import { TutorRegisterSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import FormError from "../../form-error";
+import FormSuccess from "../../form-success";
 import {
      Form,
      FormControl,
@@ -29,11 +29,6 @@ import {
      FormLabel,
      FormMessage,
 } from "../../ui/form";
-import { COURSES } from "@/lib/consts";
-import FormError from "../../form-error";
-import FormSuccess from "../../form-success";
-import { Loader2 } from "lucide-react";
-import { BecomeTutor } from "@/actions/become-tutor";
 import UploadFile from "./tutor-upload-file";
 
 export default function BecomeTutorForm() {
@@ -73,7 +68,7 @@ export default function BecomeTutorForm() {
                   setError(data.error);
                 } else {
                   setSuccess('Tutor registered successfully!');
-                  router.push('/tutor-dashboard');
+                  router.push('/');
                 }
               })
               .catch((error) => {

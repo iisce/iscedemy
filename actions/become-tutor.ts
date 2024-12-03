@@ -17,7 +17,7 @@ export const BecomeTutor = async (values: z.infer<typeof TutorRegisterSchema>) =
     }
 
     const {fullname, email, phone, coverletter, uploadcv } = validatedFields.data
-    console.log("Uploaded value", uploadcv)
+    console.log("Uploaded CV URL:", uploadcv)
     try {
         const employContent = 
         `
@@ -32,7 +32,7 @@ export const BecomeTutor = async (values: z.infer<typeof TutorRegisterSchema>) =
         await resend.emails.send({
             from: process.env.FROM_EMAIL_ADDRESS!,
             to: process.env.TO_EMAIL_ADDRESS!,
-            subject: 'Become A Tutor',
+            subject: 'Become A Tutor Application',
             text: employContent,
         });
 
@@ -43,14 +43,18 @@ export const BecomeTutor = async (values: z.infer<typeof TutorRegisterSchema>) =
                 phone,
                 coverletter,
                 uploadcv
-            }
-        })
+            },
+        });
 
+        console.log('Application successful:', application);
         return {
             success: 'Application Successful!',
             data: application
         };
     } catch (error) {
-        console.error('Enrror sending application')
+        console.error('Error processing tutor application:', error)
+        return {error: 'Failed to process application. Please try again later.'};
+    } finally {
+        await prisma.$disconnect();
     }
-}
+};
