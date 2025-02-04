@@ -21,6 +21,7 @@ import CourseRating from './courseRating';
 import SingleCourseCurriculum from './singleCourseCurriculum';
 import TutorProfile from '@/components/component/tutor/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor/tutor-reviews';
+import { YoutubeIcon } from 'lucide-react';
 
 export default async function SingleCourse({
 	courseTitle,
@@ -252,7 +253,7 @@ export default async function SingleCourse({
 								</span>
 								<div className='font-bold'>
 									<div className=''>
-										Virtual/Physical
+										{`Virtual/Physical`}
 									</div>
 									<div className=''>
 										{`${formatToNaira(
@@ -384,6 +385,11 @@ export default async function SingleCourse({
 								<Link href='https://www.linkedin.com/'>
 									<Button className='p-2 rounded-full bg-blue-700 hover:bg-green-600 text-white'>
 										<Icons.LinkedinIcon />
+									</Button>
+								</Link>
+								<Link href='https://www.youtube.com/@isceapp'>
+									<Button className='p-2 rounded-full bg-blue-700 hover:bg-green-600 text-white'>
+										<YoutubeIcon />
 									</Button>
 								</Link>
 							</div>

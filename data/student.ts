@@ -1,4 +1,4 @@
-// data/student.ts
+  // data/student.ts
 
 import { db } from "../lib/db";
 import { Student } from "../lib/types";

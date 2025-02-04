@@ -105,8 +105,8 @@ export default function PurchaseCourseForm({
 						<div className='text-2xl font-bold text-gray-900 dark:text-gray-100'>
 							{formatToNaira(
 								form.getValues('type') === 'Virtual'
-									? 30000
-									: 50000
+									? course.virtualPrice
+									: course.physicalPrice
 							)}
 						</div>
 					)}

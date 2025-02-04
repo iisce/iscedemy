@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../ui/button'
-import { FaGoogle } from "react-icons/fa6";
+import {  FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { signIn } from 'next-auth/react';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';

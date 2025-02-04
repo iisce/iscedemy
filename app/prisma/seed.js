@@ -109,6 +109,8 @@ async function seed() {
 
     // console.log(`${tutor.count} Tutor Created`)
 
+
+
     // const course = await prisma.course.createMany({
     //     data: [
     //         {
@@ -285,6 +287,7 @@ async function seed() {
 
     // console.log(`${course.count} Courses Created`)
 
+   
     // const course = await prisma.course.create({
     //     data: {
     //         title: `data-analytics`,
