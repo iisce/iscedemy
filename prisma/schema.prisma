@@ -1,30 +1,10 @@
-// prisma/schema.prisma
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-enum CertificateType {
-  CertificateOfCompletion
-  ProfessionalCertification
-  MicroCredentials
-}
-
-enum PaymentStatus {
-  SUCCESSFUL
-  FAILED
-  PENDING
-}
-
-enum UserRole {
-  STUDENT
-  TUTOR
-  ADMIN
-  USER
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -33,18 +13,18 @@ model User {
   description       String?
   phone             String?
   position          String?
-  courses           String?
   role              UserRole        @default(USER)
   email             String?         @unique
   emailVerified     DateTime?       @map("email_verified")
   image             String?
-  verificationToken String          @default("")
-  isVerified        Boolean         @default(false)
   password          String?
-  accounts          Account[]
-  CoursePayment     CoursePayment[]
-  Course            Course[]
+  isVerified        Boolean         @default(false)
+  verificationToken String          @default("")
+  courses           String?
   Certificate       Certificate[]
+  Course            Course[]
+  CoursePayment     CoursePayment[]
+  accounts          Account[]
 
   @@map("users")
 }
@@ -55,15 +35,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String  @map("provider_account_id")
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -83,14 +62,13 @@ model CourseRegistration {
 }
 
 model Course {
-  id            String  @id @default(cuid())
+  id            String          @id @default(cuid())
   title         String
-  image         String  @default("/course-placeholder.jpg")
+  image         String          @default("/course-placeholder.jpg")
   category      String
   textSnippet   String
   videoUrl      String
   tutorId       String
-  tutor         User    @relation(fields: [tutorId], references: [id])
   description   String
   conclusion    String
   summary       String
@@ -101,9 +79,9 @@ model Course {
   duration      String
   certificate   Boolean
   overView      String?
-
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt
+  tutor         User            @relation(fields: [tutorId], references: [id])
   CoursePayment CoursePayment[]
 }
 
@@ -153,37 +131,56 @@ model Review {
 
 model CoursePayment {
   id            String        @id @default(cuid())
-  transactionId String // Unique identifier for the Paystack transaction reference
-  userId        String // ID of the user who made the payment
-  courseId      String // ID of the course for which payment is made
-  amount        Float // Amount paid
-  currency      String // Currency of the payment (e.g. NGN)
-  status        PaymentStatus @default(PENDING) // Status of the transaction (e.g., successful, failed)
-  paymentDate   DateTime      @default(now()) // Date and time of payment
+  transactionId String
+  userId        String
+  courseId      String
+  amount        Float
+  currency      String
+  status        PaymentStatus @default(PENDING)
+  paymentDate   DateTime      @default(now())
   verifiedAt    DateTime      @updatedAt
-  User          User          @relation(fields: [userId], references: [id])
   Course        Course        @relation(fields: [courseId], references: [id])
+  User          User          @relation(fields: [userId], references: [id])
 }
 
 model Certificate {
-  id          String          @id @default(cuid())
-  studentName String
-  issuedDate  DateTime        @default(now())
-  platform    String
-  userId      String
-  courseId    String
-  type        CertificateType @default(CertificateOfCompletion)
-  certificateUrl  String      @default("")
-  User        User            @relation(fields: [userId], references: [id])
+  id             String          @id @default(cuid())
+  studentName    String
+  issuedDate     DateTime        @default(now())
+  platform       String
+  userId         String
+  courseId       String
+  type           CertificateType @default(CertificateOfCompletion)
+  certificateUrl String          @default("")
+  User           User            @relation(fields: [userId], references: [id])
 }
 
 model TutorApplication {
-  id      String    @id @default(cuid())
-  fullname  String
-  email     String  @unique
-  phone     String
-  coverletter   String
-  uploadcv        String  
+  id          String @id @default(cuid())
+  fullname    String
+  email       String @unique
+  phone       String
+  coverletter String
+  uploadcv    String
 
   @@map("tutorApplications")
+}
+
+enum CertificateType {
+  CertificateOfCompletion
+  ProfessionalCertification
+  MicroCredentials
+}
+
+enum PaymentStatus {
+  SUCCESSFUL
+  FAILED
+  PENDING
+}
+
+enum UserRole {
+  STUDENT
+  TUTOR
+  ADMIN
+  USER
 }
