@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, ProgramType } from '@prisma/client'
 
 const prisma = new PrismaClient();
 
@@ -287,7 +287,53 @@ async function seed() {
 
     // console.log(`${course.count} Courses Created`)
 
-   
+
+    /**Advanced Courses*/
+    // const course = await prisma.course.createMany({
+    //     data: [
+    //       {
+    //         title: `intermediate-web-development`,
+    //         category: `Engineering`,
+    //         textSnippet: 'Advance Your Tech Career with our {courseDetails.title} 3-Month Program!',
+    //         videoUrl: `https://www.youtube.com/watch?v=example-intermediate-web`,
+    //         tutorId: `clxhit0530000107ds4hpwzhz`,
+    //         description: `Take your web development skills to the next level with this 3-month program. Build on your foundational knowledge by diving deeper into React, learning Node.js for backend development, and creating full-stack applications. Work on real-world projects and collaborate with mentors to solidify your skills.`,
+    //         overView: `This 3-month program is designed for learners who have a basic understanding of web development and want to advance their skills. You'll learn intermediate concepts like state management in React, backend development with Node.js, and database integration. By the end, you'll build a full-stack application.`,
+    //         conclusion: `By the end of this program, you'll be a confident intermediate web developer, ready to tackle real-world projects and take on more advanced challenges.`,
+    //         summary: `Advanced React: Master state management and hooks---Node.js Basics: Build a backend with Express---Database Integration: Connect your app to a database---Full-Stack Project: Create a complete web application`,
+    //         virtualPrice: 300000,
+    //         physicalPrice: 320000,
+    //         noOfClass: `24`,
+    //         classDays: `Tuesday--Wednesday---Thursday`,
+    //         duration: `3 months`,
+    //         certificate: true,
+    //         programType: ProgramType.THREE_MONTHS,
+    //       },
+    //       {
+    //         title: `advanced-cybersecurity`,
+    //         category: `Security`,
+    //         textSnippet: 'Become a Cybersecurity Expert with our {courseDetails.title} 6-Month Program!',
+    //         videoUrl: `/videos/AdvancedCybersecurity.mp4`,
+    //         tutorId: `clxhit0680003107dm92wjmbd`,
+    //         description: `This 6-month program takes you from a foundational understanding of cybersecurity to advanced techniques used by professionals. Learn penetration testing, incident response, advanced cryptography, and cloud security. Work on real-world scenarios and projects to prepare for a career in cybersecurity.`,
+    //         overView: `Designed for learners with basic cybersecurity knowledge, this 6-month program dives deep into advanced topics. You'll master penetration testing, incident response, and cloud security while working on practical projects. Mentorship sessions will guide you through complex topics.`,
+    //         conclusion: `By the end of this program, you'll be an advanced cybersecurity professional, ready to protect organizations from sophisticated threats.`,
+    //         summary: `Penetration Testing: Learn ethical hacking techniques---Incident Response: Handle and mitigate cyber attacks---Advanced Cryptography: Secure data with cutting-edge methods---Cloud Security: Protect cloud-based systems`,
+    //         virtualPrice: 300000,
+    //         physicalPrice: 320000,
+    //         noOfClass: `48`,
+    //         classDays: `Tuesday--Wednesday---Thursday`,
+    //         duration: `6 months`,
+    //         certificate: true,
+    //         programType: ProgramType.SIX_MONTHS, 
+    //       },
+    //     ],
+    //   });
+    
+    //   console.log(`${course.count} Courses Created`);
+
+
+
     // const course = await prisma.course.create({
     //     data: {
     //         title: `data-analytics`,
@@ -587,6 +633,259 @@ async function seed() {
     // console.log(`${tutor.count} Tutor Info Updated`)
     
 
+    /**
+     * Course Modules
+     */
+    // const modules = await prisma.module.createMany({
+    //     data: [
+    //       {
+    //         courseId: `cm9qomk9t0000okttlpbqpsru`,
+    //         title: `Module 1: Advanced React`,
+    //         description: `Deep dive into React for building dynamic applications.`,
+    //         order: 1,
+    //       },
+    //       {
+    //         courseId: `cm9qomk9t0000okttlpbqpsru`,
+    //         title: `Module 2: Backend with Node.js`,
+    //         description: `Learn to build a backend using Node.js and Express.`,
+    //         order: 2,
+    //       },
+    //       {
+    //         courseId: `cm9qomk9t0000okttlpbqpsru`,
+    //         title: `Module 3: Full-Stack Integration`,
+    //         description: `Connect your frontend and backend to build a complete app.`,
+    //         order: 3,
+    //       },
+    //       // Modules for Advanced Cybersecurity (6-Month Program)
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Module 1: Advanced Threat Analysis`,
+    //         description: `Learn to identify and analyze sophisticated threats.`,
+    //         order: 1,
+    //       },
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Module 2: Penetration Testing`,
+    //         description: `Master ethical hacking techniques.`,
+    //         order: 2,
+    //       },
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Module 3: Incident Response`,
+    //         description: `Develop skills to handle and mitigate cyber attacks.`,
+    //         order: 3,
+    //       },
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Module 4: Advanced Cryptography`,
+    //         description: `Secure data with advanced encryption methods.`,
+    //         order: 4,
+    //       },
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Module 5: Cloud Security`,
+    //         description: `Protect cloud-based systems from threats.`,
+    //         order: 5,
+    //       },
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Module 6: Capstone Project`,
+    //         description: `Apply your skills to a real-world cybersecurity scenario.`,
+    //         order: 6,
+    //       },
+    //     ],
+    //   });
+    
+    //   console.log(`${modules.count} Modules Created`);  
+
+      /**
+       * Lessons 
+       */
+    //   const lessons = await prisma.lesson.createMany({
+    //     data: [
+    //       // Module 1: Advanced React
+    //       {
+    //         moduleId: `cm9qoo8t60000mtu9dva1jmj8`, // Replace with actual ID after creation
+    //         title: `State Management with Hooks`,
+    //         description: `Learn to manage state using React hooks.`,
+    //         duration: `1 hr`,
+    //         videoUrl: `https://www.youtube.com/watch?v=react-hooks`,
+    //         order: 1,
+    //       },
+    //       {
+    //         moduleId: `cm9qoo8t60000mtu9dva1jmj8`,
+    //         title: `Building Reusable Components`,
+    //         description: `Create reusable components for scalable apps.`,
+    //         duration: `1 hr`,
+    //         videoUrl: `https://www.youtube.com/watch?v=react-components`,
+    //         order: 2,
+    //       },
+    //       // Module 2: Backend with Node.js
+    //       {
+    //         moduleId: `cm9qoo8t70001mtu938jxfj1b`,
+    //         title: `Setting Up a Node.js Server`,
+    //         description: `Learn the basics of Node.js and Express.`,
+    //         duration: `1 hr`,
+    //         videoUrl: `https://www.youtube.com/watch?v=node-setup`,
+    //         order: 1,
+    //       },
+    //       {
+    //         moduleId: `cm9qoo8t70001mtu938jxfj1b`,
+    //         title: `Creating RESTful APIs`,
+    //         description: `Build APIs to connect your frontend.`,
+    //         duration: `1 hr`,
+    //         videoUrl: `https://www.youtube.com/watch?v=rest-apis`,
+    //         order: 2,
+    //       },
+    //       // Module 3: Full-Stack Integration
+    //       {
+    //         moduleId: `cm9qoo8t70002mtu9whlcy36w`,
+    //         title: `Connecting to a Database`,
+    //         description: `Integrate a database with your Node.js backend.`,
+    //         duration: `1 hr`,
+    //         videoUrl: `https://www.youtube.com/watch?v=database-integration`,
+    //         order: 1,
+    //       },
+    //       {
+    //         moduleId: `cm9qoo8t70002mtu9whlcy36w`,
+    //         title: `Building a Full-Stack App`,
+    //         description: `Create a complete application with React and Node.js.`,
+    //         duration: `1 hr`,
+    //         videoUrl: `https://www.youtube.com/watch?v=full-stack-app`,
+    //         order: 2,
+    //       },
+    //       // Lessons for Advanced Cybersecurity (simplified for brevity)
+    //       {
+    //         moduleId: `cm9qoo8t70003mtu9n6isbusu`,
+    //         title: `Threat Identification`,
+    //         description: `Learn to identify advanced cyber threats.`,
+    //         duration: `1 hr`,
+    //         videoUrl: `/videos/threat-identification.mp4`,
+    //         order: 1,
+    //       },
+    //       {
+    //         moduleId: `cm9qoo8t70004mtu9fgclutsv`,
+    //         title: `Ethical Hacking Basics`,
+    //         description: `Introduction to penetration testing.`,
+    //         duration: `1 hr`,
+    //         videoUrl: `/videos/ethical-hacking.mp4`,
+    //         order: 1,
+    //       },
+    //       // Add more lessons for other modules as needed
+    //     ],
+    //   });
+    
+    //   console.log(`${lessons.count} Lessons Created`);
+
+      /**
+       * Projects
+       */
+    //   const projects = await prisma.project.createMany({
+    //     data: [
+    //       {
+    //         courseId: `cm9qomk9t0000okttlpbqpsru`,
+    //         title: `Mid-Term Project: E-Commerce Website`,
+    //         description: `Build an e-commerce website using React and Node.js.`,
+    //         dueDate: new Date('2025-06-15'),
+    //       },
+    //       {
+    //         courseId: `cm9qomk9t0000okttlpbqpsru`,
+    //         title: `Final Project: Full-Stack Blog Platform`,
+    //         description: `Create a blog platform with user authentication and a database.`,
+    //         dueDate: new Date('2025-07-30'),
+    //       },
+    //       // Projects for Advanced Cybersecurity
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Project 1: Vulnerability Assessment`,
+    //         description: `Perform a vulnerability assessment on a mock system.`,
+    //         dueDate: new Date('2025-06-30'),
+    //       },
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Project 2: Incident Response Plan`,
+    //         description: `Develop an incident response plan for a simulated attack.`,
+    //         dueDate: new Date('2025-08-31'),
+    //       },
+    //       {
+    //         courseId: `cm9qomka50001oktttuhzmwjm`,
+    //         title: `Final Project: Secure Cloud Deployment`,
+    //         description: `Deploy a secure application on a cloud platform.`,
+    //         dueDate: new Date('2025-10-31'),
+    //       },
+    //     ],
+    //   });
+    
+    //   console.log(`${projects.count} Projects Created`);
+
+
+      /**
+       * Mentorship
+       */
+      const mentorships = await prisma.mentorship.createMany({
+        data: [
+          {
+            courseId: `cm9qomk9t0000okttlpbqpsru`,
+            mentorId: `clxhit0530000107ds4hpwzhz`,
+            menteeId: `cm0k730ij0001pldqawab3xb1`, // Replace with a test user ID
+            topic: `React State Management`,
+            scheduledAt: new Date('2025-05-15T10:00:00Z'),
+            duration: 30,
+            completed: false,
+          },
+          {
+            courseId: `cm9qomk9t0000okttlpbqpsru`,
+            mentorId: `clxhit0530000107ds4hpwzhz`,
+            menteeId: `cm0k730ij0001pldqawab3xb1`,
+            topic: `Full-Stack Integration`,
+            scheduledAt: new Date('2025-07-01T10:00:00Z'),
+            duration: 30,
+            completed: false,
+          },
+          // Mentorship Sessions for Advanced Cybersecurity
+          {
+            courseId: `cm9qomka50001oktttuhzmwjm`,
+            mentorId: `clxhit0680003107dm92wjmbd`,
+            menteeId: `cm0k730ij0001pldqawab3xb1`,
+            topic: `Penetration Testing`,
+            scheduledAt: new Date('2025-06-01T10:00:00Z'),
+            duration: 45,
+            completed: false,
+          },
+          {
+            courseId: `cm9qomka50001oktttuhzmwjm`,
+            mentorId: `clxhit0680003107dm92wjmbd`,
+            menteeId: `cm0k730ij0001pldqawab3xb1`,
+            topic: `Incident Response`,
+            scheduledAt: new Date('2025-08-01T10:00:00Z'),
+            duration: 45,
+            completed: false,
+          },
+          {
+            courseId: `cm9qomka50001oktttuhzmwjm`,
+            mentorId: `clxhit0680003107dm92wjmbd`,
+            menteeId: `cm0k730ij0001pldqawab3xb1`,
+            topic: `Cloud Security`,
+            scheduledAt: new Date('2025-09-15T10:00:00Z'),
+            duration: 45,
+            completed: false,
+          },
+          {
+            courseId: `cm9qomka50001oktttuhzmwjm`,
+            mentorId: `clxhit0680003107dm92wjmbd`,
+            menteeId: `cm0k730ij0001pldqawab3xb1`,
+            topic: `Capstone Project Review`,
+            scheduledAt: new Date('2025-10-15T10:00:00Z'),
+            duration: 45,
+            completed: false,
+          },
+        ],
+      });
+    
+      console.log(`${mentorships.count} Mentorship Sessions Created`);
+
+
+
     /**FOR ORIGINAL DB */
     // const certificate = await prisma.certificate.createMany({
     //     data:[
@@ -618,24 +917,24 @@ async function seed() {
     // })
     // console.log(`${certificate.count} Original Student certificate created!`)
 
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
     
     /**
      * Updating certificate table
      */
 
-    const certificate = await prisma.certificate.create({
-        data: {
-            userId: 'cm2f860lg000150fjobl09mlv',
-            courseId: 'clxgfalll00066prq9y7ie54m',
-            studentName: 'Kelvin Udemezue ',
-            platform: 'PalmTechnIQ',
-            type: 'CertificateOfCompletion',
-            certificateUrl: '',
-        }
-    })
+    // const certificate = await prisma.certificate.create({
+    //     data: {
+    //         userId: 'cm2f860lg000150fjobl09mlv',
+    //         courseId: 'clxgfalll00066prq9y7ie54m',
+    //         studentName: 'Kelvin Udemezue ',
+    //         platform: 'PalmTechnIQ',
+    //         type: 'CertificateOfCompletion',
+    //         certificateUrl: '',
+    //     }
+    // })
 
-    console.log(`${certificate.count} Certificate Updated Successfully!`)
+    // console.log(`${certificate.count} Certificate Updated Successfully!`)
    
     /** FOR TEST DB */
     // const certificate = await prisma.certificate.createMany({

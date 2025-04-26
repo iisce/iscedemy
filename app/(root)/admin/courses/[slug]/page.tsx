@@ -12,7 +12,7 @@ export default async function SingleAdminCoursePage({
      const course = await getCourseBySlug(params.slug);
      if (!course) return notFound();
 
-     if(session?.user?.name !== 'ADMIN') {
+     if(session?.user?.role !== 'ADMIN') {
           redirect('/unauthorized');
       
           return null;

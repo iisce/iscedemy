@@ -22,6 +22,12 @@ import SingleCourseCurriculum from './singleCourseCurriculum';
 import TutorProfile from '@/components/component/tutor/tutor-profile';
 import { SingleTutorReviews } from '@/components/component/tutor/tutor-reviews';
 import { YoutubeIcon } from 'lucide-react';
+import { getAllModulesByCurriculumId } from '@/data/modules';
+import { getMentorshipsByCourseId } from '@/data/mentorship';
+import { getProjectsByCourseId } from '@/data/projects';
+import { ProjectsSection } from '@/components/component/student/project-section';
+import { MentorshipSection } from '@/components/component/tutor/mentorship';
+import { getCompletedLessonsByUserAndCourse } from '@/data/completed-lesson';
 
 export default async function SingleCourse({
 	courseTitle,
@@ -50,6 +56,9 @@ export default async function SingleCourse({
 		);
 	}
 	const curriculum = await getAllCurriculumByCourseId(courseDetails.id);
+	const modules = Array.isArray(curriculum) || !curriculum ? [] : await getAllModulesByCurriculumId(curriculum.id);
+	const mentorship = await getMentorshipsByCourseId(courseDetails.id);
+	const projects = await getProjectsByCourseId(courseDetails.id);
 
 	const reviews = await getAllReviewsByTutorName(tutor.name!);
 
@@ -64,8 +73,22 @@ export default async function SingleCourse({
 	const isPaid = currentUser?.courses?.includes(courseDetails.id);
 	const selectedCourses = currentUser?.courses ? currentUser?.courses.split('---') : [];
 	const hasSelectedThreeCourses = selectedCourses.length % 3 === 0;
-
 	console.log({hasSelectedThreeCourses})
+
+	// Determine level based on programType
+    const level = courseDetails.programType === "CRASH_COURSE" ? "Beginner" : 
+				  courseDetails.programType === "THREE_MONTHS" ? "Intermediate" : "Advanced";
+
+	// Progression path
+    const nextProgram = courseDetails.programType === "CRASH_COURSE" ? 
+                       "Check out our 3-Month Program to advance your skills." : 
+                       courseDetails.programType === "THREE_MONTHS" ? 
+                       "Ready for more? Explore our 6-Month Program." : 
+                       "You've completed the advanced program! Build your portfolio.";
+
+					   const completedLessons = await getCompletedLessonsByUserAndCourse(user?.id ?? '', courseDetails.id);
+					   const totalLessons = modules.reduce((sum: number, module: any) => sum + module.lessons.length, 0);
+					   const progress = totalLessons > 0 ? (completedLessons.length / totalLessons) * 100 : 0;
 
 	
 	return (
@@ -83,6 +106,9 @@ export default async function SingleCourse({
 								`Starting ${courseDetails.title} as your Home
 							Based Business`}
 						</h1>
+						<div className="flex items-center space-x-2">
+							<Badge variant="secondary" className='text-green-600'>{level} | {courseDetails.programType.replace('_', ' ')}</Badge>
+						</div>
 						<div className='flex items-center space-x-2'>
 							<Image
 								width={50}
@@ -110,6 +136,13 @@ export default async function SingleCourse({
 							)}
 						</div>
 					</div>
+
+					{isPaid && courseDetails.programType !== "CRASH_COURSE" && (
+						<div className='w-full bg-gray-200 rounded-full h-2.5 mb-4'>
+							<div className='bg-green-600 h-2.5 rounded-full' style={{ width: `${progress}%` }}></div>
+							<p className='text-sm text-gray-600 mt-1'>{`Progress: ${Math.round(progress)}%`}</p>
+						</div>
+					)}
 					<Tabs
 						className='md:px-0 justify-center items-center mx-auto w-full'
 						defaultValue={tab}>
@@ -127,6 +160,8 @@ export default async function SingleCourse({
 								<TabsTrigger value='reviews'>
 									Reviews
 								</TabsTrigger>
+								<TabsTrigger value='mentorship'>Mentorship</TabsTrigger>
+                                <TabsTrigger value='projects'>Projects</TabsTrigger>
 							</TabsList>
 							<ScrollBar orientation='horizontal' />
 						</ScrollArea>
@@ -158,7 +193,7 @@ export default async function SingleCourse({
 						<TabsContent value='curriculum'>
 							{user && isPaid ? (
 								<SingleCourseCurriculum
-									curriculum={curriculum}
+									modules={modules}
 								/>
 							) : !isPaid ? (
 								<>
@@ -211,6 +246,7 @@ export default async function SingleCourse({
 								<SingleTutorReviews
 									reviews={reviews ?? []}
 									tutor={tutor}
+									courseId={courseDetails.id}
 								/>
 							) : !isPaid ? (
 								<>
@@ -231,6 +267,41 @@ export default async function SingleCourse({
 								</div>
 							)}
 						</TabsContent>
+
+						<TabsContent value='mentorship'>
+                            {user && isPaid ? (
+                                <MentorshipSection mentorships={mentorship} userId={user.id ?? ""} courseId={courseDetails.id} />
+                            ) : !isPaid ? (
+                                <div className='mx-auto items-center justify-center text-center'>
+                                    <p className='py-10 text-base'>Enroll for this course to get complete access!</p>
+                                    <Button asChild>
+                                        <Link href={`/courses/${courseDetails.title}/pay`}>Enroll Now</Link>
+                                    </Button>
+                                </div>
+                            ) : (
+                                <div className='mx-auto items-center justify-center text-center'>
+                                    <p className='py-10 text-base'>Please sign in to see this page content</p>
+                                    <SignOutButton />
+                                </div>
+                            )}
+                        </TabsContent>
+                        <TabsContent value='projects'>
+                            {user && isPaid ? (
+								<ProjectsSection projects={projects} userId={user.id ?? ''} courseId={courseDetails.id} />
+                            ) : !isPaid ? (
+                                <div className='mx-auto items-center justify-center text-center'>
+                                    <p className='py-10 text-base'>Enroll for this course to get complete access!</p>
+                                    <Button asChild>
+                                        <Link href={`/courses/${courseDetails.title}/pay`}>Enroll Now</Link>
+                                    </Button>
+                                </div>
+                            ) : (
+                                <div className='mx-auto items-center justify-center text-center'>
+                                    <p className='py-10 text-base'>Please sign in to see this page content</p>
+                                    <SignOutButton />
+                                </div>
+                            )}
+                        </TabsContent>
 					</Tabs>
 				</div>
 
@@ -361,7 +432,16 @@ export default async function SingleCourse({
 									</div>
 								)}
 
-								
+<div className='mt-4'>
+                                <p className='text-sm text-gray-600'>{nextProgram}</p>
+                                {courseDetails.programType !== "SIX_MONTHS" && (
+                                    <Button asChild variant="outline">
+                                        <Link href={`/courses?type=${courseDetails.programType === "CRASH_COURSE" ? "THREE_MONTHS" : "SIX_MONTHS"}`}>
+                                            Explore Next Program
+                                        </Link>
+                                    </Button>
+                                )}
+                            </div>
 							</div>
 						)}
 						

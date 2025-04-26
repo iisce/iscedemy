@@ -12,7 +12,7 @@ export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
 		return { error: validatedFields.error.errors[0].message };
 	}
 
-	const { description, rating, reviewerId, reviewerName, title, tutorName } =
+	const { description, rating, reviewerId, courseId, reviewerName, title, tutorName } =
 		validatedFields.data;
 
 	try {
@@ -24,6 +24,7 @@ export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
 				tutorName,
 				userId: reviewerId,
 				rating,
+				courseId,
 			},
 		});
 
@@ -36,42 +37,36 @@ export const createReview = async (values: z.infer<typeof ReviewSchema>) => {
 	} catch (error) {
 		console.error(error);
 
-		return { error: 'something went wrong' };
+		return { error: "Failed to create review. Please try again." };
 	}
 };
-export const updateReview = async (
-	values: z.infer<typeof UpdateReviewSchema>
-) => {
-	const validatedFields = UpdateReviewSchema.safeParse(values);
-
-	if (!validatedFields.success) {
-		return { error: validatedFields.error.errors[0].message };
-	}
-
-	const { description, rating, id, title } = validatedFields.data;
-
+export async function updateReview(values: z.infer<typeof UpdateReviewSchema>) {
 	try {
-		const updatedReview = await db.review.update({
-			where: { id },
-			data: {
-				description,
-				rating,
-				title,
-			},
-		});
-
-		if (!updatedReview) {
-			return { error: 'something went wrong' };
-		}
-
-		// Handle successful payment response
-		return revalidatePath(`/courses/${title}`);
+	  const validatedData = UpdateReviewSchema.safeParse(values);
+  
+	  const existingReview = await db.review.findUnique({
+		where: { id: validatedData.data?.id },
+	  });
+  
+	  if (!existingReview) {
+		return { error: "Review not found." };
+	  }
+  
+	  const updatedReview = await db.review.update({
+		where: { id: validatedData.data?.id },
+		data: {
+		  title: validatedData.data?.title || existingReview.title,
+		  description: validatedData.data?.description || existingReview.description,
+		  rating: validatedData.data?.rating || existingReview.rating,
+		},
+	  });
+  
+	  return { success: "Review updated successfully", review: updatedReview };
 	} catch (error) {
-		console.error(error);
-
-		return { error: 'something went wrong' };
+	  console.error("Error updating review:", error);
+	  return { error: "Failed to update review. Please try again." };
 	}
-};
+  }
 
 export const getReviewsForTutor = async (tutorId: string) => {
 	try {

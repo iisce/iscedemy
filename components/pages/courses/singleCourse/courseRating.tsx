@@ -43,7 +43,7 @@ export default function CourseRating({ tutor }: { tutor: any }) {
 						key={index}
 						className='text-yellow-500 h-4 w-4'
 					/>
-				))}
+				))}	
 				{/* Display empty stars */}
 				{[...Array(5 - highestAverageRating)].map((_, index) => (
 					<Star

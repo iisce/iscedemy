@@ -41,7 +41,7 @@ export default async function Component() {
 	const session = await auth();
      const courses = await getAllCourses();
 
-	 if(session?.user?.name !== 'ADMIN') {
+	 if(session?.user?.role !== 'ADMIN') {
 		redirect('/unauthorized');
 	
 		return null;

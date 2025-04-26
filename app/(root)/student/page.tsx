@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default async function StudentDashboard() {
      const session = await auth();
 
-	 if(session?.user?.name !== 'STUDENT') {
+	 if(session?.user?.role !== 'STUDENT') {
 		redirect('/unauthorized');
 	
 		return null;
@@ -58,7 +58,7 @@ export default async function StudentDashboard() {
                                    return (
                                         <CoursePaid
                                              title={currentCourse!.title}
-                                             curriculum={curriculum}
+											 curriculum={Array.isArray(curriculum) ? curriculum : curriculum ? [curriculum] : undefined}
                                              key={b}
                                         />
                                    );

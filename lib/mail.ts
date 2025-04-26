@@ -5,7 +5,8 @@ import PasswordReset from "./password-reset";
 import SignIn from "./signin";
 import tutorNotification from "./tutor-notification";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend("re_732KJ3em_21Vu3jkWV1ZtG22rxLcyYdAH");
 
 const domain = process.env.NEXT_PUBLIC_URL;
 

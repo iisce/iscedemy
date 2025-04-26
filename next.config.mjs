@@ -8,6 +8,7 @@ const nextConfig = {
                     port: ""
                },
           ],
+          domains: ['encrypted-tbn0.gstatic.com'], // add the hostname here
      },
 };
 

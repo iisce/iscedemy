@@ -7,7 +7,12 @@
 		"dev": "next dev -p 2024",
 		"build": "prisma generate && next build",
 		"lint": "next lint",
-		"release": "semantic-release"
+		"postinstall": "prisma generate",
+		"release": "semantic-release",
+		"migrate-curriculum-data": "tsx scripts/migrate-curriculum-data.ts",
+		"migrate-curriculum-to-modules":  "tsx scripts/migrate-curriculum-to-modules.ts",
+		"fix-modules-curriculum-ids": "tsx scripts/fix-modules-curriculum-ids.ts",
+		"update-curriculum-timestamp": "tsx scripts/update-curriculum-timestamp.ts"
 	},
 	"prisma": {
 		"seed": "ts-node app/prisma/seed.js"

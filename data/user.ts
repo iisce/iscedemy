@@ -18,7 +18,7 @@ export async function getUserById(id: string) {
      try {
           const user = await db.user.findUnique({
                where: {
-                    id,
+                    id
                },
           });
           return user;
@@ -49,7 +49,7 @@ export async function getTotalUsersExcludingTutors() {
           const count = await db.user.count({
                where: {
                     role: {
-                         not: "TUTOR" || "ADMIN",
+                         notIn: ["TUTOR", "ADMIN"],
                     },
                },
           });

@@ -6,7 +6,17 @@ import Autoplay from 'embla-carousel-autoplay';
 import { COURSEHEADER } from '@/lib/consts';
 import CourseHeader from './courseheader';
 
-export default function CourseCarousel() {
+export default function CourseCarousel({
+	crashCourses,
+	threeMonthCourses,
+	sixMonthCourses,
+}: {
+	crashCourses: any[];
+	threeMonthCourses: any[];
+	sixMonthCourses: any[];
+}) {
+
+	
 	return (
 		<Carousel
 			plugins={[

@@ -1,13 +1,16 @@
 'use client';
-import { login } from '@/actions/main';
-import { User } from '@prisma/client';
 import { Button } from '../ui/button';
 import ProfileButton from './profile-button';
+import { signIn, useSession } from 'next-auth/react';
 
-export default function LogInButton({ user }: { user?: User | null }) {
-	if (!!user) {
-		return <ProfileButton user={user} />;
+
+export default function LogInButton() {
+
+	const {data: session} = useSession();
+
+	if (session?.user) {
+		return <ProfileButton />;
 	} else {
-		return <Button onClick={async () => await login()}>Login</Button>;
+		return <Button onClick={() => signIn()}>Login</Button>;
 	}
 }

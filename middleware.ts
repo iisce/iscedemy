@@ -51,7 +51,7 @@ export default auth((req) => {
      // If the route is an admin route and the user is logged in
      // if (isAdminRoutes && isLoggedIn){
      //  // Check if the logged-in user is an ADMIN
-     //  if (req.auth?.user?.name !== 'ADMIN'){
+     //  if (req.auth?.user?.role !== 'ADMIN'){
 
      //  // If not an ADMIN, redirect to the unauthorized page
      // return Response.redirect(new URL('/unauthorized', nextUrl));
@@ -80,6 +80,10 @@ export default auth((req) => {
 
 // Configuration for the middleware to match all routes except static files and Next.js internals
 export const config = {
-    matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+    matcher: [
+     '/tutor/:path*',
+    '/dashboard/:path*',
+     '/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'
+],
 }
 

@@ -4,12 +4,11 @@ export const revalidate = 0;
 
 export async function getAllCurriculumByCourseId(courseId: string) {
 	try {
-		const courses = await db.curriculum.findMany({
+		const curriculum = await db.curriculum.findFirst({
 			where: { courseId },
-			orderBy: { headingNumber: 'asc' },
 		});
 
-		return courses;
+		return curriculum;
 	} catch (error) {
 		console.log({ error });
 		return [];

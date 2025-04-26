@@ -30,7 +30,11 @@ interface ICOURSELIST2 {
      link?: string;
      title: string;
      content: string;
+     programType?: string;
+     price?: number;
+     courseId?: string;
 }
+
 interface ICOURSES {
      name: string;
 }

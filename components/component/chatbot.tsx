@@ -13,11 +13,9 @@ import { BeatLoader } from "react-spinners";
 
 export function Chatbot() {
   const [userInput, setUserInput] = useState("");
-  const [messages, setMessages] = useState([
-    { role: "assistant", content: "Hello there! 👋 I am PalmDesk Assistant. Welcome to PalmTechnIQ!  What can I help you with today? 😊" },
-  ]);
+  const [messages, setMessages] = useState<{role:string; content: string}[]>([]);
 
-  const [quickReplies, setQuickReplies] = useState([]);
+  const [quickReplies, setQuickReplies] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [showMenuOptions, setShowMenuOptions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,12 +26,12 @@ export function Chatbot() {
   useEffect(() => {
     const lastMessage =  messages[messages.length - 1];
 
-   if (lastMessage.role === "assistant" && lastMessageIndexPlayed !== messages.length - 1) {
+   if (isOpen && lastMessage?.role === "assistant" && lastMessageIndexPlayed !== messages.length - 1) {
     const audio = new Audio("/assets/bot_response.mp3");
     audio.play();
     setLastMessageIndexPlayed(messages.length - 1);
    }
-  }, [messages, lastMessageIndexPlayed]);
+  }, [messages, lastMessageIndexPlayed, isOpen]);
 
   useEffect(() => { 
     // Scroll to the bottom whenever messages update
@@ -48,8 +46,8 @@ export function Chatbot() {
     sendMessage(userInput);
     setUserInput("");
   };
+
   const sendMessage = async (messageContent: string) => {
-    
     const userMessage = { role: "user", content: messageContent};
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setIsLoading(true);
@@ -80,6 +78,15 @@ export function Chatbot() {
     } finally {
       setIsLoading(false);
   }
+};
+
+const handleOpenChatbot = () => {
+  if (messages.length === 0) {
+    setMessages([
+      { role: "assistant", content: "Hello there! 👋 I am PalmDesk Assistant. Welcome to PalmTechnIQ! 😊" }
+    ]);
+  }
+  setIsOpen(true);
 };
     
 
@@ -170,7 +177,7 @@ export function Chatbot() {
   ) : (
     
     <Button
-          onClick={() => setIsOpen(true)} 
+          onClick={handleOpenChatbot} 
           className="rounded-full w-full px-3 py-8 bg-green-600 text-white"
           size="icon"
         >
