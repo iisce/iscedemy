@@ -70,3 +70,16 @@ export function toSlug(str: string): string {
        .trim()
        .replace(/\s*and\s*/gi, "--") 
        .replace(/\s+/g, "");   }
+
+
+export function courseUrl(course?: { id?: string, title?: string }, preferTitle = false) {
+          if (!course) return '/courses';
+          if (preferTitle && course.title) {
+            return `/courses/${course.title}`;
+          }
+          if (course.id) {
+            return `/courses/${course.id}`;
+          }
+          return '/courses';
+        }
+        

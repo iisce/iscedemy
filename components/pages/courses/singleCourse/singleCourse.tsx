@@ -270,7 +270,7 @@ export default async function SingleCourse({
 
 						<TabsContent value='mentorship'>
                             {user && isPaid ? (
-                                <MentorshipSection mentorships={mentorship} userId={user.id ?? ""} courseId={courseDetails.id} />
+                                <MentorshipSection params={{courseId: courseDetails.id}} />
                             ) : !isPaid ? (
                                 <div className='mx-auto items-center justify-center text-center'>
                                     <p className='py-10 text-base'>Enroll for this course to get complete access!</p>
@@ -287,7 +287,7 @@ export default async function SingleCourse({
                         </TabsContent>
                         <TabsContent value='projects'>
                             {user && isPaid ? (
-								<ProjectsSection projects={projects} userId={user.id ?? ''} courseId={courseDetails.id} />
+								<ProjectsSection params={{ courseId: courseDetails.id }} />
                             ) : !isPaid ? (
                                 <div className='mx-auto items-center justify-center text-center'>
                                     <p className='py-10 text-base'>Enroll for this course to get complete access!</p>

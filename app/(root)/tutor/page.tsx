@@ -29,6 +29,23 @@ import { db } from "@/lib/db";
     }
     }
 
+  /**
+   * The `TutorDashboardPage` component is an asynchronous server-side function
+   * that renders the dashboard for a tutor. It performs the following tasks:
+   *
+   * - Authenticates the user session and redirects to the login page if no session exists.
+   * - Ensures the authenticated user has the role of "TUTOR"; otherwise, redirects to an unauthorized page.
+   * - Fetches the tutor's details, their courses, reviews, enrollments, earnings, and curriculum status.
+   * - Aggregates data such as total reviews, enrollments per course, and total earnings.
+   * - Passes the fetched data to the `TutorDashboard` component for rendering.
+   *
+   * @returns A JSX element rendering the `TutorDashboard` component with the tutor's data.
+   *
+   * @throws Redirects to `/login` if the user is not authenticated.
+   * @throws Redirects to `/unauthorized` if the user does not have the "TUTOR" role.
+   *
+   * @async
+   */
   export default async function TutorDashboardPage() {
     const session = await auth();
     if (!session) {

@@ -269,3 +269,30 @@ export const UpdateCourseSchema = z.object({
     })
   ),
 })
+
+export const AssignmentSchema = z.object({
+	title: z.string().min(1, "Title is required"),
+	description: z.string().min(1, "Description is required"),
+	dueDate: z.string().optional(),
+  });
+
+ export const SubmissionSchema = z.object({
+	content: z.string().min(1, "Submission content is required"),
+	fileUrl: z.string().url("Must be a valid URL").optional(),
+  });
+
+export const AssignmentReviewSchema = z.object({
+	grade: z.string().min(1, "Grade is required"),
+	feedback: z.string().optional(),
+  });
+
+export  const MentorshipSchema = z.object({
+	scheduledAt: z.string().min(1, "Scheduled date and time are required"),
+	duration: z.number().min(15, "Duration must be at least 15 minutes").max(120, "Duration cannot exceed 120 minutes"),
+	topic: z.string().min(1, "Topic is required"),
+	meetingUrl: z.string().url("Must be a valid URL").optional(),
+  });
+
+export const CompletionSchema = z.object({
+	notes: z.string().optional(),
+  });

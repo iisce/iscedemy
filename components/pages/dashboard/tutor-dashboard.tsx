@@ -86,7 +86,7 @@ function TutorCard({
           </div>
         </div>
       </CardContent>
-      <CardFooter className="grid grid-cols-2 space-y-2 gap-3  justify-between">
+      <CardFooter className="grid  space-y-2 gap-3  justify-between">
         <Button
           variant="outline"
           onClick={onEdit}
@@ -112,11 +112,59 @@ function TutorCard({
               {hasCurriculum ? "Update Curriculum" : "Create Curriculum"}
             </Link>
           </Button>
+
+          <Button
+            variant="outline"
+            asChild
+            className="w-full   hover:bg-green-600 hover:text-white"
+          >
+            <Link href={`/tutor/courses/${courseId}`}>
+              View Course Details
+            </Link>
+          </Button>
       </CardFooter>
     </Card>
   );
 }
 
+/**
+ * The `TutorDashboard` component serves as the main dashboard for tutors, providing an interface
+ * to manage their courses, view earnings, and access course reviews. It includes features such as
+ * course creation, editing, searching, and filtering, as well as displaying total earnings and reviews.
+ *
+ * @component
+ * @param {Object} props - The props object for the component.
+ * @param {any} props.tutor - The tutor object containing information about the logged-in tutor.
+ * @param {Review[]} [props.reviewsArray] - An optional array of reviews associated with the tutor's courses.
+ * @param {number} [props.totalEarnings=0] - The total earnings of the tutor, defaulting to 0 if not provided.
+ * @param {number} props.reviews - The total number of reviews across all courses.
+ * @param {any[]} props.courses - An array of courses uploaded by the tutor.
+ * @param {{ [key: string]: number }} props.earnings - An object mapping course IDs to their respective earnings.
+ * @param {{ [key: string]: number }} props.enrollments - An object mapping course IDs to their respective enrollment counts.
+ * @param {{ [key: string]: boolean }} props.curriculumStatus - An object mapping course IDs to their curriculum completion status.
+ *
+ * @returns {JSX.Element} The rendered Tutor Dashboard component.
+ *
+ * @remarks
+ * - The dashboard includes a search bar for filtering courses by title.
+ * - Tutors can create new courses or edit existing ones using the provided forms.
+ * - The dashboard displays uploaded courses, total earnings, and course reviews in separate sections.
+ * - A modal is used to display detailed reviews for a specific course.
+ *
+ * @example
+ * ```tsx
+ * <TutorDashboard
+ *   tutor={tutorData}
+ *   courses={courseList}
+ *   earnings={earningsData}
+ *   reviews={totalReviews}
+ *   enrollments={enrollmentData}
+ *   totalEarnings={500000}
+ *   reviewsArray={reviewList}
+ *   curriculumStatus={curriculumStatusData}
+ * />
+ * ```
+ */
 export default function TutorDashboard({
   tutor,
   courses,

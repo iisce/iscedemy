@@ -6,6 +6,23 @@ import { CreateCourseSchema, UpdateCourseSchema } from '@/schemas';
 import { ProgramType } from '@prisma/client';
 import { z } from 'zod';
 
+/**
+ * Creates a new course in the database after validating the input fields.
+ *
+ * @param values - The input values for creating the course, validated against `CreateCourseSchema`.
+ * @returns A promise that resolves to an object containing either:
+ * - `success` and the created course object if the operation is successful.
+ * - `error` with an error message if the operation fails or validation errors occur.
+ *
+ * The function performs the following steps:
+ * 1. Validates the input fields using `CreateCourseSchema`.
+ * 2. Checks if a course with the same title and tutor ID already exists.
+ * 3. Validates the program type and retrieves the corresponding pricing.
+ * 4. Creates a new course in the database with the provided and derived data.
+ * 5. Handles errors and returns appropriate error messages.
+ *
+ * @throws Logs any unexpected errors to the console and returns a generic error message.
+ */
 export async function createCourse(values: z.infer<typeof CreateCourseSchema> ) {
   try {
     const validatedFields = CreateCourseSchema.safeParse(values);
@@ -53,6 +70,21 @@ export async function createCourse(values: z.infer<typeof CreateCourseSchema> ) 
 }
 
 
+/**
+ * Updates an existing course in the database with the provided values.
+ *
+ * @param values - The data to update the course with, validated against the `UpdateCourseSchema`.
+ * 
+ * @returns A promise that resolves to an object containing either:
+ * - `success` and the updated course if the operation is successful.
+ * - `error` with an error message if the operation fails or the course is not found.
+ *
+ * @throws Will log an error to the console if an exception occurs during the update process.
+ *
+ * ### Notes:
+ * - If the `programType` is updated, the course prices (`virtualPrice` and `physicalPrice`) are updated accordingly based on the `COURSE_PRICING` mapping.
+ * - Fields not provided in `values` will retain their existing values from the database.
+ */
 export async function updateCourse(values: z.infer<typeof UpdateCourseSchema>) {
   try {
     const validatedData = UpdateCourseSchema.parse(values);

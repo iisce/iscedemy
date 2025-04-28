@@ -182,10 +182,11 @@ model Mentorship {
   course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
   mentorId   String
   mentor      User     @relation("Mentor",fields: [mentorId], references: [id], onDelete: Cascade)
-  menteeId   String
-  mentee      User     @relation("Mentee",fields: [menteeId], references: [id], onDelete: Cascade)
+  menteeId   String?
+  mentee      User?    @relation("Mentee",fields: [menteeId], references: [id], onDelete: Cascade)
   scheduledAt DateTime
   duration    Int
+  meetingUrl  String? 
   topic       String?
   notes       String? @db.Text
   completed   Boolean @default(false)
