@@ -6,6 +6,13 @@ export async function getAllCurriculumByCourseId(courseId: string) {
 	try {
 		const curriculum = await db.curriculum.findFirst({
 			where: { courseId },
+			include: {
+				modules: {
+					include: {
+						lessons: true,
+					}
+				}
+			}
 		});
 
 		return curriculum;

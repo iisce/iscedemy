@@ -26,6 +26,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
 import MeetingUrlDisplay from '@/components/shared/meeting-url-display';
+import SetReminderButton from '@/components/shared/set-reminder-button';
 
 export const dynamic = 'force-dynamic';
 
@@ -79,13 +80,19 @@ export default async function MentorshipDashboardPage() {
                 <p>Scheduled: {new Date(session.scheduledAt).toLocaleString()}</p>
                 <p>Duration: {session.duration} minutes</p>
                 <MeetingUrlDisplay meetingUrl={session.meetingUrl} scheduledAt={session.scheduledAt} />
-                {userRole === 'TUTOR' && session.menteeId && (
-                    <Button asChild variant="outline">
-                  <Link href={`/tutor/mentorship/${session.id}`}>
-                  Manage Session
-                  </Link>
-                  </Button>
-                )}
+                <div className="mt-2 flex gap-2">
+                  <SetReminderButton
+                    topic={session.topic || "Mentorship Session"}
+                    scheduledAt={session.scheduledAt}
+                    meetingUrl={session.meetingUrl}
+                    duration={session.duration}
+                  />
+                  {userRole === 'TUTOR' && session.menteeId && (
+                    <Link href={`/tutor/mentorship/${session.id}`}>
+                      <Button variant="outline">Manage Session</Button>
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
           </div>

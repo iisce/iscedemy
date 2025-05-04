@@ -10,9 +10,10 @@
 		"postinstall": "prisma generate",
 		"release": "semantic-release",
 		"migrate-curriculum-data": "tsx scripts/migrate-curriculum-data.ts",
-		"migrate-curriculum-to-modules":  "tsx scripts/migrate-curriculum-to-modules.ts",
+		"migrate-curriculum-to-modules": "tsx scripts/migrate-curriculum-to-modules.ts",
 		"fix-modules-curriculum-ids": "tsx scripts/fix-modules-curriculum-ids.ts",
-		"update-curriculum-timestamp": "tsx scripts/update-curriculum-timestamp.ts"
+		"update-curriculum-timestamp": "tsx scripts/update-curriculum-timestamp.ts",
+		"backfill-lessonkeys": "tsx scripts/backfill-lessonkeys.ts"
 	},
 	"prisma": {
 		"seed": "ts-node app/prisma/seed.js"
@@ -62,6 +63,7 @@
 		"@tsparticles/react": "^3.0.0",
 		"@tsparticles/slim": "^3.5.0",
 		"bcryptjs": "^2.4.3",
+		"chart.js": "^4.4.9",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.0",
 		"cmdk": "^0.2.1",
@@ -79,6 +81,7 @@
 		"nextjs-toploader": "^1.6.12",
 		"paystack": "^2.0.1",
 		"react": "^18.3.1",
+		"react-chartjs-2": "^5.3.0",
 		"react-day-picker": "^8.10.0",
 		"react-dom": "^18.3.1",
 		"react-email": "^2.1.4",
@@ -97,7 +100,8 @@
 		"tailwindcss-animate": "^1.0.7",
 		"uuid": "^9.0.1",
 		"vaul": "^0.9.0",
-		"zod": "^3.22.4"
+		"zod": "^3.22.4",
+		"zustand": "^5.0.4"
 	},
 	"devDependencies": {
 		"@prisma/client": "^5.21.1",

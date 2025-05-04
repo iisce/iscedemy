@@ -24,6 +24,7 @@
  */
 import { auth } from '@/auth';
 import MeetingUrlDisplay from '@/components/shared/meeting-url-display';
+import SetReminderButton from '@/components/shared/set-reminder-button';
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/db';
 import { courseUrl } from '@/lib/utils';
@@ -97,6 +98,15 @@ export default async function MentorshipBookPage({params}: MentorshipBookPagePro
         <p>Scheduled: {new Date(mentorship.scheduledAt).toLocaleString()}</p>
         <p>Duration: {mentorship.duration} minutes</p>
         <MeetingUrlDisplay meetingUrl={mentorship.meetingUrl} scheduledAt={mentorship.scheduledAt}/>
+
+        <div className="mt-2">
+          <SetReminderButton
+            topic={mentorship.topic || "Mentorship Session"}
+            scheduledAt={mentorship.scheduledAt}
+            meetingUrl={mentorship.meetingUrl}
+            duration={mentorship.duration}
+          />
+        </div>
         </div>
 
         <form action={async () => {

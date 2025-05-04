@@ -21,7 +21,7 @@ export default async function AssignmentSubmissionsPage({ params }: AssignmentSu
   }
 
   if (session.user?.role !== 'TUTOR') {
-    redirect('/auth/signin');
+    redirect('/login');
   }
 
   // Fetch course, assignment, and submissions

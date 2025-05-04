@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import SubmissionForm from '@/components/component/forms/submission-form';
+import { courseUrl } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,11 +42,11 @@ export default async function AssignmentSubmitPage({ params }: AssignmentSubmitP
   });
 
   if (!assignment) {
-    redirect(`/courses/${courseId}`);
+    redirect(courseUrl(course, true));
   }
 
   if (assignment.submissions.length > 0) {
-    redirect(`/courses/${courseId}`);
+    redirect(courseUrl(course, true));
   }
 
   return (
@@ -54,7 +55,7 @@ export default async function AssignmentSubmitPage({ params }: AssignmentSubmitP
       <SubmissionForm courseId={courseId} projectId={projectId} />
       <div className="mt-4">
           <Button asChild variant="outline">
-        <Link href={`/courses/${courseId}`}>
+        <Link href={courseUrl(course, true)}>
         Back to Course
         </Link>
         </Button>

@@ -1,4 +1,8 @@
 import { auth } from '@/auth';
+import { ProjectsSection } from '@/components/component/student/project-section';
+import { MentorshipSection } from '@/components/component/tutor/mentorship';
+import TutorProfile from '@/components/component/tutor/tutor-profile';
+import { SingleTutorReviews } from '@/components/component/tutor/tutor-reviews';
 import FormError from '@/components/form-error';
 import FormSuccess from '@/components/form-success';
 import { Badge } from '@/components/ui/badge';
@@ -9,25 +13,19 @@ import SignOutButton from '@/components/ui/sign-out';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getCourseBySlug } from '@/data/course';
 import { getAllCurriculumByCourseId } from '@/data/curriculum';
+import { getAllModulesByCurriculumId } from '@/data/modules';
+import { getProgressByStudentAndCourse, getTotalLessonsByCourse } from '@/data/progress';
 import { getAllReviewsByTutorName } from '@/data/reviews';
 import { getUserByCourseId, getUserById } from '@/data/user';
 import * as Icons from '@/lib/icons';
 import { formatToNaira } from '@/lib/utils';
 import { YouTubeEmbed } from '@next/third-parties/google';
+import { YoutubeIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CourseRating from './courseRating';
 import SingleCourseCurriculum from './singleCourseCurriculum';
-import TutorProfile from '@/components/component/tutor/tutor-profile';
-import { SingleTutorReviews } from '@/components/component/tutor/tutor-reviews';
-import { YoutubeIcon } from 'lucide-react';
-import { getAllModulesByCurriculumId } from '@/data/modules';
-import { getMentorshipsByCourseId } from '@/data/mentorship';
-import { getProjectsByCourseId } from '@/data/projects';
-import { ProjectsSection } from '@/components/component/student/project-section';
-import { MentorshipSection } from '@/components/component/tutor/mentorship';
-import { getCompletedLessonsByUserAndCourse } from '@/data/completed-lesson';
 
 export default async function SingleCourse({
 	courseTitle,
@@ -57,9 +55,6 @@ export default async function SingleCourse({
 	}
 	const curriculum = await getAllCurriculumByCourseId(courseDetails.id);
 	const modules = Array.isArray(curriculum) || !curriculum ? [] : await getAllModulesByCurriculumId(curriculum.id);
-	const mentorship = await getMentorshipsByCourseId(courseDetails.id);
-	const projects = await getProjectsByCourseId(courseDetails.id);
-
 	const reviews = await getAllReviewsByTutorName(tutor.name!);
 
 	const numberOfRegistration = await getUserByCourseId(courseDetails.id);
@@ -69,11 +64,18 @@ export default async function SingleCourse({
 		0
 	);
 
+	const progress = user?.id 
+	? await getProgressByStudentAndCourse(user.id, courseDetails.id)
+	: [];
+  const totalLessons = await getTotalLessonsByCourse(courseDetails.id);
+  const completedLessons = progress.filter((p) => p.completed).length;
+  const progressPercentage = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
+
 		// Determine if the user has paid and their course selection status
 	const isPaid = currentUser?.courses?.includes(courseDetails.id);
 	const selectedCourses = currentUser?.courses ? currentUser?.courses.split('---') : [];
-	const hasSelectedThreeCourses = selectedCourses.length % 3 === 0;
-	console.log({hasSelectedThreeCourses})
+	// const hasSelectedThreeCourses = selectedCourses.length % 3 === 0;
+	// console.log({hasSelectedThreeCourses})
 
 	// Determine level based on programType
     const level = courseDetails.programType === "CRASH_COURSE" ? "Beginner" : 
@@ -86,10 +88,9 @@ export default async function SingleCourse({
                        "Ready for more? Explore our 6-Month Program." : 
                        "You've completed the advanced program! Build your portfolio.";
 
-					   const completedLessons = await getCompletedLessonsByUserAndCourse(user?.id ?? '', courseDetails.id);
-					   const totalLessons = modules.reduce((sum: number, module: any) => sum + module.lessons.length, 0);
-					   const progress = totalLessons > 0 ? (completedLessons.length / totalLessons) * 100 : 0;
-
+// 	   console.log('Completed Lessons:', completedLessons);
+//   console.log('Total Lessons:', totalLessons);
+//   console.log('Progress Percentage:', progressPercentage);
 	
 	return (
 		<div className='bg-white justify-center w-full py-5'>
@@ -139,8 +140,8 @@ export default async function SingleCourse({
 
 					{isPaid && courseDetails.programType !== "CRASH_COURSE" && (
 						<div className='w-full bg-gray-200 rounded-full h-2.5 mb-4'>
-							<div className='bg-green-600 h-2.5 rounded-full' style={{ width: `${progress}%` }}></div>
-							<p className='text-sm text-gray-600 mt-1'>{`Progress: ${Math.round(progress)}%`}</p>
+							<div className='bg-green-600 h-2.5 rounded-full' style={{ width: `${progressPercentage}%` }}></div>
+							<p className='text-sm text-gray-600 mt-1'>{`Progress: ${Math.round(progressPercentage)}%`}</p>
 						</div>
 					)}
 					<Tabs
@@ -194,6 +195,7 @@ export default async function SingleCourse({
 							{user && isPaid ? (
 								<SingleCourseCurriculum
 									modules={modules}
+									progress={progress}
 								/>
 							) : !isPaid ? (
 								<>
@@ -416,13 +418,13 @@ export default async function SingleCourse({
 									</div>
 								)}
 								{/* Check if user has selected three courses */}
-								{!isPaid && !hasSelectedThreeCourses && (
+								{/* {!isPaid  && (
 									<div className='grid'>
 									<EnrollButton courseId={courseDetails.id} userId={user.id!} />
 									</div>
-								)}
+								)} */}
 								{/* This checks if a user hasn't taken any course yet and allows them error for a course after check  */}
-								{!isPaid && hasSelectedThreeCourses && (
+								{!isPaid && (
 									<div className='grid'>
 									<Button asChild className='rounded-full'>
 										<Link href={`/courses/${courseDetails.title}/pay`}>

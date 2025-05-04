@@ -32,6 +32,8 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
   const [error, setError] = useState<string | undefined>(undefined);
   const [success, setSuccess] = useState<string | undefined>(undefined);
   const [isPending, startTransition] = useTransition();
+  const [imageError, setImageError] = useState(false);
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof UpdateCourseSchema>>({
@@ -82,9 +84,80 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
     });
   };
 
+  // Preview content based on form values
+  const previewContent = {
+    title: form.watch("title") || course.title || "Untitled Course",
+    category: form.watch("category") || course.category || "Uncategorized",
+    textSnippet: form.watch("textSnippet") || course.textSnippet || "No header text provided",
+    description: form.watch("description") || course.description || "No description provided",
+    conclusion: form.watch("conclusion") || course.conclusion || "No conclusion provided",
+    summary: form.watch("summary") || course.summary || "No summary provided",
+    overView: form.watch("overView") || course.overView || "No overview provided",
+    programType: form.watch("programType") || course.programType || "CRASH_COURSE",
+    duration: form.watch("duration") || course.duration || "Not specified",
+    noOfClass: form.watch("noOfClass") || course.noOfClass || "Not specified",
+    classDays: form.watch("classDays") || course.classDays || "Not specified",
+    certificate: form.watch("certificate") ? "Yes" : course.certificate ? "Yes" : "No",
+    videoUrl: form.watch("videoUrl") || course.videoUrl || "No video provided",
+    image: form.watch("image") || course.image || "No image provided",
+  };
+
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-semibold">
+            {isPreviewMode ? "Course Preview" : "You are editing this course"}
+          </h3>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setIsPreviewMode(!isPreviewMode)}
+            disabled={isPending}
+          >
+            {isPreviewMode ? "Back to Edit" : "Preview"}
+          </Button>
+        </div>
+
+        {isPreviewMode ? (
+          <div className="bg-white p-6 rounded-lg shadow-md border">
+            <div className="mb-4">
+              {previewContent.image && previewContent.image !== "No image provided" && !imageError ? (
+                <img
+                  src={previewContent.image}
+                  alt="Course Image"
+                  className="w-full max-w-xs h-40 object-cover rounded-md"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <div className="w-full max-w-xs h-40 bg-gray-200 flex items-center justify-center rounded-md">
+                  <span className="text-gray-500">No Image Available</span>
+                </div>
+              )}
+            </div>
+            <h4 className="text-xl font-bold mb-2">{previewContent.title}</h4>
+            <p className="text-sm text-gray-600 mb-2">Category: {previewContent.category}</p>
+            <p className="text-sm mb-2">Header Text: {previewContent.textSnippet}</p>
+            <p className="text-sm mb-2">Description: {previewContent.description}</p>
+            <p className="text-sm mb-2">Conclusion: {previewContent.conclusion}</p>
+            <p className="text-sm mb-2">Summary: {previewContent.summary}</p>
+            <p className="text-sm mb-2">Overview: {previewContent.overView}</p>
+            <p className="text-sm mb-2">Program Type: {previewContent.programType.replace("_", " ")}</p>
+            <p className="text-sm mb-2">Duration: {previewContent.duration}</p>
+            <p className="text-sm mb-2">Number of Classes: {previewContent.noOfClass}</p>
+            <p className="text-sm mb-2">Class Days: {previewContent.classDays}</p>
+            <p className="text-sm mb-2">Certificate Offered: {previewContent.certificate}</p>
+            <p className="text-sm mb-2">Video URL: {previewContent.videoUrl}</p>
+            <p className="text-sm mb-2">Image URL: {previewContent.image}</p>
+            <div className="mt-4">
+              <p className="text-sm font-medium">Assigned Prices:</p>
+              <p className="text-sm">Virtual: {formatToNaira(prices.virtualPrice)}</p>
+              <p className="text-sm">Physical: {formatToNaira(prices.physicalPrice)}</p>
+            </div>
+          </div>
+        ) :(
+        <>
         <FormField
           control={form.control}
           name="title"
@@ -335,7 +408,7 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
             </FormItem>
           )}
         />
-
+</>)}
         <FormError message={error} />
         <FormSuccess message={success} />
 

@@ -3,6 +3,8 @@ import * as Icons from './icons';
 import React from 'react';
 import { User, Course, Curriculum } from '@prisma/client';
 import { ICOURSEHEADER, ICOURSEITEM, ICOURSELIST2, ICOURSES, IOCCUPATION, ITYPE } from './types';
+import { BookOpenIcon, CalendarIcon, CogIcon, HomeIcon, UserCircleIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import { BarChartIcon, FileTextIcon } from '@radix-ui/react-icons';
 
 export const NAVLINKS: {
 	name: string;
@@ -1272,6 +1274,83 @@ export const PRIVACY_POLICY: {
 	},
 ];
 
+export const SIDEBAR_LINKS_STUDENT =[
+	{
+		name: 'Dashboard',
+		link: '/student',
+		icon: BookOpenIcon,
+	},
+	{
+		name: 'My Courses',
+		link: '/student/courses',
+		icon:  BookOpenIcon
+	},
+	{
+		name: 'Mentorship',
+		link: '/mentorship',
+		icon: CalendarIcon
+	},
+	{
+		name: 'Progress',
+		link: '/student/progress',
+		icon: BarChartIcon
+	},
+	{
+		name: 'Profile',
+		link: '/student/profile',
+		icon: UserCircleIcon
+	},
+]
+
+export const SIDEBAR_LINKS_TUTOR = [
+	{
+		name: 'Dashboard',
+		link: '/tutor',
+		icon: HomeIcon
+	},
+	{
+		name: 'Courses',
+		link: '/tutor/courses',
+		icon: BookOpenIcon
+	},
+	{
+		name: 'Mentorships',
+		link: '/tutor/mentorships',
+		icon: CalendarIcon
+	},
+	{
+		name: 'Assignments',
+		link: '/tutor/assignments',
+		icon: FileTextIcon
+	},
+	{
+		name: 'Profile',
+		link: '/tutor/profile',
+		icon: UserCircleIcon
+	}
+]
+export const SIDEBAR_LINKS_ADMIN = [ 
+	{
+		name: 'Dashboard',
+		link: '/dashboard',
+		icon:  HomeIcon
+	},
+	{
+		name: 'Users',
+		link: '/users',
+		icon:  UserGroupIcon
+	},
+	{
+		name: 'Courses',
+		link: '/courses',
+		icon:  BookOpenIcon
+	},
+	{
+		name: 'Settings',
+		link: '/settings',
+		icon:  CogIcon
+	}
+]
 // export const DEFAULT_TUTOR: Omit<User, 'id'>[] = [
 // 	{
 // 		name: 'Paul Ayobami',
@@ -1519,203 +1598,203 @@ export const PRIVACY_POLICY: {
 // 	},
 // ]
 
-export const CURRICULUM: Omit<Curriculum, 'id'>[] = [
-	{
-		courseId: 'clxdf9wva000032yne2crrdzx',
-		headingNumber: '1',
-		headingName: 'Introduction to Web Development',
-		headingDescription: `What is web development?---Front-end vs. back-end development---Setting up your development environment`,
-	},
-	{
-		courseId: 'clxdf9wva000032yne2crrdzx',
-		headingNumber: '2',
-		headingName: 'HTML (HyperText Markup Language)',
-		headingDescription: `Basic HTML tags and structure---Creating elements, headings, paragraphs, lists, images, and links---Building simple web page layouts`,
-	},
-	{
-		courseId: 'clxdf9wva000032yne2crrdzx',
-		headingNumber: '3',
-		headingName: 'CSS (Cascading Style Sheets)',
-		headingDescription: `Styling HTML elements: colors, fonts, spacing, and backgrounds---Creating responsive layouts with Flexbox or Grid---Basic CSS animations and transitions`,
-	},
-	{
-		courseId: 'clxdf9wva000032yne2crrdzx',
-		headingNumber: '4',
-		headingName: 'JavaScript (JS)',
-		headingDescription: `Variables, data types, and operators---Functions and conditional statements (if/else)---DOM manipulation: interacting with HTML elements using JS`,
-	},
-	{
-		courseId: 'clxdf9wva000032yne2crrdzx',
-		headingNumber: '5',
-		headingName: 'React Introduction',
-		headingDescription: `What is React?---Creating simple React components---Basic state management and rendering`,
-	},
+// export const CURRICULUM: Omit<Curriculum, 'id'>[] = [
+// 	{
+// 		courseId: 'clxdf9wva000032yne2crrdzx',
+// 		headingNumber: '1',
+// 		headingName: 'Introduction to Web Development',
+// 		headingDescription: `What is web development?---Front-end vs. back-end development---Setting up your development environment`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wva000032yne2crrdzx',
+// 		headingNumber: '2',
+// 		headingName: 'HTML (HyperText Markup Language)',
+// 		headingDescription: `Basic HTML tags and structure---Creating elements, headings, paragraphs, lists, images, and links---Building simple web page layouts`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wva000032yne2crrdzx',
+// 		headingNumber: '3',
+// 		headingName: 'CSS (Cascading Style Sheets)',
+// 		headingDescription: `Styling HTML elements: colors, fonts, spacing, and backgrounds---Creating responsive layouts with Flexbox or Grid---Basic CSS animations and transitions`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wva000032yne2crrdzx',
+// 		headingNumber: '4',
+// 		headingName: 'JavaScript (JS)',
+// 		headingDescription: `Variables, data types, and operators---Functions and conditional statements (if/else)---DOM manipulation: interacting with HTML elements using JS`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wva000032yne2crrdzx',
+// 		headingNumber: '5',
+// 		headingName: 'React Introduction',
+// 		headingDescription: `What is React?---Creating simple React components---Basic state management and rendering`,
+// 	},
 
-	{
-		courseId: 'clxdf9wwr000132yn7qfdpp7e',
-		headingNumber: '1',
-		headingName: 'Basic Introduction',
-		headingDescription: `Introduction to smart home automation---Smart home hubs and controllers---Smart lighting---Smart security and surveillance systems---Smart temperature and environmental control---Smart  home entertainment`,
-	},
-	{
-		courseId: 'clxdf9wwr000232yn2nwtc1wq',
-		headingNumber: '1',
-		headingName: 'Basic Introduction',
-		headingDescription: `Introduction to cybersecurity---Types of cyber threats---basic security measure---Basic crytography---Threat detection and response`,
-	},
+// 	{
+// 		courseId: 'clxdf9wwr000132yn7qfdpp7e',
+// 		headingNumber: '1',
+// 		headingName: 'Basic Introduction',
+// 		headingDescription: `Introduction to smart home automation---Smart home hubs and controllers---Smart lighting---Smart security and surveillance systems---Smart temperature and environmental control---Smart  home entertainment`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wwr000232yn2nwtc1wq',
+// 		headingNumber: '1',
+// 		headingName: 'Basic Introduction',
+// 		headingDescription: `Introduction to cybersecurity---Types of cyber threats---basic security measure---Basic crytography---Threat detection and response`,
+// 	},
 
-	{
-		courseId: 'clxdf9wwr000332ynkke3keaj',
-		headingNumber: '1',
-		headingName: 'Introduction to graphics design',
-		headingDescription: `Brief Explanation of graphics design---Roles of a graphics designer---Design tools and software---Installation`,
-	},
-	{
-		courseId: 'clxdf9wwr000332ynkke3keaj',
-		headingNumber: '2',
-		headingName: 'Vectors and Rasters',
-		headingDescription: `Introduction to basic tools i.e selection tool---Understanding design principles---Designing simple filers with minimal effects---Redesigning popular logos and fliers`,
-	},
-	{
-		courseId: 'clxdf9wwr000332ynkke3keaj',
-		headingNumber: '3',
-		headingName: 'Interpretation of design',
-		headingDescription: `Creating color palette---Color psychology---Researching ideas---Class work`,
-	},
+// 	{
+// 		courseId: 'clxdf9wwr000332ynkke3keaj',
+// 		headingNumber: '1',
+// 		headingName: 'Introduction to graphics design',
+// 		headingDescription: `Brief Explanation of graphics design---Roles of a graphics designer---Design tools and software---Installation`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wwr000332ynkke3keaj',
+// 		headingNumber: '2',
+// 		headingName: 'Vectors and Rasters',
+// 		headingDescription: `Introduction to basic tools i.e selection tool---Understanding design principles---Designing simple filers with minimal effects---Redesigning popular logos and fliers`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wwr000332ynkke3keaj',
+// 		headingNumber: '3',
+// 		headingName: 'Interpretation of design',
+// 		headingDescription: `Creating color palette---Color psychology---Researching ideas---Class work`,
+// 	},
 
-	//UI/UX DESIGN
-	{
-		courseId: 'clxdf9wwr000432yns7u7yzfe',
-		headingNumber: '1',
-		headingName: 'Basic Introduction',
-		headingDescription: `What is UX Design---Importancce of UX design---User centered design`,
-	},
-	{
-		courseId: 'clxdf9wwr000432yns7u7yzfe',
-		headingNumber: '2',
-		headingName: 'Fundamentals of User Interface Design',
-		headingDescription: `What is UI design---Best practices for UI design---Designing for mobile`,
-	},
-	{
-		courseId: 'clxdf9wwr000432yns7u7yzfe',
-		headingNumber: '3',
-		headingName: 'Introduction to design tools',
-		headingDescription: `Designing tools---Getting started with Figma`,
-	},
-	{
-		courseId: 'clxdf9wwr000432yns7u7yzfe',
-		headingNumber: '4',
-		headingName: 'Visual Design fundamentals',
-		headingDescription: `Typography---Color theory---Layout and composition`,
-	},
-	{
-		courseId: 'clxdf9wwr000432yns7u7yzfe',
-		headingNumber: '5',
-		headingName: 'User Research',
-		headingDescription: `Introduction to user research---Creating user personas---User journey mapping---User testing and heuristics evaluation`,
-	},
+// 	//UI/UX DESIGN
+// 	{
+// 		courseId: 'clxdf9wwr000432yns7u7yzfe',
+// 		headingNumber: '1',
+// 		headingName: 'Basic Introduction',
+// 		headingDescription: `What is UX Design---Importancce of UX design---User centered design`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wwr000432yns7u7yzfe',
+// 		headingNumber: '2',
+// 		headingName: 'Fundamentals of User Interface Design',
+// 		headingDescription: `What is UI design---Best practices for UI design---Designing for mobile`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wwr000432yns7u7yzfe',
+// 		headingNumber: '3',
+// 		headingName: 'Introduction to design tools',
+// 		headingDescription: `Designing tools---Getting started with Figma`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wwr000432yns7u7yzfe',
+// 		headingNumber: '4',
+// 		headingName: 'Visual Design fundamentals',
+// 		headingDescription: `Typography---Color theory---Layout and composition`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wwr000432yns7u7yzfe',
+// 		headingNumber: '5',
+// 		headingName: 'User Research',
+// 		headingDescription: `Introduction to user research---Creating user personas---User journey mapping---User testing and heuristics evaluation`,
+// 	},
 
-	//mobile-app-development
-	{
-		courseId: 'clxdf9wws000532yngvcn0zgg',
-		headingNumber: '1',
-		headingName: 'Basic Introduction',
-		headingDescription: `What is flutter?---Advantages of using flutter for app development---Installation of code editior and flutter setup---Installation of andriod studio and setups`,
-	},
-	{
-		courseId: 'clxdf9wws000532yngvcn0zgg',
-		headingNumber: '2',
-		headingName: 'Platform specific widgets',
-		headingDescription: `Scaffold---Textfield---Elevated buttons---App bar---Bottom navigation bar---floating action button`,
-	},
-	{
-		courseId: 'clxdf9wws000532yngvcn0zgg',
-		headingNumber: '3',
-		headingName: 'Platform independent widgets',
-		headingDescription: `Text widgets---Image widgets---Icon widgets---Form widgets`,
-	},
-	{
-		courseId: 'clxdf9wws000532yngvcn0zgg',
-		headingNumber: '4',
-		headingName: 'State maintenance widgets',
-		headingDescription: `Stateless widgets---Stateful widgets`,
-	},
-	{
-		courseId: 'clxdf9wws000532yngvcn0zgg',
-		headingNumber: '5',
-		headingName: 'Using single child layouts',
-		headingDescription: `Container---Center---Expended---Padding---Sixed box`,
-	},
+// 	//mobile-app-development
+// 	{
+// 		courseId: 'clxdf9wws000532yngvcn0zgg',
+// 		headingNumber: '1',
+// 		headingName: 'Basic Introduction',
+// 		headingDescription: `What is flutter?---Advantages of using flutter for app development---Installation of code editior and flutter setup---Installation of andriod studio and setups`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000532yngvcn0zgg',
+// 		headingNumber: '2',
+// 		headingName: 'Platform specific widgets',
+// 		headingDescription: `Scaffold---Textfield---Elevated buttons---App bar---Bottom navigation bar---floating action button`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000532yngvcn0zgg',
+// 		headingNumber: '3',
+// 		headingName: 'Platform independent widgets',
+// 		headingDescription: `Text widgets---Image widgets---Icon widgets---Form widgets`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000532yngvcn0zgg',
+// 		headingNumber: '4',
+// 		headingName: 'State maintenance widgets',
+// 		headingDescription: `Stateless widgets---Stateful widgets`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000532yngvcn0zgg',
+// 		headingNumber: '5',
+// 		headingName: 'Using single child layouts',
+// 		headingDescription: `Container---Center---Expended---Padding---Sixed box`,
+// 	},
 
-	//digital-marketing
-	{
-		courseId: 'clxdf9wws000632ynl6r8d1ae',
-		headingNumber: '1',
-		headingName: 'Digital Marketing Fundamentals',
-		headingDescription: `What is digital marketing and why is it essential?---The different channels and tactics of digital marketing---Developing a digital marketing strategy`,
-	},
-	{
-		courseId: 'clxdf9wws000632ynl6r8d1ae',
-		headingNumber: '2',
-		headingName: 'Social Media Marketing',
-		headingDescription: `Choosing the right platforms for your audience---Creating engaging content calendars---Running effective social media campaigns---Measuring social media success`,
-	},
-	{
-		courseId: 'clxdf9wws000632ynl6r8d1ae',
-		headingNumber: '3',
-		headingName: 'Digital Advertising',
-		headingDescription: `Understanding different ad formats (display, search, social, video)`,
-	},
-	{
-		courseId: 'clxdf9wws000632ynl6r8d1ae',
-		headingNumber: '4',
-		headingName: 'Content Marketing',
-		headingDescription: `Identifying your target audience and their needs---Creating a content strategy---Writing engaging and informative content---Distributing and promoting your content`,
-	},
+// 	//digital-marketing
+// 	{
+// 		courseId: 'clxdf9wws000632ynl6r8d1ae',
+// 		headingNumber: '1',
+// 		headingName: 'Digital Marketing Fundamentals',
+// 		headingDescription: `What is digital marketing and why is it essential?---The different channels and tactics of digital marketing---Developing a digital marketing strategy`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000632ynl6r8d1ae',
+// 		headingNumber: '2',
+// 		headingName: 'Social Media Marketing',
+// 		headingDescription: `Choosing the right platforms for your audience---Creating engaging content calendars---Running effective social media campaigns---Measuring social media success`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000632ynl6r8d1ae',
+// 		headingNumber: '3',
+// 		headingName: 'Digital Advertising',
+// 		headingDescription: `Understanding different ad formats (display, search, social, video)`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000632ynl6r8d1ae',
+// 		headingNumber: '4',
+// 		headingName: 'Content Marketing',
+// 		headingDescription: `Identifying your target audience and their needs---Creating a content strategy---Writing engaging and informative content---Distributing and promoting your content`,
+// 	},
 
-	//video-editing
-	{
-		courseId: 'clxdf9wws000732ynqq0t700z',
-		headingNumber: '1',
-		headingName: 'Introduction to Video Editing',
-		headingDescription: `Introduction to video editing software---Overview of popular editing platforms (Adobe Premiere Pro, Final Cut Pro, DaVinci Resolve etc)---Understanding the importance of editing in storytelling---Tour of the editing workspace---Understanding the timeline, preview window, and tool panels---Customizing the interface for efficient workflow---Importing media files into the project---Organizing footage in the project panel---Creating bins and folders for efficient media management---Cutting, trimming, and rearranging clips on the timeline---Using the razor tool for precise cuts---Understanding the ripple and roll edit tools for seamless editing transitions`,
-	},
-	{
-		courseId: 'clxdf9wws000732ynqq0t700z',
-		headingNumber: '2',
-		headingName: 'Intermediate Editing Techniques',
-		headingDescription: `Adding transitions between clips for smooth visual flow---Applying video and audio effects to enhance the footage---Exploring preset effects and creating custom effects---Adjusting audio levels and volume keyframes---Adding music tracks and sound effects to enhance the audio experience---Syncing audio with video clips for perfect timing---Correcting color balance, exposure, and white balance issues---Applying color grading techniques to enhance the mood and tone of the footage---Using color scopes and waveform monitors for precise color adjustments---Creating and customizing text titles for video projects---Adding lower thirds, overlays, and other graphic elements---Animating text and graphics for dynamic visual effects`,
-	},
-	{
-		courseId: 'clxdf9wws000732ynqq0t700z',
-		headingNumber: '3',
-		headingName: 'Advanced Editing and Project Completion',
-		headingDescription: `Exploring advanced transition effects for creative storytelling---Understanding export settings and formats for different platforms (YouTube, Vimeo, etc.)---Rendering options for optimal playback quality and file size---Exporting projects for final delivery and sharing---Reviewing participants\' editing projects---Providing constructive feedback and tips for improvement---Addressing any questions or concerns from participants---Assigning a final editing project to participants---Participants work on their final projects with guidance and support---Reviewing and presenting final projects, celebrating achievements, and discussing next steps`,
-	},
+// 	//video-editing
+// 	{
+// 		courseId: 'clxdf9wws000732ynqq0t700z',
+// 		headingNumber: '1',
+// 		headingName: 'Introduction to Video Editing',
+// 		headingDescription: `Introduction to video editing software---Overview of popular editing platforms (Adobe Premiere Pro, Final Cut Pro, DaVinci Resolve etc)---Understanding the importance of editing in storytelling---Tour of the editing workspace---Understanding the timeline, preview window, and tool panels---Customizing the interface for efficient workflow---Importing media files into the project---Organizing footage in the project panel---Creating bins and folders for efficient media management---Cutting, trimming, and rearranging clips on the timeline---Using the razor tool for precise cuts---Understanding the ripple and roll edit tools for seamless editing transitions`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000732ynqq0t700z',
+// 		headingNumber: '2',
+// 		headingName: 'Intermediate Editing Techniques',
+// 		headingDescription: `Adding transitions between clips for smooth visual flow---Applying video and audio effects to enhance the footage---Exploring preset effects and creating custom effects---Adjusting audio levels and volume keyframes---Adding music tracks and sound effects to enhance the audio experience---Syncing audio with video clips for perfect timing---Correcting color balance, exposure, and white balance issues---Applying color grading techniques to enhance the mood and tone of the footage---Using color scopes and waveform monitors for precise color adjustments---Creating and customizing text titles for video projects---Adding lower thirds, overlays, and other graphic elements---Animating text and graphics for dynamic visual effects`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000732ynqq0t700z',
+// 		headingNumber: '3',
+// 		headingName: 'Advanced Editing and Project Completion',
+// 		headingDescription: `Exploring advanced transition effects for creative storytelling---Understanding export settings and formats for different platforms (YouTube, Vimeo, etc.)---Rendering options for optimal playback quality and file size---Exporting projects for final delivery and sharing---Reviewing participants\' editing projects---Providing constructive feedback and tips for improvement---Addressing any questions or concerns from participants---Assigning a final editing project to participants---Participants work on their final projects with guidance and support---Reviewing and presenting final projects, celebrating achievements, and discussing next steps`,
+// 	},
 
-	//project-management
-	{
-		courseId: 'clxdf9wws000832yn61go6khp',
-		headingNumber: '1',
-		headingName: 'Introduction to Project Management',
-		headingDescription: `What is project management?---Project vs. Operations---Benefits of effective project management---Key project management terminology`,
-	},
-	{
-		courseId: 'clxdf9wws000832yn61go6khp',
-		headingNumber: '2',
-		headingName: 'Project Life Cycle',
-		headingDescription: `Phases of a project (Initiation, Planning, Execution, Monitoring & Control, Closing)---Deliverables and activities at each stage---Project lifecycle models (e.g., Waterfall, Agile)`,
-	},
-	{
-		courseId: 'clxdf9wws000832yn61go6khp',
-		headingNumber: '3',
-		headingName: 'Project Planning',
-		headingDescription: `Defining project scope (Work Breakdown Structure - WBS)---Developing a communication plan---Creating a project charter`,
-	},
-	{
-		courseId: 'clxdf9wws000832yn61go6khp',
-		headingNumber: '4',
-		headingName: 'Project Risk Management',
-		headingDescription: `Identifying potential project risks)---Assessing risk probability and impact---Monitoring and managing risks throughout the project`,
-	},
-];
+// 	//project-management
+// 	{
+// 		courseId: 'clxdf9wws000832yn61go6khp',
+// 		headingNumber: '1',
+// 		headingName: 'Introduction to Project Management',
+// 		headingDescription: `What is project management?---Project vs. Operations---Benefits of effective project management---Key project management terminology`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000832yn61go6khp',
+// 		headingNumber: '2',
+// 		headingName: 'Project Life Cycle',
+// 		headingDescription: `Phases of a project (Initiation, Planning, Execution, Monitoring & Control, Closing)---Deliverables and activities at each stage---Project lifecycle models (e.g., Waterfall, Agile)`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000832yn61go6khp',
+// 		headingNumber: '3',
+// 		headingName: 'Project Planning',
+// 		headingDescription: `Defining project scope (Work Breakdown Structure - WBS)---Developing a communication plan---Creating a project charter`,
+// 	},
+// 	{
+// 		courseId: 'clxdf9wws000832yn61go6khp',
+// 		headingNumber: '4',
+// 		headingName: 'Project Risk Management',
+// 		headingDescription: `Identifying potential project risks)---Assessing risk probability and impact---Monitoring and managing risks throughout the project`,
+// 	},
+// ];

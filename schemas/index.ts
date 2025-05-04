@@ -243,6 +243,7 @@ export const UpdateCourseSchema = z.object({
 	classDays: z.string().min(1, "Class days are required"),
 	certificate: z.boolean(),
   	overView: z.string().optional(),
+	lessonKey: z.string().optional(),
 	image: z.string().optional(),
 	tutorId: z.string().min(1, "Tutor ID is required"),
 
@@ -259,6 +260,7 @@ export const UpdateCourseSchema = z.object({
       order: z.number().min(1, "Order must be a positive number"),
       lessons: z.array(
         z.object({
+		  lessonKey: z.string().min(1, "Lesson key is required"),
           title: z.string().min(1, "Lesson title is required"),
           description: z.string().optional(),
           duration: z.string().min(1, "Duration is required"),
@@ -295,4 +297,8 @@ export  const MentorshipSchema = z.object({
 
 export const CompletionSchema = z.object({
 	notes: z.string().optional(),
+  });
+
+export const UpdateProfileSchema = z.object({
+	name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
   });

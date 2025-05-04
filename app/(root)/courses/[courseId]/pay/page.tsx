@@ -11,9 +11,9 @@ import { notFound, redirect } from 'next/navigation';
 export async function generateMetadata({
 	params,
 }: {
-	params: { course: string };
+	params: { courseId: string };
 }): Promise<Metadata> {
-	const courseDetails = await getCourseBySlug(params.course);
+	const courseDetails = await getCourseBySlug(params.courseId);
 
 	if (!courseDetails) {
 		notFound();
@@ -25,7 +25,7 @@ export async function generateMetadata({
 		openGraph: {
 			title: courseDetails.title.split('-').join(' '),
 			description: courseDetails.description,
-			url: `https://www.palmtechniq.com/courses/${params.course}`,
+			url: `https://www.palmtechniq.com/courses/${params.courseId}`,
 			siteName: 'PalmTechnIQ',
 			images: [
 				{
@@ -43,9 +43,9 @@ export async function generateMetadata({
 export default async function EnrollPage({
 	params,
 }: {
-	params: { course: string };
+	params: { courseId: string };
 }) {
-	const course = await getCourseBySlug(params.course);
+	const course = await getCourseBySlug(params.courseId);
 	if (!course) return notFound();
 	const session = await auth();
 	const dbUser = await getUserById(session?.user?.id ?? '');

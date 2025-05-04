@@ -13,6 +13,7 @@ import FormError from "@/components/form-error";
 import FormSuccess from "@/components/form-success";
 import { LoaderIcon } from "lucide-react";
 import { SubmissionSchema } from "@/schemas";
+import { courseUrl } from "@/lib/utils";
 
 
 
@@ -64,7 +65,7 @@ export default function SubmissionForm({ courseId, projectId }: SubmissionFormPr
 
         setSuccess("Assignment submitted successfully");
         toast.success("Assignment submitted successfully");
-        router.push(`/courses/${courseId}`);
+        router.push(courseUrl({ id: courseId }));
       } catch (error) {
         console.error("Error during submission:", error);
         setError("An unexpected error occurred. Please try again.");
