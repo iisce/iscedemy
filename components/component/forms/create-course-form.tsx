@@ -19,6 +19,7 @@ import { Button } from "../../ui/button";
 import { LoaderIcon } from "lucide-react";
 import { formatClassDays, formatToNaira, toSlug } from "@/lib/utils";
 import { CreateCourseSchema } from "@/schemas";
+import UploadFile from "../tutor/tutor-upload-file";
 
 interface CreateCourseFormProps {
   tutorId: string;
@@ -34,6 +35,7 @@ const CreateCourseForm: React.FC<CreateCourseFormProps> = ({
   const [isPending, startTransition] = useTransition();
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [imageError, setImageError] = useState(false);
+    const [uploading, setUploading] = useState(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof CreateCourseSchema>>({
@@ -101,6 +103,9 @@ const CreateCourseForm: React.FC<CreateCourseFormProps> = ({
     image: form.watch("image") || "No image provided",
   };
 
+    const handleImageUpload = (url: string) => {
+    form.setValue("image", url, { shouldValidate: true });
+  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -387,19 +392,33 @@ const CreateCourseForm: React.FC<CreateCourseFormProps> = ({
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="image"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Image URL (optional)</FormLabel>
-              <FormControl>
-                <Input {...field} placeholder="Image URL" disabled={isPending} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+       <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Course Image</FormLabel>
+                  <FormControl>
+                    <UploadFile
+                      uploadCV={handleImageUpload}
+                      setUploading={setUploading}
+                      uploading={uploading}
+                    />
+                  </FormControl>
+                  {field.value && (
+                    <div className="mt-2">
+                      <FormLabel>Uploaded Image URL</FormLabel>
+                      <Input
+                        value={field.value}
+                        readOnly
+                        className="bg-gray-100 cursor-not-allowed"
+                      />
+                    </div>
+                  )}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 </>)}
         <FormError message={error} />
         <FormSuccess message={success} />
