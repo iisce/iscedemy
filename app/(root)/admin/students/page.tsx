@@ -32,7 +32,7 @@ export default async function AdminStudents() {
 
 	const students: Student[] = await getAllStudents();
 
-	if(session?.user?.name !== 'ADMIN') {
+	if(session?.user?.role !== 'ADMIN') {
 		redirect('/unauthorized');
 	
 		return null;

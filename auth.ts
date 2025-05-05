@@ -16,7 +16,7 @@ export const {
 		error: '/error',
 	},
 	events: {
-		async linkAccount({ user }) {
+		async linkAccount({ user })	 {
 			await db.user.update({
 				where: { id: user.id },
 				data: { emailVerified: new Date() },
@@ -45,12 +45,13 @@ export const {
 
 			return true;
 		},
-		async session({ session,  token }) {
-			if (token.sub && session.user) {
+
+		async session({session, token}) {
+			if(token.sub && session.user){
 				session.user.id = token.sub;
 
 				const user = await getUserById(token.sub);
-				session.user.name = user?.role || 'USER'
+				session.user.role = user?.role || "USER";
 			}
 			return session;
 		},
@@ -58,6 +59,7 @@ export const {
 		async jwt({ token, user, account  }) {
 			if (account && user) {
 				token.email = user.email;
+				token.role = user.role;
 			}
 
 			// Add maxAge to the token

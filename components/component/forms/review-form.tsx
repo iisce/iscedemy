@@ -26,12 +26,14 @@ interface ReviewFormProps {
 	tutorName: string;
 	reviewerId: string;
 	reviewerName: string;
+	courseId: string
 }
 
 const ReviewForm: React.FC<ReviewFormProps> = ({
 	tutorName,
 	reviewerId,
 	reviewerName,
+	courseId,
 }) => {
 	const router = useRouter();
 	const [rating, setRating] = useState(5);
@@ -52,6 +54,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
 			reviewerName,
 			description: '',
 			title: '',
+			courseId,
 		},
 	});
 
@@ -67,6 +70,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
 				reviewerId: values.reviewerId,
 				reviewerName: values.reviewerName,
 				tutorName: values.tutorName,
+				courseId: values.courseId
 			})
 				.then((data) => {
 					if (data?.error) {

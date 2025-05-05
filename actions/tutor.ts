@@ -28,6 +28,10 @@ export const fetchTutorById = async (id: string) => {
 
 export const getTutorById = async (tutorId: string) => {
   try {
+    if (!tutorId) {
+      throw new Error("Invalid tutor ID: tutorId is undefined or null");
+    }
+
     const tutor = await db.user.findUnique({
       where: { id: tutorId },
       include: {

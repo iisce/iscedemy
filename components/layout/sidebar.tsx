@@ -2,7 +2,6 @@
 import { COURSEITEM } from '@/lib/consts';
 import { CircleRightArrow } from '@/lib/icons';
 import Link from 'next/link';
-import { useState } from 'react';
 import CourseItem from '../pages/courses/courseitem';
 import SignOutButton from '../ui/sign-out';
 

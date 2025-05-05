@@ -1,30 +1,10 @@
-// prisma/schema.prisma
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-enum CertificateType {
-  CertificateOfCompletion
-  ProfessionalCertification
-  MicroCredentials
-}
-
-enum PaymentStatus {
-  SUCCESSFUL
-  FAILED
-  PENDING
-}
-
-enum UserRole {
-  STUDENT
-  TUTOR
-  ADMIN
-  USER
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -33,18 +13,22 @@ model User {
   description       String?
   phone             String?
   position          String?
-  courses           String?
   role              UserRole        @default(USER)
   email             String?         @unique
   emailVerified     DateTime?       @map("email_verified")
   image             String?
-  verificationToken String          @default("")
-  isVerified        Boolean         @default(false)
   password          String?
-  accounts          Account[]
-  CoursePayment     CoursePayment[]
-  Course            Course[]
+  isVerified        Boolean         @default(false)
+  verificationToken String          @default("")
+  courses           String?
   Certificate       Certificate[]
+  Course            Course[]
+  CoursePayment     CoursePayment[]
+  accounts          Account[]
+  mentorFor         Mentorship[]    @relation("Mentor")
+  menteeFor         Mentorship[]    @relation("Mentee")
+  submittedProjects ProjectSubmission[]
+  progress          Progress[]
 
   @@map("users")
 }
@@ -55,15 +39,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String  @map("provider_account_id")
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -83,14 +66,13 @@ model CourseRegistration {
 }
 
 model Course {
-  id            String  @id @default(cuid())
+  id            String          @id @default(cuid())
   title         String
-  image         String  @default("/course-placeholder.jpg")
+  image         String          @default("/course-placeholder.jpg")
   category      String
   textSnippet   String
   videoUrl      String
   tutorId       String
-  tutor         User    @relation(fields: [tutorId], references: [id])
   description   String
   conclusion    String
   summary       String
@@ -101,18 +83,123 @@ model Course {
   duration      String
   certificate   Boolean
   overView      String?
-
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt
+  tutor         User            @relation(fields: [tutorId], references: [id])
   CoursePayment CoursePayment[]
+  Curriculum    Curriculum[]
+  projects      Project[]
+  mentorships   Mentorship[]
+  programType   ProgramType     @default(CRASH_COURSE)
 }
 
 model Curriculum {
-  id                 String @id @default(cuid())
-  courseId           String
+  id        String   @id @default(cuid())
+  courseId  String   @unique
+  course    Course   @relation(fields: [courseId], references: [id])
+  modules   Module[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+}
+
+model Module {
+  id                 String   @id @default(cuid())
+  curriculumId       String
+  curriculum         Curriculum @relation(fields: [curriculumId], references: [id])
   headingNumber      String
   headingName        String
   headingDescription String
+  duration           String
+  order              Int
+  lessons            Lesson[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Lesson {
+  id          String            @id @default(cuid())
+  title       String
+  lessonKey   String            @unique
+  description String
+  videoUrl    String
+  duration    String
+  order       Int
+  moduleId    String
+  module      Module            @relation(fields: [moduleId], references: [id])
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  completedBy CompletedLesson[]
+  progress    Progress[]
+}
+
+model CompletedLesson {
+  id          String   @id @default(cuid())
+  lessonId    String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  userId      String
+  completedAt DateTime @default(now())
+
+  @@unique([lessonId, userId])
+}
+
+model Progress {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  lessonId  String
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, lessonId])
+}
+
+model Project {
+  id          String              @id @default(cuid())
+  title       String
+  description String              @db.Text
+  dueDate     DateTime?
+  courseId    String
+  course      Course              @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  submissions ProjectSubmission[]
+}
+
+model ProjectSubmission {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  content     String   @db.Text
+  fileUrl     String?
+  grade       String?
+  feedback    String?  @db.Text
+  submittedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Mentorship {
+  id          String   @id @default(cuid())
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  mentorId    String
+  mentor      User     @relation("Mentor", fields: [mentorId], references: [id], onDelete: Cascade)
+  menteeId    String?
+  mentee      User?    @relation("Mentee", fields: [menteeId], references: [id], onDelete: Cascade)
+  scheduledAt DateTime
+  duration    Int
+  meetingUrl  String?
+  topic       String?
+  notes       String?  @db.Text
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([mentorId, menteeId, scheduledAt])
 }
 
 model VerificationToken {
@@ -143,6 +230,7 @@ model Review {
   id           String   @id @default(cuid())
   tutorName    String
   userId       String
+  courseId     String
   reviewerName String
   rating       Int      @default(0)
   title        String
@@ -153,37 +241,62 @@ model Review {
 
 model CoursePayment {
   id            String        @id @default(cuid())
-  transactionId String // Unique identifier for the Paystack transaction reference
-  userId        String // ID of the user who made the payment
-  courseId      String // ID of the course for which payment is made
-  amount        Float // Amount paid
-  currency      String // Currency of the payment (e.g. NGN)
-  status        PaymentStatus @default(PENDING) // Status of the transaction (e.g., successful, failed)
-  paymentDate   DateTime      @default(now()) // Date and time of payment
+  transactionId String
+  userId        String
+  courseId      String
+  amount        Float
+  currency      String
+  status        PaymentStatus @default(PENDING)
+  paymentDate   DateTime      @default(now())
   verifiedAt    DateTime      @updatedAt
-  User          User          @relation(fields: [userId], references: [id])
   Course        Course        @relation(fields: [courseId], references: [id])
+  User          User          @relation(fields: [userId], references: [id])
 }
 
 model Certificate {
-  id          String          @id @default(cuid())
-  studentName String
-  issuedDate  DateTime        @default(now())
-  platform    String
-  userId      String
-  courseId    String
-  type        CertificateType @default(CertificateOfCompletion)
-  certificateUrl  String      @default("")
-  User        User            @relation(fields: [userId], references: [id])
+  id             String          @id @default(cuid())
+  studentName    String
+  issuedDate     DateTime        @default(now())
+  platform       String
+  userId         String
+  courseId       String
+  type           CertificateType @default(CertificateOfCompletion)
+  certificateUrl String          @default("")
+  User           User            @relation(fields: [userId], references: [id])
 }
 
 model TutorApplication {
-  id      String    @id @default(cuid())
-  fullname  String
-  email     String  @unique
-  phone     String
-  coverletter   String
-  uploadcv        String  
+  id          String @id @default(cuid())
+  fullname    String
+  email       String @unique
+  phone       String
+  coverletter String
+  uploadcv    String
 
   @@map("tutorApplications")
+}
+
+enum CertificateType {
+  CertificateOfCompletion
+  ProfessionalCertification
+  MicroCredentials
+}
+
+enum PaymentStatus {
+  SUCCESSFUL
+  FAILED
+  PENDING
+}
+
+enum UserRole {
+  STUDENT
+  TUTOR
+  ADMIN
+  USER
+}
+
+enum ProgramType {
+  CRASH_COURSE
+  THREE_MONTHS
+  SIX_MONTHS
 }

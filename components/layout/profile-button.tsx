@@ -1,4 +1,9 @@
-import React from 'react';
+import { logout } from '@/actions/main';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { getInitials } from '@/lib/utils';
+import { signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { Button } from '../ui/button';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -7,14 +12,9 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import { Button } from '../ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { logout } from '@/actions/main';
-import { getInitials } from '@/lib/utils';
-import Link from 'next/link';
-import { User } from '@prisma/client';
 
-export default function ProfileButton({ user }: { user?: User | null }) {
+export default function ProfileButton() {
+	const {data: session} = useSession();
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -24,7 +24,7 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 					className='overflow-hidden rounded-full'>
 					<Avatar>
 						<AvatarImage
-							src={user?.image ?? ''}
+							src={session?.user?.image ?? ''}
 							alt='@shadcn'
 						/>
 						<AvatarFallback>US</AvatarFallback>
@@ -37,12 +37,12 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 						<div className=''>
 							<Avatar className='h-14 w-14'>
 								<AvatarImage
-									src={user?.image ?? ''}
-									alt={user?.name || 'Agent User'}
+									src={session?.user?.image ?? ''}
+									alt={session?.user?.name || 'Agent User'}
 								/>
 								<AvatarFallback>
 									{getInitials(
-										user?.name || 'Agent User'
+										session?.user?.name || 'Agent User'
 									)}
 								</AvatarFallback>
 							</Avatar>
@@ -51,24 +51,24 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 							// href='/manage/profile'
 							className='flex flex-col space-y-1'>
 							<p className='text-sm font-medium leading-none'>
-								{user?.name || 'Agent User'}
+								{session?.user?.name || 'Agent User'}
 							</p>
 							<p className='text-xs leading-none text-muted-foreground'>
-								{user?.email}
+								{session?.user?.email}
 							</p>
 						</div>
 					</div>
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
-				{(user?.role === 'ADMIN' || user?.role === 'TUTOR' || user?.role === 'STUDENT') && (
+				{(session?.user?.role === 'ADMIN' || session?.user?.role === 'TUTOR' || session?.user?.role === 'STUDENT') && (
 				<DropdownMenuItem asChild>
 					<Link
 						href={
-							user?.role === 'ADMIN' 
+							session?.user?.role === 'ADMIN' 
 								? '/admin'
-								: user?.role === 'TUTOR'
+								: session?.user?.role === 'TUTOR'
 								? '/tutor'
-								: user?.role === 'STUDENT'
+								: session?.user?.role === 'STUDENT'
 								? '/student'
 								: '/courses'
 						}>
@@ -77,7 +77,7 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 				</DropdownMenuItem>
 				)}
 				<DropdownMenuSeparator />
-				{(user?.role === 'USER') && (
+				{(session?.user?.role === 'USER') && (
 				<DropdownMenuItem asChild>
 					<Link href='/courses'>
 					Purchase a course
@@ -85,7 +85,7 @@ export default function ProfileButton({ user }: { user?: User | null }) {
 				</DropdownMenuItem>
 				)}
 				<DropdownMenuSeparator />
-				<DropdownMenuItem onClick={async () => logout()}>
+				<DropdownMenuItem onClick={async () => signOut()}>
 					Logout
 				</DropdownMenuItem>
 			</DropdownMenuContent>

@@ -1,3 +1,4 @@
+import { Lesson, Module, Progress } from "@prisma/client";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 interface IMaxWidthWrapper {
@@ -30,7 +31,11 @@ interface ICOURSELIST2 {
      link?: string;
      title: string;
      content: string;
+     programType?: string;
+     price?: number;
+     courseId?: string;
 }
+
 interface ICOURSES {
      name: string;
 }
@@ -109,3 +114,7 @@ export interface Course {
      phone: string ;
      courses: Course[];
    }
+   interface ISingleCourseCurriculumProps {
+	modules: (Module & { lessons: Lesson[] })[];
+	progress: Progress[];
+}

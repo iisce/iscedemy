@@ -1,3 +1,21 @@
+/**
+ * Handles the process of becoming a tutor by validating input fields, 
+ * sending an email notification, and storing the application in the database.
+ *
+ * @param values - The input values to be validated and processed, adhering to the `TutorRegisterSchema`.
+ * 
+ * @returns A promise that resolves to an object containing either:
+ * - `success`: A success message and the created application data if the process is successful.
+ * - `error`: An error message if validation fails or an exception occurs during processing.
+ *
+ * @throws Will log errors to the console if email sending or database operations fail.
+ *
+ * @remarks
+ * - This function uses the `resend` library to send emails.
+ * - It uses Prisma ORM to interact with the database.
+ * - Ensure that the environment variables `RESEND_API_KEY`, `FROM_EMAIL_ADDRESS`, and `TO_EMAIL_ADDRESS` are set.
+ * - The database connection is properly closed in the `finally` block.
+ */
 'use server'
 import { Resend } from 'resend';
 import * as z from 'zod';

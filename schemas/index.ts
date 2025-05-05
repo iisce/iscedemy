@@ -189,6 +189,7 @@ export const ReviewSchema = z.object({
 	description: z.string().min(10, {
 		message: 'Description must be at least 10 characters long',
 	}),
+	courseId: z.string().min(1, "Course ID is required"),
 });
 
 
@@ -211,10 +212,93 @@ export const UpdateReviewSchema = z.object({
 
 
 export const UpdateCourseSchema = z.object({
-	id: z.string(),
-	title: z.string().min(1, 'Title is required'),
-	textSnippet: z.string().min(1, 'Text Snippet is required'),
-	description: z.string().min(1, 'Description is required'),
-	conclusion: z.string().min(1, 'Conclusion is required'),
-	summary: z.string().min(1, 'Summary is required'),
+	id: z.string().min(1, "Course ID is required"),
+	title: z.string().min(3, "Title must be at least 3 characters"),
+	textSnippet: z.string().min(10, "Header text must be at least 10 characters"),
+	description: z.string().min(20, "Description must be at least 20 characters"),
+	conclusion: z.string().min(10, "Conclusion must be at least 10 characters"),
+	summary: z.string().min(10, "Summary must be at least 10 characters"),
+	programType: z.enum(["CRASH_COURSE", "THREE_MONTHS", "SIX_MONTHS"]).optional(),
+	duration: z.string().min(1, "Duration is required").optional(),
+	category: z.string().min(1, "Category is required").optional(),
+	videoUrl: z.string().min(1, "Video URL is required").optional(),
+	noOfClass: z.string().min(1, "Number of classes is required").optional(),
+	classDays: z.string().min(1, "Class days are required").optional(),
+	certificate: z.boolean().optional(),
+	overView: z.string().optional(),
+	image: z.string().optional(),
+  });
+
+  export const CreateCourseSchema = z.object({
+	title: z.string().min(3, "Ttitle must be at least 3 characters"),
+	textSnippet: z.string().min(10, "Header text must be at least 10 characters"),
+	description: z.string().min(20, "Description must be at least 20 characters"),
+	conclusion: z.string().min(10, "Conclusion must be at least 10 characters"),
+	summary: z.string().min(10, "Summary must be at least 10 characters"),
+	programType: z.enum(["CRASH_COURSE", "THREE_MONTHS", "SIX_MONTHS"]),
+	duration: z.string().min(1, "Duration is required"),
+	category: z.string().min(1, "Category is required"),
+	videoUrl: z.string().min(1, "Video URL is required"),
+	noOfClass: z.string().min(1, "Number of classes is required"),
+	classDays: z.string().min(1, "Class days are required"),
+	certificate: z.boolean(),
+  	overView: z.string().optional(),
+	lessonKey: z.string().optional(),
+	image: z.string().optional(),
+	tutorId: z.string().min(1, "Tutor ID is required"),
+
+  })
+
+  export const CreateCurriculumSchema = z.object({
+    courseId: z.string().min(1, "Course ID is required"),
+  modules: z.array(
+    z.object({
+      headingNumber: z.string().min(1, "Heading number is required"),
+      headingName: z.string().min(1, "Module heading name is required"),
+      headingDescription: z.string().min(1, "Module heading description is required"),
+      duration: z.string().min(1, "Duration is required"),
+      order: z.number().min(1, "Order must be a positive number"),
+      lessons: z.array(
+        z.object({
+		  lessonKey: z.string().min(1, "Lesson key is required"),
+          title: z.string().min(1, "Lesson title is required"),
+          description: z.string().optional(),
+          duration: z.string().min(1, "Duration is required"),
+          videoUrl: z.string().optional(),
+          order: z.number().min(1, "Order must be a positive number"),
+        })
+      ),
+    })
+  ),
+})
+
+export const AssignmentSchema = z.object({
+	title: z.string().min(1, "Title is required"),
+	description: z.string().min(1, "Description is required"),
+	dueDate: z.string().optional(),
+  });
+
+ export const SubmissionSchema = z.object({
+	content: z.string().min(1, "Submission content is required"),
+	fileUrl: z.string().url("Must be a valid URL").optional(),
+  });
+
+export const AssignmentReviewSchema = z.object({
+	grade: z.string().min(1, "Grade is required"),
+	feedback: z.string().optional(),
+  });
+
+export  const MentorshipSchema = z.object({
+	scheduledAt: z.string().min(1, "Scheduled date and time are required"),
+	duration: z.number().min(15, "Duration must be at least 15 minutes").max(120, "Duration cannot exceed 120 minutes"),
+	topic: z.string().min(1, "Topic is required"),
+	meetingUrl: z.string().url("Must be a valid URL").optional(),
+  });
+
+export const CompletionSchema = z.object({
+	notes: z.string().optional(),
+  });
+
+export const UpdateProfileSchema = z.object({
+	name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
   });

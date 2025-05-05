@@ -30,7 +30,7 @@ export default async function TutorPage() {
 	const session = await auth();
   const tutors = await getAllTutors();
 
-  if(session?.user?.name !== 'ADMIN') {
+  if(session?.user?.role !== 'ADMIN') {
     redirect('/unauthorized');
 
     return null;

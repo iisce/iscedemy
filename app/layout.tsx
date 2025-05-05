@@ -8,7 +8,6 @@ import { SessionProvider } from 'next-auth/react';
 import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
 import { Chatbot } from '@/components/component/chatbot';
-import { getUserById } from '@/data/user';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -119,12 +118,11 @@ export default async function RootLayout({
 }>) {
 	const session = await auth();
 
-	const dbUser = await getUserById(session?.user?.id ?? '');
 	return (
 		<SessionProvider session={session}>
 			<html lang='en'>
 				<body className={inter.className}>
-					<NavBar user={dbUser} />
+					<NavBar />
 					<div className='min-h-[70svh]'>
 						<NextTopLoader
 							color='green'

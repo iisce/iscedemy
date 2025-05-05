@@ -8,6 +8,7 @@ const nextConfig = {
                     port: ""
                },
           ],
+          domains: ['encrypted-tbn0.gstatic.com', 'isce-image-uploader.s3.us-east-1.amazonaws.com'], // add the hostname here
      },
 };
 

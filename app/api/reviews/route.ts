@@ -47,6 +47,7 @@ export async function POST(req: Request) {
 			data: {
 				userId: reviewerId || '',
 				tutorName,
+				courseId: '',
 				reviewerName,
 				rating,
 				title,

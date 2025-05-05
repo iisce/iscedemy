@@ -3,7 +3,6 @@
  * @type {string[]}
  */
 
-import { NextResponse } from "next/server";
 
 
 
@@ -11,7 +10,7 @@ import { NextResponse } from "next/server";
           "/",
           "/about",
           "/contact",
-          "/courses",
+          "/courses/:path*",
           "/register",
           "/new-verification",
           "/privacy-policy",

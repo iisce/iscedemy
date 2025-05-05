@@ -3,13 +3,19 @@ import { ArrowRightIcon } from '../../../lib/icons';
 import { ICOURSELIST2 } from '../../../lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BookOpen, Clock, Tag } from 'lucide-react';
 
 export default function CourseList({
 	icon,
 	image,
 	title,
 	content,
-}: ICOURSELIST2) {
+	programType,
+	duration,
+	virtualPrice,
+}: ICOURSELIST2 & {programType: string, duration: string, virtualPrice: number }) {
+
+	const level = programType === 'CRASH_COURSE' ? 'Beginner' : programType === 'THREE_MONTHS' ? 'Intermediate' : 'Advanced';
 	return (
 		<div className='p-[10px] rounded-md group shadow-md border'>
 			<Link
@@ -44,7 +50,29 @@ export default function CourseList({
 					<p className='mt-[10px] font-bold capitalize'>
 						{title}
 					</p>
-					<p className='text-[13px] mt-[7px] '>{content}</p>
+					<p className='text-[13px] mt-[7px] line-clamp-4 '>{content}</p>
+					<div className="mt-4 flex flex-wrap gap-3">
+            {/* Level */}
+            <div className="flex items-center space-x-1">
+              <BookOpen className="h-4 w-4 text-green-600" />
+              <span className="text-sm text-green-600">Level:</span>
+              <span className="text-sm text-gray-800 font-medium">{level}</span>
+            </div>
+
+            {/* Duration */}
+            <div className="flex items-center space-x-1">
+              <Clock className="h-4 w-4 text-green-600" />
+              <span className="text-sm text-green-600">Duration:</span>
+              <span className="text-sm text-gray-800 font-medium">{duration}</span>
+            </div>
+
+            {/* Price */}
+            <div className="flex items-center space-x-1">
+              <Tag className="h-4 w-4 text-green-600" />
+              <span className="text-sm text-green-600">Price:</span>
+              <span className="text-sm text-gray-800 font-medium">₦{virtualPrice.toLocaleString()}</span>
+            </div>
+          </div>
 				</div>
 			</Link>
 		</div>

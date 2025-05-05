@@ -13,9 +13,11 @@ import { Separator } from '@/components/ui/separator';
 export function SingleTutorReviews({
 	reviews,
 	tutor,
+	courseId
 }: {
 	reviews: Review[];
 	tutor: User;
+	courseId: string;
 }) {
 	const [isEditing, setIsEditing] = useState<boolean>(false);
 	console.log({ reviews });
@@ -114,6 +116,7 @@ export function SingleTutorReviews({
 							reviewerId={session.data?.user?.id ?? ''}
 							reviewerName={session.data?.user?.name ?? ''}
 							tutorName={tutor.name ?? 'Tutor'}
+							courseId={courseId}
 						/>
 					)}
 				</div>

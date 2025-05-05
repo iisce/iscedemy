@@ -7,9 +7,8 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { NAVLINKS } from '@/lib/consts';
 import LogInButton from './log-in-button';
-import { User } from '@prisma/client';
 
-export default function NavBar({ user }: { user?: User | null }) {
+export default function NavBar() {
 	//this constant is useed to set a particular navlink active letting users know the page they're on.
 	const [active, setActive] = useState('');
 	useEffect(() => {
@@ -61,7 +60,7 @@ export default function NavBar({ user }: { user?: User | null }) {
 								{`Speak to admissions`}
 							</Link>
 						</Button>
-						<LogInButton user={user} />
+						<LogInButton/>
 						<MobileMenu />
 					</div>
 				</nav>

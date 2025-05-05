@@ -11,9 +11,9 @@ import { notFound } from 'next/navigation';
 export async function generateMetadata({
 	params,
 }: {
-	params: { course: string };
+	params: { courseId: string };
 }): Promise<Metadata> {
-	const courseDetails = await getCourseBySlug(params.course);
+	const courseDetails = await getCourseBySlug(params.courseId);
 
 	if (!courseDetails) {
 		notFound();
@@ -25,7 +25,7 @@ export async function generateMetadata({
 		openGraph: {
 			title: courseDetails.title.split('-').join(' '),
 			description: courseDetails.description,
-			url: `https://www.palmtechniq.com/courses/${params.course}`,
+			url: `https://www.palmtechniq.com/courses/${params.courseId}`,
 			siteName: 'PalmTechnIQ',
 			images: [
 				{
@@ -43,20 +43,20 @@ export default async function CoursePage({
 	params,
 	searchParams,
 }: {
-	params: { course: string };
+	params: { courseId: string };
 	searchParams?: {
 		tab?: string;
 	};
 }) {
 	const tab = searchParams?.tab || 'overview';
-	const courseDetails = await getCourseBySlug(params.course);
+	const courseDetails = await getCourseBySlug(params.courseId);
 	if (!courseDetails) {
 		return <FormError message='Course not found!' />;
 	}
 
 	return (
 		<SingleCourse
-			courseTitle={params.course}
+			courseTitle={params.courseId}
 			tab={tab}
 		/>
 	);
