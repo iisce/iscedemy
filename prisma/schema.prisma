@@ -25,8 +25,8 @@ model User {
   Course            Course[]
   CoursePayment     CoursePayment[]
   accounts          Account[]
-  mentorFor       Mentorship[]    @relation("Mentor")
-  menteeFor       Mentorship[]    @relation("Mentee")
+  mentorFor         Mentorship[]    @relation("Mentor")
+  menteeFor         Mentorship[]    @relation("Mentee")
   submittedProjects ProjectSubmission[]
   progress          Progress[]
 
@@ -90,7 +90,7 @@ model Course {
   Curriculum    Curriculum[]
   projects      Project[]
   mentorships   Mentorship[]
-  programType   ProgramType @default(CRASH_COURSE)
+  programType   ProgramType     @default(CRASH_COURSE)
 }
 
 model Curriculum {
@@ -99,7 +99,7 @@ model Curriculum {
   course    Course   @relation(fields: [courseId], references: [id])
   modules   Module[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt @default(now())
 }
 
 model Module {
@@ -117,30 +117,31 @@ model Module {
 }
 
 model Lesson {
-  id          String @id @default(cuid())
+  id          String            @id @default(cuid())
   title       String
-  lessonKey   String @unique
+  lessonKey   String            @unique
   description String
   videoUrl    String
   duration    String
   order       Int
   moduleId    String
-  module      Module @relation(fields: [moduleId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  module      Module            @relation(fields: [moduleId], references: [id])
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
   completedBy CompletedLesson[]
   progress    Progress[]
 }
 
-model CompletedLesson{
-  id        String @id @default(cuid())
-  lessonId  String
-  lesson    Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-  userId    String
+model CompletedLesson {
+  id          String   @id @default(cuid())
+  lessonId    String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  userId      String
   completedAt DateTime @default(now())
 
   @@unique([lessonId, userId])
 }
+
 model Progress {
   id        String   @id @default(cuid())
   userId    String
@@ -150,53 +151,57 @@ model Progress {
   completed Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
   @@unique([userId, lessonId])
 }
+
 model Project {
-  id          String @id @default(cuid())
+  id          String              @id @default(cuid())
   title       String
-  description String @db.Text
-  dueDate    DateTime?
+  description String              @db.Text
+  dueDate     DateTime?
   courseId    String
-  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  course      Course              @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
   submissions ProjectSubmission[]
 }
 
 model ProjectSubmission {
-  id          String @id @default(cuid())
+  id          String   @id @default(cuid())
   projectId   String
-  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   userId      String
-  user        User    @relation(fields: [userId], references: [id])
-  content     String  @db.Text
+  user        User     @relation(fields: [userId], references: [id])
+  content     String   @db.Text
   fileUrl     String?
   grade       String?
-  feedback    String? @db.Text
+  feedback    String?  @db.Text
   submittedAt DateTime @default(now())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
+
 model Mentorship {
-  id          String @id @default(cuid())
+  id          String   @id @default(cuid())
   courseId    String
   course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  mentorId   String
-  mentor      User     @relation("Mentor",fields: [mentorId], references: [id], onDelete: Cascade)
-  menteeId   String?
-  mentee      User?    @relation("Mentee",fields: [menteeId], references: [id], onDelete: Cascade)
+  mentorId    String
+  mentor      User     @relation("Mentor", fields: [mentorId], references: [id], onDelete: Cascade)
+  menteeId    String?
+  mentee      User?    @relation("Mentee", fields: [menteeId], references: [id], onDelete: Cascade)
   scheduledAt DateTime
   duration    Int
-  meetingUrl  String? 
+  meetingUrl  String?
   topic       String?
-  notes       String? @db.Text
-  completed   Boolean @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  notes       String?  @db.Text
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@unique([mentorId, menteeId, scheduledAt])
 }
+
 model VerificationToken {
   id      String   @id @default(cuid())
   email   String
@@ -289,8 +294,9 @@ enum UserRole {
   ADMIN
   USER
 }
+
 enum ProgramType {
- CRASH_COURSE
- THREE_MONTHS
- SIX_MONTHS 
+  CRASH_COURSE
+  THREE_MONTHS
+  SIX_MONTHS
 }
