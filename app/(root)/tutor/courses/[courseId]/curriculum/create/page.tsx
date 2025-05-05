@@ -50,8 +50,10 @@ export default async function CurriculumCreatePage({ params }: CurriculumCreateP
   const cookieStore = cookies();
   const sessionCookie = cookieStore.get('authjs.session-token')?.value;
 
+  const endpointUrl = `${process.env.NEXT_PUBLIC_URL}/api/curriculum/has/${courseId}`
+  console.log({endpointUrl})
   // Check if a curriculum already exists using the API
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/curriculum/has/${courseId}`, {
+  const response = await fetch( endpointUrl, {
     headers: {
       "Content-Type": "application/json",
       ...(sessionCookie && { Cookie: `authjs.session-token=${sessionCookie}` }),

@@ -12,8 +12,10 @@ import { useState } from "react";
 export default function MentorshipsPage({
   tutor,
   mentorships,
+  mentorshipId
 }: {
   tutor: any;
+  mentorshipId: string;
   mentorships: any[];
 }) {
   const [filterStatus, setFilterStatus] = useState("all");
@@ -44,7 +46,7 @@ export default function MentorshipsPage({
                 </SelectContent>
               </Select>
               <Button asChild className="bg-green-600 hover:bg-green-700 text-white">
-                <Link href="/tutor/mentorships/schedule">Schedule New Session</Link>
+                <Link href={`/tutor/mentorship/${mentorshipId}`}>Schedule New Session</Link>
               </Button>
             </div>
           </div>
