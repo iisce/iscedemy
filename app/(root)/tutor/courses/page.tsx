@@ -35,13 +35,13 @@ export default async function tutorCoursesPage(){
     }
 
     if(session.user.role !== 'TUTOR'){
-        redirect('/unauthorized');
+        redirect('/login');
         return null;
     }
 
     const tutor = await getUserById(session.user.id ?? "");
     if(!tutor){
-        redirect('/unauthorized');
+        redirect('/login');
         return null;
     }
 

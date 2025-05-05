@@ -66,6 +66,7 @@ export default async function TutorMentorshipsPage() {
 
   return (
     <MentorshipsPage
+      mentorshipId={mentorships[0]?.id}
       tutor={tutor}
       mentorships={mentorships}
     />
