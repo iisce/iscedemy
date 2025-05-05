@@ -21,7 +21,7 @@ export default function UploadFile(options: {
 
         try {
             const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/upload`,
+                `${process.env.NEXT_PUBLIC_URL}/api/upload`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

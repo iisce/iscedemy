@@ -81,7 +81,7 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 	const sessionCookie = cookieStore.get('authjs.session-token')?.value;
 
 	// Check if a curriculum exists using the API
-	const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/curriculum/has/${courseId}`, {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/curriculum/has/${courseId}`, {
 		headers: {
 			"Content-Type": "application/json",
 			...(sessionCookie && { Cookie: `authjs.session-token=${sessionCookie}` }),
