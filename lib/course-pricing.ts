@@ -4,11 +4,11 @@ export const COURSE_PRICING = {
         physicalPrice: 50000, // ₦50,000
     },
     THREE_MONTHS: {
-        virtualPrice: 320000, // ₦320,000
+        virtualPrice: 300000, // ₦320,000
         physicalPrice: 300000, // ₦300,000
     },
     SIX_MONTHS: {
-        virtualPrice: 520000, // ₦520,000
+        virtualPrice: 500000, // ₦520,000
         physicalPrice: 500000, // ₦500,000
     },
 }
