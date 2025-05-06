@@ -36,6 +36,7 @@ export default function BecomeTutorForm() {
      const [error, setError] = useState<string | undefined>("");
      const [success, setSuccess] = useState<string | undefined>("");
      const [isPending, startTransition] = useTransition();
+     const [useCustomCourse, setUseCustomCourse] = useState(false);
      const router = useRouter();
 
      const form = useForm<z.infer<typeof TutorRegisterSchema>>({
@@ -46,6 +47,7 @@ export default function BecomeTutorForm() {
                phone: "",
                coverletter: "",
                uploadcv: "",
+               course: "",
           },
           mode: "onChange",
      });
@@ -182,50 +184,46 @@ export default function BecomeTutorForm() {
                                                                       Specialty
                                                                  </FormLabel>
 
-                                                                 <Select
-                                                                      disabled={
-                                                                           isPending
-                                                                      }
-                                                                      onValueChange={
-                                                                           field.onChange
-                                                                      }
-                                                                      defaultValue={
-                                                                           field.value
-                                                                      }
-                                                                 >
-                                                                      <FormControl>
-                                                                           <SelectTrigger
-                                                                                id="course"
-                                                                                className="shadow-lg"
+                                                                 <div className="flex space-x-2">
+                                                                      {!useCustomCourse ? (
+                                                                           <Select
+                                                                           disabled={isPending}
+                                                                           onValueChange={field.onChange}
+                                                                           defaultValue={field.value}
                                                                            >
+                                                                           <FormControl>
+                                                                           <SelectTrigger id="course" className="shadow-lg">
                                                                                 <SelectValue placeholder="Choose a course" />
                                                                            </SelectTrigger>
-                                                                      </FormControl>
-                                                                      <SelectContent position="popper">
-                                                                           {COURSES.map(
-                                                                                (
-                                                                                     course,
-                                                                                     i,
-                                                                                ) => (
-                                                                                     <SelectGroup
-                                                                                          key={
-                                                                                               i
-                                                                                          }
-                                                                                     >
-                                                                                          <SelectItem
-                                                                                               value={
-                                                                                                    course.name
-                                                                                               }
-                                                                                          >
-                                                                                               {
-                                                                                                    course.name
-                                                                                               }
-                                                                                          </SelectItem>
-                                                                                     </SelectGroup>
-                                                                                ),
-                                                                           )}
-                                                                      </SelectContent>
-                                                                 </Select>
+                                                                           </FormControl>
+                                                                           <SelectContent position="popper">
+                                                                           {COURSES.map((course, i) => (
+                                                                                <SelectGroup key={i}>
+                                                                                <SelectItem value={course.name}>
+                                                                                     {course.name}
+                                                                                </SelectItem>
+                                                                                </SelectGroup>
+                                                                           ))}
+                                                                           </SelectContent>
+                                                                           </Select>
+                                                                      ) : (
+                                                                           <Input
+                                                                           {...field}
+                                                                           disabled={isPending}
+                                                                           className="shadow-lg"
+                                                                           placeholder="Enter your course specialty"
+                                                                           onChange={(e) => field.onChange(e.target.value)}
+                                                                           />
+                                                                      )}
+                                                                      <Button
+                                                                           type="button"
+                                                                           variant="outline"
+                                                                           onClick={() => setUseCustomCourse(!useCustomCourse)}
+                                                                           disabled={isPending}
+                                                                      >
+                                                                           {useCustomCourse ? "Use Existing" : "Add Custom"}
+                                                                      </Button>
+                                                                      </div>
                                                                  <FormMessage />
                                                             </FormItem>
                                                        )}

@@ -37,27 +37,22 @@ interface CurriculumCreatePageProps {
 export default async function CurriculumCreatePage({ params }: CurriculumCreatePageProps) {
   const { courseId } = params;
 
-  // Ensure the user is a tutor
   const session = await auth();
-  if (!session) {
-    redirect('/login'); // Redirect to login if not authenticated
-  }
-  if (session.user?.role !== 'TUTOR') {
+  if (!session || session.user?.role !== 'TUTOR') {
     redirect('/login');
   }
 
-  // Get the session cookie to forward to the API request
-  const cookieStore = cookies();
-  const sessionCookie = cookieStore.get('authjs.session-token')?.value;
 
+   const cookieStore = cookies();
+  const sessionToken = cookieStore.get('authjs.session-token')?.value;
   const endpointUrl = `${process.env.NEXT_PUBLIC_URL}/api/curriculum/has/${courseId}`
   console.log({endpointUrl})
-  // Check if a curriculum already exists using the API
   const response = await fetch( endpointUrl, {
     headers: {
       "Content-Type": "application/json",
-      ...(sessionCookie && { Cookie: `authjs.session-token=${sessionCookie}` }),
+      ...(sessionToken && { Cookie: `authjs.session-token=${sessionToken}` }),
     },
+    credentials: "include",
   });
 
   if (!response.ok) {
@@ -70,7 +65,6 @@ export default async function CurriculumCreatePage({ params }: CurriculumCreateP
 
   const { hasCurriculum: curriculumExists } = await response.json();
 
-  // Fetch the existing curriculum data if it exists
   let existingCurriculum = null;
   if (curriculumExists) {
     existingCurriculum = await db.curriculum.findUnique({

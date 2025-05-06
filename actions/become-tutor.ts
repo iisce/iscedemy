@@ -34,7 +34,7 @@ export const BecomeTutor = async (values: z.infer<typeof TutorRegisterSchema>) =
         return {error: 'Invalid fields!'};
     }
 
-    const {fullname, email, phone, coverletter, uploadcv } = validatedFields.data
+    const {fullname, email, phone, course, coverletter, uploadcv } = validatedFields.data
     console.log("Uploaded CV URL:", uploadcv)
     try {
         const employContent = 
@@ -44,6 +44,7 @@ export const BecomeTutor = async (values: z.infer<typeof TutorRegisterSchema>) =
         Phone Number: ${phone}
         Cover Letter: ${coverletter}
         CV: ${uploadcv}
+        Course: ${course}
         
         `;
 
@@ -59,6 +60,7 @@ export const BecomeTutor = async (values: z.infer<typeof TutorRegisterSchema>) =
                 fullname,
                 email,
                 phone,
+                course,
                 coverletter,
                 uploadcv
             },

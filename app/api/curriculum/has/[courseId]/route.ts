@@ -27,9 +27,10 @@ export async function GET(req: Request, { params }: { params: { courseId: string
       return NextResponse.json({ error: "Invalid CourseId" }, { status: 400 });
     }
 
-    // Check if the user is authenticated and is a tutor
     const session = await auth();
+    console.log("Session:", session);
     if (!session) {
+      console.log("No session found. Headers:", req.headers); 
       return NextResponse.json(
         { error: "Unauthorized: Please log in to check curriculum status" },
         { status: 401 }

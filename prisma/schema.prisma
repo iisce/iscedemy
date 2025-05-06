@@ -272,6 +272,7 @@ model TutorApplication {
   phone       String
   coverletter String
   uploadcv    String
+  course      String?
 
   @@map("tutorApplications")
 }
