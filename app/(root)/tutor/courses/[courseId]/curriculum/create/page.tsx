@@ -11,24 +11,22 @@ import { db } from '@/lib/db';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
+  title: 'Create Curriculum - PalmtechnIQ',
+  description: 'Stay in-charge of your courses and keep track of your revenue!',
+  alternates: {
+    canonical: '/tutor',
+    languages: {
+      'en-US': '/en-US',
+      'de-DE': '/de-DE',
+    },
+  },
+  openGraph: {
     title: 'Create Curriculum - PalmtechnIQ',
     description: 'Stay in-charge of your courses and keep track of your revenue!',
-    // metadataBase: new URL('https://www.palmtechniq.com/tutor'),
-    alternates:{
-      canonical: '/tutor',
-      languages: {
-      'en-US':'/en-US',
-      'de-DE': '/de-DE',
-      },
-    },
-    openGraph: {
-      title: 'Create Curriculum - PalmtechnIQ',
-      description: 'Stay in-charge of your courses and keep track of your revenue!',
-    //   url: 'https://www.palmtechniq.com/tutor',
-      siteName: 'PalmTechnIQ',
-      images: '/christina.jpg'
-    }
-    }
+    siteName: 'PalmTechnIQ',
+    images: '/christina.jpg',
+  },
+};
 
 interface CurriculumCreatePageProps {
   params: { courseId: string };
@@ -42,25 +40,34 @@ export default async function CurriculumCreatePage({ params }: CurriculumCreateP
     redirect('/login');
   }
 
-
-   const cookieStore = cookies();
+  const cookieStore = cookies();
   const sessionToken = cookieStore.get('authjs.session-token')?.value;
-  const endpointUrl = `${process.env.NEXT_PUBLIC_URL}/api/curriculum/has/${courseId}`
-  console.log({endpointUrl})
-  const response = await fetch( endpointUrl, {
+  console.log("Session Token in Page:", sessionToken);
+  console.log("All Cookies in Page:", cookieStore.getAll());
+
+  const endpointUrl = `${process.env.NEXT_PUBLIC_URL}/api/curriculum/has/${courseId}`;
+  console.log({ endpointUrl });
+  const response = await fetch(endpointUrl, {
     headers: {
       "Content-Type": "application/json",
       ...(sessionToken && { Cookie: `authjs.session-token=${sessionToken}` }),
     },
-    credentials: "include",
   });
 
   if (!response.ok) {
-    const data = await response.json();
-    if (data.error.includes("Unauthorized")) {
-      redirect('/login');
+    console.log("API Response Status:", response.status);
+    let errorMessage = "Failed to check curriculum status";
+    try {
+      const data = await response.json();
+      console.log("API Error Response:", data);
+      if (data.error?.includes("Unauthorized")) {
+        redirect('/login');
+      }
+      errorMessage = data.error || errorMessage;
+    } catch (error) {
+      console.error("Error parsing response JSON:", error);
     }
-    throw new Error(data.error || "Failed to check curriculum status");
+    throw new Error(errorMessage);
   }
 
   const { hasCurriculum: curriculumExists } = await response.json();
@@ -87,12 +94,10 @@ export default async function CurriculumCreatePage({ params }: CurriculumCreateP
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-2xl font-bold mb-6">
-        {curriculumExists ? 'Update Curriculum' : 'Create Curriculum'} for Course {courses.find(course => course.id === courseId)?.title}
+        {curriculumExists ? 'Update Curriculum' : 'Create Curriculum'} for Course{' '}
+        {courses.find((course) => course.id === courseId)?.title}
       </h1>
-      <CreateCurriculumForm
-        courseId={courseId}
-        existingCurriculum={existingCurriculum}
-      />
+      <CreateCurriculumForm courseId={courseId} existingCurriculum={existingCurriculum} />
       <div className="mt-4">
         <Link href={`/tutor/courses/${courseId}`}>
           <Button variant="outline">Back to Course</Button>
