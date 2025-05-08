@@ -25,33 +25,38 @@ export const {
 	},
 	callbacks: {
 		async signIn({ user, account }) {
-			// Check if the user is signing in with OAuth
 			if (account?.provider !== 'credentials') {
 				
 				const existingUser = await getUserByEmail(user.email!);
 
-				//if the user is new, and send the onboarding email
 				if (!existingUser){
 					await onBoardingMail(user.email!, user.name || '');
 				}
 
 				return true;
 			}
-
+			
 			// Handle credentials sign in
 			const existingUser = await getUserById(user.id!);
 
 			if (!existingUser?.emailVerified) return false;
-
+			
 			return true;
 		},
-
+		
 		async session({session, token}) {
-			if(token.sub && session.user){
-				session.user.id = token.sub;
+			// console.log("Session callback triggered", { token, session });
+			try{
 
-				const user = await getUserById(token.sub);
-				session.user.role = user?.role || "USER";
+				if(token.sub && session.user){
+					session.user.id = token.sub;
+					
+					const user = await getUserById(token.sub);
+					session.user.role = user?.role || "USER";
+					// console.log({user})
+				}
+			} catch(error) {
+				console.error("Error in session callback:", error);
 			}
 			return session;
 		},
@@ -62,7 +67,6 @@ export const {
 				token.role = user.role;
 			}
 
-			// Add maxAge to the token
 			const now = Math.floor(Date.now()/ 1000);
 			const maxAge = 1800; // 30 minutes
 
@@ -79,5 +83,17 @@ export const {
 		strategy: 'jwt',
 		updateAge:  60, // Update JWT every minute
 	},
+	cookies: {
+		sessionToken: {
+		  name: "authjs.session-token",
+		  options: {
+			httpOnly: true,
+			sameSite: "lax",
+			path: "/",
+			secure: process.env.NODE_ENV === "production",
+			domain: process.env.NODE_ENV === "production" ? ".palmtechniq.com" : undefined,
+		  },
+		},
+	  },
 	...authConfig,
 });
