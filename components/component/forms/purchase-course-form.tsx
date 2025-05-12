@@ -54,10 +54,10 @@ export default function PurchaseCourseForm({
 		// Update message based on selected type
 		const courseType = form.getValues('type');
 		if (courseType === 'Physical') {
-			setAdditionalCostMessage('An additional 20,000 Naira is charged for certificate and Digital Student ID.');
+			setAdditionalCostMessage('Kindly note that an additional 20,000 Naira is charged for certificate and Digital Student ID.');
 		} else if (courseType === 'Virtual') {
 			
-			setAdditionalCostMessage('An additional 20,000 Naira is charged for certificate and Digital Student ID.');
+			setAdditionalCostMessage('Kindly note that additional 20,000 Naira is charged for certificate and Digital Student ID.');
 		} else {
 			setAdditionalCostMessage(null)
 		}

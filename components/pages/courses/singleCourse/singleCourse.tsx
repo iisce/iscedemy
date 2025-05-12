@@ -318,7 +318,7 @@ export default async function SingleCourse({
 							Course Includes:
 						</h3>
 						<div className='space-y-4 w-full '>
-							<div className='flex flex-row justify-between items-center'>
+							<div className='flex gap-4 flex-row justify-between items-center'>
 								<span className='text-green-600 flex items-center'>
 									<Icons.NairaSignIcon />
 									{'  '}
@@ -335,6 +335,7 @@ export default async function SingleCourse({
 											courseDetails.physicalPrice
 										)}`}
 									</div>
+									<p className='text-wrap text-[10px] text-red-600'>{`An additional 20,000 Naira is charged for certificate and Digital Student ID. Upon checkout.`}</p>
 								</div>
 							</div>
 							<hr />
