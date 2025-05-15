@@ -50,8 +50,8 @@ export default async function IntermediateCoursesPage({searchParams}: Intermedia
       </nav>
       {/* Header Section */}
       <section className="w-full mt-5 text-center bg-gradient-to-r from-green-600 to-black text-white py-12 rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold">Intermediate Courses (3-Month Programs)</h1>
-        <p className="mt-4 text-lg max-w-2xl mx-auto">
+        <h1 className="text-2xl md:text-4xl font-bold">Intermediate Courses (3-Month Programs)</h1>
+        <p className="mt-4 text-sm px-3 md:text-lg max-w-2xl mx-auto">
           Take your skills to the next level with our 3-Month Intermediate Courses! Designed for learners with foundational knowledge, these programs offer in-depth training, real-world projects, and personalized mentorship to help you grow confidently in the digital economy.
         </p>
       </section>

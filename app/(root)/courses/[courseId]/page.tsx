@@ -51,13 +51,18 @@ export default async function CoursePage({
 	const tab = searchParams?.tab || 'overview';
 	const courseDetails = await getCourseBySlug(params.courseId);
 	if (!courseDetails) {
-		return <FormError message='Course not found!' />;
-	}
-
+		return (
+		  <div className="w-full px-4 md:px-6">
+			<FormError message="Course not found!" />
+		  </div>
+		);
+	  }
 	return (
+		<div className="w-full">
 		<SingleCourse
 			courseTitle={params.courseId}
 			tab={tab}
 		/>
+		</div>
 	);
 }

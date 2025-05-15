@@ -52,42 +52,42 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
 	 const threeMonthCourses = courses.filter(course => course.programType === "THREE_MONTHS");
 	 const sixMonthCourses = courses.filter(course => course.programType === "SIX_MONTHS");
      return (
-          <main className="flex flex-col items-center justify-center lg:w-[83%]  pb-3">
-			<nav className="w-full mt-4  font-bold text-sm text-green-600 py-3">
+          <main className="flex flex-col items-center justify-center lg:w-[83%] mx-auto pb-3">
+			<nav className="w-full px-4 mt-4 font-bold text-sm text-green-600 py-3 md:px-6">
 				<Link href="/" className="hover:underline">Home</Link> &gt; Courses
 			</nav>
-               <div className="mt-5 w-full">
+               <div className="mt-5 w-full px-4 md:px-6">
                     <CourseCarousel crashCourses={crashCourses.slice(0, 3)}
 					threeMonthCourses={threeMonthCourses.slice(0, 3)}
 					sixMonthCourses={sixMonthCourses.slice(0, 3)} />
 
                </div>
-			   <section className="w-full mt-10">
-        <div className="flex space-x-4 mb-6">
+			   <section className="w-full mt-10 px-4 md:px-6">
+        <div className="flex flex-col space-y-4 mb-6 md:flex-row md:space-x-4 md:space-y-0 ">
+            <Button asChild className="w-full px-4 py-2 rounded-full bg-primary hover:bg-gray-300 md:w-auto">
           <Link href="/courses">
-            <Button className="px-4 py-2 rounded-full bg-primary hover:bg-gray-300">
               All Courses
-            </Button>
           </Link>
+            </Button>
+            <Button asChild className="w-full px-4 py-2 rounded-full bg-primary hover:bg-gray-300 md:w-auto">
           <Link href="/courses/crash-courses">
-            <Button className="px-4 py-2 rounded-full bg-primary hover:bg-gray-300">
               Crash Courses
-            </Button>
           </Link>
+            </Button>
+            <Button asChild className="w-full px-4 py-2 rounded-full bg-primary hover:bg-gray-300 md:w-auto">
           <Link href="/courses/intermediate-courses">
-            <Button className="px-4 py-2 rounded-full bg-primary hover:bg-gray-300">
               3-Month Programs
-            </Button>
           </Link>
+            </Button>
+            <Button asChild className="w-full px-4 py-2 rounded-full bg-primary hover:bg-gray-300 md:w-auto">
           <Link href="/courses/advanced-courses">
-            <Button className="px-4 py-2 rounded-full bg-primary hover:bg-gray-300">
               6-Month Programs
-            </Button>
           </Link>
+            </Button>
         </div>
 
         {/* Course List Section */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
           {paginatedCourses.map((course, index) => (
             <CourseList
               key={index}

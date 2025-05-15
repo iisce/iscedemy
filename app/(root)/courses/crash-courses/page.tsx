@@ -52,8 +52,8 @@ export default async function CrashCoursePage({searchParams}: CrashCoursesPagePr
         <Link href="/courses" className="hover:underline">Courses</Link> &gt; Crash Courses
       </nav>
        <section className="w-full text-center mt-5 bg-gradient-to-r from-green-600 to-black text-white py-12 rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold">Crash Courses</h1>
-        <p className="mt-4 text-lg max-w-2xl mx-auto">
+        <h1 className="text-2xl md:text-4xl font-bold">Crash Courses</h1>
+        <p className="mt-4 text-sm px-3 md:text-lg max-w-2xl mx-auto">
           Kickstart your learning journey with our intensive Crash Courses! Master essential digital skills in just a few hours through hands-on training, real-time projects, and expert mentorship. Perfect for beginners looking to dive into technology, business, or design.
         </p>
       </section>

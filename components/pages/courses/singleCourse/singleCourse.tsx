@@ -26,6 +26,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CourseRating from './courseRating';
 import SingleCourseCurriculum from './singleCourseCurriculum';
+import { SingleCourseTabs } from './singleCourseTabs';
 
 export default async function SingleCourse({
 	courseTitle,
@@ -93,11 +94,11 @@ export default async function SingleCourse({
 //   console.log('Progress Percentage:', progressPercentage);
 	
 	return (
-		<div className='bg-white justify-center w-full py-5'>
-			<div className='grid lg:grid-cols-5 gap-5'>
+		<div className='bg-white justify-center w-full py-5  md:px-6'>
+			<div className='grid grid-cols-1 lg:grid-cols-5 gap-5'>
 				<div className='lg:col-span-3 flex flex-col w-full gap-5'>
-					<div className='space-y-2 md:px-0 px-4 w-full '>
-						<h1 className='md:text-4xl text-2xl text-wrap font-bold capitalize'>
+					<div className='space-y-2 w-full '>
+						<h1 className='lg::text-4xl md:text-2xl text-xl text-wrap font-bold capitalize'>
 							{courseDetails.textSnippet?.replace(
 								'{courseDetails.title}',
 								decodeURI(courseDetails.title)
@@ -144,177 +145,26 @@ export default async function SingleCourse({
 							<p className='text-sm text-gray-600 mt-1'>{`Progress: ${Math.round(progressPercentage)}%`}</p>
 						</div>
 					)}
-					<Tabs
-						className='md:px-0 justify-center items-center mx-auto w-full'
-						defaultValue={tab}>
-						<ScrollArea className=''>
-							<TabsList className='grid grid-cols-4 gap-2 '>
-								<TabsTrigger value='overview'>
-									Overview
-								</TabsTrigger>
-								<TabsTrigger value='curriculum'>
-									Curriculum
-								</TabsTrigger>
-								<TabsTrigger value='instructor'>
-									Instructor
-								</TabsTrigger>
-								<TabsTrigger value='reviews'>
-									Reviews
-								</TabsTrigger>
-								<TabsTrigger value='mentorship'>Mentorship</TabsTrigger>
-                                <TabsTrigger value='projects'>Projects</TabsTrigger>
-							</TabsList>
-							<ScrollBar orientation='horizontal' />
-						</ScrollArea>
-						<TabsContent value='overview'>
-							<div className='text-wrap'>
-								<h2 className='md:text-2xl text-xl font-bold'>
-									Course Description
-								</h2>
-								<p className='mt-4 text-gray-700'>
-									{courseDetails.description}
-								</p>
-								<h3 className='mt-6 md::text-xl text-lg font-semibold'>
-									What You&apos;ll Learn?
-								</h3>
-								<ul className='list-disc pl-6 mt-4 space-y-2 text-gray-600'>
-									{courseDetails.summary
-										.split('---')
-										.map((summaryList: string, i: number) => (
-											<li key={i}>
-												{summaryList}
-											</li>
-										))}
-								</ul>
-								<p className='mt-4 text-gray-700'>
-									{courseDetails.conclusion}
-								</p>
-							</div>
-						</TabsContent>
-						<TabsContent value='curriculum'>
-							{user && isPaid ? (
-								<SingleCourseCurriculum
-									modules={modules}
-									progress={progress}
-								/>
-							) : !isPaid ? (
-								<>
-									<div className='mx-auto items-center justify-center text-center'>
-										<p className='py-10 text-base'>{`Enroll for this course to get complete access!`}</p>
-										<Button asChild>
-											<Link
-												href={`/courses/${courseDetails.title}/pay`}>
-												Enroll Now
-											</Link>
-										</Button>
-									</div>
-								</>
-							) : (
-								<div className='mx-auto items-center justify-center text-center'>
-									<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
-									<SignOutButton />
-								</div>
-							)}
-						</TabsContent>
-						<TabsContent value='instructor'>
-							{user && isPaid ? (
-								<TutorProfile
-									tutorName={tutor.name ?? 'Tutor'}
-									highestAverageRating={
-										totalRating ?? 0
-									}
-								/>
-							) : !isPaid ? (
-								<>
-									<div className='mx-auto items-center justify-center text-center'>
-										<p className='py-10 text-base'>{`Enroll for this course to get complete access!`}</p>
-										<Button asChild>
-											<Link
-												href={`/courses/${courseDetails.title}/pay`}>
-												Enroll Now
-											</Link>
-										</Button>
-									</div>
-								</>
-							) : (
-								<div className='mx-auto items-center justify-center text-center'>
-									<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
-									<SignOutButton />
-								</div>
-							)}
-						</TabsContent>
-						<TabsContent value='reviews'>
-							{user && isPaid ? (
-								<SingleTutorReviews
-									reviews={reviews ?? []}
-									tutor={tutor}
-									courseId={courseDetails.id}
-								/>
-							) : !isPaid ? (
-								<>
-									<div className='mx-auto items-center justify-center text-center'>
-										<p className='py-10 text-base'>{`Enroll for this course to get complete access!`}</p>
-										<Button asChild>
-											<Link
-												href={`/courses/${courseDetails.title}/pay`}>
-												Enroll Now
-											</Link>
-										</Button>
-									</div>
-								</>
-							) : (
-								<div className='mx-auto items-center justify-center text-center'>
-									<p className='py-10 text-base'>{`Please sign in to see this page content`}</p>
-									<SignOutButton />
-								</div>
-							)}
-						</TabsContent>
-
-						<TabsContent value='mentorship'>
-                            {user && isPaid ? (
-                                <MentorshipSection params={{courseId: courseDetails.id}} />
-                            ) : !isPaid ? (
-                                <div className='mx-auto items-center justify-center text-center'>
-                                    <p className='py-10 text-base'>Enroll for this course to get complete access!</p>
-                                    <Button asChild>
-                                        <Link href={`/courses/${courseDetails.title}/pay`}>Enroll Now</Link>
-                                    </Button>
-                                </div>
-                            ) : (
-                                <div className='mx-auto items-center justify-center text-center'>
-                                    <p className='py-10 text-base'>Please sign in to see this page content</p>
-                                    <SignOutButton />
-                                </div>
-                            )}
-                        </TabsContent>
-                        <TabsContent value='projects'>
-                            {user && isPaid ? (
-								<ProjectsSection params={{ courseId: courseDetails.id }} />
-                            ) : !isPaid ? (
-                                <div className='mx-auto items-center justify-center text-center'>
-                                    <p className='py-10 text-base'>Enroll for this course to get complete access!</p>
-                                    <Button asChild>
-                                        <Link href={`/courses/${courseDetails.title}/pay`}>Enroll Now</Link>
-                                    </Button>
-                                </div>
-                            ) : (
-                                <div className='mx-auto items-center justify-center text-center'>
-                                    <p className='py-10 text-base'>Please sign in to see this page content</p>
-                                    <SignOutButton />
-                                </div>
-                            )}
-                        </TabsContent>
-					</Tabs>
+					<SingleCourseTabs
+					defaultTab={tab || 'overview'}
+					user={user}
+					isPaid={isPaid!}
+					modules={modules}
+					progress={progress}
+					tutor={tutor}
+					reviews={reviews!}
+					courseDetails={courseDetails}
+					/>
 				</div>
 
 				<div className='lg:col-span-2 flex flex-col gap-5'>
 				<div className='w-full aspect-video'>	
-				<YouTubeEmbed videoid={courseDetails.videoUrl} height={315} width={400}
+				<YouTubeEmbed videoid={courseDetails.videoUrl}
 					params="controls=1"/>
 				</div>
 					
-					<div className='space-y-4 px-3 grid'>
-						<h3 className='text-xl font-semibold'>
+					<div className='space-y-4 grid'>
+						<h3 className='md:text-xl text-lg font-semibold'>
 							Course Includes:
 						</h3>
 						<div className='space-y-4 w-full '>
@@ -435,7 +285,7 @@ export default async function SingleCourse({
 									</div>
 								)}
 
-<div className='mt-4'>
+							<div className='mt-4'>
                                 <p className='text-sm text-gray-600'>{nextProgram}</p>
                                 {courseDetails.programType !== "SIX_MONTHS" && (
                                     <Button asChild variant="outline">
@@ -450,10 +300,10 @@ export default async function SingleCourse({
 						
 					</div>
 					<div className=' md:px-0 px-4'>
-						<h3 className='text-xl font-semibold'>
+						<h3 className='text-lg md:text-xl font-semibold'>
 							Share On:
 						</h3>
-						<div className='flex flex-row  mt-4'>
+						<div className='flex flex-row  mt-4 space-x-2'>
 							<div className='flex space-x-2 mt-4 text-white'>
 								<Link href='https://www.facebook.com/'>
 									<Button className='p-2 rounded-full bg-blue-500 hover:bg-green-600 text-white'>
