@@ -51,8 +51,8 @@ export default async function AdvancedCoursesPage({searchParams}: AdvancedCourse
       </nav>
       {/* Header Section */}
       <section className="w-full mt-5 text-center bg-gradient-to-r from-green-600 to-black text-white py-12 rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold">Advanced Courses (6-Month Programs)</h1>
-        <p className="mt-4 text-lg max-w-2xl mx-auto">
+        <h1 className="text-2xl md:text-4xl font-bold">Advanced Courses (6-Month Programs)</h1>
+        <p className="mt-4 text-sm px-3 md:text-lg max-w-2xl mx-auto">
           Master your craft with our 6-Month Advanced Courses! Designed for intermediate learners aiming to become professionals, these programs provide comprehensive training, real-world projects, and extensive mentorship to prepare you for a successful career in the digital economy.
         </p>
       </section>

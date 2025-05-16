@@ -426,17 +426,19 @@ export default function TutorDashboard({
                   <CardTitle>Student Progress</CardTitle>
                 </CardHeader>
                 <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="grid grid-cols-1 gap-6 mb-6">
                   <Card>
                     <CardHeader>
                       <CardTitle>Student Completion Percentages</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="min-h-[300px]">
                       {studentAnalytics.length > 0 ? (
                         <Bar
                           data={barData}
                           options={{
                             responsive: true,
+                            maintainAspectRatio: false,
+                            aspectRatio: 1.5,
                             scales: {
                               y: {
                                 beginAtZero: true,
@@ -444,12 +446,30 @@ export default function TutorDashboard({
                                 title: {
                                   display: true,
                                   text: 'Completion Percentage (%)',
+                                  font: {
+                                    size: 12,
+                                  }
                                 },
+                                ticks:{
+                                  font:{
+                                    size: 10,
+                                  }
+                                }
                               },
                               x: {
                                 title: {
                                   display: true,
                                   text: 'Students',
+                                  font: {
+                                    size: 12,
+                                  },
+                                },
+                                ticks:{
+                                  font:{
+                                    size: 10,
+                                  },
+                                  maxRotation: 45,
+                                  minRotation: 0,
                                 },
                               },
                             },
@@ -457,84 +477,109 @@ export default function TutorDashboard({
                               legend: {
                                 display: true,
                                 position: 'top',
+                                labels: {
+                                  font:{
+                                    size: 10,
+                                  },
+                                },
+                              },
+                            },
+                            layout:{
+                              padding: {
+                                bottom: 12,
                               },
                             },
                           }}
+                          className="w-full h-full"
                         />
                       ) : (
+                        <div className="text-center py-6">
                         <p className="text-gray-600">No student data available.</p>
-                      )}
+                        <p className="text-sm text-gray-500 mt-2">Encourage students to start courses!</p>
+                      </div>                      
+                    )}
                     </CardContent>
                   </Card>
                   <Card>
-                    <CardHeader>
-                      <CardTitle>Assignment Grade Distribution</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      {allGrades.length > 0 ? (
-                        <Pie
-                          data={pieData}
-                          options={{
-                            responsive: true,
-                            plugins: {
-                              legend: {
-                                position: 'top',
+                  <CardHeader>
+                    <CardTitle>Assignment Grade Distribution</CardTitle>
+                  </CardHeader>
+                  <CardContent className="min-h-[200px]">
+                    {allGrades.length > 0 ? (
+                      <Pie
+                        data={pieData}
+                        options={{
+                          responsive: true,
+                          maintainAspectRatio: false,
+                          aspectRatio: 1.5,
+                          plugins: {
+                            legend: {
+                              position: 'top',
+                              labels: {
+                                font: {
+                                  size: 10, // Smaller legend text on mobile
+                                },
                               },
                             },
-                          }}
-                        />
-                      ) : (
+                          },
+                        }}
+                        className="w-full h-full"
+                      />
+                    ) : (
+                      <div className="text-center py-6">
                         <p className="text-gray-600">No grades available.</p>
-                      )}
-                    </CardContent>
-                  </Card>
+                        <p className="text-sm text-gray-500 mt-2">Assign tasks to see grade distribution!</p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
                 </div>
-                  {studentAnalytics.length > 0 ? (
-                    <Accordion type="single" collapsible className="w-full">
-                      {studentAnalytics.map((student, index) => (
-                        <AccordionItem key={student.studentId} value={`student-${index}`}>
-                          <AccordionTrigger>
-                            <div className="flex items-center justify-between w-full pr-4">
-                              <span>{student.studentName}</span>
-                              <span>
-                                {student.courses.length} Course{student.courses.length !== 1 ? "s" : ""}
-                              </span>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="space-y-4">
-                              {student.courses.map((course: any, courseIndex: any) => (
-                                <div key={course.courseId} className="space-y-2">
-                                  <h4 className="text-lg font-semibold">{course.courseTitle}</h4>
-                                  <p className="text-sm text-gray-500">
-                                    {course.completedLessons} / {course.totalLessons} lessons completed
-                                  </p>
-                                  <Progress value={course.completionPercentage} className="w-full" />
-                                  <div>
-                                    <h5 className="text-sm font-semibold mb-2">Assignment Performance</h5>
-                                    <p className="text-xs text-gray-500">
-                                      {course.submittedAssignments} / {course.totalAssignments} assignments submitted
-                                    </p>
-                                    <p className="text-xs text-gray-500">
-                                      Average Grade: {course.averageGrade ? `${Math.round(course.averageGrade)}%` : "Not graded"}
-                                    </p>
-                                  </div>
-                                </div>
-                              ))}
-                              <div>
-                                <h5 className="text-sm font-semibold mb-2">Mentorship Engagement</h5>
-                                <p className="text-sm">
-                                  Total Sessions: {student.totalMentorships} | Completed: {student.completedMentorships} | Upcoming: {student.upcomingMentorships}
+                {studentAnalytics.length > 0 ? (
+                  <Accordion type="single" collapsible className="w-full">
+                    {studentAnalytics.map((student, index) => (
+                      <AccordionItem key={student.studentId} value={`student-${index}`}>
+                        <AccordionTrigger>
+                          <div className="flex items-center justify-between w-full pr-4">
+                            <span>{student.studentName}</span>
+                            <span>
+                              {student.courses.length} Course{student.courses.length !== 1 ? "s" : ""}
+                            </span>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <div className="space-y-4">
+                            {student.courses.map((course: any, courseIndex: any) => (
+                              <div key={course.courseId} className="space-y-2">
+                                <h4 className="text-lg font-semibold">{course.courseTitle}</h4>
+                                <p className="text-sm text-gray-500">
+                                  {course.completedLessons} / {course.totalLessons} lessons completed
                                 </p>
+                                <Progress value={course.completionPercentage} className="w-full" />
+                                <div>
+                                  <h5 className="text-sm font-semibold mb-2">Assignment Performance</h5>
+                                  <p className="text-xs text-gray-500">
+                                    {course.submittedAssignments} / {course.totalAssignments} assignments submitted
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    Average Grade: {course.averageGrade ? `${Math.round(course.averageGrade)}%` : "Not graded"}
+                                  </p>
+                                </div>
                               </div>
+                            ))}
+                            <div>
+                              <h5 className="text-sm font-semibold mb-2">Mentorship Engagement</h5>
+                              <p className="text-sm">
+                                Total Sessions: {student.totalMentorships} | Completed: {student.completedMentorships} | Upcoming: {student.upcomingMentorships}
+                              </p>
                             </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      ))}
-                    </Accordion>
-                  ) : (
-                    <p>No students enrolled in your courses.</p>
-                  )}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                ) : (
+                  <p className="text-center py-4">No students enrolled in your courses.</p>
+                )}
                 </CardContent>
               </Card>
 
