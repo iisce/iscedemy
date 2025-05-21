@@ -45,9 +45,9 @@ export default function MentorshipsPage({
                   <SelectItem value="pending">Pending</SelectItem>
                 </SelectContent>
               </Select>
-              <Button asChild className="bg-green-600 hover:bg-green-700 text-white">
+              {/* <Button asChild className="bg-green-600 hover:bg-green-700 text-white">
                 <Link href={`/tutor/mentorship/${mentorshipId}`}>Schedule New Session</Link>
-              </Button>
+              </Button> */}
             </div>
           </div>
 

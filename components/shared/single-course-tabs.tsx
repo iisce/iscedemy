@@ -193,7 +193,7 @@ export default function CourseTabs({
       </TabsContent>
       <TabsContent value='mentorship'>
         {user && isPaid ? (
-          <MentorshipSection params={{courseId: courseDetails.id}} />
+          <MentorshipSection mentorships={mentorships} params={{courseId: courseDetails.id}} />
         ) : !isPaid ? (
           <div className='mx-auto items-center justify-center text-center'>
             <p className='py-10 text-base'>Enroll for this course to get complete access!</p>

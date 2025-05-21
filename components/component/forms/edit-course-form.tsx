@@ -19,6 +19,7 @@ import { Button } from "../../ui/button";
 import { LoaderIcon } from "lucide-react";
 import { formatClassDays, formatToNaira, toSlug } from "@/lib/utils";
 import { UpdateCourseSchema } from "@/schemas";
+import UploadFile from "../tutor/tutor-upload-file";
 
 interface EditCourseFormProps {
   course: Course;
@@ -34,6 +35,8 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
   const [isPending, startTransition] = useTransition();
   const [imageError, setImageError] = useState(false);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
   const router = useRouter();
 
   const form = useForm<z.infer<typeof UpdateCourseSchema>>({
@@ -48,7 +51,7 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
       programType: course.programType,
       duration: course.duration,
       category: course.category,
-      videoUrl: course.videoUrl,
+      videoUrl: course.videoUrl || "",
       noOfClass: course.noOfClass,
       classDays: course.classDays,
       certificate: course.certificate,
@@ -61,6 +64,7 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
   const prices = COURSE_PRICING[selectedProgramType as ProgramType];
 
   const onSubmit = (values: z.infer<typeof UpdateCourseSchema>) => {
+    console.log('Form Values:', values); // Add this line to log the form data
     setError("");
     setSuccess("");
 
@@ -102,6 +106,9 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
     image: form.watch("image") || course.image || "No image provided",
   };
 
+  const handleImageUpload = (url: string) => {
+    form.setValue("image", url, { shouldValidate: true });
+  };
 
   return (
     <Form {...form}>
@@ -389,7 +396,7 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
             <FormItem>
               <FormLabel>Video URL</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="e.g., https://youtube.com/video" disabled={isPending} />
+                <Input {...field} placeholder="e.g., https://youtube.com/video" disabled={isPending} value={field.value ?? ''}/>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -400,9 +407,20 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
           name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Image URL (optional)</FormLabel>
+              <FormLabel>Re-upload Image</FormLabel>
               <FormControl>
+                    <UploadFile
+                      uploadCV={handleImageUpload}
+                      setUploading={setUploading}
+                      uploading={uploading}
+                    />
+                  </FormControl>
+
+              <FormControl>
+                {field.value && (
+
                 <Input {...field} placeholder="Image URL" disabled={isPending} />
+                )}
               </FormControl>
               <FormMessage />
             </FormItem>

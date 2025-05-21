@@ -15,7 +15,7 @@
 		"update-curriculum-timestamp": "tsx scripts/update-curriculum-timestamp.ts",
 		"backfill-lessonkeys": "tsx scripts/backfill-lessonkeys.ts",
 		"resolve-curriculum-duplicates": "tsx scripts/resolve-curriculum-duplicates.ts"
-	},
+		},
 	"prisma": {
 		"seed": "ts-node app/prisma/seed.js"
 	},

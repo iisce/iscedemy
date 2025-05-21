@@ -1,3 +1,4 @@
+import { extractVideoId } from '@/lib/utils';
 import * as z from 'zod';
 
 export const LoginSchema = z.object({
@@ -221,7 +222,27 @@ export const UpdateCourseSchema = z.object({
 	programType: z.enum(["CRASH_COURSE", "THREE_MONTHS", "SIX_MONTHS"]).optional(),
 	duration: z.string().min(1, "Duration is required").optional(),
 	category: z.string().min(1, "Category is required").optional(),
-	videoUrl: z.string().min(1, "Video URL is required").optional(),
+	videoUrl: z
+    .string()
+    .optional()
+    .nullable()
+    .transform((url) => {
+      console.log('Raw videoUrl:', url);
+      return url ? url : undefined;
+    })
+    .refine((url) => {
+      if (!url) return true; 
+      if (url.length === 11 && /^[a-zA-Z0-9_-]{11}$/.test(url)) {
+        console.log('videoUrl is already a video ID:', url);
+        return true;
+      }
+      const videoId = extractVideoId(url);
+      console.log('Extracted videoId:', videoId);
+      return !!videoId;
+    }, {
+      message: 'Please provide a valid YouTube video URL',
+      path: ['videoUrl'],
+    }),
 	noOfClass: z.string().min(1, "Number of classes is required").optional(),
 	classDays: z.string().min(1, "Class days are required").optional(),
 	certificate: z.boolean().optional(),
@@ -238,7 +259,12 @@ export const UpdateCourseSchema = z.object({
 	programType: z.enum(["CRASH_COURSE", "THREE_MONTHS", "SIX_MONTHS"]),
 	duration: z.string().min(1, "Duration is required"),
 	category: z.string().min(1, "Category is required"),
-	videoUrl: z.string().min(1, "Video URL is required"),
+	videoUrl: z.string().min(1, "Video URL is required")
+	.refine((url) => !!extractVideoId(url), {
+		message: 'Please provide a valid YouTube video URL',
+		path: ['videoUrl'],
+	  })
+	.transform((url) => extractVideoId(url) || url),
 	noOfClass: z.string().min(1, "Number of classes is required"),
 	classDays: z.string().min(1, "Class days are required"),
 	certificate: z.boolean(),

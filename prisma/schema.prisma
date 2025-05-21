@@ -72,6 +72,7 @@ model Course {
   category      String
   textSnippet   String
   videoUrl      String
+  videoId       String?
   tutorId       String
   description   String
   conclusion    String
