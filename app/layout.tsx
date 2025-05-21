@@ -117,24 +117,25 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const session = await auth();
+	const user = session?.user;
 
-	return (
-		<SessionProvider session={session}>
-			<html lang='en'>
-				<body className={inter.className}>
-					<NavBar />
-					<div className='min-h-[70svh]'>
-						<NextTopLoader
-							color='green'
-							showSpinner={false}
-						/>
-						{children}
-					</div>
-					<Chatbot />
-					<Toaster richColors />
-					<Footer />
-				</body>
-			</html>
-		</SessionProvider>
-	);
+     return (
+          <SessionProvider session={session}>
+               <html lang="en">
+                    <body className={inter.className}>
+                         <NavBar user={user} />
+                         <div className="min-h-[70svh]">
+                              <NextTopLoader
+                                   color="green"
+                                   showSpinner={false}
+                              />
+                              {children}
+                         </div>
+                         <Chatbot />
+                         <Toaster richColors />
+                         <Footer />
+                    </body>
+               </html>
+          </SessionProvider>
+     );
 }

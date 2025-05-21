@@ -2,58 +2,65 @@
 import { signIn } from '@/auth';
 import getUserByEmail from '@/data/user';
 import { sendVerificationEmail } from '@/lib/mail';
-import { generateverificationToken } from '@/lib/token';
-import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
-import { LoginSchema } from '@/schemas';
-import { AuthError } from 'next-auth';
-import * as z from 'zod'
+import { generateverificationToken } from "@/lib/token";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { LoginSchema } from "@/schemas";
+import { AuthError } from "next-auth";
+import * as z from "zod";
 
-export const Login = async (values: z.infer<typeof LoginSchema>, callBackUrl?: string | null,) => {
-    const validatedFields = LoginSchema.safeParse(values);
+export const Login = async (
+     values: z.infer<typeof LoginSchema>,
+     callbackUrl?: string | null,
+) => {
+     const validatedFields = LoginSchema.safeParse(values);
 
-    if (!validatedFields.success) {
-        return { error: 'Invalid fields!'};
-    }
-    
-    const { email, password } = validatedFields.data;
+     if (!validatedFields.success) {
+          return { error: "Invalid fields!" };
+     }
 
-    const existingUser = await getUserByEmail(email);
+     const { email, password } = validatedFields.data;
 
-    if (!existingUser || !existingUser.email || !existingUser.password) {
-        return { error: "Email does not exist!" }
-    } 
+     const existingUser = await getUserByEmail(email);
 
-    if (!existingUser.emailVerified) {
-        const verificationToken = await generateverificationToken(
-            existingUser.email,
-        );
-        
-        await sendVerificationEmail(
-            verificationToken.email,
-            verificationToken.token,
-        );
+     if (!existingUser || !existingUser.email || !existingUser.password) {
+          return { error: "Email does not exist!" };
+     }
 
-        return { success: "Confirmation email sent!" }
-    }
+     if (!existingUser.emailVerified) {
+          const verificationToken = await generateverificationToken(
+               existingUser.email,
+          );
 
-    try{
-        await signIn("credentials", {
-            email,
-            password,
-            redirectTo: callBackUrl ||  DEFAULT_LOGIN_REDIRECT,
-        })
+          await sendVerificationEmail(
+               verificationToken.email,
+               verificationToken.token,
+          );
 
-    } catch (error) {
-        if (error instanceof AuthError) {
-            switch (error.type) {
-                case "CredentialsSignin" :
-                    return {error: "Invalid credentials"}
-                    default: 
-                    return { error: "Something went wrong!" }
-            }
-        }
+          return { success: "Confirmation email sent!" };
+     }
 
-        throw error;
-    }
-}
+     try {
+          await signIn("credentials", {
+               email,
+               password,
+               redirect: false,
+          });
+          console.log({ callbackUrl, DEFAULT_LOGIN_REDIRECT });
+          return {
+               success: "Successfully Signed in!",
+               redirectUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+          };
+     } catch (error) {
+          if (error instanceof AuthError) {
+               switch (error.type) {
+                    case "CredentialsSignin":
+                         return { error: "Invalid credentials" };
+                    default:
+                         return { error: "Something went wrong!" };
+               }
+          }
+
+          throw error;
+     }
+};
 
