@@ -23,6 +23,9 @@ interface SingleCourseTabsProps {
   tutor: any;
   reviews: any[];
   courseDetails: any;
+  mentorships: any[]; // New prop for mentorship data
+  projects: any[]; // New prop for projects data
+  progressMap: Map<any, any>; // New prop for progress data
 }
 
 export function SingleCourseTabs({
@@ -34,6 +37,9 @@ export function SingleCourseTabs({
   tutor,
   reviews,
   courseDetails,
+  mentorships,
+  projects,
+  progressMap,
 }: SingleCourseTabsProps) {
   const [activeTab, setActiveTab] = useState(defaultTab);
 
@@ -130,7 +136,7 @@ export function SingleCourseTabs({
       </TabsContent>
       <TabsContent value="mentorship">
         {user && isPaid ? (
-          <MentorshipSection params={{ courseId: courseDetails.id }} />
+          <MentorshipSection params={{ courseId: courseDetails.id }} mentorships={mentorships}/>
         ) : !isPaid ? (
           <div className="mx-auto items-center justify-center text-center">
             <p className="py-10 text-base">Enroll for this course to get complete access!</p>
@@ -147,7 +153,7 @@ export function SingleCourseTabs({
       </TabsContent>
       <TabsContent value="projects">
         {user && isPaid ? (
-          <ProjectsSection params={{ courseId: courseDetails.id }} />
+          <ProjectsSection params={{ courseId: courseDetails.id }} projects={projects} progressMap={progressMap}/>
         ) : !isPaid ? (
           <div className="mx-auto items-center justify-center text-center">
             <p className="py-10 text-base">Enroll for this course to get complete access!</p>

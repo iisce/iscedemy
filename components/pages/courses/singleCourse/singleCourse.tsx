@@ -1,31 +1,23 @@
 import { auth } from '@/auth';
-import { ProjectsSection } from '@/components/component/student/project-section';
-import { MentorshipSection } from '@/components/component/tutor/mentorship';
-import TutorProfile from '@/components/component/tutor/tutor-profile';
-import { SingleTutorReviews } from '@/components/component/tutor/tutor-reviews';
 import FormError from '@/components/form-error';
 import FormSuccess from '@/components/form-success';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import EnrollButton from '@/components/ui/enroll-button';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import SignOutButton from '@/components/ui/sign-out';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getCourseBySlug } from '@/data/course';
 import { getAllCurriculumByCourseId } from '@/data/curriculum';
 import { getAllModulesByCurriculumId } from '@/data/modules';
 import { getProgressByStudentAndCourse, getTotalLessonsByCourse } from '@/data/progress';
 import { getAllReviewsByTutorName } from '@/data/reviews';
 import { getUserByCourseId, getUserById } from '@/data/user';
+import { db } from '@/lib/db';
 import * as Icons from '@/lib/icons';
-import { formatToNaira } from '@/lib/utils';
+import { extractVideoId, formatToNaira } from '@/lib/utils';
 import { YouTubeEmbed } from '@next/third-parties/google';
 import { YoutubeIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import CourseRating from './courseRating';
-import SingleCourseCurriculum from './singleCourseCurriculum';
 import { SingleCourseTabs } from './singleCourseTabs';
 
 export default async function SingleCourse({
@@ -71,6 +63,69 @@ export default async function SingleCourse({
   const totalLessons = await getTotalLessonsByCourse(courseDetails.id);
   const completedLessons = progress.filter((p) => p.completed).length;
   const progressPercentage = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
+
+
+  const courseWithDetails = await db.course.findUnique({
+	where: {id: courseDetails.id},
+	include: {
+		mentorships: {
+			where: {
+				menteeId: undefined,
+				scheduledAt: {gt: new Date()},
+			},
+			include: {
+				mentor: true,
+			},
+			orderBy: {
+				scheduledAt: 'asc',
+			},
+		},
+
+		projects: {
+			include: {
+				submissions: {
+					where: { userId: user?.id },
+				},
+			},
+			orderBy: { createdAt: 'desc' },
+		},
+
+		Curriculum: {
+			include: {
+				modules: {
+					include: {
+						lessons: {
+							orderBy: { order: 'asc' },
+						},
+					},
+					orderBy: { order: 'asc' },
+				},
+			},
+		},
+	},
+  });
+
+  if(!courseWithDetails) {
+	redirect('/courses');
+  }
+
+
+  const mentorships = courseWithDetails.mentorships;
+  const projects = courseWithDetails.projects;
+  const lessonIds = courseWithDetails.Curriculum?.[0]?.modules?.flatMap((module) =>
+    module.lessons.map((lesson) => lesson.id)
+  ) || [];
+  const progressData = await db.progress.findMany({
+    where: {
+      userId: user?.id,
+      lessonId: {
+        in: lessonIds,
+      },
+    },
+  });
+  const progressMap = new Map(progressData.map((p: any) => [p.lessonId, p]));
+
+  const videoId = extractVideoId(courseDetails.videoUrl);
 
 		// Determine if the user has paid and their course selection status
 	const isPaid = currentUser?.courses?.includes(courseDetails.id);
@@ -154,13 +209,22 @@ export default async function SingleCourse({
 					tutor={tutor}
 					reviews={reviews!}
 					courseDetails={courseDetails}
+					mentorships={mentorships}
+					projects={projects}
+					progressMap={progressMap}
 					/>
 				</div>
 
 				<div className='lg:col-span-2 flex flex-col gap-5'>
-				<div className='w-full aspect-video'>	
-				<YouTubeEmbed videoid={courseDetails.videoUrl}
-					params="controls=1"/>
+				<div className='w-full aspect-video'>
+					{videoId ? (
+						<YouTubeEmbed videoid={videoId}
+							params="controls=1"/>
+					) : (
+						<div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-600">
+							<p>Invalid or missing YouTube video URL</p>
+						</div>
+					)}	
 				</div>
 					
 					<div className='space-y-4 grid'>
@@ -289,7 +353,7 @@ export default async function SingleCourse({
                                 <p className='text-sm text-gray-600'>{nextProgram}</p>
                                 {courseDetails.programType !== "SIX_MONTHS" && (
                                     <Button asChild variant="outline">
-                                        <Link href={`/courses?type=${courseDetails.programType === "CRASH_COURSE" ? "THREE_MONTHS" : "SIX_MONTHS"}`}>
+                                        <Link href={`/courses?=${courseDetails.programType === "CRASH_COURSE" ? "THREE_MONTHS" : "SIX_MONTHS"}`}>
                                             Explore Next Program
                                         </Link>
                                     </Button>

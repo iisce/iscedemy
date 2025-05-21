@@ -83,7 +83,7 @@ export function Chatbot() {
 const handleOpenChatbot = () => {
   if (messages.length === 0) {
     setMessages([
-      { role: "assistant", content: "Hello there! 👋 I am PalmDesk Assistant. Welcome to PalmTechnIQ! 😊" }
+      { role: "assistant", content: "Hello there! 👋 I am PalmDesk Assistant. Welcome to PalmTechnIQ! 😊 How can I assist you today?" }
     ]);
   }
   setIsOpen(true);

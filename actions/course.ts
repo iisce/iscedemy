@@ -1,7 +1,7 @@
 'use server'
 import { COURSE_PRICING } from '@/lib/course-pricing';
 import { db } from '@/lib/db';
-import { formatClassDays, toSlug } from '@/lib/utils';
+import { extractVideoId, formatClassDays, toSlug } from '@/lib/utils';
 import { CreateCourseSchema, UpdateCourseSchema } from '@/schemas';
 import { ProgramType } from '@prisma/client';
 import { z } from 'zod';
@@ -88,6 +88,7 @@ export async function createCourse(values: z.infer<typeof CreateCourseSchema> ) 
 export async function updateCourse(values: z.infer<typeof UpdateCourseSchema>) {
   try {
     const validatedData = UpdateCourseSchema.parse(values);
+    console.log('Validated Data:', validatedData);
 
     const existingCourse = await db.course.findUnique({
       where: { id: validatedData.id },
@@ -101,6 +102,9 @@ export async function updateCourse(values: z.infer<typeof UpdateCourseSchema>) {
     const updatedProgramType = validatedData.programType || existingCourse.programType;
     const prices = COURSE_PRICING[updatedProgramType as ProgramType];
 
+    const videoId = validatedData.videoUrl ? extractVideoId(validatedData.videoUrl) : undefined;
+    console.log('Extracted videoId for update:', videoId);
+
     const updatedCourse = await db.course.update({
       where: { id: validatedData.id },
       data: {
@@ -113,6 +117,7 @@ export async function updateCourse(values: z.infer<typeof UpdateCourseSchema>) {
         duration: validatedData.duration || existingCourse.duration,
         category: validatedData.category || existingCourse.category,
         videoUrl: validatedData.videoUrl || existingCourse.videoUrl,
+        videoId: videoId || existingCourse.videoId,
         noOfClass: validatedData.noOfClass || existingCourse.noOfClass,
         classDays: validatedData.classDays || existingCourse.classDays,
         certificate: validatedData.certificate ?? existingCourse.certificate,
