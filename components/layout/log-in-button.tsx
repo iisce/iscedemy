@@ -1,16 +1,13 @@
 'use client';
-import { Button } from '../ui/button';
-import ProfileButton from './profile-button';
-import { signIn, useSession } from 'next-auth/react';
+import { User } from "next-auth";
+import { Button } from "../ui/button";
+import ProfileButton from "./profile-button";
+import { signIn } from "next-auth/react";
 
-
-export default function LogInButton() {
-
-	const {data: session} = useSession();
-
-	if (session?.user) {
-		return <ProfileButton />;
-	} else {
-		return <Button onClick={() => signIn()}>Login</Button>;
-	}
+export default function LogInButton({ user }: { user?: User }) {
+     if (user) {
+          return <ProfileButton user={user} />;
+     } else {
+          return <Button onClick={() => signIn()}>Login</Button>;
+     }
 }

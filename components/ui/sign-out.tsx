@@ -1,24 +1,29 @@
 'use client';
 
-import { useSession, signOut, signIn } from 'next-auth/react';
-import { Button } from './button';
+import { signOut, signIn } from "next-auth/react";
+import { Button } from "./button";
+import { User } from "next-auth";
 
-const SignOutButton = () => {
-  const { data: session } = useSession();
-
-  return (
-    <div className="grid">
-      {session?.user ? (
-        <Button className="w-full px-5 py-3 rounded-full" onClick={() => signOut()}>
-          LogOut
-        </Button>
-      ) : (
-        <Button className="w-full px-5 py-3 rounded-full" onClick={() => signIn()}>
-          Login
-        </Button>
-      )}
-    </div>
-  );
+const SignOutButton = ({ user }: { user?: User }) => {
+     return (
+          <div className="grid">
+               {user ? (
+                    <Button
+                         className="w-full rounded-full px-5 py-3"
+                         onClick={() => signOut()}
+                    >
+                         LogOut
+                    </Button>
+               ) : (
+                    <Button
+                         className="w-full rounded-full px-5 py-3"
+                         onClick={() => signIn()}
+                    >
+                         Login
+                    </Button>
+               )}
+          </div>
+     );
 };
 
 export default SignOutButton;
