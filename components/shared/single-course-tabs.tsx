@@ -23,6 +23,9 @@ interface CourseTabsProps {
   totalRating: number;
   reviews: any[];
   courseDetails: any;
+  mentorships: any[];
+  projects: any[];
+  progressMap: Map<any, any>;
 }
 
 export default function CourseTabs({
@@ -36,6 +39,9 @@ export default function CourseTabs({
   totalRating,
   reviews,
   courseDetails,
+  mentorships,
+  projects,
+  progressMap,
 }: CourseTabsProps) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(tab || 'overview');
@@ -210,7 +216,7 @@ export default function CourseTabs({
       </TabsContent>
       <TabsContent value='projects'>
         {user && isPaid ? (
-          <ProjectsSection params={{ courseId: courseDetails.id }} />
+          <ProjectsSection projects={projects} progressMap={progressMap} params={{ courseId: courseDetails.id }} />
         ) : !isPaid ? (
           <div className='mx-auto items-center justify-center text-center'>
             <p className='py-10 text-base'>Enroll for this course to get complete access!</p>
