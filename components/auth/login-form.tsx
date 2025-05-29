@@ -29,7 +29,7 @@ export default function LoginForm() {
                ? "Email already in use with different provider!"
                : "";
      const callbackUrl = searchParams.get("callbackUrl") ?? undefined;
-     console.log("callback url from search params", { callbackUrl });
+     // console.log("callback url from search params", { callbackUrl });
      const [error, setError] = useState<string | undefined>("");
      const [success, setSuccess] = useState<string | undefined>("");
      const [isPending, startTransition] = useTransition();

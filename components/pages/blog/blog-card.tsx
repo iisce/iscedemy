@@ -44,7 +44,7 @@ function BlogCard({ post }: IBlogCard) {
                                    {new Date(post.publisheddatetime).toDateString()}
                               </p>
                               {/* <div className="uppercase">
-                                   {post.author.name!}
+                                   {post.author.name}
                               </div> */}
 					</div>
 					{/* <AuthorCard author={post.author}/> */}

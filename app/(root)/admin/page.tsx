@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
 	title:{
-		absolute:  'Admin',
+		absolute:  'Admin Dashboard - PalmTechnIQ',
 	},
 	description: 'We believe in child education! The way to change the world is by enabling them to paint a world of their own.',
 	metadataBase: new URL('https://www.palmtechniq.com/admin'),
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 	  title: {
-		absolute: 'Admin',
+		absolute: 'Admin Dashboard - PalmTechnIQ',
 	  },
 	  description: 'We believe in child education! The way to change the world is by enabling them to paint a world of their own.',
 	  url: 'https://www.palmtechniq.com/admin',

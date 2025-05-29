@@ -35,9 +35,9 @@ return data;
 export async function generateStaticParams() {
      const posts: IPost[] = await getAllPost();
 
-     return posts.map(post=> {
-          post.slug
-     })
+     return posts.map(post=> ({
+          params: {slug: post.slug.current}
+     }))
 
 }
 
@@ -49,24 +49,57 @@ export async function generateMetadata({
      params: {slug},
      }: ISingleBlog ): Promise<Metadata> {
           const blogPost: IPost = await getPost(slug);
+
+          if (!blogPost) {
+               return {
+                    title: "Post Not Found | PalmTechnIQ",
+                    description: "The requested blog post could not be found.",
+               };
+          }
      
           return {
-               title: blogPost.title,
-               description: blogPost.excerpt,
-               // openGraph: {
-               //      title: blogPost.title,
-               //      description: blogPost.excerpt,
-               //      url: `https://www.obikelscreations.co.uk/blog/${slug}`,
-               //      siteName: 'Obikels Creations',
-               //      images: [
-               //           {
-               //                url: blogPost.overviewImage,
-               //                width: 800,
-               //                height: 600,
-               //                alt: blogPost.title
-               //           }
-               //      ]
-               // }
+               title: blogPost.title || "PalmTechnIQ Blog Post",
+               description: blogPost.excerpt || "Stay updated with the latest tech news and insights.",
+               metadataBase: new URL(`https://www.palmtechniq.com/blog/${slug}`),
+               alternates: {
+                    canonical: `/blog/${slug}`,
+                    languages: {
+                         'en-US': '/en-US',
+                         'de-DE': '/de-DE',
+                    },
+               },
+               openGraph: {
+                    title: blogPost.title || "PalmTechnIQ Blog Post",
+                    description: blogPost.excerpt || "Stay updated with the latest tech news and insights.",
+                    url: `https://www.palmtechniq.com/blog/${slug}`,
+                    siteName: 'PalmTechnIQ',
+                    images: [
+                         {
+                              url: blogPost.overviewImage || '/innovation.jpg',
+                              width: 800,
+                              height: 600,
+                              alt: blogPost.title || "PalmTechnIQ Blog Post",
+                         },
+                    ],
+               },
+               twitter: {
+                    card: 'summary_large_image',
+                    title: blogPost.title,
+                    description: blogPost.excerpt,
+                    images: [blogPost.overviewImage || '/innovation.jpg'],
+                    creator: '@palmtechniq',
+               },
+               keywords: ['PalmTechnIQ', 'Blog', 'Tech News', 'Tech Insights'],
+               authors: [{ name: 'PalmTechnIQ', url: 'https://www.palmtechniq.com' }],
+               robots: {
+                    index: true,
+                    follow: true,
+                    noarchive: true,
+                    nosnippet: false,
+                    noimageindex: false,
+                    nocache: false,
+               },
+               
           }
 }
 
@@ -90,40 +123,6 @@ async function getPost(slug: string) {
      return post;
 }
 
-// GEBRETAFRE_TRATEYH{}
-
-
-// // Generate metadata based on post data
-// export async function generateMetadata({
-//      params,
-// }: {
-//      params: {blog: string};
-// }): Promise<Metadata> {
-//      const blogPost = await getPost(params.blog);
-     
-//      if (!blogPost) {
-//           notFound();
-//      }
-
-//      return {
-//           title: blogPost.title,
-//           description: blogPost.excerpt,
-//           openGraph: {
-//                title: blogPost.title,
-//                description: blogPost.excerpt,
-//                url: `https://www.palmtechniq.com/blog/${params.blog}`,
-//                siteName: 'PalmTechnIQ',
-//                images: [
-//                     {
-//                          url: blogPost.overviewImage || '/innovation.jpg',
-//                          width: 800,
-// 					height: 600,
-// 					alt: blogPost.title || "PalmTechnIQ",
-//                     }
-//                ]
-//           }
-//      }
-// }
 
 const SinglePage = async ({ params }: ISingleBlog) => {
      const PortableTextComponent = {

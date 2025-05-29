@@ -20,10 +20,10 @@ export async function generateMetadata({
 	}
 
 	return {
-		title: courseDetails.title.split('-').join(' '),
+		title: courseDetails.title.split('-').join(' ') || "PalmTechnIQ Course",
 		description: courseDetails.description,
 		openGraph: {
-			title: courseDetails.title.split('-').join(' '),
+			title: courseDetails.title.split('-').join(' ') || "PalmTechnIQ Course",
 			description: courseDetails.description,
 			url: `https://www.palmtechniq.com/courses/${params.courseId}`,
 			siteName: 'PalmTechnIQ',

@@ -7,7 +7,7 @@ import { client } from "../../../sanity/lib/client";
 
 export const metadata: Metadata = {
 	title:{
-		absolute:  'Blog | Latest Insight',
+		absolute:  'Blog - PalmTechnIQ',
 	},
 	description: 'Stay in the loop with the latest happenings in tech!',
 	metadataBase: new URL('https://www.palmtechniq.com/blog'),
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 	  title: {
-		absolute: 'Blog',
+		absolute: 'Blog - PalmTechnIQ',
 	  },
 	  description: 'Stay in the loop with the latest happenings in tech!',
 	  url: 'https://www.palmtechniq.com/blog',
