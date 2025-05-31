@@ -5,7 +5,7 @@ import React from 'react'
 
 
 export const metadata: Metadata = {
-	title: 'Register for a course',
+	title: 'Register for a course - PalmTechnIQ',
 	description: 'Take charge of your tech career with our wide range of courses!',
 	metadataBase: new URL('https://www.palmtechniq.com/register'),
 	alternates:{
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 	  },
 	},
 	openGraph: {
-	  title: 'Register for course',
+	  title: 'Register for course - PalmTechnIQ',
 	  description: 'Take charge of your tech career with our wide range of courses!',
 	  url: 'https://www.palmtechniq.com/register',
 	  siteName: 'PalmTechnIQ',

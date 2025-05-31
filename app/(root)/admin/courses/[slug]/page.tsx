@@ -14,8 +14,7 @@ export default async function SingleAdminCoursePage({
 
      if(session?.user?.role !== 'ADMIN') {
           redirect('/unauthorized');
-      
           return null;
-        }
+     }
      return <pre>{JSON.stringify(course, null, 2)}</pre>;
 }

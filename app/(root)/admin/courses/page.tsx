@@ -18,8 +18,8 @@ export async function generateMetadata({
 	}
 
 	return {
-		title: courseDetails.title.split('-').join(' '),
-		description: courseDetails.description,
+		title: courseDetails.title.split('-').join(' ') || "PalmTechnIQ Course",
+		description: courseDetails.description || "Explore our courses at PalmTechnIQ",
 		openGraph: {
 			title: courseDetails.title.split('-').join(' '),
 			description: courseDetails.description,

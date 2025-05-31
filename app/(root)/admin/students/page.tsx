@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
-	title: 'Student Dashboard',
+	title: 'Student Dashboard - PalmTechnIQ',
 	description: 'Stay in-charge of your courses and monitor your learning process!',
 	metadataBase: new URL('https://www.palmtechniq.com/admin/student'),
 	alternates:{
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 	  },
 	},
 	openGraph: {
-	  title: 'Student Dashboard',
+	  title: 'Student Dashboard - PalmTechnIQ',
 	  description: 'Stay in-charge of your courses and monitor your learning process!',
 	  url: 'https://www.palmtechniq.com/admin/student',
 	  siteName: 'PalmTechnIQ',

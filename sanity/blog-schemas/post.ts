@@ -54,6 +54,13 @@ export const post = {
                     },
                ],
           },
+          { 
+               name: 'author', 
+               type: 'reference', 
+               to: [{ type: 'author' }], 
+               required: true 
+          },
+
           {
                name: "tag",
                title: "Tag",

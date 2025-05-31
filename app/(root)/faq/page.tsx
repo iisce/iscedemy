@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: {
-     absolute: 'Frequently Asked Questions',
+     absolute: 'Frequently Asked Questions - PalmTechnIQ',
     },
     description: 'Get answers to the most common questions about PalmtechnIQ.',
     metadataBase: new URL('https://www.palmtechniq.com/faq'),
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
       title: {
-        absolute: 'Frequently Asked Questions',
+        absolute: 'Frequently Asked Questions - PalmTechnIQ',
        },
       description: 'Get answers to the most common questions about PalmtechnIQ.',
       url: 'https://www.palmtechniq.com/faq',

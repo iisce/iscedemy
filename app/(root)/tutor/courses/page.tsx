@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Tutor Courses',
+  title: 'Tutor Courses - PalmTechnIQ',
   description: 'Manage your courses and track their performance.',
   metadataBase: new URL('https://www.palmtechniq.com/tutor/courses'),
   alternates: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Tutor Courses',
+    title: 'Tutor Courses - PalmTechnIQ',
     description: 'Manage your courses and track their performance.',
     url: 'https://www.palmtechniq.com/tutor/courses',
     siteName: 'PalmTechnIQ',

@@ -9,7 +9,7 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata: Metadata = {
-	title: 'Get In Touch',
+	title: 'Get In Touch | PalmTechnIQ',
 	description: 'Partner with us to strategize ,create a better future and stay ahead of your game!',
 	metadataBase: new URL('https://www.palmtechniq.com/contact'),
 	alternates:{
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	  },
 	},
 	openGraph: {
-	  title: 'Get In Touch',
+	  title: 'Get In Touch | PalmTechnIQ',
 	  description: 'Partner with us to strategize ,create a better future and stay ahead of your game!',
 	  url: 'https://www.palmtechniq.com/contact',
 	  siteName: 'PalmTechnIQ',

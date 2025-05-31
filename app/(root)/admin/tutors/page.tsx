@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
-	title: 'Tutor Dashboard',
+	title: 'Tutor Dashboard - PalmTechnIQ',
 	description: 'Stay in-charge of your courses and keep track of your revenue!',
 	metadataBase: new URL('https://www.palmtechniq.com/admin/tutor'),
 	alternates:{
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 	  },
 	},
 	openGraph: {
-	  title: 'Tutor Dashboard',
+	  title: 'Tutor Dashboard - PalmTechnIQ',
 	  description: 'Stay in-charge of your courses and keep track of your revenue!',
 	  url: 'https://www.palmtechniq.com/admin/tutor',
 	  siteName: 'PalmTechnIQ',

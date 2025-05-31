@@ -6,7 +6,7 @@ import React from "react";
 
 
 export const metadata: Metadata = {
-  title: 'Privacy & Policy',
+  title: 'Privacy & Policy - PalmTechnIQ',
   robots: {
     index: false,
     follow: true,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Privacy & Policy',
+    title: 'Privacy & Policy - PalmTechnIQ',
     description: 'At PalmTechnIQ, we are committed to protecting your privacy.',
     url: 'https://www.palmtechniq.com/privacy-policy',
     siteName: 'PalmTechnIQ',

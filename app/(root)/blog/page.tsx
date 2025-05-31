@@ -3,11 +3,12 @@ import Image from "next/image";
 import BlogCard from "../../../components/pages/blog/blog-card";
 import { IPost } from "../../../lib/types";
 import { client } from "../../../sanity/lib/client";
+import Pagination from '@/components/shared/pagination';
 
 
 export const metadata: Metadata = {
 	title:{
-		absolute:  'Blog | Latest Insight',
+		absolute:  'Blog - PalmTechnIQ',
 	},
 	description: 'Stay in the loop with the latest happenings in tech!',
 	metadataBase: new URL('https://www.palmtechniq.com/blog'),
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 	  title: {
-		absolute: 'Blog',
+		absolute: 'Blog - PalmTechnIQ',
 	  },
 	  description: 'Stay in the loop with the latest happenings in tech!',
 	  url: 'https://www.palmtechniq.com/blog',
@@ -38,6 +39,12 @@ async function getPost() {
   excerpt,
   overviewImage,
   body,
+  author->{
+               _id,
+               name,
+               slug,
+               image
+          },
   tag[]->{
     name,
     _id,
@@ -53,9 +60,19 @@ async function getPost() {
 // Define revalidate period
 export const revalidate = 60;
 
-export default async function Blog() {
+interface BlogPageProps{
+     searchParams: {page?: string}
+}
+export default async function Blog({searchParams}: BlogPageProps) {
      // Fetch all posts or adjust if needed
      const posts: IPost[] = await getPost();
+     const page = parseInt(searchParams.page || "1", 6);
+     const blogPerPage = 6;
+     const totalPages = Math.ceil(posts.length / blogPerPage )
+     const startIndex = (page -1) * blogPerPage;
+     const paginatedPosts = posts.slice(startIndex, startIndex + blogPerPage);
+
+
      return (
           <div className="mx-auto max-w-5xl p-[20px]">
                <h1 className="text-[50px] font-bold">The Blog Square</h1>
@@ -65,7 +82,11 @@ export default async function Blog() {
                </p>
 
                <div className="mt-[20px] flex w-full flex-col flex-wrap justify-center gap-3 pb-[30px] md:flex-row">
-                    {posts?.length > 0 ? (
+                   {paginatedPosts.map((post, i) => (
+                         <BlogCard key={i} post={post} />
+
+                   ))}
+                    {/* {posts?.length > 0 ? (
                          posts.map((post, k) => (
                               <BlogCard key={k} post={post} />
                          ))
@@ -79,8 +100,15 @@ export default async function Blog() {
                                    width="1000"
                               />
                          </div>
-                    )}
+                    )} */}
                </div>
+               {posts.length > blogPerPage && (
+                    <Pagination
+                         page={page}
+                         totalPages={totalPages}
+                         baseUrl='/blog'
+                    />
+               )}
           </div>
      );
 }

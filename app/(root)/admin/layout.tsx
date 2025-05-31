@@ -1,3 +1,5 @@
+import { auth } from "@/auth";
+import AllSidebar from "@/components/layout/all-sidebar";
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import AdminSidebar from "@/components/pages/admin/admin-sidebar";
 import { buttonVariants } from "@/components/ui/button";
@@ -10,6 +12,8 @@ export default async function AdminLayout({
 }: Readonly<{
      children: React.ReactNode;
 }>) {
+     const session = await auth();
+     const user = session?.user;
      return (
           <MaxWidthWrapper className="h-full">
                <div className="flex items-center justify-between">
@@ -26,7 +30,7 @@ export default async function AdminLayout({
                     </Link>
                </div>
                <div className="mb-4 grid h-full gap-4 border-y lg:grid-cols-5">
-                    <AdminSidebar />
+                    <AllSidebar user={user} />
                     <div className="grid h-full gap-4 lg:col-span-4">
                          {children}
                     </div>

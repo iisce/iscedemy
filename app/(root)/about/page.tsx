@@ -9,7 +9,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
 	title:{
-		absolute:  'About Us',
+		absolute:  'About Us - PalmTechnIQ',
 	},
 	description: 'We believe in child education! The way to change the world is by enabling them to paint a world of their own.',
 	metadataBase: new URL('https://www.palmtechniq.com/about'),
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 	  title: {
-		absolute: 'About Us',
+		absolute: 'About Us - PalmTechnIQ',
 	  },
 	  description: 'We believe in child education! The way to change the world is by enabling them to paint a world of their own.',
 	  url: 'https://www.palmtechniq.com/about',

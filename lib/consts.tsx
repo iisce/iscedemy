@@ -3,7 +3,7 @@ import * as Icons from './icons';
 import React from 'react';
 import { User, Course, Curriculum } from '@prisma/client';
 import { ICOURSEHEADER, ICOURSEITEM, ICOURSELIST2, ICOURSES, IOCCUPATION, ITYPE } from './types';
-import { BookOpenIcon, CalendarIcon, CogIcon, HomeIcon, UserCircleIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import { BookOpenIcon, CalendarIcon, CogIcon, HomeIcon, UserCircleIcon, UserGroupIcon, UsersIcon } from '@heroicons/react/24/outline';
 import { BarChartIcon, FileTextIcon } from '@radix-ui/react-icons';
 
 export const NAVLINKS: {
@@ -1332,23 +1332,28 @@ export const SIDEBAR_LINKS_TUTOR = [
 export const SIDEBAR_LINKS_ADMIN = [ 
 	{
 		name: 'Dashboard',
-		link: '/dashboard',
+		link: '/admin',
 		icon:  HomeIcon
 	},
-	{
-		name: 'Users',
-		link: '/users',
-		icon:  UserGroupIcon
-	},
+	// {
+	// 	name: 'Users',
+	// 	link: '/users',
+	// 	icon:  UserGroupIcon
+	// },
 	{
 		name: 'Courses',
 		link: '/courses',
 		icon:  BookOpenIcon
 	},
 	{
-		name: 'Settings',
-		link: '/settings',
-		icon:  CogIcon
+		name: 'Students',
+		link: '/students',
+		icon:  UsersIcon
+	},
+	{
+		name: 'Tutors',
+		link: '/tutors',
+		icon:  UsersIcon
 	}
 ]
 // export const DEFAULT_TUTOR: Omit<User, 'id'>[] = [
