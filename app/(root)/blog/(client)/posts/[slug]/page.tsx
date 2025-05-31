@@ -163,7 +163,7 @@ const SinglePage = async ({ params }: ISingleBlog) => {
                          src={urlFor(value).url()}
                          height="1000"
                          width="1000"
-                         alt="postimage"
+                         alt={value.alt || '   '}
                     />
                ),
           },

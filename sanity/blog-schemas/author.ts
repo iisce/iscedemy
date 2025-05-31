@@ -29,4 +29,10 @@ export const author = {
                type: 'text',
           },
      ],
+     preview: {
+     select: {
+      title: "name",
+      media: "image",
+    },
+  },
 };

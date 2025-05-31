@@ -14,20 +14,6 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ params, projects, progressMap }: ProjectsSectionProps) {
   const { courseId } = params;
-  const session = useSession();
-const user = session.data?.user;
-  const router = useRouter();
-
-  // Redirect to login if not authenticated
-  if (!user?.id) {
-    router.push('/login');
-    return null;
-  }
-
-  // Show loading state while session is being fetched
-  if (status === 'loading') {
-    return <p>Loading...</p>;
-  }
 
   return (
     <div className="mt-8">
