@@ -7,6 +7,7 @@ import { urlFor } from "../../../sanity/lib/image";
 // import AuthorCard from "./author-card";
 
 function BlogCard({ post }: IBlogCard) {
+	     console.log('Post in BlogCard:', post); // Debug log
 	const imageURL = urlFor(post.overviewImage).url();
 	return (
 		<div className="flex flex-col w-full md:w-[30%] justify-between rounded-md border p-2 shadow-md">
@@ -44,7 +45,7 @@ function BlogCard({ post }: IBlogCard) {
                                    {new Date(post.publisheddatetime).toDateString()}
                               </p>
                               {/* <div className="uppercase">
-                                   {post.author.name}
+                                   {post.author?.name || "Unknown Author"}
                               </div> */}
 					</div>
 					{/* <AuthorCard author={post.author}/> */}

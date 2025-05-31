@@ -26,19 +26,8 @@ interface MentorshipSectionProps {
  */
 export function MentorshipSection({ params, mentorships }: MentorshipSectionProps) {
   const { courseId } = params;
-  const { data: session, status } = useSession();
-  const router = useRouter();
-
-  // Redirect to login if not authenticated
-  if (status === 'unauthenticated') {
-    router.push('/login');
-    return null;
-  }
-
-  // Show loading state while session is being fetched
-  if (status === 'loading') {
-    return <Skeleton className="h-10 w-full" />;
-  }
+  const session = useSession();
+ const  user = session.data?.user
 
   return (
     <div className="w-full mx-auto p-5">
@@ -54,7 +43,7 @@ export function MentorshipSection({ params, mentorships }: MentorshipSectionProp
                 <p>With: {slot.mentor.name}</p>
                 <p>Scheduled: {new Date(slot.scheduledAt).toLocaleString()}</p>
                 <p>Duration: {slot.duration} minutes</p>
-                {slot.menteeId === session?.user?.id ? (
+                {slot.menteeId === user?.id ? (
                   <div className="space-y-2">
                     <p className="text-green-600 font-semibold">Booked</p>
                     <Button asChild variant="outline">

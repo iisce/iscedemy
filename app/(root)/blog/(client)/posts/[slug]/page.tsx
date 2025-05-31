@@ -9,6 +9,7 @@ import { PiInstagramLogoFill } from "react-icons/pi";
 import { IPost, ISingleBlog } from "../../../../../../lib/types";
 import { client } from '../../../../../../sanity/lib/client';
 import { urlFor } from "../../../../../../sanity/lib/image";
+import { notFound } from "next/navigation";
 
 /**
  * This function aids the caching of the blog posts
@@ -21,6 +22,12 @@ async function getAllPost(): Promise<IPost[]> {
   excerpt,
   overviewImage,
   body,
+    author->{ 
+               _id,
+               name,
+               slug,
+               image
+          },
   tag[]->{
     name,
     _id,
@@ -34,10 +41,13 @@ return data;
 
 export async function generateStaticParams() {
      const posts: IPost[] = await getAllPost();
+     // console.log(`All post from getAllPost:`, posts)
 
-     return posts.map(post=> ({
+     const paths = posts.map(post => ({
           params: {slug: post.slug.current}
      }))
+     // console.log(`Generated Paths:`, paths);
+    return paths;
 
 }
 
@@ -56,11 +66,17 @@ export async function generateMetadata({
                     description: "The requested blog post could not be found.",
                };
           }
+
+         const imageUrl = blogPost.overviewImage
+         ? urlFor(blogPost.overviewImage).url()
+         : '/innovation.jpg'
+          
+          console.log('Image URL:', imageUrl);
      
           return {
                title: blogPost.title || "PalmTechnIQ Blog Post",
                description: blogPost.excerpt || "Stay updated with the latest tech news and insights.",
-               metadataBase: new URL(`https://www.palmtechniq.com/blog/${slug}`),
+               metadataBase: new URL(`https://www.palmtechniq.com`),
                alternates: {
                     canonical: `/blog/${slug}`,
                     languages: {
@@ -75,18 +91,19 @@ export async function generateMetadata({
                     siteName: 'PalmTechnIQ',
                     images: [
                          {
-                              url: blogPost.overviewImage || '/innovation.jpg',
+                              url: imageUrl,
                               width: 800,
                               height: 600,
                               alt: blogPost.title || "PalmTechnIQ Blog Post",
                          },
                     ],
                },
+               
                twitter: {
                     card: 'summary_large_image',
                     title: blogPost.title,
                     description: blogPost.excerpt,
-                    images: [blogPost.overviewImage || '/innovation.jpg'],
+                    images: [imageUrl],                    
                     creator: '@palmtechniq',
                },
                keywords: ['PalmTechnIQ', 'Blog', 'Tech News', 'Tech Insights'],
@@ -106,21 +123,33 @@ export async function generateMetadata({
 
 
 async function getPost(slug: string) {
-     const query = `*[_type == "post" && slug.current== "${slug}"][0]{
+const query = `*[_type == "post" && slug.current== "${slug}"][0]{
   title,
   slug,
   publisheddatetime,
   excerpt,
   overviewImage,
   body,
+  author->{ 
+               _id,
+               name,
+               slug,
+               image
+          },
   tag[]->{
     name,
     _id,
     slug
   }
 }`;
-     const post = await client.fetch(query);
-     return post;
+     try {
+          const post = await client.fetch(query);
+          // console.log(`Post for slug ${slug}:`, post);
+          return post;
+     } catch (error) {
+          console.error(`Error fetching post for slug ${slug}:`, error);
+          return null;
+     }
 }
 
 
@@ -139,6 +168,10 @@ const SinglePage = async ({ params }: ISingleBlog) => {
           },
      };
      const post: IPost = await getPost(params.slug);
+     // console.log({"SinglePost URL": params.slug});
+     if (!post) {
+          notFound(); 
+     }
      return (
           <div className="mx-auto max-w-4xl p-[20px]">
                <h3 className="pb-[20px] text-center text-[27px] font-bold">

@@ -14,11 +14,12 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ params, projects, progressMap }: ProjectsSectionProps) {
   const { courseId } = params;
-  const { data: session, status } = useSession();
+  const session = useSession();
+const user = session.data?.user;
   const router = useRouter();
 
   // Redirect to login if not authenticated
-  if (status === 'unauthenticated') {
+  if (!user?.id) {
     router.push('/login');
     return null;
   }
