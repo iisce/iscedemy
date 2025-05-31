@@ -9,8 +9,9 @@ import { PiInstagramLogoFill } from "react-icons/pi";
 import { IPost, ISingleBlog } from "../../../../../../lib/types";
 import { client } from '../../../../../../sanity/lib/client';
 import { urlFor } from "../../../../../../sanity/lib/image";
-import { notFound } from "next/navigation";
 
+
+export const dynamic = 'force-dynamic';
 /**
  * This function aids the caching of the blog posts
  */
@@ -71,7 +72,7 @@ export async function generateMetadata({
          ? urlFor(blogPost.overviewImage).url()
          : '/innovation.jpg'
           
-          console.log('Image URL:', imageUrl);
+          // console.log('Image URL:', imageUrl);
      
           return {
                title: blogPost.title || "PalmTechnIQ Blog Post",
@@ -147,7 +148,7 @@ const query = `*[_type == "post" && slug.current== "${slug}"][0]{
           // console.log(`Post for slug ${slug}:`, post);
           return post;
      } catch (error) {
-          console.error(`Error fetching post for slug ${slug}:`, error);
+          // console.error(`Error fetching post for slug ${slug}:`, error);
           return null;
      }
 }
@@ -169,8 +170,14 @@ const SinglePage = async ({ params }: ISingleBlog) => {
      };
      const post: IPost = await getPost(params.slug);
      // console.log({"SinglePost URL": params.slug});
+      
      if (!post) {
-          notFound(); 
+     return (
+          <div className="mx-auto max-w-4xl p-[20px] text-center">
+          <h1 className="text-2xl font-bold">Post Not Found</h1>
+          <p>The requested blog post could not be found.</p>
+          </div>
+     );
      }
      return (
           <div className="mx-auto max-w-4xl p-[20px]">
