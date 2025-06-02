@@ -112,8 +112,8 @@ export const COURSEHEADER: ICOURSEHEADER[] = [
 			'Explore what it entails in order to prevent cyber attacks.',
 		link: 'cybersecurity',
 	},
-	{ header: "Explore Crash Courses", description: "Quick, intensive learning for beginners.", link: "crash-courses", image: "/images/careerpath1.jpg" },
-        { header: "3-Month Programs", description: "Intermediate skills with hands-on projects.", link: "intermediate-courses", image: "/images/cyber-security.jpg" },
+	{ header: "Explore Crash Courses", description: "Quick, intensive learning for beginners.", link: "crash-courses", image: "/crash_course_program_palmtechniq.jpg" },
+        { header: "3-Month Programs", description: "Intermediate skills with hands-on projects.", link: "intermediate-courses", image: "/intermediate_course_program_palmtechniq.jpg" },
         { header: "6-Month Programs", description: "Advanced training for professionals.", link: "advanced-courses ", image: "/images/data-analytics.jpeg" },
 ];
 

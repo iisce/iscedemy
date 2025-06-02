@@ -15,9 +15,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const courseDetails = await getCourseBySlug(params.courseId);
 
-	if (!courseDetails) {
-		notFound();
-	}
+	 if (!courseDetails) {
+    return {
+      title: "Course Not Found | PalmTechnIQ",
+      description: "The requested course could not be found.",
+    };
+  }
 
 	return {
 		title: courseDetails.title.split('-').join(' '),
@@ -29,7 +32,7 @@ export async function generateMetadata({
 			siteName: 'PalmTechnIQ',
 			images: [
 				{
-					url: courseDetails.description || '/innovation.jpg',
+					url: courseDetails.image || '/innovation.jpg',
 					width: 800,
 					height: 600,
 					alt: courseDetails.title || "PalmTechnIQ",
@@ -50,8 +53,9 @@ export default async function EnrollPage({
 	const session = await auth();
 	const dbUser = await getUserById(session?.user?.id ?? '');
 	if (!dbUser) {
-		return redirect('/login');
+    throw new Error("User not found. Middleware should have redirected to login.");
 	}
+
 	const isPaid = dbUser?.courses?.includes(course.id);
 
 	if (isPaid) {

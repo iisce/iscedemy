@@ -26,6 +26,9 @@ export default auth((req) => {
      // Check if the current route is related to courses
      const isCourseRoutes = nextUrl.pathname.startsWith("/courses");
 
+     // Check if the route is specifically a payment route
+     const isPayRoute = nextUrl.pathname.match(/^\/courses\/[^/]+\/pay$/);
+
      // Check if the route is under the /admin path
      // const isAdminRoutes = nextUrl.pathname.startsWith("/admin");
      // const isTutorRoute = nextUrl.pathname.startsWith("/tutor");
@@ -60,7 +63,7 @@ export default auth((req) => {
      // }
 
      // If the user is not logged in and tries to access a protected route (not public, not courses, not blog)
-     if (!isLoggedIn && !isPublicRoutes && !isCourseRoutes && !isBlogPage) {
+     if (!isLoggedIn && isPayRoute && !isAuthRoute) {
           let callbackUrl = nextUrl.pathname;
           if (nextUrl.search) {
                callbackUrl += nextUrl.search;
@@ -83,6 +86,7 @@ export const config = {
     matcher: [
      '/tutor/:path*',
     '/dashboard/:path*',
+    '/courses/:path*',
      '/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'
 ],
 }

@@ -190,6 +190,10 @@ const SinglePage = async ({ params }: ISingleBlog) => {
                          Posted on:{" "}
                          {new Date(post.publisheddatetime).toDateString()}{" "}
                     </p>
+                    <p className="text-[13px] text-green-600">
+                         Author:{" "}
+                         {post.author.name}{" "}
+                    </p>
                     <Image
                          src={urlFor(post.overviewImage).url()}
                          alt={post.slug.current}

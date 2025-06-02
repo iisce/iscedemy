@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { IBlogCard } from "../../../lib/types";
 import { urlFor } from "../../../sanity/lib/image";
+import AuthorCard from "./author-card";
 // import AuthorCard from "./author-card";
 
 function BlogCard({ post }: IBlogCard) {
@@ -44,9 +45,9 @@ function BlogCard({ post }: IBlogCard) {
                               <p className="text-[12px] font-bold text-[#333]">
                                    {new Date(post.publisheddatetime).toDateString()}
                               </p>
-                              {/* <div className="uppercase">
+                              <div className="Capitalize text-[12px]">
                                    {post.author?.name || "Unknown Author"}
-                              </div> */}
+                              </div>
 					</div>
 					{/* <AuthorCard author={post.author}/> */}
 						<span>
