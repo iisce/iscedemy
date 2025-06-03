@@ -24,10 +24,10 @@ async function getAllPost(): Promise<IPost[]> {
   overviewImage,
   body,
     author->{ 
-               _id,
-               name,
-               slug,
-               image
+          _id,
+          name,
+          slug,
+          image
           },
   tag[]->{
     name,
@@ -72,7 +72,9 @@ export async function generateMetadata({
          ? urlFor(blogPost.overviewImage).url()
          : '/innovation.jpg'
           
-          // console.log('Image URL:', imageUrl);
+
+         const tagKeywords = blogPost.tag?.map((tag) => tag.name.trim().toLowerCase()) || [];
+         const keywords = ["PalmTechnIQ", ...tagKeywords.slice(0, 9)];
      
           return {
                title: blogPost.title || "PalmTechnIQ Blog Post",
@@ -90,10 +92,14 @@ export async function generateMetadata({
                     description: blogPost.excerpt || "Stay updated with the latest tech news and insights.",
                     url: `https://www.palmtechniq.com/blog/${slug}`,
                     siteName: 'PalmTechnIQ',
+                    type: 'article',
                     images: [
                          {
                               url: imageUrl,
+                              width: 1200,
+                              height: 630,
                               alt: blogPost.title || "PalmTechnIQ Blog Post",
+                              type: 'image/jpeg',
                          },
                     ],
                },
@@ -105,7 +111,7 @@ export async function generateMetadata({
                     images: [imageUrl],                    
                     creator: '@palmtechniq',
                },
-               keywords: ['PalmTechnIQ', 'Blog', 'Tech News', 'Tech Insights'],
+               keywords,
                authors: [{ name: 'PalmTechnIQ', url: 'https://www.palmtechniq.com' }],
                robots: {
                     index: true,

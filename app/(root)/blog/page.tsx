@@ -1,9 +1,8 @@
+import Pagination from '@/components/shared/pagination';
 import { Metadata } from 'next';
-import Image from "next/image";
 import BlogCard from "../../../components/pages/blog/blog-card";
 import { IPost } from "../../../lib/types";
 import { client } from "../../../sanity/lib/client";
-import Pagination from '@/components/shared/pagination';
 
 
 export const metadata: Metadata = {
@@ -40,10 +39,10 @@ async function getPost() {
   overviewImage,
   body,
   author->{
-               _id,
-               name,
-               slug,
-               image
+       _id,
+        name,
+        slug,
+        image
           },
   tag[]->{
     name,
