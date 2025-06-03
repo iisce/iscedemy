@@ -93,8 +93,6 @@ export async function generateMetadata({
                     images: [
                          {
                               url: imageUrl,
-                              width: 800,
-                              height: 600,
                               alt: blogPost.title || "PalmTechnIQ Blog Post",
                          },
                     ],

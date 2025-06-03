@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 // Function to fetch a specific post by slug
 async function getPost() {
-     const query = `*[_type == "post"]{
+     const query = `*[_type == "post"] | order(publisheddatetime desc){
   title,
   slug,
   publisheddatetime,
