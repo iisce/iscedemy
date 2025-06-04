@@ -1342,17 +1342,17 @@ export const SIDEBAR_LINKS_ADMIN = [
 	// },
 	{
 		name: 'Courses',
-		link: '/courses',
+		link: '/admin/courses',
 		icon:  BookOpenIcon
 	},
 	{
 		name: 'Students',
-		link: '/students',
+		link: '/admin/students',
 		icon:  UsersIcon
 	},
 	{
 		name: 'Tutors',
-		link: '/tutors',
+		link: '/admin/tutors',
 		icon:  UsersIcon
 	}
 ]
