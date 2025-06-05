@@ -31,7 +31,7 @@ export const post = {
                title: "Excerpt",
                type: "text",
                validation: (Rule: Rule) =>
-                    Rule.max(200).error(
+                    Rule.max(400).error(
                          "Expected a max of 200 characters but got more",
                     ),
           },

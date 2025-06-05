@@ -1,4 +1,5 @@
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import Image from "next/image";
 
   
   export default function PodcastDisplay() {
@@ -24,10 +25,12 @@ import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, Pagi
           <span className="text-2xl sm:text-3xl lg:text-xl font-bold mb-1">Meet your Speakers</span>
           <div className="flex flex-wrap justify-center -space-x-4 rtl:space-x-reverse mb-10">
             {[...Array(8)].map((_, index) => (
-              <img
+              <Image
+              width={10}
+              height={10}
                 key={index}
-                className="w-10 h-10 sm:w-14 sm:h-14 border-2 border-white rounded-full dark:border-gray-800 transition-transform duration-300 hover:scale-150"
-                src="yptoewml87ra1.jpg"
+                className="w-10 h-10 sm:w-14 sm:h-14 border-2 border-green-600 rounded-full dark:border-gray-800 transition-transform duration-300 hover:scale-150"
+                src="/yptoewml87ra1.jpg"
                 alt=""
               />
             ))}
