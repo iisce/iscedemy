@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import BlogCard from "../../../components/pages/blog/blog-card";
 import { IPost } from "../../../lib/types";
 import { client } from "../../../sanity/lib/client";
+import Image from 'next/image';
 
 
 export const metadata: Metadata = {
@@ -81,12 +82,8 @@ export default async function Blog({searchParams}: BlogPageProps) {
                </p>
 
                <div className="mt-[20px] flex w-full flex-col flex-wrap justify-center gap-3 pb-[30px] md:flex-row">
-                   {paginatedPosts.map((post, i) => (
-                         <BlogCard key={i} post={post} />
-
-                   ))}
-                    {/* {posts?.length > 0 ? (
-                         posts.map((post, k) => (
+                    {posts?.length > 0 ? (
+                         paginatedPosts.map((post, k) => (
                               <BlogCard key={k} post={post} />
                          ))
                     ) : (
@@ -99,7 +96,7 @@ export default async function Blog({searchParams}: BlogPageProps) {
                                    width="1000"
                               />
                          </div>
-                    )} */}
+                    )}
                </div>
                {posts.length > blogPerPage && (
                     <Pagination

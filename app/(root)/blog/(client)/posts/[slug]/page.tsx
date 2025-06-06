@@ -135,12 +135,13 @@ const query = `*[_type == "post" && slug.current== "${slug}"][0]{
   excerpt,
   overviewImage,
   body,
-  author->{ 
-               _id,
-               name,
-               slug,
-               image
-          },
+
+author->{ 
+     _id,
+     name,
+     slug,
+     image
+},
   tag[]->{
     name,
     _id,

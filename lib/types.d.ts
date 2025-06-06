@@ -118,3 +118,84 @@ export interface Course {
 	modules: (Module & { lessons: Lesson[] })[];
 	progress: Progress[];
 }
+export interface YoutubePlaylistItem {
+      kind: string;
+      etag: string;
+      id: string;
+      snippet: {
+      publishedAt: string;
+      channelId: string;
+      title: string;
+      description: string;
+      thumbnails: {
+        default: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      medium: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      high: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      standard?: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      maxres?: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      };
+      channelTitle: string;
+      playlistId: string;
+      position: number;
+      resourceId: {
+        kind: string;
+        videoId: string;
+      };
+      };
+    }
+
+  export  interface YoutubePlaylistItemsResponse {
+      kind: string;
+      etag: string;
+      nextPageToken?: string;
+      prevPageToken?: string;
+      pageInfo: {
+      totalResults: number;
+      resultsPerPage: number;
+      };
+      items?: YoutubePlaylistItem[];
+    }
+
+ export   interface YoutubeChannelContentDetails {
+      relatedPlaylists: {
+      uploads: string;
+      [key: string]: string;
+      };
+    }
+
+  export  interface YoutubeChannelItem {
+      kind: string;
+      etag: string;
+      id: string;
+      contentDetails: YoutubeChannelContentDetails;
+    }
+
+ export   interface YoutubeChannelsResponse {
+      kind: string;
+      etag: string;
+      pageInfo: {
+      totalResults: number;
+      resultsPerPage: number;
+      };
+      items?: YoutubeChannelItem[];
+    }

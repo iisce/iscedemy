@@ -15,7 +15,7 @@
 		"update-curriculum-timestamp": "tsx scripts/update-curriculum-timestamp.ts",
 		"backfill-lessonkeys": "tsx scripts/backfill-lessonkeys.ts",
 		"resolve-curriculum-duplicates": "tsx scripts/resolve-curriculum-duplicates.ts"
-		},
+	},
 	"prisma": {
 		"seed": "ts-node app/prisma/seed.js"
 	},
@@ -73,6 +73,7 @@
 		"embla-carousel-autoplay": "^8.0.0",
 		"embla-carousel-react": "^8.0.0-rc22",
 		"framer-motion": "^11.2.6",
+		"googleapis": "^149.0.0",
 		"init": "^0.1.2",
 		"jsonwebtoken": "^9.0.2",
 		"lucide-react": "^0.263.1",
