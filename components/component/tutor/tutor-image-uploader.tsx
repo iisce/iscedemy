@@ -44,7 +44,7 @@ import { toast } from 'sonner';
 export default function TutorImageUpload({
   setImageUrl,
 }: {
-  setImageUrl: (imageUrl: string) => Promise<{ success?: string; error?: string }>;
+  setImageUrl:(imageUrl: string) => Promise<void>;
 }) {
   const [uploading, setUploading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
@@ -102,17 +102,15 @@ export default function TutorImageUpload({
       if (uploadResponse.ok) {
         const fileUrl = `${url}${fields.key}`;
         toast('Image uploaded successfully!');
-        const result = await setImageUrl(fileUrl);
-        if (result.error) {
-          toast(result.error);
-        }
+         await setImageUrl(fileUrl);
+        
       } else {
         console.error('S3 Upload Error:', await uploadResponse.text());
         toast('Upload failed.');
       }
     } catch (error) {
       console.error('Unexpected Error:', error);
-      toast('An unexpected error occurred.');
+      toast.error(error instanceof Error ? error.message : 'An unexpected error occurred.');
     } finally {
       setUploading(false);
       setFile(null);

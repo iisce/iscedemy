@@ -87,9 +87,9 @@ export default function ProfileButton({ user }: { user?: User }) {
                          </DropdownMenuItem>
                     )}
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={async () => signOut()}>
-                         Logout
-                    </DropdownMenuItem>
+                         <DropdownMenuItem onClick={async () => signOut()}>
+                              Logout
+                         </DropdownMenuItem>
                </DropdownMenuContent>
           </DropdownMenu>
      );

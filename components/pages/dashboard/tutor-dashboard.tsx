@@ -362,6 +362,7 @@ export default function TutorDashboard({
                     <p className="text-3xl font-bold">{totalStudents}</p>
                   </CardContent>
                 </Card>
+                <Link href='/tutor/mentorships'>
                 <Card>
                   <CardHeader>
                     <CardTitle>Total Mentorship Sessions</CardTitle>
@@ -373,21 +374,28 @@ export default function TutorDashboard({
                     </p>
                   </CardContent>
                 </Card>
+                </Link>
+
                 <Card>
+                <Link href='/tutor/assignment'>
                   <CardHeader>
                     <CardTitle>Average Assignment Grade</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold">{averageAssignmentGrade.toFixed(1)}%</p>
                   </CardContent>
+                </Link>
                 </Card>
+
                 <Card>
+                <Link href='/tutor/wallet'>
                   <CardHeader>
                     <CardTitle>Total Earnings</CardTitle>
                   </CardHeader>
                   <CardContent>
                   <p className="text-3xl font-bold">{formatToNaira(totalEarnings / 100).split(".")[0]}</p>
                   </CardContent>
+                </Link>
                 </Card>
               </div>
 

@@ -1,5 +1,3 @@
-// actions/paystack.ts
-
 'use server';
 import { db } from '@/lib/db';
 import { PurchaseCourseSchema } from '@/schemas';

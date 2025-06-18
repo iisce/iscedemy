@@ -8,7 +8,6 @@ import {
 	LucideMail,
 	LucideMapPin,
 	LucidePhone,
-	LucideTwitter,
 	LucideYoutube
 } from "lucide-react";
 import Link from "next/link";
@@ -17,7 +16,6 @@ import FormError from "../form-error";
 import FormSuccess from "../form-success";
 import { Button } from "../ui/button";
 import MaxWidthWrapper from "./max-width-wrapper";
-import { IconCertificate } from "@tabler/icons-react";
 
 export default function Footer() {
 	const [email, setEmail] = useState('');
@@ -107,6 +105,9 @@ export default function Footer() {
 						</Link>
 						<Link href="/blog" className="cursor-pointer">
 							{`Blog`}
+						</Link>
+						<Link href="/docs" className="cursor-pointer">
+							{`Documentation`}
 						</Link>
 					</div>
 

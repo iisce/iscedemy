@@ -21,6 +21,11 @@ model User {
   isVerified        Boolean         @default(false)
   verificationToken String          @default("")
   courses           String?
+  bankName          String?         @map("bank_name")
+  accountNumber     String?         @map("account_number")
+  subaccountCode    String?         @map("subaccount_code")
+  recipientCode     String?         @map("recipient_code")
+  walletBalance     Float           @default(0)
   Certificate       Certificate[]
   Course            Course[]
   CoursePayment     CoursePayment[]
@@ -29,6 +34,7 @@ model User {
   menteeFor         Mentorship[]    @relation("Mentee")
   submittedProjects ProjectSubmission[]
   progress          Progress[]
+  transactions      Transaction[]
 
   @@map("users")
 }
@@ -252,6 +258,17 @@ model CoursePayment {
   verifiedAt    DateTime      @updatedAt
   Course        Course        @relation(fields: [courseId], references: [id])
   User          User          @relation(fields: [userId], references: [id])
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  userId    String
+  courseId  String   
+  type      String
+  amount    Float    
+  status    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Certificate {

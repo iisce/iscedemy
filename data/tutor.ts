@@ -17,13 +17,14 @@ export async function getAllCoursesByTutor(tutorId: string) {
 // Function to get total earnings for a specific course
 export async function getEarningsForCourse(courseId : string) {
     try {
-        const totalEarnings = await db.coursePayment.aggregate({
+        const totalEarnings = await db.transaction.aggregate({
             _sum: {
                 amount: true,
             },
             where: {
                 courseId: courseId,
-                status: 'SUCCESSFUL',
+                status: 'success',
+                type: 'Course Payment',
             },
         });
         return totalEarnings._sum.amount || 0;
@@ -47,4 +48,29 @@ export async function getEnrollmentsForCourse(courseId: string) {
         console.log({error});
         return 0;
     } 
+}
+
+export async function calculateTotalEarnings(tutorId: string){
+    const total = await db.transaction.aggregate({
+        _sum: {amount: true},
+        where: {userId: tutorId, status: 'success', type: 'Course Payment'},
+    });
+    return total._sum.amount || 0;
+}
+
+export async function calculateMonthlyEarnings(tutorId: string){
+    const startOfMonth = new Date();
+    startOfMonth.setDate(1);
+    startOfMonth.setHours(0, 0, 0, 0);
+
+    const total = await db.transaction.aggregate({
+        _sum: {amount: true},
+        where: {
+            userId: tutorId, 
+            status: 'success',
+            type: 'Course Payment',
+            createdAt: {gte: startOfMonth},
+        },
+    });
+    return total._sum.amount || 0
 }

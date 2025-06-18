@@ -3,7 +3,7 @@ import * as Icons from './icons';
 import React from 'react';
 import { User, Course, Curriculum } from '@prisma/client';
 import { ICOURSEHEADER, ICOURSEITEM, ICOURSELIST2, ICOURSES, IOCCUPATION, ITYPE } from './types';
-import { BookOpenIcon, CalendarIcon, CogIcon, HomeIcon, UserCircleIcon, UserGroupIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { BookOpenIcon, CalendarIcon, CogIcon, HomeIcon, UserCircleIcon, UserGroupIcon, UsersIcon, WalletIcon } from '@heroicons/react/24/outline';
 import { BarChartIcon, FileTextIcon } from '@radix-ui/react-icons';
 
 export const NAVLINKS: {
@@ -1327,6 +1327,11 @@ export const SIDEBAR_LINKS_TUTOR = [
 		name: 'Profile',
 		link: '/tutor/profile',
 		icon: UserCircleIcon
+	},
+	{
+		name: 'Wallet',
+		link: '/tutor/wallet',
+		icon: WalletIcon
 	}
 ]
 export const SIDEBAR_LINKS_ADMIN = [ 
@@ -1356,6 +1361,15 @@ export const SIDEBAR_LINKS_ADMIN = [
 		icon:  UsersIcon
 	}
 ]
+
+export const DOCS_LINKS = [
+  { name: 'Introduction', href: '/docs' },
+  { name: 'Installation', href: '/docs/installation' },
+  { name: 'Features', href: '/docs/features' },
+  { name: 'API', href: '/docs/api' },
+  { name: 'Contributing', href: '/docs/contributing' },
+  { name: 'Changelog', href: '/docs/changelog' },
+];
 // export const DEFAULT_TUTOR: Omit<User, 'id'>[] = [
 // 	{
 // 		name: 'Paul Ayobami',

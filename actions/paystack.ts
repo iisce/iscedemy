@@ -1,7 +1,6 @@
 'use server';
 
 import { db } from '@/lib/db';
-import { headers } from 'next/headers';
 
 export const createTransaction = async (opts: { payload: any }) => {
 	try {
