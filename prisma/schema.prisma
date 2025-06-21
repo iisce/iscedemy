@@ -8,30 +8,30 @@ datasource db {
 }
 
 model User {
-  id                String          @id @default(cuid())
+  id                String              @id @default(cuid())
   name              String?
   description       String?
   phone             String?
   position          String?
-  role              UserRole        @default(USER)
-  email             String?         @unique
-  emailVerified     DateTime?       @map("email_verified")
+  role              UserRole            @default(USER)
+  email             String?             @unique
+  emailVerified     DateTime?           @map("email_verified")
   image             String?
   password          String?
-  isVerified        Boolean         @default(false)
-  verificationToken String          @default("")
+  isVerified        Boolean             @default(false)
+  verificationToken String              @default("")
   courses           String?
-  bankName          String?         @map("bank_name")
-  accountNumber     String?         @map("account_number")
-  subaccountCode    String?         @map("subaccount_code")
-  recipientCode     String?         @map("recipient_code")
-  walletBalance     Float           @default(0)
+  bankName          String?             @map("bank_name")
+  accountNumber     String?             @map("account_number")
+  subaccountCode    String?             @map("subaccount_code")
+  recipientCode     String?             @map("recipient_code")
+  walletBalance     Float               @default(0)
   Certificate       Certificate[]
   Course            Course[]
   CoursePayment     CoursePayment[]
   accounts          Account[]
-  mentorFor         Mentorship[]    @relation("Mentor")
-  menteeFor         Mentorship[]    @relation("Mentee")
+  mentorFor         Mentorship[]        @relation("Mentor")
+  menteeFor         Mentorship[]        @relation("Mentee")
   submittedProjects ProjectSubmission[]
   progress          Progress[]
   transactions      Transaction[]
@@ -71,6 +71,21 @@ model CourseRegistration {
   @@map("courseRegistrations")
 }
 
+model AwarenesssProgramRegistration {
+  id          String   @id @default(cuid())
+  fullName    String
+  age         Int
+  dateOfBirth DateTime
+  phoneNumber String
+  email       String   @unique
+  goals       String?
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("awarenesssProgramRegistrations")
+}
+
 model Course {
   id            String          @id @default(cuid())
   title         String
@@ -106,11 +121,11 @@ model Curriculum {
   course    Course   @relation(fields: [courseId], references: [id])
   modules   Module[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Module {
-  id                 String   @id @default(cuid())
+  id                 String     @id @default(cuid())
   curriculumId       String
   curriculum         Curriculum @relation(fields: [curriculumId], references: [id])
   headingNumber      String
@@ -119,8 +134,8 @@ model Module {
   duration           String
   order              Int
   lessons            Lesson[]
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
 }
 
 model Lesson {
@@ -263,9 +278,9 @@ model CoursePayment {
 model Transaction {
   id        String   @id @default(cuid())
   userId    String
-  courseId  String   
+  courseId  String
   type      String
-  amount    Float    
+  amount    Float
   status    String
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
@@ -284,9 +299,9 @@ model Certificate {
 }
 
 model TutorApplication {
-  id          String @id @default(cuid())
+  id          String  @id @default(cuid())
   fullname    String
-  email       String @unique
+  email       String  @unique
   phone       String
   coverletter String
   uploadcv    String

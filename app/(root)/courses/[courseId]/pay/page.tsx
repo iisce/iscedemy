@@ -52,6 +52,7 @@ export default async function EnrollPage({
 	if (!course) return notFound();
 	const session = await auth();
 	const dbUser = await getUserById(session?.user?.id ?? '');
+	console.log({dbUser})
 	if (!dbUser) {
     throw new Error("User not found. Middleware should have redirected to login.");
 	}
@@ -83,7 +84,7 @@ export default async function EnrollPage({
 								className='w-full'>
 								<Link href='/student'>
 									<span className='text-white'>
-										Go to your dashboard
+										{`Go to your dashboard`}
 									</span>
 								</Link>
 							</Button>
