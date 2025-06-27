@@ -66,7 +66,7 @@ export default auth((req) => {
      // }
 
      // If the user is not logged in and tries to access a protected route (not public, not courses, not blog)
-     if (!isLoggedIn && isCourseRoutes && !isAuthRoute) {
+     if (!isLoggedIn && !isAuthRoute) {
           let callbackUrl = nextUrl.pathname;
           if (nextUrl.search) {
                callbackUrl += nextUrl.search;
