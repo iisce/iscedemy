@@ -65,18 +65,18 @@ export default auth((req) => {
      // }
 
      // If the user is not logged in and tries to access a protected route (not public, not courses, not blog)
-     if (!isLoggedIn && !isAuthRoute) {
-          let callbackUrl = nextUrl.pathname;
-          if (nextUrl.search) {
-               callbackUrl += nextUrl.search;
-          }
+     // if (!isLoggedIn && !isAuthRoute) {
+     //      let callbackUrl = nextUrl.pathname;
+     //      if (nextUrl.search) {
+     //           callbackUrl += nextUrl.search;
+     //      }
 
-          // Encode the callback URL and redirect to the login page with the callback URL as a query parameter
-          const encodedcallbackUrl = encodeURIComponent(callbackUrl);
-          return Response.redirect(
-               new URL(`/login?callbackUrl=${encodedcallbackUrl}`, nextUrl),
-          );
-     }
+     //      // Encode the callback URL and redirect to the login page with the callback URL as a query parameter
+     //      const encodedcallbackUrl = encodeURIComponent(callbackUrl);
+     //      return Response.redirect(
+     //           new URL(`/login?callbackUrl=${encodedcallbackUrl}`, nextUrl),
+     //      );
+     // }
 
      // Allow the request to proceed if no conditions above were met
      return;
