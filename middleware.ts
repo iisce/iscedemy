@@ -1,12 +1,19 @@
 import NextAuth from "next-auth";
 import authConfig from "./auth.config";
-import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, authRoutes, publicRoutes } from "@/routes";
+import {
+     DEFAULT_LOGIN_REDIRECT,
+     apiAuthPrefix,
+     authRoutes,
+     publicRoutes,
+} from "@/routes";
 
 // Initialize authentication with the provided configuration
-const { auth } = NextAuth(authConfig)
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
      const { nextUrl } = req;
+     console.log("Middleware triggered for:", nextUrl.pathname);
+     console.log("isLoggedIn:", !!req.auth);
 
      // Check if the user is logged in by verifying if the auth object exists in the request
      const isLoggedIn = !!req.auth;
@@ -14,7 +21,7 @@ export default auth((req) => {
      // Check if the route is related to API authentication
      const isApiAuthRoutes = nextUrl.pathname.startsWith(apiAuthPrefix);
 
-    // Check if the route is a public route
+     // Check if the route is a public route
      const isPublicRoutes = publicRoutes.includes(nextUrl.pathname);
 
      // Check if the route is an authentication route (e.g., login or signup pages)
@@ -27,7 +34,9 @@ export default auth((req) => {
      const isCourseRoutes = nextUrl.pathname.startsWith("/courses");
 
      // Check if the route is specifically a payment route
-     const isPayRoute = nextUrl.pathname.match(/^\/courses\/[^/]+\/pay$/);
+     const isPayRoute =
+          nextUrl.pathname.startsWith("/courses/") &&
+          nextUrl.pathname.endsWith("/pay");
 
      // Check if the route is under the /admin path
      // const isAdminRoutes = nextUrl.pathname.startsWith("/admin");
@@ -35,10 +44,7 @@ export default auth((req) => {
      // const isStudentRoute = nextUrl.pathname.startsWith("/student")
 
      // If the route is related to API authentication, allow it to proceed
-     if (isApiAuthRoutes) {
-          return;
-     }
-
+     if (isApiAuthRoutes) return;
 
      // If the user is already logged in and tries to access an auth route, redirect to the default page
      if (isAuthRoute) {
@@ -49,7 +55,6 @@ export default auth((req) => {
           }
           return;
      }
-
 
      // If the route is an admin route and the user is logged in
      // if (isAdminRoutes && isLoggedIn){
@@ -78,16 +83,16 @@ export default auth((req) => {
 
      // Allow the request to proceed if no conditions above were met
      return;
-}) 
-
+});
 
 // Configuration for the middleware to match all routes except static files and Next.js internals
 export const config = {
-    matcher: [
-     '/tutor/:path*',
-    '/dashboard/:path*',
-    '/courses/:path*',
-     '/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'
-],
-}
-
+     matcher: [
+          "/tutor/:path*",
+          "/dashboard/:path*",
+          "/courses/:path*",
+          "/((?!.+\\.[\\w]+$|_next).*)",
+          "/",
+          "/(api|trpc)(.*)",
+     ],
+};
