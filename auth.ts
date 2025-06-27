@@ -91,7 +91,7 @@ export const {
                     secure: process.env.NODE_ENV === "production",
                     domain:
                          process.env.NODE_ENV === "production"
-                              ? ".palmtechniq.com"
+                              ? ".www.palmtechniq.com"
                               : undefined,
                },
           },

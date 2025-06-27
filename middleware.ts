@@ -69,7 +69,7 @@ export default auth((req) => {
      // }
 
      // If the user is not logged in and tries to access a protected route (not public, not courses, not blog)
-     if (!isLoggedIn && isPayRoute && !isAuthRoute) {
+     if (!isLoggedIn && !isPayRoute && !isAuthRoute) {
           let callbackUrl = nextUrl.pathname;
           if (nextUrl.search) {
                callbackUrl += nextUrl.search;
@@ -95,5 +95,6 @@ export const config = {
           "/((?!.+\\.[\\w]+$|_next).*)",
           "/",
           "/(api|trpc)(.*)",
+          "!/courses/[courseId]/pay",
      ],
 };
