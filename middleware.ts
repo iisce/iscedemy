@@ -35,9 +35,6 @@ export default auth((req) => {
      const isCourseRoutes = nextUrl.pathname.startsWith("/courses");
 
      // Check if the route is specifically a payment route
-     const isPayRoute =
-          nextUrl.pathname.startsWith("/courses/") &&
-          nextUrl.pathname.endsWith("/pay");
 
      // Check if the route is under the /admin path
      // const isAdminRoutes = nextUrl.pathname.startsWith("/admin");
@@ -69,7 +66,7 @@ export default auth((req) => {
      // }
 
      // If the user is not logged in and tries to access a protected route (not public, not courses, not blog)
-     if (!isLoggedIn && !isPayRoute && !isAuthRoute) {
+     if (!isLoggedIn && isCourseRoutes && !isAuthRoute) {
           let callbackUrl = nextUrl.pathname;
           if (nextUrl.search) {
                callbackUrl += nextUrl.search;
