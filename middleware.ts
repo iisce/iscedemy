@@ -13,6 +13,7 @@ const { auth } = NextAuth(authConfig);
 export default auth((req) => {
      const { nextUrl } = req;
      console.log("Middleware triggered for:", nextUrl.pathname);
+     console.log("Request auth:", req.auth);
      console.log("isLoggedIn:", !!req.auth);
 
      // Check if the user is logged in by verifying if the auth object exists in the request
