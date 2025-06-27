@@ -44,7 +44,7 @@ export const {
           },
 
           async session({ session, token }) {
-               // console.log("Session callback triggered", { token, session });
+               console.log("Session callback triggered", { token, session });
                try {
                     if (token.sub && session.user) {
                          session.user.id = token.sub;
