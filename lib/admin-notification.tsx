@@ -12,7 +12,8 @@ import {
      Text,
 } from "@react-email/components";
 
-interface tutorNotificationProps {
+interface adminNotificationProps {
+     admin: string;
      tutorName: string;
      tutorEmail: string;
      studentName: string;
@@ -20,20 +21,28 @@ interface tutorNotificationProps {
      courseName: string;
 }
 
-const chatLink = `https://wa.me/qr/GHKMMDKEJZNEF1`;
-
-const tutorNotification = ({
+const adminNotification = ({
+     admin = "",
      tutorName = "",
      tutorEmail = "",
      studentName = "",
      studentEmail = "",
      courseName = "",
-}: tutorNotificationProps) => {
+}: adminNotificationProps) => {
+     console.log("Rendering admin notification with:", {
+          admin,
+          tutorName,
+          tutorEmail,
+          studentName,
+          studentEmail,
+          courseName,
+     });
+     const emailLink = `mailto:${tutorEmail}`;
      return (
           <Tailwind>
                <Html>
                     <Head>
-                         <Preview>You have a new student!!</Preview>
+                         <Preview>A new student just onboarded!!</Preview>
                          <Body className="w-full">
                               <Container className="w-full">
                                    <Section className="bg-[#021A1A]">
@@ -54,10 +63,11 @@ const tutorNotification = ({
                                    </Section>
                                    <Section>
                                         <Text className="mt-[70px] text-center text-[20px]">
-                                             Dear <b>{tutorName}</b>
+                                             Dear <b>{admin}</b>
                                         </Text>
                                         <Text className="text-center text-[16px] sm:text-[20px]">
-                                             you have a new student
+                                             you have a new student on the
+                                             platform for tutor {tutorName}
                                         </Text>
                                    </Section>
                                    <Section>
@@ -73,16 +83,18 @@ const tutorNotification = ({
                                         </Text>
                                    </Section>
                                    <Section className="text-center">
-                                        <Text>Have a question?</Text>
+                                        <Text className="text-[16px] sm:text-[20px]">
+                                             Inform tutor
+                                        </Text>
                                         <Button
-                                             href={chatLink}
+                                             href={emailLink}
                                              className="cursor-pointer rounded-full bg-green-600 text-[20px] text-white"
                                              style={{
                                                   padding: "10px 20px",
                                                   margin: "0 auto",
                                              }}
                                         >
-                                             Speak with adminstration
+                                             Get in-touch with the tutor!
                                         </Button>
                                    </Section>
                                    <Hr className="mt-[30px]" />
@@ -91,11 +103,11 @@ const tutorNotification = ({
                                              <p>{`Copyright © 2024 PalmTechnIQ, All Rights Reserved.`}</p>
                                              <p>
                                                   {`You are recieving this mail because you opted in via our
-                    website.`}
+                                                  website.`}
                                              </p>
                                              <p>
                                                   {`Mailing Address: 1st Floor, (Festac Tower) Chicken Republic
-                    Building, 22Rd ,Festac Town, Lagos, Nigeria.`}
+                                                  Building, 22Rd ,Festac Town, Lagos, Nigeria.`}
                                              </p>
                                         </Text>
                                    </Section>
@@ -133,17 +145,7 @@ const tutorNotification = ({
                                                   src={`https://static-00.iconduck.com/assets.00/instagram-icon-256x256-ubgz701g.png`}
                                              />
                                         </Button>
-                                        {/* <Button
-                  href="/"
-                  className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
-                >
-                  <Img
-                    width="23"
-                    height="23"
-                    alt="X"
-                    src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-white-round-icon.png`}
-                  />
-                </Button> */}
+
                                         <Button
                                              href="https://app.slack.com/client/T076LDT7109/C0764SE3VB7"
                                              className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
@@ -164,4 +166,4 @@ const tutorNotification = ({
      );
 };
 
-export default tutorNotification;
+export default adminNotification;

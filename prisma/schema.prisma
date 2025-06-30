@@ -16,6 +16,7 @@ model User {
   role              UserRole            @default(USER)
   email             String?             @unique
   emailVerified     DateTime?           @map("email_verified")
+  hasStudentId      Boolean             @default(false)
   image             String?
   password          String?
   isVerified        Boolean             @default(false)

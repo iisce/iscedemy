@@ -50,24 +50,21 @@ export default async function EnrollPage({
      const course = await getCourseBySlug(params.courseId);
      if (!course) redirect("/courses");
      const session = await auth();
-     console.log("Page session:", session);
+     // console.log("Page session:", session);
 
-     if (!session?.user) {
-          redirect(
-               `/login?callbackUrl=${encodeURIComponent(
-                    `/courses/${params.courseId}/pay`,
-               )}`,
-          );
-     }
+     // if (!session?.user) {
+     //      redirect(
+     //           `/login?callbackUrl=${encodeURIComponent(
+     //                `/courses/${params.courseId}/pay`,
+     //           )}`,
+     //      );
+     // }
 
      const dbUser = await getUserById(session?.user?.id ?? "");
-     console.log({ dbUser });
+     // console.log({ dbUser });
      if (!dbUser) {
-          throw new Error(
-               "User not found. Middleware should have redirected to login.",
-          );
+          return redirect("/login");
      }
-
      const isPaid = dbUser?.courses?.includes(course.id);
 
      if (isPaid) {
