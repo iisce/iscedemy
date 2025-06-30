@@ -12,9 +12,6 @@ const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
      const { nextUrl } = req;
-     console.log("Middleware triggered for:", nextUrl.pathname);
-     console.log("Request auth:", req.auth);
-     console.log("isLoggedIn:", !!req.auth);
 
      // Check if the user is logged in by verifying if the auth object exists in the request
      const isLoggedIn = !!req.auth;
@@ -35,13 +32,17 @@ export default auth((req) => {
      const isCourseRoutes = nextUrl.pathname.startsWith("/courses");
 
      // Check if the route is specifically a payment route
+     const isPayRoute = nextUrl.pathname.match(/^\/courses\/[^/]+\/pay$/);
+
      // Check if the route is under the /admin path
      // const isAdminRoutes = nextUrl.pathname.startsWith("/admin");
      // const isTutorRoute = nextUrl.pathname.startsWith("/tutor");
      // const isStudentRoute = nextUrl.pathname.startsWith("/student")
 
      // If the route is related to API authentication, allow it to proceed
-     if (isApiAuthRoutes) return;
+     if (isApiAuthRoutes) {
+          return;
+     }
 
      // If the user is already logged in and tries to access an auth route, redirect to the default page
      if (isAuthRoute) {
@@ -65,18 +66,25 @@ export default auth((req) => {
      // }
 
      // If the user is not logged in and tries to access a protected route (not public, not courses, not blog)
-     // if (!isLoggedIn && !isAuthRoute) {
-     //      let callbackUrl = nextUrl.pathname;
-     //      if (nextUrl.search) {
-     //           callbackUrl += nextUrl.search;
-     //      }
+     if (
+          !isLoggedIn &&
+          !isPublicRoutes &&
+          !isCourseRoutes &&
+          !isBlogPage &&
+          isPayRoute &&
+          !isAuthRoute
+     ) {
+          let callbackUrl = nextUrl.pathname;
+          if (nextUrl.search) {
+               callbackUrl += nextUrl.search;
+          }
 
-     //      // Encode the callback URL and redirect to the login page with the callback URL as a query parameter
-     //      const encodedcallbackUrl = encodeURIComponent(callbackUrl);
-     //      return Response.redirect(
-     //           new URL(`/login?callbackUrl=${encodedcallbackUrl}`, nextUrl),
-     //      );
-     // }
+          // Encode the callback URL and redirect to the login page with the callback URL as a query parameter
+          const encodedcallbackUrl = encodeURIComponent(callbackUrl);
+          return Response.redirect(
+               new URL(`/login?callbackUrl=${encodedcallbackUrl}`, nextUrl),
+          );
+     }
 
      // Allow the request to proceed if no conditions above were met
      return;

@@ -12,28 +12,25 @@ import {
      Text,
 } from "@react-email/components";
 
-interface tutorNotificationProps {
-     tutorName: string;
-     tutorEmail: string;
+interface studentNotificationProps {
      studentName: string;
-     studentEmail: string;
+     tutorEmail: string;
      courseName: string;
 }
 
-const chatLink = `https://wa.me/qr/GHKMMDKEJZNEF1`;
-
-const tutorNotification = ({
-     tutorName = "",
-     tutorEmail = "",
+const studentNotification = ({
      studentName = "",
-     studentEmail = "",
+     tutorEmail = "",
      courseName = "",
-}: tutorNotificationProps) => {
+}: studentNotificationProps) => {
+     const emailLink = `mailto:${tutorEmail}`;
      return (
           <Tailwind>
                <Html>
                     <Head>
-                         <Preview>You have a new student!!</Preview>
+                         <Preview>
+                              Welcome to Your New Course at PalmTechnIQ!
+                         </Preview>
                          <Body className="w-full">
                               <Container className="w-full">
                                    <Section className="bg-[#021A1A]">
@@ -54,35 +51,27 @@ const tutorNotification = ({
                                    </Section>
                                    <Section>
                                         <Text className="mt-[70px] text-center text-[20px]">
-                                             Dear <b>{tutorName}</b>
+                                             Welcome, <b>{studentName}</b>!
                                         </Text>
                                         <Text className="text-center text-[16px] sm:text-[20px]">
-                                             you have a new student
-                                        </Text>
-                                   </Section>
-                                   <Section>
-                                        <Text className="mt-[70px] text-center text-[20px]">
-                                             Student Name: <b>{studentName}</b>
-                                        </Text>
-                                        <Text className="text-center text-[16px] sm:text-[20px]">
-                                             Course: <b>{courseName}</b>
-                                        </Text>
-                                        <Text className="text-center text-[16px] sm:text-[20px]">
-                                             Student Email:{" "}
-                                             <b>{studentEmail}</b>
+                                             You’re now enrolled in{" "}
+                                             <b>{courseName}</b> at PalmTechnIQ!
                                         </Text>
                                    </Section>
                                    <Section className="text-center">
-                                        <Text>Have a question?</Text>
+                                        <Text>
+                                             Need assistance? Contact your
+                                             tutor:
+                                        </Text>
                                         <Button
-                                             href={chatLink}
+                                             href={emailLink}
                                              className="cursor-pointer rounded-full bg-green-600 text-[20px] text-white"
                                              style={{
                                                   padding: "10px 20px",
                                                   margin: "0 auto",
                                              }}
                                         >
-                                             Speak with adminstration
+                                             Contact Tutor
                                         </Button>
                                    </Section>
                                    <Hr className="mt-[30px]" />
@@ -90,12 +79,12 @@ const tutorNotification = ({
                                         <Text>
                                              <p>{`Copyright © 2024 PalmTechnIQ, All Rights Reserved.`}</p>
                                              <p>
-                                                  {`You are recieving this mail because you opted in via our
-                    website.`}
+                                                  {`You are receiving this mail because you enrolled in a course
+                      via our website.`}
                                              </p>
                                              <p>
                                                   {`Mailing Address: 1st Floor, (Festac Tower) Chicken Republic
-                    Building, 22Rd ,Festac Town, Lagos, Nigeria.`}
+                      Building, 22Rd, Festac Town, Lagos, Nigeria.`}
                                              </p>
                                         </Text>
                                    </Section>
@@ -133,17 +122,6 @@ const tutorNotification = ({
                                                   src={`https://static-00.iconduck.com/assets.00/instagram-icon-256x256-ubgz701g.png`}
                                              />
                                         </Button>
-                                        {/* <Button
-                  href="/"
-                  className="bg-green-600 m-[5px] py-[8px] px-[10px] rounded-full "
-                >
-                  <Img
-                    width="23"
-                    height="23"
-                    alt="X"
-                    src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-white-round-icon.png`}
-                  />
-                </Button> */}
                                         <Button
                                              href="https://app.slack.com/client/T076LDT7109/C0764SE3VB7"
                                              className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
@@ -164,4 +142,4 @@ const tutorNotification = ({
      );
 };
 
-export default tutorNotification;
+export default studentNotification;

@@ -44,14 +44,17 @@ export const {
           },
 
           async session({ session, token }) {
-               console.log("Session callback triggered", { token, session });
+               // console.log("Session callback triggered", {
+               //      tokenId: token.sub,
+               //      userIdFromToken: token.id,
+               //      sessionUser: session.user,
+               // });
                try {
                     if (token.sub && session.user) {
                          session.user.id = token.sub;
 
                          const user = await getUserById(token.sub);
                          session.user.role = user?.role || "USER";
-                         // console.log({user})
                     }
                } catch (error) {
                     console.error("Error in session callback:", error);
@@ -61,7 +64,7 @@ export const {
 
           async jwt({ token, user, account }) {
                if (account && user) {
-                    token.email = user.email;
+                    (token.sub = user.id), (token.email = user.email);
                     token.role = user.role;
                }
 
