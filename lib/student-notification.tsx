@@ -77,7 +77,7 @@ const studentNotification = ({
                                    <Hr className="mt-[30px]" />
                                    <Section className="text-center text-[#333333]">
                                         <Text>
-                                             <p>{`Copyright © 2024 PalmTechnIQ, All Rights Reserved.`}</p>
+                                             <p>{`Copyright © 2025 PalmTechnIQ, All Rights Reserved.`}</p>
                                              <p>
                                                   {`You are receiving this mail because you enrolled in a course
                       via our website.`}

@@ -3,12 +3,14 @@ import { Button } from "./button";
 interface SubmitSectionProps {
      isSubmitting: boolean;
      isFormValid: boolean;
+     buttonText?: string;
      onSubmit: (e: React.FormEvent) => void;
 }
 
 export function SubmitSection({
      isSubmitting,
      isFormValid,
+     buttonText,
      onSubmit,
 }: SubmitSectionProps) {
      return (

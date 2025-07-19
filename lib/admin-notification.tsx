@@ -100,7 +100,7 @@ const adminNotification = ({
                                    <Hr className="mt-[30px]" />
                                    <Section className="text-center text-[#333333]">
                                         <Text>
-                                             <p>{`Copyright © 2024 PalmTechnIQ, All Rights Reserved.`}</p>
+                                             <p>{`Copyright © 2025 PalmTechnIQ, All Rights Reserved.`}</p>
                                              <p>
                                                   {`You are recieving this mail because you opted in via our
                                                   website.`}

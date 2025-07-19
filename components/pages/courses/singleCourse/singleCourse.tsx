@@ -22,7 +22,12 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import CourseRating from "./courseRating";
 import { SingleCourseTabs } from "./singleCourseTabs";
+import { z } from "zod";
 
+const paramsSchema = z.object({
+     courseTitle: z.string().min(1, { message: "Course title is required" }),
+     tab: z.string().optional(),
+});
 export default async function SingleCourse({
      courseTitle,
      tab,
@@ -30,15 +35,20 @@ export default async function SingleCourse({
      courseTitle: string;
      tab?: string;
 }) {
+     let validatedParams;
+     try {
+          validatedParams = paramsSchema.parse({ courseTitle, tab });
+     } catch (error) {
+          return notFound();
+     }
      const session = await auth();
      const user = session?.user;
 
-     const currentUser = await getUserById(user?.id ?? "");
-
-     const courseDetails = await getCourseBySlug(courseTitle);
-     if (!courseDetails) return notFound();
-     const tutor = await getUserById(courseDetails.tutorId);
-     if (!tutor) return notFound();
+     const [currentUser, courseDetails, tutor] = await await Promise.all([
+          user?.id ? getUserById(user.id) : Promise.resolve(null),
+          getCourseBySlug(courseTitle),
+          getUserById(user?.id ?? ""), // Fetch tutor later with courseDetails.tutorId
+     ]);
 
      if (!courseDetails) {
           return (
@@ -49,24 +59,32 @@ export default async function SingleCourse({
                </div>
           );
      }
-     const curriculum = await getAllCurriculumByCourseId(courseDetails.id);
+
+     const actualTutor = await getUserById(courseDetails.tutorId);
+     if (!actualTutor) return notFound();
+
+     const [curriculum, numberOfRegistration, reviews, progress, totalLessons] =
+          await Promise.all([
+               getAllCurriculumByCourseId(courseDetails.id),
+               getUserByCourseId(courseDetails.id),
+               getAllReviewsByTutorName(actualTutor.name!),
+               user?.id
+                    ? getProgressByStudentAndCourse(user.id, courseDetails.id)
+                    : Promise.resolve([]),
+               getTotalLessonsByCourse(courseDetails.id),
+          ]);
+
      const modules =
           Array.isArray(curriculum) || !curriculum
                ? []
                : await getAllModulesByCurriculumId(curriculum.id);
-     const reviews = await getAllReviewsByTutorName(tutor.name!);
 
-     const numberOfRegistration = await getUserByCourseId(courseDetails.id);
+     const totalRating =
+          reviews?.reduce(
+               (total: number, review: any) => total + review.rating,
+               0,
+          ) ?? 0;
 
-     const totalRating = reviews?.reduce(
-          (total: number, review: any) => total + review.rating,
-          0,
-     );
-
-     const progress = user?.id
-          ? await getProgressByStudentAndCourse(user.id, courseDetails.id)
-          : [];
-     const totalLessons = await getTotalLessonsByCourse(courseDetails.id);
      const completedLessons = progress.filter((p) => p.completed).length;
      const progressPercentage =
           totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
@@ -79,9 +97,8 @@ export default async function SingleCourse({
                          menteeId: undefined,
                          scheduledAt: { gt: new Date() },
                     },
-                    include: {
-                         mentor: true,
-                    },
+                    include: { mentor: { select: { id: true, name: true } } },
+
                     orderBy: {
                          scheduledAt: "asc",
                     },
@@ -91,6 +108,14 @@ export default async function SingleCourse({
                     include: {
                          submissions: {
                               where: { userId: user?.id },
+                              select: {
+                                   id: true,
+                                   content: true,
+                                   fileUrl: true,
+                                   grade: true,
+                                   feedback: true,
+                                   submittedAt: true,
+                              },
                          },
                     },
                     orderBy: { createdAt: "desc" },
@@ -102,6 +127,13 @@ export default async function SingleCourse({
                               include: {
                                    lessons: {
                                         orderBy: { order: "asc" },
+                                        select: {
+                                             id: true,
+                                             title: true,
+                                             lessonKey: true,
+                                             duration: true,
+                                             order: true,
+                                        },
                                    },
                               },
                               orderBy: { order: "asc" },
@@ -109,6 +141,7 @@ export default async function SingleCourse({
                     },
                },
           },
+          // cacheStrategy: { swr: 3600, ttl: 3600 },
      });
 
      if (!courseWithDetails) {
@@ -128,6 +161,7 @@ export default async function SingleCourse({
                     in: lessonIds,
                },
           },
+          select: { lessonId: true, completed: true },
      });
      const progressMap = new Map(progressData.map((p: any) => [p.lessonId, p]));
 
@@ -192,16 +226,19 @@ export default async function SingleCourse({
                                    <Image
                                         width={50}
                                         height={50}
-                                        alt={tutor?.name || "PalmtechnIQ"}
-                                        src={tutor?.image || "/placeholder.svg"}
+                                        alt={actualTutor.name || "PalmtechnIQ"}
+                                        src={
+                                             actualTutor.image ||
+                                             "/placeholder.svg"
+                                        }
                                         className="rounded-full object-cover"
                                    />
 
                                    <div className="my-2 flex flex-col space-y-1">
                                         <div className="text-sm font-bold">
-                                             {tutor.name}
+                                             {actualTutor.name}
                                         </div>
-                                        <CourseRating tutor={tutor} />
+                                        <CourseRating tutor={actualTutor} />
                                    </div>
                               </div>
                               <div className="flex space-x-2 text-sm">
@@ -234,7 +271,7 @@ export default async function SingleCourse({
                               isPaid={isPaid!}
                               modules={modules}
                               progress={progress}
-                              tutor={tutor}
+                              tutor={actualTutor}
                               reviews={reviews!}
                               courseDetails={courseDetails}
                               mentorships={mentorships}
@@ -295,7 +332,7 @@ export default async function SingleCourse({
                                         </div>
 
                                         <span className="font-bold">
-                                             {tutor.name}
+                                             {actualTutor.name}
                                         </span>
                                    </div>
                                    <hr />
