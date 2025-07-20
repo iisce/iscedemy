@@ -343,3 +343,23 @@ export const UpdateProfileSchema = z.object({
           .min(2, "Name must be at least 2 characters")
           .max(50, "Name must be less than 50 characters"),
 });
+
+export const AwarenessProgramSchema = z.object({
+     fullName: z
+          .string()
+          .min(2, { message: "Name must be at least 2 characters" }),
+     age: z.string().refine(
+          (val) => {
+               const num = Number.parseInt(val);
+               return num >= 14 && num <= 100;
+          },
+          { message: "Age must be between 16 and 100" },
+     ),
+     dateOfBirth: z.string().nonempty({ message: "Date of birth is required" }),
+     phoneNumber: z
+          .string()
+          .regex(/^\+?[1-9][\d]{0,15}$/, { message: "Invalid phone number" }),
+     email: z.string().email({ message: "Invalid email address" }),
+     industry: z.string().optional(),
+     goals: z.string().optional(),
+});

@@ -29,19 +29,11 @@ export default async function getUserByEmail(
  * @param id - User's ID
  * @returns User object with selected fields or null
  */
-export async function getUserById(
-     id: string,
-): Promise<Pick<User, "id" | "courses" | "name" | "image"> | null> {
+export async function getUserById(id: string): Promise<User | null> {
      try {
           const user = await db.user.findUnique({
                where: {
                     id,
-               },
-               select: {
-                    id: true,
-                    courses: true,
-                    name: true,
-                    image: true,
                },
           });
           return user;

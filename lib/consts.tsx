@@ -1403,33 +1403,89 @@ export const INDUSTRIES = [
      "Software Engineering",
 ];
 
+export const FAKE_INDUSTRIES = [
+     "Security",
+     "Design",
+     "Product",
+     "Engineering",
+     "Marketing",
+     "Finance",
+     "Healthcare",
+];
+
+export const FAKE_REGISTRANTS = [
+     { name: "Chukwuma Okeke", role: "Security Analyst" },
+     { name: "Aisha Ibrahim", role: "UX Designer" },
+     { name: "Olumide Adebayo", role: "Product Manager" },
+     { name: "Fatima Yusuf", role: "Software Engineer" },
+     { name: "Emeka Nwosu", role: "Cybersecurity Specialist" },
+     { name: "Ngozi Eze", role: "UI Designer" },
+     { name: "Tunde Adeyemi", role: "Product Lead" },
+     { name: "Amaka Okafor", role: "DevOps Engineer" },
+     { name: "Ifeanyi Chukwu", role: "Security Consultant" },
+     { name: "Zainab Bello", role: "Graphic Designer" },
+     { name: "Kehinde Ogunleye", role: "Product Strategist" },
+     { name: "Chidinma Obi", role: "Frontend Developer" },
+     { name: "Abdullahi Musa", role: "Network Engineer" },
+     { name: "Funmilayo Adekunle", role: "UX Researcher" },
+     { name: "Oluwaseun Adewale", role: "Product Owner" },
+     { name: "Chiamaka Nnadi", role: "Backend Developer" },
+     { name: "Sani Mohammed", role: "Security Engineer" },
+     { name: "Adanna Okonkwo", role: "Interaction Designer" },
+     { name: "Babatunde Lawal", role: "Agile Coach" },
+     { name: "Hauwa Idris", role: "Full Stack Developer" },
+     { name: "Chukwudi Nnamdi", role: "Penetration Tester" },
+     { name: "Omolola Shittu", role: "Visual Designer" },
+     { name: "Adebola Ojo", role: "Product Analyst" },
+     { name: "Nkechi Umeh", role: "Cloud Engineer" },
+     { name: "Yusuf Abubakar", role: "Security Architect" },
+     { name: "Chioma Ekeh", role: "UI/UX Designer" },
+     { name: "Oladapo Fashola", role: "Product Marketing Manager" },
+     { name: "Khadija Suleiman", role: "Mobile Developer" },
+     { name: "Obinna Igwe", role: "Incident Responder" },
+     { name: "Temilade Ogunrinde", role: "Motion Designer" },
+     { name: "Mustapha Danjuma", role: "Product Designer" },
+     { name: "Ebere Nwachukwu", role: "Data Engineer" },
+     { name: "Segun Adesina", role: "Security Operations" },
+     { name: "Ifunanya Okoye", role: "UX Strategist" },
+     { name: "Ahmed Sani", role: "Product Consultant" },
+     { name: "Chinelo Anigbogu", role: "API Developer" },
+     { name: "Temitope Balogun", role: "Threat Analyst" },
+     { name: "Rukayat Aliyu", role: "Web Designer" },
+     { name: "Chigozie Udeh", role: "Product Operations" },
+     { name: "Amarachi Nwankwo", role: "Machine Learning Engineer" },
+     { name: "Ibrahim Shehu", role: "Security Auditor" },
+     { name: "Opeyemi Afolabi", role: "UX Analyst" },
+     { name: "Chukwuebuka Okoro", role: "Product Specialist" },
+     { name: "Halima Garba", role: "Database Engineer" },
+     { name: "Oluwatobi Oni", role: "Security Manager" },
+     { name: "Adaeze Mbanefo", role: "Interface Designer" },
+     { name: "Suleiman Abdullahi", role: "Product Growth Manager" },
+     { name: "Nkiruka Ogbodo", role: "AI Engineer" },
+     { name: "Femi Adeyinka", role: "Security Advisor" },
+     { name: "Uchechi Onyema", role: "Prototyping Specialist" },
+];
+
 export const SPEAKERS = [
      {
-          name: "Mr Paul Oyabami",
-          title: "Software Engineer & AI Specialist",
-          icon: <Shield className="h-6 w-6" />,
-          achievement:
-               "Prevented $22M in potential breaches with AI threat detection",
+          name: "Paul Oyabami",
+          title: "CEO, Software Engineer & AI Specialist",
+          image: "/event_speakers/speaker_paul.jpg",
+          achievement: "Automated 80% of code reviews with custom AI models",
      },
      {
           name: "Onyekachuwkwu Divine",
-          title: "Software Engineer",
-          icon: <Layout className="h-6 w-6" />,
+          title: "Head Of Media & Software Engineer",
+          image: "/event_speakers/speaker_divine.jpg",
           achievement:
                "Boosted user engagement 45% with AI-personalized interfaces",
      },
      {
           name: "Mahoussi Ezekiel",
           title: "Product Strategy Lead",
-          icon: <Clipboard className="h-6 w-6" />,
+          image: "/event_speakers/speaker_ezekiel.jpg",
           achievement:
                "Cut product development cycles by 70% using AI forecasting",
-     },
-     {
-          name: "Ignatius Emeka",
-          title: "AI Engineering Director",
-          icon: <Code className="h-6 w-6" />,
-          achievement: "Automated 80% of code reviews with custom AI models",
      },
 ];
 
@@ -1452,36 +1508,27 @@ export const EVENT_TESTIMONIALS = [
 ];
 export const AGENDA = [
      {
-          time: "10:00 - 10:30 AM",
-          title: "AI Apocalypse or Opportunity?",
+          title: "Explore Real-World AI Applications",
           description:
-               "Cutting through the hype to reveal the real impact on jobs",
+               "You will see how AI is solving everyday problems the Naija way.",
           highlight: true,
      },
      {
-          time: "10:30 - 11:30 AM",
-          title: "Weaponizing AI: Industry Breakouts",
+          title: "Network with Innovators & Industry Leaders",
           description:
-               "Hands-on demos for cybersecurity, UX, PMs, and engineers",
+               "You will connect with tech founders, creatives, and future collaborators.",
           highlight: true,
      },
      {
-          time: "11:30 - 12:15 PM",
-          title: "Build Your AI Co-Pilot",
+          title: "Access Exclusive Growth Opportunities",
           description:
-               "Step-by-step guide to automating your biggest time sinks",
+               "Discover jobs, partnerships, and funding leads just by showing up.",
           highlight: false,
      },
      {
-          time: "12:15 - 1:00 PM",
-          title: "Future-Proof Q&A",
-          description: "Get your specific questions answered by our experts",
-          highlight: false,
-     },
-     {
-          time: "1:00 - 2:00 PM",
-          title: "Networking & Strategy Sessions",
-          description: "Connect with peers and plan your AI implementation",
+          title: "Be Part of a Tech Movement Built for Us",
+          description:
+               "Celebrate Nigerian talent and join the community shaping our digital",
           highlight: false,
      },
 ];
