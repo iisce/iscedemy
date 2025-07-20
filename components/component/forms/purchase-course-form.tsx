@@ -1,15 +1,16 @@
 "use client";
+import { initiatePayment } from "@/actions/initialize-payment";
+import { Switch } from "@/components/ui/switch";
+import { TYPE } from "@/lib/consts";
 import { formatToNaira } from "@/lib/utils";
+import { PurchaseCourseSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Course, User } from "@prisma/client";
-import React, { useEffect, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 import { Button } from "../../ui/button";
-import {
-     Select,
-     SelectContent,
-     SelectItem,
-     SelectTrigger,
-     SelectValue,
-} from "../../ui/select";
 import {
      Form,
      FormControl,
@@ -18,15 +19,13 @@ import {
      FormLabel,
      FormMessage,
 } from "../../ui/form";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { TYPE } from "@/lib/consts";
-import { PurchaseCourseSchema } from "@/schemas";
-import { initiatePayment } from "@/actions/initialize-payment";
-import { useRouter } from "next/navigation";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
+import {
+     Select,
+     SelectContent,
+     SelectItem,
+     SelectTrigger,
+     SelectValue,
+} from "../../ui/select";
 
 export default function PurchaseCourseForm({
      course,

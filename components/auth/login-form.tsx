@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState, useTransition } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,6 +20,7 @@ import FormSuccess from "../form-success";
 import { Login } from "@/actions/login";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { debounce } from "lodash";
 import { toast } from "sonner";
 
 export default function LoginForm() {
@@ -33,6 +34,7 @@ export default function LoginForm() {
      const [error, setError] = useState<string | undefined>("");
      const [success, setSuccess] = useState<string | undefined>("");
      const [isPending, startTransition] = useTransition();
+     const [isCooldown, setIsCooldown] = useState(false);
      const router = useRouter();
 
      const form = useForm<z.infer<typeof LoginSchema>>({
@@ -43,9 +45,12 @@ export default function LoginForm() {
           },
      });
 
-     const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+     const onSubmit = debounce((values: z.infer<typeof LoginSchema>) => {
+          if (isCooldown) return;
           setError("");
           setSuccess("");
+          setIsCooldown(true);
+          setTimeout(() => setIsCooldown(false), 2000);
 
           startTransition(() => {
                Login(values, callbackUrl).then((data) => {
@@ -60,7 +65,7 @@ export default function LoginForm() {
                     }
                });
           });
-     };
+     }, 300);
 
      return (
           <CardWrapper
@@ -127,7 +132,7 @@ export default function LoginForm() {
                          <Button
                               type="submit"
                               className="w-full rounded-full"
-                              disabled={isPending}
+                              disabled={isPending || isCooldown}
                          >
                               {`Login`}
                          </Button>

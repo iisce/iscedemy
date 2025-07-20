@@ -80,6 +80,7 @@ model AwarenesssProgramRegistration {
   phoneNumber String
   email       String   @unique
   goals       String?
+  industry    String?
   status      String   @default("PENDING")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

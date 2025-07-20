@@ -1,136 +1,260 @@
-'use server'
-import { COURSE_PRICING } from '@/lib/course-pricing';
-import { db } from '@/lib/db';
-import { extractVideoId, formatClassDays, toSlug } from '@/lib/utils';
-import { CreateCourseSchema, UpdateCourseSchema } from '@/schemas';
-import { ProgramType } from '@prisma/client';
-import { z } from 'zod';
+"use server";
+import { auth } from "@/auth";
+import { COURSE_PRICING } from "@/lib/course-pricing";
+import { db } from "@/lib/db";
+import { rateLimit, RateLimitError } from "@/lib/rate-limit";
+import { extractVideoId, formatClassDays, toSlug } from "@/lib/utils";
+import { CreateCourseSchema, UpdateCourseSchema } from "@/schemas";
+import { ProgramType, UserRole } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { z } from "zod";
+
+/**
+ * Handles errors consistently across course actions
+ * @param error - The error object
+ * @param action - The action being performed (e.g., "creating course")
+ * @returns Standardized error response
+ */
+function handleError(error: unknown, action: string) {
+     if (error instanceof RateLimitError) {
+          return { error: error.message };
+     }
+     if (error instanceof z.ZodError) {
+          return { error: "Invalid input data" };
+     }
+     if (process.env.NODE_ENV !== "production") {
+          console.error(`Error ${action}:`, error);
+     }
+     return { error: `Failed to ${action}. Please try again.` };
+}
 
 /**
  * Creates a new course in the database after validating the input fields.
- *
- * @param values - The input values for creating the course, validated against `CreateCourseSchema`.
- * @returns A promise that resolves to an object containing either:
- * - `success` and the created course object if the operation is successful.
- * - `error` with an error message if the operation fails or validation errors occur.
- *
- * The function performs the following steps:
- * 1. Validates the input fields using `CreateCourseSchema`.
- * 2. Checks if a course with the same title and tutor ID already exists.
- * 3. Validates the program type and retrieves the corresponding pricing.
- * 4. Creates a new course in the database with the provided and derived data.
- * 5. Handles errors and returns appropriate error messages.
- *
- * @throws Logs any unexpected errors to the console and returns a generic error message.
+ * @param values - Input values for creating the course
+ * @returns Success response with the created course or an error message
  */
-export async function createCourse(values: z.infer<typeof CreateCourseSchema> ) {
-  try {
-    const validatedFields = CreateCourseSchema.safeParse(values);
-    
-    const existingCourse = await db.course.findFirst({
-      where: { title: toSlug(validatedFields.data?.title || ''), tutorId: validatedFields.data?.tutorId },
-    });
+export async function createCourse(values: z.infer<typeof CreateCourseSchema>) {
+     try {
+          const session = await auth();
+          if (
+               !session?.user.id ||
+               !([UserRole.ADMIN, UserRole.TUTOR] as UserRole[]).includes(
+                    session?.user?.role as UserRole,
+               )
+          ) {
+               return {
+                    error: "Unauthorized. Only admins or tutors can create courses.",
+               };
+          }
 
-    if (existingCourse) {
-      return { error: "A course with this title already exists for this tutor." };
-    }
+          await rateLimit({
+               key: `create-course:${session.user.id}`,
+               limit: 5,
+               window: 60,
+          });
 
-    const prices = COURSE_PRICING[validatedFields.data?.programType as ProgramType];
-    if (!prices) {
-      return { error: "Invalid program type." };
-    }
+          const validatedFields = CreateCourseSchema.safeParse(values);
+          if (!validatedFields.success) {
+               return { error: "Invalid input data" };
+          }
+          const { title, tutorId, programType } = validatedFields.data;
 
-    const newCourse = await db.course.create({
-      data: {
-        title: toSlug(validatedFields.data?.title || ''),
-        textSnippet: validatedFields.data?.textSnippet  ?? '',
-        description: validatedFields.data?.description ?? '',
-        conclusion: validatedFields.data?.conclusion ?? '',
-        summary: validatedFields.data?.summary ?? '',
-        programType: validatedFields.data?.programType,
-        duration: validatedFields.data?.duration ?? '',
-        category: validatedFields.data?.category ?? '',
-        videoUrl: validatedFields.data?.videoUrl ?? '',
-        noOfClass: validatedFields.data?.noOfClass ?? '',
-        classDays: formatClassDays(validatedFields.data?.classDays ||''),
-        certificate: validatedFields.data?.certificate ?? false,
-        overView: validatedFields.data?.overView ?? '',
-        virtualPrice: prices.virtualPrice,
-        physicalPrice: prices.physicalPrice,
-        image: validatedFields.data?.image || "/images/placeholder-course.jpg",
-        tutorId: validatedFields.data?.tutorId!,
-      },
-    });
+          const [tutor, existingCourse] = await Promise.all([
+               db.user.findUnique({
+                    where: { id: tutorId },
+                    select: { id: true, role: true },
+               }),
+               db.course.findFirst({
+                    where: { title: toSlug(title), tutorId },
+                    select: { id: true },
+               }),
+          ]);
 
-    return { success: "Course created successfully", course: newCourse };    
-  } catch (error) {
-    console.error("Error creating course:", error);
-    return { error: "Failed to create course. Please try again." };
-  }
+          if (!tutor || !["ADMIN", "TUTOR"].includes(tutor.role as string)) {
+               return { error: "Invalid or unauthorized tutor." };
+          }
+
+          if (existingCourse) {
+               return {
+                    error: "A course with this title already exists for this tutor.",
+               };
+          }
+
+          const prices =
+               COURSE_PRICING[validatedFields.data?.programType as ProgramType];
+          if (!prices) {
+               return { error: "Invalid program type." };
+          }
+
+          const videoId = validatedFields.data.videoUrl
+               ? extractVideoId(validatedFields.data.videoUrl)
+               : null;
+
+          const newCourse = await db.course.create({
+               data: {
+                    title: toSlug(title),
+                    textSnippet: validatedFields.data?.textSnippet ?? "",
+                    description: validatedFields.data?.description ?? "",
+                    conclusion: validatedFields.data?.conclusion ?? "",
+                    summary: validatedFields.data?.summary ?? "",
+                    programType,
+                    duration: validatedFields.data?.duration ?? "",
+                    category: validatedFields.data?.category ?? "",
+                    videoUrl: validatedFields.data?.videoUrl ?? "",
+                    videoId,
+                    noOfClass: validatedFields.data?.noOfClass ?? "",
+                    classDays: formatClassDays(
+                         validatedFields.data?.classDays || "",
+                    ),
+                    certificate: validatedFields.data?.certificate ?? false,
+                    overView: validatedFields.data?.overView ?? "",
+                    virtualPrice: prices.virtualPrice,
+                    physicalPrice: prices.physicalPrice,
+                    image:
+                         validatedFields.data?.image ||
+                         "/images/placeholder-course.jpg",
+                    tutorId,
+               },
+               select: {
+                    id: true,
+                    title: true,
+                    programType: true,
+                    virtualPrice: true,
+                    physicalPrice: true,
+                    tutorId: true,
+               },
+          });
+
+          // Revalidate cache
+          await Promise.all([
+               revalidatePath("/courses"),
+               revalidatePath(`/courses/${newCourse.title}`),
+          ]);
+
+          return { success: "Course created successfully", course: newCourse };
+     } catch (error) {
+          return handleError(error, "creating course");
+     }
 }
 
-
 /**
- * Updates an existing course in the database with the provided values.
- *
- * @param values - The data to update the course with, validated against the `UpdateCourseSchema`.
- * 
- * @returns A promise that resolves to an object containing either:
- * - `success` and the updated course if the operation is successful.
- * - `error` with an error message if the operation fails or the course is not found.
- *
- * @throws Will log an error to the console if an exception occurs during the update process.
- *
- * ### Notes:
- * - If the `programType` is updated, the course prices (`virtualPrice` and `physicalPrice`) are updated accordingly based on the `COURSE_PRICING` mapping.
- * - Fields not provided in `values` will retain their existing values from the database.
+ * Updates an existing course in the database.
+ * @param values - Data to update the course
+ * @returns Success response with the updated course or an error message
  */
 export async function updateCourse(values: z.infer<typeof UpdateCourseSchema>) {
-  try {
-    const validatedData = UpdateCourseSchema.parse(values);
-    console.log('Validated Data:', validatedData);
+     try {
+          const session = await auth();
+          if (
+               !session?.user.id ||
+               !([UserRole.ADMIN, UserRole.TUTOR] as UserRole[]).includes(
+                    session?.user?.role as UserRole,
+               )
+          ) {
+               return {
+                    error: "Unauthorized. Only admins or tutors can create courses.",
+               };
+          }
+          await rateLimit({
+               key: `update-course:${session.user.id}`,
+               limit: 5,
+               window: 60,
+          });
 
-    const existingCourse = await db.course.findUnique({
-      where: { id: validatedData.id },
-    });
+          const validatedData = UpdateCourseSchema.parse(values);
 
-    if (!existingCourse) {
-      return { error: "Course not found." };
-    }
+          const [existingCourse, tutor] = await Promise.all([
+               db.course.findUnique({
+                    where: { id: validatedData.id },
+                    select: {
+                         id: true,
+                         tutorId: true,
+                         programType: true,
+                         duration: true,
+                         category: true,
+                         videoUrl: true,
+                         videoId: true,
+                         noOfClass: true,
+                         classDays: true,
+                         certificate: true,
+                         overView: true,
+                         image: true,
+                    },
+               }),
+               db.user.findUnique({
+                    where: { id: validatedData.id ?? session.user.id },
+                    select: { id: true, role: true },
+               }),
+          ]);
 
-    // If programType is updated, update the prices accordingly
-    const updatedProgramType = validatedData.programType || existingCourse.programType;
-    const prices = COURSE_PRICING[updatedProgramType as ProgramType];
+          if (!existingCourse) {
+               return { error: "Course not found." };
+          }
 
-    const videoId = validatedData.videoUrl ? extractVideoId(validatedData.videoUrl) : undefined;
-    console.log('Extracted videoId for update:', videoId);
+          if (
+               validatedData.id &&
+               (!tutor || !["TUTOR", "ADMIN"].includes(tutor.role as string))
+          ) {
+               return { error: "Invalid or unauthorized tutor." };
+          }
+          // If programType is updated, update the prices accordingly
+          const updatedProgramType =
+               validatedData.programType || existingCourse.programType;
+          const prices = COURSE_PRICING[updatedProgramType as ProgramType];
+          if (!prices) {
+               return { error: "Invalid program type." };
+          }
 
-    const updatedCourse = await db.course.update({
-      where: { id: validatedData.id },
-      data: {
-        title: validatedData.title,
-        textSnippet: validatedData.textSnippet,
-        description: validatedData.description,
-        conclusion: validatedData.conclusion,
-        summary: validatedData.summary,
-        programType: updatedProgramType,
-        duration: validatedData.duration || existingCourse.duration,
-        category: validatedData.category || existingCourse.category,
-        videoUrl: validatedData.videoUrl || existingCourse.videoUrl,
-        videoId: videoId || existingCourse.videoId,
-        noOfClass: validatedData.noOfClass || existingCourse.noOfClass,
-        classDays: validatedData.classDays || existingCourse.classDays,
-        certificate: validatedData.certificate ?? existingCourse.certificate,
-        overView: validatedData.overView !== undefined ? validatedData.overView : existingCourse.overView,
-        virtualPrice: prices.virtualPrice,
-        physicalPrice: prices.physicalPrice,
-        image: validatedData.image || existingCourse.image,
-      },
-    });
+          const videoId = validatedData.videoUrl
+               ? extractVideoId(validatedData.videoUrl)
+               : existingCourse.videoId;
 
-    return { success: "Course updated successfully", course: updatedCourse };
-  } catch (error) {
-    console.error("Error updating course:", error);
-    return { error: "Failed to update course. Please try again." };
-  }
+          const updatedCourse = await db.course.update({
+               where: { id: validatedData.id },
+               data: {
+                    title: validatedData.title
+                         ? toSlug(validatedData.title)
+                         : undefined,
+                    textSnippet: validatedData.textSnippet,
+                    description: validatedData.description,
+                    conclusion: validatedData.conclusion,
+                    summary: validatedData.summary,
+                    programType: updatedProgramType,
+                    duration: validatedData.duration || existingCourse.duration,
+                    category: validatedData.category || existingCourse.category,
+                    videoUrl: validatedData.videoUrl || existingCourse.videoUrl,
+                    videoId,
+                    noOfClass:
+                         validatedData.noOfClass || existingCourse.noOfClass,
+                    classDays:
+                         validatedData.classDays || existingCourse.classDays,
+                    certificate:
+                         validatedData.certificate ??
+                         existingCourse.certificate,
+                    overView: validatedData.overView ?? existingCourse.overView,
+                    virtualPrice: prices.virtualPrice,
+                    physicalPrice: prices.physicalPrice,
+                    image: validatedData.image || existingCourse.image,
+               },
+               select: {
+                    id: true,
+                    title: true,
+                    programType: true,
+                    virtualPrice: true,
+                    physicalPrice: true,
+                    tutorId: true,
+               },
+          });
+          await Promise.all([
+               revalidatePath("/courses"),
+               revalidatePath(`/courses/${updatedCourse.title}`),
+          ]);
+
+          return {
+               success: "Course updated successfully",
+               course: updatedCourse,
+          };
+     } catch (error) {
+          return handleError(error, "updating course");
+     }
 }

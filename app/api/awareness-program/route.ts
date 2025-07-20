@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
      const body = await request.json();
-     const { fullName, age, dateOfBirth, phoneNumber, email, goals } = body;
+     const { fullName, age, dateOfBirth, phoneNumber, email, industry, goals } =
+          body;
 
      try {
           const existingRegistration =
@@ -17,9 +18,6 @@ export async function POST(request: Request) {
                );
           }
 
-          const currentSlots = await db.awarenesssProgramRegistration.count();
-          const status = currentSlots >= 100 ? "WAITLISTED" : "CONFIRMED";
-
           const registration = await db.awarenesssProgramRegistration.create({
                data: {
                     fullName,
@@ -27,12 +25,16 @@ export async function POST(request: Request) {
                     dateOfBirth: new Date(dateOfBirth),
                     phoneNumber,
                     email,
+                    industry: industry || null,
                     goals,
-                    status,
+                    status: "CONFIRMED",
                },
           });
 
-          return NextResponse.json({ status, id: registration.id });
+          return NextResponse.json({
+               status: "CONFIRMED",
+               id: registration.id,
+          });
      } catch (error) {
           console.error("Registration error:", error);
           return NextResponse.json(

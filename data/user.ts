@@ -1,8 +1,14 @@
 import { db } from "@/lib/db";
+import { User } from "@prisma/client";
 
-export const revalidate = 0;
-
-export default async function getUserByEmail(email: string) {
+/**
+ * Fetches a user by email with selected fields
+ * @param email - User's email
+ * @returns User object or null
+ */
+export default async function getUserByEmail(
+     email: string,
+): Promise<User | null> {
      try {
           const user = await db.user.findUnique({
                where: {
@@ -10,41 +16,70 @@ export default async function getUserByEmail(email: string) {
                },
           });
           return user;
-     } catch {
+     } catch (error) {
+          if (process.env.NODE_ENV !== "production") {
+               console.error(`Error fetching user by email ${email}:`, error);
+          }
           return null;
      }
 }
-export async function getUserById(id: string) {
+
+/**
+ * Fetches a user by ID with minimal fields for enrollment
+ * @param id - User's ID
+ * @returns User object with selected fields or null
+ */
+export async function getUserById(id: string): Promise<User | null> {
      try {
           const user = await db.user.findUnique({
                where: {
-                    id
+                    id,
                },
           });
           return user;
      } catch (error) {
-          console.error(`Error fetching user with ID ${id}:`, error);
+          if (process.env.NODE_ENV !== "production") {
+               console.error(`Error fetching user with ID ${id}:`, error);
+          }
           return null;
      }
 }
 
-export async function getUserByCourseId(course: string) {
+/**
+ * Fetches users enrolled in a course
+ * @param courseId - Course ID
+ * @returns Array of users or null
+ */
+export async function getUserByCourseId(
+     courseId: string,
+): Promise<Pick<User, "id">[] | null> {
      try {
-          const user = await db.user.findMany({
+          const users = await db.user.findMany({
                where: {
                     courses: {
-                         contains: course,
+                         contains: courseId,
                          mode: "insensitive",
                     },
                },
+               select: { id: true },
           });
-          return user;
-     } catch {
+          return users;
+     } catch (error) {
+          if (process.env.NODE_ENV !== "production") {
+               console.error(
+                    `Error fetching users for course ${courseId}:`,
+                    error,
+               );
+          }
           return null;
      }
 }
 
-export async function getTotalUsersExcludingTutors() {
+/**
+ * Counts users excluding tutors and admins
+ * @returns Number of users
+ */
+export async function getTotalUsersExcludingTutors(): Promise<number> {
      try {
           const count = await db.user.count({
                where: {
@@ -55,49 +90,65 @@ export async function getTotalUsersExcludingTutors() {
           });
           return count;
      } catch (error) {
-          console.log({ error });
+          if (process.env.NODE_ENV !== "production") {
+               console.error("Error counting users:", error);
+          }
           return 0;
      }
 }
 
-//This function adds course to a user that hasn't selected up to 3 courses
-export async function enrollUserInCourse(userId: string, courseId: string) {
+/**
+ * Enrolls a user in a course by appending courseId to the user's courses field
+ * @param userId - The unique identifier of the user
+ * @param courseId - The unique identifier of the course
+ * @returns A boolean indicating success
+ */
+export async function enrollUserInCourse(
+     userId: string,
+     courseId: string,
+): Promise<boolean> {
      try {
-          // Fetch the user's current courses
-          console.log("Fetching user by ID:", userId);
-          const user = await getUserById(userId);
-          console.log("User fetched:", user);
+          // Validate user and course concurrently
+          const [user, course] = await Promise.all([
+               db.user.findUnique({
+                    where: { id: userId },
+                    select: { id: true, courses: true },
+               }),
+               db.course.findUnique({
+                    where: { id: courseId },
+                    select: { id: true, title: true },
+               }),
+          ]);
 
           if (!user) {
                throw new Error("User not found");
           }
+          if (!course) {
+               throw new Error("Course not found");
+          }
 
-          let currentCourses = user?.courses;
-
-          // Check if the user is already enrolled in the course
+          const currentCourses = user.courses ? user.courses.split("---") : [];
           if (currentCourses && currentCourses.includes(courseId)) {
                throw new Error("User is already enrolled in this course.");
           }
 
-          // Add the new course to the array
-          currentCourses = currentCourses
-               ? currentCourses + "---" + courseId
-               : courseId;
+          if (currentCourses.length >= 3) {
+               throw new Error(
+                    "User has reached the maximum course enrollment limit",
+               );
+          }
 
-          // Convert the array back to a string
-          console.log("Updated courses string:", currentCourses);
-
-          // Update user's courses
+          const updatedCourses = [...currentCourses, courseId].join("---");
           await db.user.update({
                where: { id: userId },
-               data: {
-                    courses: currentCourses,
-               },
+               data: { courses: updatedCourses },
           });
-          console.log("User successfully enrolled in course");
+
           return true;
      } catch (error) {
-          console.error("Failed to enroll user in course:", error);
+          if (process.env.NODE_ENV !== "production") {
+               console.error("Failed to enroll user in course:", error);
+          }
           return false;
      }
 }
