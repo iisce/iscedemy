@@ -29,6 +29,7 @@ import { AwarenessProgramSchema } from "@/schemas";
 import {
      CalendarDaysIcon,
      CheckCircleIcon,
+     MapPinIcon,
      PhoneIcon,
      ShieldCheckIcon,
      UserCircleIcon,
@@ -171,6 +172,11 @@ export default function AwarenessProgram() {
                     form.reset();
                } catch (err) {
                     toast.error(
+                         err instanceof Error
+                              ? err.message
+                              : "An unexpected error occurred",
+                    );
+                    setError(
                          err instanceof Error
                               ? err.message
                               : "An unexpected error occurred",
@@ -567,6 +573,49 @@ export default function AwarenessProgram() {
                                                        </div>
                                                   </div>
                                              ))}
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         {/* Date and Venue */}
+                         <div className="mb-12">
+                              <h2 className="mb-6 text-2xl font-bold text-white">
+                                   <span className="text-green-400">
+                                        WHEN AND WHERE
+                                   </span>{" "}
+                                   - EVENT DETAILS
+                              </h2>
+                              <div className="rounded-xl bg-gradient-to-br from-green-900/20 to-black/50 p-6 backdrop-blur-sm">
+                                   <div className="space-y-4">
+                                        <div className="flex items-start">
+                                             <div className="mr-4 mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-green-700/30 text-green-400">
+                                                  <CalendarDaysIcon className="h-5 w-5" />
+                                             </div>
+                                             <div>
+                                                  <h3 className="text-lg font-bold text-white">
+                                                       Date
+                                                  </h3>
+                                                  <p className="text-green-200">
+                                                       30th of August 2025
+                                                  </p>
+                                             </div>
+                                        </div>
+                                        <div className="flex items-start">
+                                             <div className="mr-4 mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-green-700/30 text-green-400">
+                                                  <MapPinIcon className="h-5 w-5" />
+                                             </div>
+                                             <div>
+                                                  <h3 className="text-lg font-bold text-white">
+                                                       Venue
+                                                  </h3>
+                                                  <p className="text-green-200">
+                                                       22rd Chicken Republic
+                                                       Building (FESTAC Tower),
+                                                       AMG Workspace, 1st floor,
+                                                       FESTAC Town, Lagos,
+                                                       Nigeria
+                                                  </p>
+                                             </div>
                                         </div>
                                    </div>
                               </div>
