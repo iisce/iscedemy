@@ -1468,24 +1468,22 @@ export const FAKE_REGISTRANTS = [
 
 export const SPEAKERS = [
      {
-          name: "Paul Oyabami",
+          name: "Solomon Ogege",
           title: "CEO, Software Engineer & AI Specialist",
-          image: "/event_speakers/speaker_paul.jpg",
-          achievement: "Automated 80% of code reviews with custom AI models",
+          image: "/event_speakers/speaker_solomon.jpg",
+          topic: "Beyond the hype: Real world application of emerging technologies for societal impact",
      },
      {
-          name: "Onyekachuwkwu Divine",
+          name: " Ikechukwu Samuel",
           title: "Head Of Media & Software Engineer",
-          image: "/event_speakers/speaker_divine.jpg",
-          achievement:
-               "Boosted user engagement 45% with AI-personalized interfaces",
+          image: "/event_speakers/speaker_sam.jpg",
+          topic: "Boosted user engagement 45% with AI-personalized interfaces",
      },
      {
           name: "Mahoussi Ezekiel",
           title: "Product Strategy Lead",
           image: "/event_speakers/speaker_ezekiel.jpg",
-          achievement:
-               "Cut product development cycles by 70% using AI forecasting",
+          topic: "Cut product development cycles by 70% using AI forecasting",
      },
 ];
 

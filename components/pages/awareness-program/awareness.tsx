@@ -80,9 +80,14 @@ export default function AwarenessProgram() {
           },
      });
      useEffect(() => {
-          const fetchInitialCount = async () => {
+          const fetchInitialData = async () => {
                try {
                     const response = await fetch("/api/awareness-slots");
+                    if (!response.ok) {
+                         throw new Error(
+                              `HTTP error! status: ${response.status}`,
+                         );
+                    }
                     const data = await response.json();
                     setRegisteredCount(50 + data.count);
 
@@ -98,9 +103,10 @@ export default function AwarenessProgram() {
                     );
                } catch (err) {
                     console.error("Error fetching initial count:", err);
+                    setRegisteredCount(50);
                }
           };
-          fetchInitialCount();
+          fetchInitialData();
 
           timerRef.current = setInterval(() => {
                if (Math.random() > 0.7) {
@@ -112,9 +118,8 @@ export default function AwarenessProgram() {
                          `${registrant.name} (${registrant.role}) just secured a spot`,
                          ...prev.slice(0, 3),
                     ]);
-                    setRegisteredCount((prev) => prev + 1);
                }
-          }, 8000);
+          }, 7000);
 
           return () => {
                if (timerRef.current) clearInterval(timerRef.current);
@@ -166,7 +171,7 @@ export default function AwarenessProgram() {
                     setIsSubmitted(true);
                     setRegisteredCount((prev) => prev + 1);
                     setRecentRegistrants((prev) => [
-                         `${values.fullName.split(" ")[0]} (${values.industry || "Tech"}) just registered`,
+                         `${values.fullName} (${values.industry || "Tech"}) just registered`,
                          ...prev.slice(0, 3),
                     ]);
                     form.reset();
@@ -487,9 +492,7 @@ export default function AwarenessProgram() {
                                                                  {speaker.title}
                                                             </p>
                                                             <p className="mt-2 max-h-0 text-xs text-green-200 opacity-0 transition-all duration-500 group-hover:max-h-20 group-hover:opacity-100">
-                                                                 {
-                                                                      speaker.achievement
-                                                                 }
+                                                                 {speaker.topic}
                                                             </p>
                                                        </div>
                                                   </div>
@@ -600,7 +603,7 @@ export default function AwarenessProgram() {
                                                   </p>
                                              </div>
                                         </div>
-                                        <div className="flex items-start">
+                                        {/* <div className="flex items-start">
                                              <div className="mr-4 mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-green-700/30 text-green-400">
                                                   <MapPinIcon className="h-5 w-5" />
                                              </div>
@@ -616,7 +619,7 @@ export default function AwarenessProgram() {
                                                        Nigeria
                                                   </p>
                                              </div>
-                                        </div>
+                                        </div> */}
                                    </div>
                               </div>
                          </div>
