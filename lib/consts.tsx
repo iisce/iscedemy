@@ -1468,16 +1468,16 @@ export const FAKE_REGISTRANTS = [
 
 export const SPEAKERS = [
      {
-          name: "Solomon Ogege",
-          title: "CEO, Software Engineer & AI Specialist",
-          image: "/event_speakers/speaker_solomon.jpg",
-          topic: "Beyond the hype: Real world application of emerging technologies for societal impact",
+          name: " Ikechukwu Samuel",
+          title: "CEO SchooWare",
+          image: "/event_speakers/speaker_sam.jpg",
+          topic: "From curiosity to code: My journey into Tech and the Rise of AI.",
      },
      {
-          name: " Ikechukwu Samuel",
-          title: "Head Of Media & Software Engineer",
-          image: "/event_speakers/speaker_sam.jpg",
-          topic: "Boosted user engagement 45% with AI-personalized interfaces",
+          name: "Solomon Ogege",
+          title: "Founder CEO AXAO",
+          image: "/event_speakers/speaker_solomon.png",
+          topic: "Beyond the hype: Real world application of emerging technologies for societal impact",
      },
      {
           name: "Mahoussi Ezekiel",

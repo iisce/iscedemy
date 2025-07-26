@@ -27,6 +27,7 @@ import {
 } from "@/lib/consts";
 import { AwarenessProgramSchema } from "@/schemas";
 import {
+     ArrowDownIcon,
      CalendarDaysIcon,
      CheckCircleIcon,
      MapPinIcon,
@@ -63,9 +64,10 @@ export default function AwarenessProgram() {
      const [recentRegistrants, setRecentRegistrants] = useState<string[]>([]);
      const [registeredCount, setRegisteredCount] = useState(50);
      const [currentFakeIndex, setCurrentFakeIndex] = useState(0);
-
+     const [showRegisterButton, setShowRegisterButton] = useState(false);
      const timerRef = useRef<NodeJS.Timeout | null>(null);
      const countdownRef = useRef<NodeJS.Timeout | null>(null);
+     const formRef = useRef<HTMLDivElement>(null);
 
      const form = useForm<z.infer<typeof AwarenessProgramSchema>>({
           resolver: zodResolver(AwarenessProgramSchema),
@@ -143,6 +145,23 @@ export default function AwarenessProgram() {
                if (countdownRef.current) clearInterval(countdownRef.current);
           };
      }, []);
+
+     useEffect(() => {
+          const handleScroll = () => {
+               if (!formRef.current) return;
+               const formTop = formRef.current.getBoundingClientRect().top;
+               const windowHeight = window.innerHeight;
+               const scrollY = window.scrollY;
+               setShowRegisterButton(scrollY > 200 && formTop > windowHeight);
+          };
+
+          window.addEventListener("scroll", handleScroll);
+          return () => window.removeEventListener("scroll", handleScroll);
+     }, []);
+
+     const scrollToForm = () => {
+          formRef.current?.scrollIntoView({ behavior: "smooth" });
+     };
 
      const onSubmit = (values: z.infer<typeof AwarenessProgramSchema>) => {
           startTransition(async () => {
@@ -257,6 +276,36 @@ export default function AwarenessProgram() {
 
      return (
           <div className="min-h-screen bg-gradient-to-br from-[#00343d] via-[#00343d] to-white px-4 py-8">
+               <style jsx>{`
+                    @keyframes marquee {
+                         0% {
+                              transform: translateX(0);
+                         }
+                         100% {
+                              transform: translateX(-50%);
+                         }
+                    }
+                    .animate-marquee {
+                         animation: marquee 20s linear infinite;
+                         display: flex;
+                         width: 200%;
+                         will-change: transform;
+                    }
+                    @keyframes fadeIn {
+                         from {
+                              opacity: 0;
+                              transform: translateY(20px);
+                         }
+                         to {
+                              opacity: 1;
+                              transform: translateY(0);
+                         }
+                    }
+                    .register-button {
+                         animation: fadeIn 0.3s ease-out;
+                    }
+               `}</style>
+
                <MaxWidthWrapper>
                     <div className="mx-auto max-w-5xl">
                          <div className="mb-12 text-center">
@@ -373,7 +422,7 @@ export default function AwarenessProgram() {
                                              ...recentRegistrants,
                                         ].map((registrant, idx) => (
                                              <div
-                                                  key={idx}
+                                                  key={`${registrant}-${idx}`}
                                                   className="flex items-center text-green-300"
                                              >
                                                   <div className="mr-2 h-2 w-2 animate-pulse rounded-full bg-green-400"></div>
@@ -491,7 +540,7 @@ export default function AwarenessProgram() {
                                                             <p className="text-sm text-green-300">
                                                                  {speaker.title}
                                                             </p>
-                                                            <p className="mt-2 max-h-0 text-xs text-green-200 opacity-0 transition-all duration-500 group-hover:max-h-20 group-hover:opacity-100">
+                                                            <p className="mt-2 text-xs text-green-200">
                                                                  {speaker.topic}
                                                             </p>
                                                        </div>
@@ -623,7 +672,7 @@ export default function AwarenessProgram() {
                                    </div>
                               </div>
                          </div>
-                         <div>
+                         <div ref={formRef}>
                               <Card className="border-0 bg-gradient-to-b from-green-900/30 to-black/80 shadow-2xl backdrop-blur-xl">
                                    <CardHeader className="pb-6">
                                         <CardTitle className="text-2xl font-bold text-white">
@@ -987,6 +1036,15 @@ export default function AwarenessProgram() {
                          </div>
                          ;
                     </div>
+                    {showRegisterButton && (
+                         <Button
+                              onClick={scrollToForm}
+                              className="register-button fixed bottom-8 left-8 flex items-center gap-2 rounded-full bg-gradient-to-r from-green-600 to-black px-4 py-2 text-white shadow-lg hover:from-white hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-500/50"
+                         >
+                              <span>Take me to register</span>
+                              <ArrowDownIcon className="h-5 w-5" />
+                         </Button>
+                    )}
                </MaxWidthWrapper>
           </div>
      );
