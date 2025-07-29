@@ -1479,12 +1479,12 @@ export const SPEAKERS = [
           image: "/event_speakers/speaker_solomon.png",
           topic: "Beyond the hype: Real world application of emerging technologies for societal impact",
      },
-     {
-          name: "Mahoussi Ezekiel",
-          title: "Product Strategy Lead",
-          image: "/event_speakers/speaker_ezekiel.jpg",
-          topic: "Cut product development cycles by 70% using AI forecasting",
-     },
+     // {
+     //      name: "Mahoussi Ezekiel",
+     //      title: "Product Strategy Lead",
+     //      image: "/event_speakers/speaker_ezekiel.jpg",
+     //      topic: "Cut product development cycles by 70% using AI forecasting",
+     // },
 ];
 
 export const EVENT_TESTIMONIALS = [

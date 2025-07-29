@@ -681,7 +681,7 @@ export default function AwarenessProgram() {
                                              </span>{" "}
                                              FUTURE-PROOF YOUR CAREER
                                         </CardTitle>
-                                        <CardDescription className="text-2xl text-green-500">
+                                        <CardDescription className="text-xl text-green-600 md:text-2xl">
                                              <Typewriter
                                                   options={{
                                                        strings: [
