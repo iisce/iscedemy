@@ -130,7 +130,7 @@ export default function Footer() {
 
                          <div className="flex w-full flex-col gap-4 text-sm">
                               <div className="text-lg font-bold">
-                                   {`Subscribe To Our Newsletter`}
+                                   {`Get FREE roadmap to start your web development journey!`}
                               </div>
                               <form onSubmit={handleSubmit}>
                                    <div className="my-4 h-12 rounded-full">
@@ -139,9 +139,9 @@ export default function Footer() {
                                              onChange={(e) =>
                                                   setEmail(e.target.value)
                                              }
-                                             placeholder="Email Address"
+                                             placeholder="Enter your email address to get your roapmap!"
                                              type="email"
-                                             className="h-full w-full rounded-full border-none bg-slate-100 px-3 text-black placeholder:text-black"
+                                             className="h-full w-full rounded-full border-none bg-slate-100 px-3 font-bold text-black placeholder:text-black"
                                         />
                                    </div>
                                    <Button
@@ -153,7 +153,7 @@ export default function Footer() {
                                         {isPending ? (
                                              <Loader className="h-6 w-6 animate-spin" />
                                         ) : (
-                                             "Subscribe"
+                                             "Send My FREE Roadmap!"
                                         )}
                                    </Button>
                                    <FormError message={error} />
