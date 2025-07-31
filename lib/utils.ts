@@ -51,8 +51,8 @@ export function getInitials(name: string): string {
 }
 
 export function capitalizeWords(inputString: string | undefined): string {
-     if(!inputString || typeof inputString !== 'string') {
-          return '';
+     if (!inputString || typeof inputString !== "string") {
+          return "";
      }
      return inputString.replace(/[A-Z]/g, (match, index) => {
           return index === 0 ? match : ` ${match}`;
@@ -60,13 +60,13 @@ export function capitalizeWords(inputString: string | undefined): string {
 }
 export function toSlug(str: string): string {
      return str
-       .toLowerCase()
-       .trim()
-       .replace(/[^a-z0-9\s-]/g, "") 
-       .replace(/\s+/g, "-") 
-       .replace(/-+/g, "-"); 
-   }
-   
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9\s-]/g, "")
+          .replace(/\s+/g, "-")
+          .replace(/-+/g, "-");
+}
+
 /**
  * Formats a string representing class days by applying specific transformations:
  * - Trims leading and trailing whitespace.
@@ -76,12 +76,12 @@ export function toSlug(str: string): string {
  * @param days - The input string representing class days.
  * @returns The formatted string with the specified transformations applied.
  */
-  export  function formatClassDays(days: string): string {
+export function formatClassDays(days: string): string {
      return days
-       .trim()
-       .replace(/\s*and\s*/gi, "--") 
-       .replace(/\s+/g, "");   }
-
+          .trim()
+          .replace(/\s*and\s*/gi, "--")
+          .replace(/\s+/g, "");
+}
 
 /**
  * Generates a URL for a course based on its ID or title.
@@ -95,31 +95,36 @@ export function toSlug(str: string): string {
  *          If `preferTitle` is `true` and the course has a title, returns `/courses/{title}`.
  *          Otherwise, returns `/courses/{id}` if the course has an ID, or `/courses` as a fallback.
  */
-export function courseUrl(course?: { id?: string, title?: string }, preferTitle = false) {
-          if (!course) return '/courses';
-          if (preferTitle && course.title) {
-            return `/courses/${course.title}`;
-          }
-          if (course.id) {
-            return `/courses/${course.id}`;
-          }
-          return '/courses';
-        }
+export function courseUrl(
+     course?: { id?: string; title?: string },
+     preferTitle = false,
+) {
+     if (!course) return "/courses";
+     if (preferTitle && course.title) {
+          return `/courses/${course.title}`;
+     }
+     if (course.id) {
+          return `/courses/${course.id}`;
+     }
+     return "/courses";
+}
 /**
  * Formats a given Date object into a compact ISO 8601 string.
- * 
+ *
  * The resulting string removes dashes, colons, and milliseconds,
  * and appends a "Z" to indicate UTC time.
- * 
+ *
  * @param date - The Date object to format.
  * @returns A formatted string representing the date in UTC.
  */
-export  const formatDate = (date: Date) => {
-     return date
-       .toISOString()
-       .replace(/-|:|\.\d{3}/g, "")
-       .split(".")[0] + "Z";
-   };
+export const formatDate = (date: Date) => {
+     return (
+          date
+               .toISOString()
+               .replace(/-|:|\.\d{3}/g, "")
+               .split(".")[0] + "Z"
+     );
+};
 
 /**
  * Extracts the video ID from a given YouTube URL.
@@ -131,19 +136,45 @@ export  const formatDate = (date: Date) => {
  * @param url - The YouTube URL from which to extract the video ID.
  * @returns The extracted video ID as a string, or `null` if the URL is invalid or the video ID cannot be determined.
  */
-export  const extractVideoId = (url: string) => {
+export const extractVideoId = (url: string) => {
      try {
-       const urlObj = new URL(url);
-       if (urlObj.hostname.includes('youtube.com')) {
-         if (urlObj.pathname.includes('/embed/')) {
-           return urlObj.pathname.split('/embed/')[1];
-         }
-         return urlObj.searchParams.get('v');
-       } else if (urlObj.hostname.includes('youtu.be')) {
-         return urlObj.pathname.split('/')[1];
-       }
+          const urlObj = new URL(url);
+          if (urlObj.hostname.includes("youtube.com")) {
+               if (urlObj.pathname.includes("/embed/")) {
+                    return urlObj.pathname.split("/embed/")[1];
+               }
+               return urlObj.searchParams.get("v");
+          } else if (urlObj.hostname.includes("youtu.be")) {
+               return urlObj.pathname.split("/")[1];
+          }
      } catch (error) {
-       console.error(`Error parsing video URL: ${url}`, error);
+          console.error(`Error parsing video URL: ${url}`, error);
      }
      return null;
-   };
+};
+
+export const getNameFromEmail = (email: string): string => {
+     const [localPart] = email.split("@");
+     const segments = localPart.split(/[\.\_\-\d]/).filter(Boolean); // split on common separators and digits
+
+     const blacklist = ["info", "support", "contact", "admin", "sales"];
+
+     // Filter out known blacklisted segments
+     const nameSegments = segments.filter(
+          (segment) => !blacklist.includes(segment.toLowerCase()),
+     );
+
+     if (nameSegments.length === 0) {
+          return "SuperStar";
+     }
+
+     // Capitalize each segment
+     const capitalizedName = nameSegments
+          .map(
+               (name) =>
+                    name.charAt(0).toUpperCase() + name.slice(1).toLowerCase(),
+          )
+          .join(" ");
+
+     return capitalizedName.trim();
+};

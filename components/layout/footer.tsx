@@ -35,8 +35,7 @@ export default function Footer() {
                     if (result.error) {
                          setError(result.error);
                     } else {
-                         setSuccess(result.success);
-                         toast("Subscribed successfully!");
+                         toast("Your roadmap has been shipped to you!");
                          setEmail("");
                     }
                } catch (error) {
