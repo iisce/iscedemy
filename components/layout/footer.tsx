@@ -16,6 +16,7 @@ import FormError from "../form-error";
 import FormSuccess from "../form-success";
 import { Button } from "../ui/button";
 import MaxWidthWrapper from "./max-width-wrapper";
+import { toast } from "sonner";
 
 export default function Footer() {
      const [email, setEmail] = useState("");
@@ -35,12 +36,16 @@ export default function Footer() {
                          setError(result.error);
                     } else {
                          setSuccess(result.success);
+                         toast("Subscribed successfully!");
                          setEmail("");
                     }
                } catch (error) {
                     console.error("Error subscribing to newsletter:", error);
                     setError(
                          "An error occurred while subscribing. Please try again.",
+                    );
+                    toast(
+                         "An error occured while subscribing. Please try again!",
                     );
                }
           });
@@ -141,7 +146,7 @@ export default function Footer() {
                                              }
                                              placeholder="Enter your email address to get your roapmap!"
                                              type="email"
-                                             className="h-full w-full rounded-full border-none bg-slate-100 px-3 font-bold text-black placeholder:text-black"
+                                             className="h-full w-full rounded-full border-none bg-slate-100 px-3 text-black placeholder:text-black"
                                         />
                                    </div>
                                    <Button

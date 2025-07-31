@@ -56,7 +56,8 @@ export default function AwarenessProgram() {
           "CONFIRMED" | "WAITLISTED" | null
      >(null);
      const [timeLeft, setTimeLeft] = useState({
-          hours: 48,
+          days: 0,
+          hours: 0,
           minutes: 0,
           seconds: 0,
      });
@@ -67,13 +68,14 @@ export default function AwarenessProgram() {
      const [showRegisterButton, setShowRegisterButton] = useState(false);
      const timerRef = useRef<NodeJS.Timeout | null>(null);
      const countdownRef = useRef<NodeJS.Timeout | null>(null);
+     const pollRef = useRef<NodeJS.Timeout | null>(null);
      const formRef = useRef<HTMLDivElement>(null);
 
      const form = useForm<z.infer<typeof AwarenessProgramSchema>>({
           resolver: zodResolver(AwarenessProgramSchema),
           defaultValues: {
                fullName: "",
-               age: "",
+               age: 0,
                dateOfBirth: "",
                phoneNumber: "",
                email: "",
@@ -81,35 +83,53 @@ export default function AwarenessProgram() {
                goals: "",
           },
      });
-     useEffect(() => {
-          const fetchInitialData = async () => {
-               try {
-                    const response = await fetch("/api/awareness-slots");
-                    if (!response.ok) {
-                         throw new Error(
-                              `HTTP error! status: ${response.status}`,
-                         );
-                    }
-                    const data = await response.json();
-                    setRegisteredCount(50 + data.count);
 
-                    const registrantsResponse = await fetch(
-                         "/api/recent-registrants",
-                    );
-                    const registrantsData = await registrantsResponse.json();
-                    setRecentRegistrants(
-                         registrantsData.map(
-                              (r: { name: string; industry: string }) =>
-                                   `${r.name} (${r.industry}) just secured a spot`,
-                         ),
-                    );
-               } catch (err) {
-                    console.error("Error fetching initial count:", err);
-                    setRegisteredCount(50);
+     // Fetch initial data and poll for updates
+     const fetchRegistrantData = async () => {
+          try {
+               const response = await fetch("/api/awareness-slots", {
+                    cache: "no-store", // Prevent caching
+               });
+               if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                }
-          };
-          fetchInitialData();
+               const data = await response.json();
+               setRegisteredCount(50 + (data.count || 0));
 
+               const registrantsResponse = await fetch(
+                    "/api/recent-registrants",
+                    {
+                         cache: "no-store",
+                    },
+               );
+               if (!registrantsResponse.ok) {
+                    throw new Error(
+                         `HTTP error! status: ${registrantsResponse.status}`,
+                    );
+               }
+               const registrantsData = await registrantsResponse.json();
+               setRecentRegistrants(
+                    registrantsData.map(
+                         (r: { name: string; industry: string }) =>
+                              `${r.name} (${r.industry}) just secured a spot`,
+                    ),
+               );
+          } catch (err) {
+               console.error("Error fetching registrant data:", {
+                    error: err instanceof Error ? err.message : String(err),
+                    stack: err instanceof Error ? err.stack : undefined,
+               });
+               setRegisteredCount(50); // Fallback to default
+          }
+     };
+
+     useEffect(() => {
+          fetchRegistrantData();
+
+          // Poll every 30 seconds for updated count
+          pollRef.current = setInterval(fetchRegistrantData, 30000);
+
+          // Fake registrant updates
           timerRef.current = setInterval(() => {
                if (Math.random() > 0.7) {
                     setCurrentFakeIndex(
@@ -125,20 +145,32 @@ export default function AwarenessProgram() {
 
           return () => {
                if (timerRef.current) clearInterval(timerRef.current);
+               if (pollRef.current) clearInterval(pollRef.current);
           };
      }, [currentFakeIndex]);
 
      useEffect(() => {
-          let totalSeconds = 48 * 3600;
+          const eventDate = new Date("2025-08-30T10:00:00+01:00");
           countdownRef.current = setInterval(() => {
-               totalSeconds--;
-               const hours = Math.floor(totalSeconds / 3600);
-               const minutes = Math.floor((totalSeconds % 3600) / 60);
-               const seconds = totalSeconds % 60;
-               setTimeLeft({ hours, minutes, seconds });
-               if (totalSeconds <= 0) {
+               const now = new Date();
+               const timeDiff = Math.max(
+                    0,
+                    eventDate.getTime() - now.getTime(),
+               );
+               if (timeDiff <= 0) {
+                    setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
                     clearInterval(countdownRef.current as NodeJS.Timeout);
+                    return;
                }
+               const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+               const hours = Math.floor(
+                    (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+               );
+               const minutes = Math.floor(
+                    (timeDiff % (1000 * 60 * 60)) / (1000 * 60),
+               );
+               const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+               setTimeLeft({ days, hours, minutes, seconds });
           }, 1000);
 
           return () => {
@@ -166,14 +198,15 @@ export default function AwarenessProgram() {
      const onSubmit = (values: z.infer<typeof AwarenessProgramSchema>) => {
           startTransition(async () => {
                try {
+                    const phoneNumber = `+234${values.phoneNumber}`;
                     const response = await fetch("/api/awareness-program", {
                          method: "POST",
                          headers: { "Content-Type": "application/json" },
                          body: JSON.stringify({
                               fullName: values.fullName,
-                              age: parseInt(values.age),
+                              age: parseInt(values.age.toString()),
                               dateOfBirth: values.dateOfBirth,
-                              phoneNumber: values.phoneNumber,
+                              phoneNumber,
                               industry: values.industry || "Not specified",
                               email: values.email,
                               goals: values.goals,
@@ -182,7 +215,10 @@ export default function AwarenessProgram() {
 
                     if (!response.ok) {
                          const data = await response.json();
-                         throw new Error(data.error || "Registration failed");
+                         const errorMessage =
+                              data.error ||
+                              `Registration failed: ${response.statusText}`;
+                         throw new Error(errorMessage);
                     }
 
                     const data = await response.json();
@@ -195,16 +231,64 @@ export default function AwarenessProgram() {
                     ]);
                     form.reset();
                } catch (err) {
-                    toast.error(
+                    const errorMessage =
                          err instanceof Error
                               ? err.message
-                              : "An unexpected error occurred",
-                    );
-                    setError(
-                         err instanceof Error
-                              ? err.message
-                              : "An unexpected error occurred",
-                    );
+                              : "An unexpected error occurred";
+                    console.error("Registration error:", {
+                         error: errorMessage,
+                         stack: err instanceof Error ? err.stack : undefined,
+                         values: {
+                              ...values,
+                              phoneNumber: `+234${values.phoneNumber}`,
+                         },
+                    });
+                    toast.error(errorMessage);
+
+                    try {
+                         const registrantsResponse = await fetch(
+                              "/api/recent-registrants",
+                              {
+                                   cache: "no-store",
+                              },
+                         );
+                         if (registrantsResponse.ok) {
+                              const registrantsData =
+                                   await registrantsResponse.json();
+                              const isRegistered = registrantsData.some(
+                                   (r: { email: string }) =>
+                                        r.email === values.email,
+                              );
+                              if (isRegistered) {
+                                   setSubmissionStatus("CONFIRMED");
+                                   setIsSubmitted(true);
+                                   setRegisteredCount((prev) => prev + 1);
+                                   setRecentRegistrants((prev) => [
+                                        `${values.fullName} (${
+                                             values.industry || "Tech"
+                                        }) just registered`,
+                                        ...prev.slice(0, 3),
+                                   ]);
+                                   form.reset();
+                                   toast.info(
+                                        "Registration was recorded successfully despite the error.",
+                                   );
+                              }
+                         }
+                    } catch (checkErr) {
+                         console.error("Error checking recent registrants:", {
+                              error:
+                                   checkErr instanceof Error
+                                        ? checkErr.message
+                                        : String(checkErr),
+                              stack:
+                                   checkErr instanceof Error
+                                        ? checkErr.stack
+                                        : undefined,
+                         });
+                    }
+
+                    setError(errorMessage);
                }
           });
      };
@@ -352,6 +436,22 @@ export default function AwarenessProgram() {
                                                   Registration closes in
                                              </div>
                                              <div className="flex justify-center gap-2 md:justify-start">
+                                                  <div className="flex flex-col items-center">
+                                                       <div className="animate-bounce text-2xl font-bold text-white">
+                                                            {timeLeft.days
+                                                                 .toString()
+                                                                 .padStart(
+                                                                      2,
+                                                                      "0",
+                                                                 )}
+                                                       </div>
+                                                       <div className="text-xs text-green-300">
+                                                            DAYS
+                                                       </div>
+                                                  </div>
+                                                  <div className="mt-1 text-xl font-bold text-green-400">
+                                                       :
+                                                  </div>
                                                   <div className="flex flex-col items-center">
                                                        <div className="animate-bounce text-2xl font-bold text-white">
                                                             {timeLeft.hours
