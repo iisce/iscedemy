@@ -348,17 +348,25 @@ export const AwarenessProgramSchema = z.object({
      fullName: z
           .string()
           .min(2, { message: "Name must be at least 2 characters" }),
-     age: z.string().refine(
-          (val) => {
-               const num = Number.parseInt(val);
-               return num >= 14 && num <= 100;
-          },
-          { message: "Age must be between 16 and 100" },
-     ),
-     dateOfBirth: z.string().nonempty({ message: "Date of birth is required" }),
+     age: z
+          .string()
+          .regex(/^\d+$/, "Age must be a number")
+          .transform(Number)
+          .refine(
+               (val) => val >= 14 && val <= 100,
+               "Age must be between 14 and 100",
+          ),
+     dateOfBirth: z
+          .string()
+          .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format"),
      phoneNumber: z
           .string()
-          .regex(/^\+?[1-9][\d]{0,15}$/, { message: "Invalid phone number" }),
+          .regex(
+               /^\d{10}$/,
+               "Phone number must be 10 digits (e.g., 08012345678)",
+          )
+          .min(10, "Phone number must be 10 digits")
+          .max(10, "Phone number must be 10 digits"),
      email: z.string().email({ message: "Invalid email address" }),
      industry: z.string().optional(),
      goals: z.string().optional(),
