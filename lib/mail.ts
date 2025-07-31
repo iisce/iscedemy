@@ -6,6 +6,7 @@ import SignIn from "./signin";
 import tutorNotification from "./tutor-notification";
 import adminNotification from "./admin-notification";
 import studentNotification from "./student-notification";
+import { getNameFromEmail } from "./utils";
 
 // const resend = new Resend(process.env.RESEND_API_KEY);
 const resend = new Resend("re_732KJ3em_21Vu3jkWV1ZtG22rxLcyYdAH");
@@ -35,13 +36,14 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 
 export const subscribeToNewsletter = async (email: string) => {
      try {
+          const name = getNameFromEmail(email);
           await resend.emails.send({
                from: process.env.FROM_EMAIL_ADDRESS!,
                to: email,
-               subject: "Welcome to our newsletter system",
-               react: EmailNewsLetter({ email }),
+               subject: "Your Web Dev Roadmap Awaits 🚀",
+               react: EmailNewsLetter({ email, name }),
           });
-          return { success: "Subcribed successfully!" };
+          return { success: "Your roadmap has been shipped to you!" };
      } catch (error) {
           console.error("Error subcribing to newsletter!", error);
           return { error: "Subcription failed! Try again" };

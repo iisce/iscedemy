@@ -18,17 +18,16 @@ import React from "react";
 
 interface EmailVerificationProps {
      email: string;
+     name: string;
 }
 
-const EmailNewsLetter = ({ email }: EmailVerificationProps) => {
+const EmailNewsLetter = ({ name }: EmailVerificationProps) => {
      return (
           <Tailwind>
                <Html>
                     <Head>
-                         <Preview>
-                              PalmTechnIQ NewsLetter Subscription Mail
-                         </Preview>
-                         <Body className="w-full">
+                         <Preview>Your Web Dev Roadmap Awaits 🚀 </Preview>
+                         <Body className="w-full bg-white text-black">
                               <Container className="w-full">
                                    <Section className="bg-[#021A1A]">
                                         <Img
@@ -40,33 +39,68 @@ const EmailNewsLetter = ({ email }: EmailVerificationProps) => {
                                    </Section>
                                    <Section>
                                         <Text className="mt-[20px] text-center text-[20px] font-bold">
-                                             Welcome to the PalmTechnIQ
-                                             Newsletter
+                                             Your Web Dev Roadmap is Here!
                                         </Text>
                                         <Text className="text-center md:text-left">
-                                             Hi, {email}
+                                             Hey {name},
                                         </Text>
-                                        <Text className="text-center md:text-left">
-                                             Congratulations, you will now be
-                                             receiving updates and news on
-                                             anything concerning PalmTechnIQ.
-                                             Our newsletter is a good way to
-                                             find out about new course
-                                             additions, changes in curriculums,
-                                             happening events and so on.
+                                        <Text className="text-center leading-relaxed md:text-left">
+                                             {`  You’ve taken a bold step toward
+                                             mastering web development and I’m
+                                             excited to walk the journey with
+                                             you. 🚀`}
                                         </Text>
+                                        <Text className="text-center leading-relaxed md:text-left">
+                                             {`Inside the roadmap I’m sharing with
+                                             you, you’ll find a clear path from
+                                             beginner to pro — from your first
+                                             HTML tag all the way to building
+                                             full-stack apps and deploying them
+                                             to the web.`}
+                                        </Text>
+                                        <Text className="text-center leading-relaxed md:text-left">
+                                             <b>
+                                                  {`Don’t just download it. Walk
+                                                  through it. One step at a
+                                                  time.`}
+                                             </b>
+                                        </Text>
+                                        <Text className="text-center leading-relaxed md:text-left">
+                                             {`Print it, pin it to your wall, and
+                                             commit to the process. Whether
+                                             you're learning to code for a
+                                             career shift, freelancing, or your
+                                             next startup idea, this guide is
+                                             your compass.`}
+                                        </Text>
+                                        <Text className="text-center leading-relaxed md:text-left">
+                                             {`Cheers to building something great
+                                         one line of code at a time. 💻🔥`}
+                                        </Text>
+                                        <Text className="text-center leading-relaxed md:text-left">
+                                             {` I’d love to hear how your journey
+                                             unfolds. Don’t hesitate to reply
+                                             and share your wins (or
+                                             challenges)!`}
+                                        </Text>
+
+                                        <Section className="py-6 text-center">
+                                             <Button
+                                                  href="https://drive.google.com/file/d/1QYh-fBkcGqz2qsjEj6GbLeid4v_XxhQv/view?usp=drive_link"
+                                                  className="rounded-md bg-green-600 px-6 py-3 font-bold text-white"
+                                             >
+                                                  Download your WEB DEV ROADMAP
+                                             </Button>
+                                        </Section>
+
                                         <Text className="text-center md:text-left">
-                                             We are happy you are on board!!!
+                                             Thanks, <br />
+                                             <b>{`Ignatius Emeka (Fusco)`}</b>
+                                             <br />
+                                             Head Of PalmtechnIQ
                                         </Text>
                                    </Section>
-                                   <Section className="text-center md:text-left">
-                                        <span>
-                                             <Text>
-                                                  Thanks, <br />
-                                                  <b>PalmTechnIQ Team</b>
-                                             </Text>
-                                        </span>
-                                   </Section>
+
                                    <Hr className="mt-[30px]" />
                                    <Section className="text-center text-[#333333]">
                                         <Text>
