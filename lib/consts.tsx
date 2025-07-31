@@ -1397,10 +1397,10 @@ export const DOCS_LINKS = [
 ];
 
 export const INDUSTRIES = [
-     "Cybersecurity",
-     "UI/UX Design",
-     "Product Management",
-     "Software Engineering",
+     "AI In Content Creation",
+     "AI In Web Development",
+     "Prompt Engineering",
+     "Machine Learning",
 ];
 
 export const FAKE_INDUSTRIES = [

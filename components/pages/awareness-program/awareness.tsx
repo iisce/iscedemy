@@ -224,12 +224,12 @@ export default function AwarenessProgram() {
                     const data = await response.json();
                     setSubmissionStatus(data.status);
                     setIsSubmitted(true);
-                    setRegisteredCount((prev) => prev + 1);
                     setRecentRegistrants((prev) => [
                          `${values.fullName} (${values.industry || "Tech"}) just registered`,
                          ...prev.slice(0, 3),
                     ]);
                     form.reset();
+                    setTimeout(fetchRegistrantData, 1000);
                } catch (err) {
                     const errorMessage =
                          err instanceof Error
@@ -273,6 +273,7 @@ export default function AwarenessProgram() {
                                    toast.info(
                                         "Registration was recorded successfully despite the error.",
                                    );
+                                   setTimeout(fetchRegistrantData, 1000);
                               }
                          }
                     } catch (checkErr) {
@@ -928,19 +929,37 @@ export default function AwarenessProgram() {
                                                                            Number
                                                                       </FormLabel>
                                                                       <FormControl>
-                                                                           <div className="relative">
+                                                                           <div className="relative flex items-center">
                                                                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                                                                                      {getFieldIcon(
                                                                                           "phoneNumber",
                                                                                      )}
                                                                                 </div>
+                                                                                <span className="absolute left-10 top-1/2 -translate-y-1/2 text-white">
+                                                                                     +234
+                                                                                </span>
                                                                                 <Input
                                                                                      {...field}
                                                                                      disabled={
                                                                                           isPending
                                                                                      }
-                                                                                     placeholder="+1234567890"
-                                                                                     className="pl-10"
+                                                                                     placeholder="8012345678"
+                                                                                     className="pl-20"
+                                                                                     maxLength={
+                                                                                          10
+                                                                                     }
+                                                                                     onChange={(
+                                                                                          e,
+                                                                                     ) => {
+                                                                                          const value =
+                                                                                               e.target.value.replace(
+                                                                                                    /\D/g,
+                                                                                                    "",
+                                                                                               );
+                                                                                          field.onChange(
+                                                                                               value,
+                                                                                          );
+                                                                                     }}
                                                                                 />
                                                                            </div>
                                                                       </FormControl>
