@@ -3,14 +3,26 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
      try {
-          const count = await db.awarenesssProgramRegistration.count();
-          return NextResponse.json({ count });
-     } catch (error) {
-          console.error("Error fetching slot count:", {
-               error: error instanceof Error ? error.message : String(error),
-               stack: error instanceof Error ? error.stack : undefined,
+          const count = await db.awarenessProgramRegistration.count({
+               where: { status: "confirmed" },
           });
-          return NextResponse.json({ count: 0 }, { status: 500 });
+
+          return NextResponse.json(
+               { count },
+               {
+                    status: 200,
+                    headers: {
+                         "Cache-Control":
+                              "no-store, no-cache, must-revalidate, proxy-revalidate",
+                    },
+               },
+          );
+     } catch (error) {
+          console.error("API error:", error);
+          return NextResponse.json(
+               { error: "Failed to fetch registrant count" },
+               { status: 500 },
+          );
      } finally {
           await db.$disconnect();
      }

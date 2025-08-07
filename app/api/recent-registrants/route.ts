@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
      try {
           const recentRegistrants =
-               await db.awarenesssProgramRegistration.findMany({
+               await db.awarenessProgramRegistration.findMany({
                     take: 3,
                     orderBy: { createdAt: "desc" },
                     select: { fullName: true, industry: true },

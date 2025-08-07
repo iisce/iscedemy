@@ -151,7 +151,7 @@ export const PurchaseCourseSchema = z.object({
      courseId: z.string({
           required_error: "Please select at least 1 course!",
      }),
-     type: z.enum(["Physical", "Virtual"]),
+     type: z.enum(["Physical", "Virtual", "event"]),
      includeCertificate: z.boolean().optional().default(true),
 });
 

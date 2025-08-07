@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
      try {
           const existingRegistration =
-               await db.awarenesssProgramRegistration.findUnique({
+               await db.awarenessProgramRegistration.findUnique({
                     where: { email },
                });
           if (existingRegistration) {
@@ -18,21 +18,21 @@ export async function POST(request: Request) {
                );
           }
 
-          const registration = await db.awarenesssProgramRegistration.create({
+          const registration = await db.awarenessProgramRegistration.create({
                data: {
                     fullName,
                     age: parseInt(age),
                     dateOfBirth: new Date(dateOfBirth),
                     phoneNumber,
                     email,
-                    industry: industry || null,
+                    industry: industry || "Not specified",
                     goals,
-                    status: "CONFIRMED",
+                    status: "PENDING",
                },
           });
 
           return NextResponse.json({
-               status: "CONFIRMED",
+               status: "PENDING",
                id: registration.id,
           });
      } catch (error) {
