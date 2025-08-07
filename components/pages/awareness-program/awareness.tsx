@@ -1,5 +1,6 @@
 "use client";
 
+import { initiatePayment } from "@/actions/initialize-payment";
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,7 +40,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TargetIcon } from "@radix-ui/react-icons";
 import { IconAlertCircle, IconMail, IconTarget } from "@tabler/icons-react";
-import { Shield, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -53,7 +54,7 @@ export default function AwarenessProgram() {
      const [isPending, startTransition] = useTransition();
 
      const [submissionStatus, setSubmissionStatus] = useState<
-          "CONFIRMED" | "WAITLISTED" | null
+          "PENDING" | "CONFIRMED" | "WAITLISTED" | null
      >(null);
      const [timeLeft, setTimeLeft] = useState({
           days: 0,
@@ -66,10 +67,15 @@ export default function AwarenessProgram() {
      const [registeredCount, setRegisteredCount] = useState(50);
      const [currentFakeIndex, setCurrentFakeIndex] = useState(0);
      const [showRegisterButton, setShowRegisterButton] = useState(false);
+     const [paymentEmail, setPaymentEmail] = useState<string | null>(null);
      const timerRef = useRef<NodeJS.Timeout | null>(null);
      const countdownRef = useRef<NodeJS.Timeout | null>(null);
      const pollRef = useRef<NodeJS.Timeout | null>(null);
      const formRef = useRef<HTMLDivElement>(null);
+     const [authorizationUrl, setAuthorizationUrl] = useState<string | null>(
+          null,
+     );
+     const [transactionId, setTransactionId] = useState<string | null>(null);
 
      const form = useForm<z.infer<typeof AwarenessProgramSchema>>({
           resolver: zodResolver(AwarenessProgramSchema),
@@ -84,7 +90,6 @@ export default function AwarenessProgram() {
           },
      });
 
-     // Fetch initial data and poll for updates
      const fetchRegistrantData = async () => {
           try {
                const response = await fetch("/api/awareness-slots", {
@@ -125,11 +130,7 @@ export default function AwarenessProgram() {
 
      useEffect(() => {
           fetchRegistrantData();
-
-          // Poll every 30 seconds for updated count
           pollRef.current = setInterval(fetchRegistrantData, 30000);
-
-          // Fake registrant updates
           timerRef.current = setInterval(() => {
                if (Math.random() > 0.7) {
                     setCurrentFakeIndex(
@@ -199,6 +200,32 @@ export default function AwarenessProgram() {
           startTransition(async () => {
                try {
                     const phoneNumber = `+234${values.phoneNumber}`;
+
+                    const user = await fetch("/api/users", {
+                         method: "POST",
+                         headers: { "Content-Type": "application/json" },
+                         body: JSON.stringify({
+                              email: values.email,
+                              name: values.fullName,
+                              phone: phoneNumber,
+                              role: "USER",
+                         }),
+                    });
+                    console.log("Sending to /api/users:", {
+                         email: values.email,
+                         name: values.fullName,
+                         phone: phoneNumber,
+                         role: "USER",
+                    });
+                    if (!user.ok) {
+                         const userData = await user.json();
+                         throw new Error(
+                              userData.error || "Failed to create/check user",
+                         );
+                    }
+                    const userData = await user.json();
+                    console.log("User response:", userData);
+
                     const response = await fetch("/api/awareness-program", {
                          method: "POST",
                          headers: { "Content-Type": "application/json" },
@@ -210,6 +237,7 @@ export default function AwarenessProgram() {
                               industry: values.industry || "Not specified",
                               email: values.email,
                               goals: values.goals,
+                              status: "PENDING",
                          }),
                     });
 
@@ -222,8 +250,26 @@ export default function AwarenessProgram() {
                     }
 
                     const data = await response.json();
-                    setSubmissionStatus(data.status);
+
+                    const paymentResponse = await initiatePayment({
+                         courseId: "awareness-program-2025",
+                         type: "event",
+                         userId: userData.id, // Use actual user ID
+                         includeCertificate: false,
+                    });
+                    console.log(
+                         "Payment initiation response:",
+                         paymentResponse,
+                    );
+                    if (paymentResponse.error) {
+                         throw new Error(paymentResponse.error);
+                    }
+
+                    setSubmissionStatus("PENDING");
                     setIsSubmitted(true);
+                    setPaymentEmail(values.email);
+                    setAuthorizationUrl(paymentResponse.authorization_url);
+                    setTransactionId(paymentResponse.transactionId!);
                     setRecentRegistrants((prev) => [
                          `${values.fullName} (${values.industry || "Tech"}) just registered`,
                          ...prev.slice(0, 3),
@@ -245,49 +291,49 @@ export default function AwarenessProgram() {
                     });
                     toast.error(errorMessage);
 
-                    try {
-                         const registrantsResponse = await fetch(
-                              "/api/recent-registrants",
-                              {
-                                   cache: "no-store",
-                              },
-                         );
-                         if (registrantsResponse.ok) {
-                              const registrantsData =
-                                   await registrantsResponse.json();
-                              const isRegistered = registrantsData.some(
-                                   (r: { email: string }) =>
-                                        r.email === values.email,
-                              );
-                              if (isRegistered) {
-                                   setSubmissionStatus("CONFIRMED");
-                                   setIsSubmitted(true);
-                                   setRegisteredCount((prev) => prev + 1);
-                                   setRecentRegistrants((prev) => [
-                                        `${values.fullName} (${
-                                             values.industry || "Tech"
-                                        }) just registered`,
-                                        ...prev.slice(0, 3),
-                                   ]);
-                                   form.reset();
-                                   toast.info(
-                                        "Registration was recorded successfully despite the error.",
-                                   );
-                                   setTimeout(fetchRegistrantData, 1000);
-                              }
-                         }
-                    } catch (checkErr) {
-                         console.error("Error checking recent registrants:", {
-                              error:
-                                   checkErr instanceof Error
-                                        ? checkErr.message
-                                        : String(checkErr),
-                              stack:
-                                   checkErr instanceof Error
-                                        ? checkErr.stack
-                                        : undefined,
-                         });
-                    }
+                    // try {
+                    //      const registrantsResponse = await fetch(
+                    //           "/api/recent-registrants",
+                    //           {
+                    //                cache: "no-store",
+                    //           },
+                    //      );
+                    //      if (registrantsResponse.ok) {
+                    //           const registrantsData =
+                    //                await registrantsResponse.json();
+                    //           const isRegistered = registrantsData.some(
+                    //                (r: { email: string }) =>
+                    //                     r.email === values.email,
+                    //           );
+                    //           if (isRegistered) {
+                    //                setSubmissionStatus("PENDING");
+                    //                setIsSubmitted(true);
+                    //                setRegisteredCount((prev) => prev + 1);
+                    //                setRecentRegistrants((prev) => [
+                    //                     `${values.fullName} (${
+                    //                          values.industry || "Tech"
+                    //                     }) just registered`,
+                    //                     ...prev.slice(0, 3),
+                    //                ]);
+                    //                form.reset();
+                    //                toast.info(
+                    //                     "Registration recorded. Proceed to payment to secure your spot.",
+                    //                );
+                    //                setTimeout(fetchRegistrantData, 1000);
+                    //           }
+                    //      }
+                    // } catch (checkErr) {
+                    //      console.error("Error checking recent registrants:", {
+                    //           error:
+                    //                checkErr instanceof Error
+                    //                     ? checkErr.message
+                    //                     : String(checkErr),
+                    //           stack:
+                    //                checkErr instanceof Error
+                    //                     ? checkErr.stack
+                    //                     : undefined,
+                    //      });
+                    // }
 
                     setError(errorMessage);
                }
@@ -315,43 +361,76 @@ export default function AwarenessProgram() {
                               <CardContent className="p-8 text-center">
                                    <div
                                         className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full ${
-                                             submissionStatus === "WAITLISTED"
-                                                  ? "bg-orange-100"
-                                                  : "bg-green-100"
+                                             submissionStatus === "PENDING"
+                                                  ? "bg-yellow-100"
+                                                  : submissionStatus ===
+                                                      "WAITLISTED"
+                                                    ? "bg-orange-100"
+                                                    : "bg-green-100"
                                         }`}
                                    >
-                                        {submissionStatus === "WAITLISTED" ? (
+                                        {submissionStatus === "PENDING" ? (
+                                             <IconAlertCircle className="h-8 w-8 text-yellow-600" />
+                                        ) : submissionStatus ===
+                                          "WAITLISTED" ? (
                                              <IconAlertCircle className="h-8 w-8 text-orange-600" />
                                         ) : (
                                              <CheckCircleIcon className="h-8 w-8 text-green-600" />
                                         )}
                                    </div>
                                    <h2 className="mb-4 text-2xl font-bold text-primary">
-                                        {submissionStatus === "WAITLISTED"
-                                             ? "You're on the Waitlist!"
-                                             : "Access Granted!"}
+                                        {submissionStatus === "PENDING"
+                                             ? "You're A Step Away To Securing Your Spot"
+                                             : submissionStatus === "WAITLISTED"
+                                               ? "You're on the Waitlist!"
+                                               : "Access Granted!"}
                                    </h2>
                                    <p className="leading-relaxed text-primary/80">
-                                        {submissionStatus === "WAITLISTED"
-                                             ? "We'll contact you immediately if a spot opens. Check your email for exclusive AI resources."
-                                             : "You've secured your spot! Keep your eyes on your email. Event details coming soon."}
+                                        {submissionStatus === "PENDING"
+                                             ? "Complete the 5,000 Naira payment to secure your spot."
+                                             : submissionStatus === "WAITLISTED"
+                                               ? "We'll contact you if a spot opens. Check your email for exclusive AI resources."
+                                               : "You've secured your spot! Keep your eyes on your email. Event details coming soon."}
                                    </p>
-                                   <Button
-                                        onClick={() => {
-                                             setIsSubmitted(false);
-                                             setSubmissionStatus(null);
-                                             form.reset();
-                                        }}
-                                        className="mt-6 bg-gradient-to-r from-green-600 to-black hover:from-white hover:to-green-700"
-                                   >
-                                        {submissionStatus === "WAITLISTED"
-                                             ? "Join Waitlist for Colleague"
-                                             : "Register Another Person"}
-                                   </Button>
-                                   {error &&
-                                        toast.error(
-                                             error || "Something went wrong!",
-                                        )}
+                                   {submissionStatus === "PENDING" &&
+                                   authorizationUrl ? (
+                                        <Button
+                                             onClick={() =>
+                                                  (window.location.href =
+                                                       authorizationUrl)
+                                             }
+                                             className="mt-6 bg-gradient-to-r from-green-600 to-black hover:from-white hover:to-green-700"
+                                             disabled={
+                                                  isPending ||
+                                                  !paymentEmail ||
+                                                  !authorizationUrl
+                                             }
+                                        >
+                                             Proceed to Payment
+                                        </Button>
+                                   ) : (
+                                        <Button
+                                             onClick={() => {
+                                                  setIsSubmitted(false);
+                                                  setSubmissionStatus(null);
+                                                  setPaymentEmail(null);
+                                                  setAuthorizationUrl(null);
+                                                  setTransactionId(null);
+                                                  setError(null);
+                                                  form.reset();
+                                             }}
+                                             className="mt-6 bg-gradient-to-r from-green-600 to-black hover:from-white hover:to-green-700"
+                                        >
+                                             {submissionStatus === "WAITLISTED"
+                                                  ? "Join Waitlist for Colleague"
+                                                  : "Register Another Person"}
+                                        </Button>
+                                   )}
+                                   {error && (
+                                        <p className="mt-4 text-red-500">
+                                             {error}
+                                        </p>
+                                   )}
                               </CardContent>
                          </Card>
                     </MaxWidthWrapper>
@@ -753,7 +832,7 @@ export default function AwarenessProgram() {
                                                   </p>
                                              </div>
                                         </div>
-                                        {/* <div className="flex items-start">
+                                        <div className="flex items-start">
                                              <div className="mr-4 mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-green-700/30 text-green-400">
                                                   <MapPinIcon className="h-5 w-5" />
                                              </div>
@@ -769,7 +848,7 @@ export default function AwarenessProgram() {
                                                        Nigeria
                                                   </p>
                                              </div>
-                                        </div> */}
+                                        </div>
                                    </div>
                               </div>
                          </div>
@@ -1110,15 +1189,7 @@ export default function AwarenessProgram() {
                                                                       Access Kit
                                                                  </h3>
                                                                  <p className="text-sm text-green-200">
-                                                                      Register
-                                                                      now and
-                                                                      get
-                                                                      immediate
-                                                                      access to
-                                                                      our "5 AI
-                                                                      Hacks You
-                                                                      Can Use
-                                                                      Tomorrow"
+                                                                      {`Register and pay 5,000 Naira to get immediate access to our "5 AI Hacks You Can Use Tomorrow"`}
                                                                  </p>
                                                             </div>
                                                        </div>
@@ -1129,8 +1200,8 @@ export default function AwarenessProgram() {
                                                        disabled={isPending}
                                                   >
                                                        {isPending
-                                                            ? "🔒 LOCKING MY SPOT..."
-                                                            : "🔐 LOCK MY SPOT BEFORE ROBOTS DO"}
+                                                            ? "🔒 REGISTERING..."
+                                                            : "🔐 REGISTER NOW"}
                                                   </Button>
                                              </form>
                                         </Form>

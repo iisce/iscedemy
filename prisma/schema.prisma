@@ -36,6 +36,7 @@ model User {
   submittedProjects ProjectSubmission[]
   progress          Progress[]
   transactions      Transaction[]
+  EventPayment      EventPayment[]
 
   @@map("users")
 }
@@ -72,7 +73,33 @@ model CourseRegistration {
   @@map("courseRegistrations")
 }
 
-model AwarenesssProgramRegistration {
+model Event {
+  id          String         @id @default(cuid())
+  title       String
+  description String?
+  price       Int
+  date        DateTime
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  payments    EventPayment[]
+}
+
+model EventPayment {
+  id            String    @id @default(cuid())
+  userId        String
+  eventId       String
+  transactionId String    @unique
+  amount        Int
+  status        String
+  currency      String
+  verifiedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  User          User      @relation(fields: [userId], references: [id])
+  Event         Event     @relation(fields: [eventId], references: [id])
+}
+
+model AwarenessProgramRegistration {
   id          String   @id @default(cuid())
   fullName    String
   age         Int
@@ -85,7 +112,7 @@ model AwarenesssProgramRegistration {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  @@map("awarenesssProgramRegistrations")
+  @@map("awarenessProgramRegistrations")
 }
 
 model Course {
