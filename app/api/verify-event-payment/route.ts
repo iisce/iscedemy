@@ -17,7 +17,7 @@ export async function POST(request: Request) {
                );
           }
 
-          const transaction = await db.eventPayment.findFirst({
+          let transaction = await db.eventPayment.findFirst({
                where: { transactionId: reference },
                include: { User: true },
           });
@@ -26,13 +26,24 @@ export async function POST(request: Request) {
                console.error("Transaction not found in EventPayment:", {
                     reference,
                });
-               return NextResponse.json(
-                    { error: "Transaction not found" },
-                    { status: 404 },
-               );
-          }
 
-          if (transaction.status === "SUCCESSFUL") {
+               const fallbackTransaction = await db.eventPayment.findUnique({
+                    where: { id: transactionId },
+                    include: { User: true },
+               });
+
+               if (!fallbackTransaction) {
+                    return NextResponse.json(
+                         { error: "Transaction not found" },
+                         { status: 404 },
+                    );
+               }
+               await db.eventPayment.update({
+                    where: { id: transactionId },
+                    data: { status: "SUCCESSFUL", verifiedAt: new Date() },
+               });
+               transaction = fallbackTransaction;
+          } else if (transaction.status === "SUCCESSFUL") {
                console.log("Transaction already verified:", { reference });
                return new NextResponse(
                     JSON.stringify({
@@ -48,24 +59,32 @@ export async function POST(request: Request) {
                          },
                     },
                );
+          } else {
+               await db.eventPayment.update({
+                    where: { id: transaction.id },
+                    data: { status: "SUCCESSFUL", verifiedAt: new Date() },
+               });
+               console.log("Updated EventPayment to SUCCESSFUL:", {
+                    id: transaction.id,
+               });
           }
-          await db.coursePayment.update({
-               where: { id: transactionId },
-               data: { status: "SUCCESSFUL", verifiedAt: new Date() },
-          });
-          console.log("Updated EventPayment to SUCCESSFUL:", {
-               id: transaction.id,
-          });
 
           const registrant = await db.awarenessProgramRegistration.findFirst({
-               where: { email: transaction.userId },
+               where: { email: transaction.User.email! }, // ✅ Correct
           });
           console.log("Registrant query result:", registrant);
+
+          if (!registrant) {
+               console.warn(
+                    "No registrant found for email:",
+                    transaction.User.email,
+               );
+          }
 
           if (registrant) {
                await db.awarenessProgramRegistration.update({
                     where: { id: registrant.id },
-                    data: { status: "confirmed" },
+                    data: { status: "CONFIRMED" },
                });
                console.log("Updated registration to confirmed:", {
                     email: transaction.User.email,

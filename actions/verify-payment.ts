@@ -42,8 +42,8 @@ export async function verifyPayment(
                }
 
                if (transaction.status === "SUCCESSFUL") {
-                    console.error("Transaction already verified");
-                    return { error: "Transaction already verified" };
+                    console.log("Transaction already verified");
+                    return { success: "Transaction already verified" };
                }
                const tutor = transaction.Course.tutor;
 
