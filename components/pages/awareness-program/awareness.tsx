@@ -44,6 +44,7 @@ import { Zap } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { BeatLoader } from "react-spinners";
 import { toast } from "sonner";
 import Typewriter from "typewriter-effect";
 import { z } from "zod";
@@ -95,10 +96,11 @@ export default function AwarenessProgram() {
                const response = await fetch("/api/awareness-slots", {
                     cache: "no-store", // Prevent caching
                });
+
+               const data = await response.json();
                if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                }
-               const data = await response.json();
                setRegisteredCount(50 + (data.count || 0));
 
                const registrantsResponse = await fetch(
@@ -1199,9 +1201,19 @@ export default function AwarenessProgram() {
                                                        className="w-full bg-gradient-to-r from-green-600 to-black hover:from-white hover:to-green-700"
                                                        disabled={isPending}
                                                   >
-                                                       {isPending
-                                                            ? "🔒 REGISTERING..."
-                                                            : "🔐 REGISTER NOW"}
+                                                       {isPending ? (
+                                                            <div className="flex items-center justify-center gap-2">
+                                                                 <BeatLoader
+                                                                      size={10}
+                                                                      color="#ffffff"
+                                                                 />
+                                                                 <span>
+                                                                      Registering...
+                                                                 </span>
+                                                            </div>
+                                                       ) : (
+                                                            "🔐 REGISTER NOW"
+                                                       )}
                                                   </Button>
                                              </form>
                                         </Form>

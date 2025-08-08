@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
      try {
           const count = await db.awarenessProgramRegistration.count({
-               where: { status: "confirmed" },
+               where: { status: "CONFIRMED" },
           });
 
           return NextResponse.json(

@@ -1489,21 +1489,22 @@ export const SPEAKERS = [
 
 export const EVENT_TESTIMONIALS = [
      {
-          quote: "Went from fearing AI to commanding it. Now saving 15 hours/week on security audits.",
-          author: "Sam R., Security Analyst",
-          result: "300% threat detection boost",
+          quote: "Before this, I thought AI was only for tech bros. But after I used ChatGPT to streamline our monthly audit reports. My boss now thinks I'm some kind of wizard.",
+          author: "Adebayo Ogunleye, Internal Auditor",
+          result: "Cut reporting time by 60%",
      },
      {
-          quote: "AI didn't replace me - it made me 10x more valuable. Promoted within 3 months of applying these techniques.",
-          author: "Lisa T., Product Manager",
-          result: "Promoted to Director",
+          quote: "AI helped me build a simple HR chatbot that answers staff FAQs. I didn’t write a single line of code, just prompts. Now my team thinks I’m a genius.",
+          author: "Chinaza Ofor, HR Executive",
+          result: "Recognized for innovation",
      },
      {
-          quote: "Automated my boring tasks in 2 days. Now I focus on creative solutions that get me noticed.",
-          author: "Marcus L., UX Designer",
-          result: "Raise + recognition",
+          quote: "As a project manager, I used to spend hours writing updates. With AI tools, I now automate most reports and focus more on strategy. It's been a game changer.",
+          author: "Uche Nwokedi, Project Manager",
+          result: "Improved project efficiency",
      },
 ];
+
 export const AGENDA = [
      {
           title: "Explore Real-World AI Applications",
