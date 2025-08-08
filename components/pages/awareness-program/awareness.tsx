@@ -1191,7 +1191,7 @@ export default function AwarenessProgram() {
                                                                       Access Kit
                                                                  </h3>
                                                                  <p className="text-sm text-green-200">
-                                                                      {`Register and pay 5,000 Naira to get immediate access to our "5 AI Hacks You Can Use Tomorrow"`}
+                                                                      {`Register get immediate access to our "5 AI Hacks You Can Use Tomorrow"`}
                                                                  </p>
                                                             </div>
                                                        </div>
