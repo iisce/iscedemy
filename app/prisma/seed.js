@@ -877,16 +877,24 @@ async function seed() {
       * Updating certificate table
       */
      // const certificate = await prisma.certificate.create({
-     //     data: {
-     //         userId: 'cm2f860lg000150fjobl09mlv',
-     //         courseId: 'clxgfalll00066prq9y7ie54m',
-     //         studentName: 'Kelvin Udemezue ',
-     //         platform: 'PalmTechnIQ',
-     //         type: 'CertificateOfCompletion',
-     //         certificateUrl: '',
-     //     }
-     // })
-     // console.log(`${certificate.count} Certificate Updated Successfully!`)
+     //      data: {
+     //           userId: "cmbhujsmv0001ko17w30a4mfs",
+     //           courseId: "clxgfalll00066prq9y7ie54m",
+     //           studentName: "Micheal Igwe",
+     //           platform: "PalmTechnIQ",
+     //           type: "CertificateOfCompletion",
+     //           certificateUrl: "",
+     //      },
+     //      data: {
+     //           userId: "cmbfe4i970001nwjfytqxsx82",
+     //           courseId: "clxgfalll00026prq7rg4dhhl",
+     //           studentName: "Aisha Yunusa",
+     //           platform: "PalmTechnIQ",
+     //           type: "CertificateOfCompletion",
+     //           certificateUrl: "",
+     //      },
+     // });
+     // console.log(`${certificate.count} Certificate Updated Successfully!`);
      //  const event = await prisma.event.upsert({
      //       where: { id: "awareness-program-2025" },
      //       update: {},
