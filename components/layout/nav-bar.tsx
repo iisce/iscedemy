@@ -1,8 +1,8 @@
-'use client';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import MaxWidthWrapper from './max-width-wrapper';
-import MobileMenu from './mobile-menu';
+"use client";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import MaxWidthWrapper from "./max-width-wrapper";
+import MobileMenu from "./mobile-menu";
 import Image from "next/image";
 import { NAVLINKS } from "@/lib/consts";
 import LogInButton from "./log-in-button";
@@ -40,6 +40,15 @@ export default function NavBar({ user }: { user?: User }) {
                               <Button
                                    variant="outline"
                                    className="hidden h-12 rounded-full bg-background text-primary hover:bg-none hover:text-primary lg:flex"
+                                   asChild
+                              >
+                                   <Link href="/awareness-program">
+                                        {`Get Events Access`}
+                                   </Link>
+                              </Button>
+                              <Button
+                                   variant="ghost"
+                                   className="hidden h-12 rounded-full border border-background bg-transparent text-background hover:bg-none hover:text-primary lg:flex"
                                    asChild
                               >
                                    <Link href="https://wa.me/qr/">
