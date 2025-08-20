@@ -1,6 +1,5 @@
 "use client";
 
-import { initiatePayment } from "@/actions/initialize-payment";
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,6 +25,7 @@ import {
      INDUSTRIES,
      SPEAKERS,
 } from "@/lib/consts";
+import { eventNotificationEmail } from "@/lib/mail";
 import { AwarenessProgramSchema } from "@/schemas";
 import {
      ArrowDownIcon,
@@ -39,9 +39,10 @@ import {
 } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TargetIcon } from "@radix-ui/react-icons";
-import { IconAlertCircle, IconMail, IconTarget } from "@tabler/icons-react";
+import { IconMail, IconTarget } from "@tabler/icons-react";
 import { Zap } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
@@ -253,25 +254,55 @@ export default function AwarenessProgram() {
 
                     const data = await response.json();
 
-                    const paymentResponse = await initiatePayment({
-                         courseId: "awareness-program-2025",
-                         type: "event",
-                         userId: userData.id, // Use actual user ID
-                         includeCertificate: false,
-                    });
-                    console.log(
-                         "Payment initiation response:",
-                         paymentResponse,
+                    // Send registration confirmation email
+
+                    const emailResponse = await fetch(
+                         "/api/send-registration-email",
+                         {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({
+                                   fullName: values.fullName,
+                                   email: values.email,
+                              }),
+                         },
                     );
-                    if (paymentResponse.error) {
-                         throw new Error(paymentResponse.error);
+                    if (!emailResponse.ok) {
+                         const emailData = await emailResponse.json();
+                         console.warn("Email sending failed:", emailData.error);
+                         // Continue even if email fails, as registration is complete
+                    } else {
+                         const emailResult = await emailResponse.json();
+                         if (emailResult.success) {
+                              await eventNotificationEmail(
+                                   values.fullName,
+                                   values.email,
+                                   "PalmTechnIQ Lunchpad - AI Na The Future Program 2025",
+                                   "August 30, 2025",
+                                   "22rd Chicken Republic Building (FESTAC Tower), AMG Workspace, 1st floor, FESTAC Town, Lagos, Nigeria",
+                              );
+                         }
                     }
 
-                    setSubmissionStatus("PENDING");
+                    // const paymentResponse = await initiatePayment({
+                    //      courseId: "awareness-program-2025",
+                    //      type: "event",
+                    //      userId: userData.id, // Use actual user ID
+                    //      includeCertificate: false,
+                    // });
+                    // console.log(
+                    //      "Payment initiation response:",
+                    //      paymentResponse,
+                    // );
+                    // if (paymentResponse.error) {
+                    //      throw new Error(paymentResponse.error);
+                    // }
+
+                    setSubmissionStatus("CONFIRMED");
                     setIsSubmitted(true);
                     setPaymentEmail(values.email);
-                    setAuthorizationUrl(paymentResponse.authorization_url);
-                    setTransactionId(paymentResponse.transactionId!);
+                    // setAuthorizationUrl(paymentResponse.authorization_url);
+                    // setTransactionId(paymentResponse.transactionId!);
                     setRecentRegistrants((prev) => [
                          `${values.fullName} (${values.industry || "Tech"}) just registered`,
                          ...prev.slice(0, 3),
@@ -292,50 +323,6 @@ export default function AwarenessProgram() {
                          },
                     });
                     toast.error(errorMessage);
-
-                    // try {
-                    //      const registrantsResponse = await fetch(
-                    //           "/api/recent-registrants",
-                    //           {
-                    //                cache: "no-store",
-                    //           },
-                    //      );
-                    //      if (registrantsResponse.ok) {
-                    //           const registrantsData =
-                    //                await registrantsResponse.json();
-                    //           const isRegistered = registrantsData.some(
-                    //                (r: { email: string }) =>
-                    //                     r.email === values.email,
-                    //           );
-                    //           if (isRegistered) {
-                    //                setSubmissionStatus("PENDING");
-                    //                setIsSubmitted(true);
-                    //                setRegisteredCount((prev) => prev + 1);
-                    //                setRecentRegistrants((prev) => [
-                    //                     `${values.fullName} (${
-                    //                          values.industry || "Tech"
-                    //                     }) just registered`,
-                    //                     ...prev.slice(0, 3),
-                    //                ]);
-                    //                form.reset();
-                    //                toast.info(
-                    //                     "Registration recorded. Proceed to payment to secure your spot.",
-                    //                );
-                    //                setTimeout(fetchRegistrantData, 1000);
-                    //           }
-                    //      }
-                    // } catch (checkErr) {
-                    //      console.error("Error checking recent registrants:", {
-                    //           error:
-                    //                checkErr instanceof Error
-                    //                     ? checkErr.message
-                    //                     : String(checkErr),
-                    //           stack:
-                    //                checkErr instanceof Error
-                    //                     ? checkErr.stack
-                    //                     : undefined,
-                    //      });
-                    // }
 
                     setError(errorMessage);
                }
@@ -360,7 +347,7 @@ export default function AwarenessProgram() {
                <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-black to-green-50 p-4">
                     <MaxWidthWrapper>
                          <Card className="mx-auto w-full max-w-md border-0 bg-white/80 shadow-2xl backdrop-blur-sm">
-                              <CardContent className="p-8 text-center">
+                              {/* <CardContent className="p-8 text-center">
                                    <div
                                         className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full ${
                                              submissionStatus === "PENDING"
@@ -428,6 +415,46 @@ export default function AwarenessProgram() {
                                                   : "Register Another Person"}
                                         </Button>
                                    )}
+                                   {error && (
+                                        <p className="mt-4 text-red-500">
+                                             {error}
+                                        </p>
+                                   )}
+                              </CardContent> */}
+
+                              <CardContent className="p-8 text-center">
+                                   <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+                                        <CheckCircleIcon className="h-8 w-8 text-green-600" />
+                                   </div>
+                                   <h2 className="mb-4 text-2xl font-bold text-primary">
+                                        Registration Confirmed!
+                                   </h2>
+                                   <p className="leading-relaxed text-primary/80">
+                                        {`Congratulations! You’ve secured your
+                                        free spot for the AI Awareness Program.
+                                        Check your email for event details and
+                                        exclusive resources. We’re excited to
+                                        see you on August 30, 2025!`}
+                                   </p>
+                                   <Button
+                                        asChild
+                                        className="mt-6 bg-gradient-to-r from-green-600 to-black hover:from-white hover:to-green-700"
+                                   >
+                                        <Link href="https://chat.whatsapp.com/LabSnHSaCEmCLhWxXXar3O">
+                                             Join Others Already On The Event
+                                        </Link>
+                                   </Button>
+                                   <Button
+                                        onClick={() => {
+                                             setIsSubmitted(false);
+                                             setSubmissionStatus(null);
+                                             setError(null);
+                                             form.reset();
+                                        }}
+                                        className="mt-6 bg-gradient-to-r from-green-600 to-black hover:from-white hover:to-green-700"
+                                   >
+                                        Register Another Person
+                                   </Button>
                                    {error && (
                                         <p className="mt-4 text-red-500">
                                              {error}

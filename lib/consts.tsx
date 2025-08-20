@@ -1400,7 +1400,6 @@ export const INDUSTRIES = [
      "AI In Content Creation",
      "AI In Web Development",
      "Prompt Engineering",
-     "Machine Learning",
 ];
 
 export const FAKE_INDUSTRIES = [
@@ -1475,16 +1474,22 @@ export const SPEAKERS = [
      },
      {
           name: "Solomon Ogege",
-          title: "Founder CEO AXAO",
+          title: "Founder & CEO AXAO",
           image: "/event_speakers/speaker_solomon.png",
           topic: "Beyond the hype: Real world application of emerging technologies for societal impact",
      },
-     // {
-     //      name: "Mahoussi Ezekiel",
-     //      title: "Product Strategy Lead",
-     //      image: "/event_speakers/speaker_ezekiel.jpg",
-     //      topic: "Cut product development cycles by 70% using AI forecasting",
-     // },
+     {
+          name: "Roland Joseph",
+          title: "Founder & CEO 24mobile mech",
+          image: "/event_speakers/speaker_roland.jpg",
+          topic: "Tech is not the future, tech is now",
+     },
+     {
+          name: "Maryann Stephen Mankilik",
+          title: "HR Consultant & Founder, Cadenza Consulting",
+          image: "/event_speakers/speaker_queen.jpg",
+          topic: "AI in Recruitment: Redefining the Future of Work and Talent Selection",
+     },
 ];
 
 export const EVENT_TESTIMONIALS = [
