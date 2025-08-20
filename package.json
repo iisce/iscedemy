@@ -14,7 +14,8 @@
 		"fix-modules-curriculum-ids": "tsx scripts/fix-modules-curriculum-ids.ts",
 		"update-curriculum-timestamp": "tsx scripts/update-curriculum-timestamp.ts",
 		"backfill-lessonkeys": "tsx scripts/backfill-lessonkeys.ts",
-		"resolve-curriculum-duplicates": "tsx scripts/resolve-curriculum-duplicates.ts"
+		"resolve-curriculum-duplicates": "tsx scripts/resolve-curriculum-duplicates.ts",
+		"generate-access-codes": "tsx scripts/generate-access-codes.ts"
 	},
 	"prisma": {
 		"seed": "ts-node app/prisma/seed.js"

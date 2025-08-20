@@ -107,6 +107,7 @@ export const eventNotificationEmail = async (
      eventName: string,
      eventDate: string,
      eventVenue: string,
+     accessCode?: string,
 ) => {
      try {
           const response = await resend.emails.send({
@@ -118,6 +119,7 @@ export const eventNotificationEmail = async (
                     eventName,
                     eventDate,
                     eventVenue,
+                    accessCode,
                }),
           });
           console.log("Resend event response:", response);

@@ -277,7 +277,7 @@ export default function AwarenessProgram() {
                               await eventNotificationEmail(
                                    values.fullName,
                                    values.email,
-                                   "PalmTechnIQ Lunchpad - AI Na The Future Program 2025",
+                                   "PalmTechnIQ Launchpad - AI Na The Future Program 2025",
                                    "August 30, 2025",
                                    "22rd Chicken Republic Building (FESTAC Tower), AMG Workspace, 1st floor, FESTAC Town, Lagos, Nigeria",
                               );

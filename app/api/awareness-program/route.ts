@@ -1,6 +1,28 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
+async function generateCustomAccessCode(): Promise<string> {
+     const prefix = "AI";
+     let code: string = "";
+     let isUnique = false;
+
+     while (!isUnique) {
+          const randomNum = Math.floor(
+               10000 + Math.random() * 90000,
+          ).toString(); // 5-digit number
+          code = `${prefix}${randomNum}`;
+          const existingCode = await db.awarenessProgramRegistration.findUnique(
+               {
+                    where: { accessCode: code },
+               },
+          );
+          if (!existingCode) {
+               isUnique = true;
+          }
+     }
+     return code;
+}
+
 export async function POST(request: Request) {
      const body = await request.json();
      const { fullName, age, dateOfBirth, phoneNumber, email, industry, goals } =
@@ -18,6 +40,7 @@ export async function POST(request: Request) {
                );
           }
 
+          const accessCode = await generateCustomAccessCode();
           const registration = await db.awarenessProgramRegistration.create({
                data: {
                     fullName,
@@ -28,6 +51,7 @@ export async function POST(request: Request) {
                     industry: industry || "Not specified",
                     goals,
                     status: "PENDING",
+                    accessCode,
                },
           });
 
