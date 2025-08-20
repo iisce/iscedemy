@@ -1,11 +1,12 @@
 import { Resend } from "resend";
+import adminNotification from "./admin-notification";
 import EmailVerification from "./email-verification";
+import eventNotification from "./event-notification";
 import EmailNewsLetter from "./newsletter-subs";
 import PasswordReset from "./password-reset";
 import SignIn from "./signin";
-import tutorNotification from "./tutor-notification";
-import adminNotification from "./admin-notification";
 import studentNotification from "./student-notification";
+import tutorNotification from "./tutor-notification";
 import { getNameFromEmail } from "./utils";
 
 // const resend = new Resend(process.env.RESEND_API_KEY);
@@ -94,6 +95,37 @@ export const studentNotificationMail = async (
           console.error(
                "Error sending student email to",
                studentEmail,
+               ":",
+               error,
+          );
+          return { error: "Email sending failed! Try again" };
+     }
+};
+export const eventNotificationEmail = async (
+     registrantName: string,
+     registrantEmail: string,
+     eventName: string,
+     eventDate: string,
+     eventVenue: string,
+) => {
+     try {
+          const response = await resend.emails.send({
+               from: process.env.FROM_EMAIL_ADDRESS!,
+               to: registrantEmail,
+               subject: `Welcome to ${eventName}!`,
+               react: eventNotification({
+                    registrantName,
+                    eventName,
+                    eventDate,
+                    eventVenue,
+               }),
+          });
+          console.log("Resend event response:", response);
+          return { success: "Email sent successfully!" };
+     } catch (error) {
+          console.error(
+               "Error sending event email to",
+               registrantEmail,
                ":",
                error,
           );
