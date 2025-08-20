@@ -31,20 +31,20 @@ const eventNotification = ({
                     <Head>
                          <Preview>Welcome to {eventName}!</Preview>
                          <Body className="w-full bg-[#021A1A]">
-                              <Container className="mx-auto w-full p-6">
+                              <Container className="mx-auto w-full">
                                    <Section className="text-center">
                                         <Img
-                                             className="mx-auto h-24 object-cover py-4"
+                                             className="mx-auto h-full object-cover py-3"
                                              src={`https://www.palmtechniq.com/assets/palmtechniqlogo.png`}
                                              width="200"
-                                             height="100"
+                                             height="200"
                                              alt="PalmTechnIQ Logo"
                                         />
                                    </Section>
                                    <Section className="w-full text-center">
                                         <Img
                                              width="300"
-                                             className="mx-auto w-full max-w-xs rounded-md object-cover pt-6"
+                                             className="mx-auto w-full rounded-md object-cover pt-6"
                                              height="200"
                                              src={`https://isce-mail.vercel.app/static/template-images/reg-crash-course.png`}
                                              alt="AI Awareness Event"
@@ -134,10 +134,10 @@ const eventNotification = ({
                                              </p>
                                         </Text>
                                    </Section>
-                                   <Section className="flex justify-center gap-4 pb-6">
+                                   <Section className="pb-[40px] text-center">
                                         <Button
                                              href="https://www.facebook.com/profile.php?id=61561459226438&mibextid=ZbWKwL"
-                                             className="rounded-full bg-green-600 p-2"
+                                             className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img
                                                   width="23"
@@ -148,29 +148,29 @@ const eventNotification = ({
                                         </Button>
                                         <Button
                                              href="https://www.linkedin.com/in/palm-techniq-03839b313/"
-                                             className="rounded-full bg-green-600 p-2"
+                                             className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img
                                                   width="23"
                                                   height="23"
                                                   alt="LinkedIn"
-                                                  src={`https://static-00.iconduck.com/assets.00/linkedin-icon-512x512-a7sf08js.png`}
+                                                  src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-app-icon.png`}
                                              />
                                         </Button>
                                         <Button
                                              href="https://www.instagram.com/palmtechniq/"
-                                             className="rounded-full bg-green-600 p-2"
+                                             className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img
                                                   width="23"
                                                   height="23"
                                                   alt="Instagram"
-                                                  src={`https://static-00.iconduck.com/assets.00/instagram-icon-256x256-ubgz701g.png`}
+                                                  src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/ig-instagram-icon.png`}
                                              />
                                         </Button>
                                         <Button
                                              href="https://app.slack.com/client/T076LDT7109/C0764SE3VB7"
-                                             className="rounded-full bg-green-600 p-2"
+                                             className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img
                                                   width="23"

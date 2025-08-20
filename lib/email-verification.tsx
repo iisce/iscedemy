@@ -113,7 +113,7 @@ const EmailVerification = ({ email, token }: EmailVerificationProps) => {
                                                   width="23"
                                                   height="23"
                                                   alt="PalmTechnIQ"
-                                                  src={`https://static-00.iconduck.com/assets.00/linkedin-icon-512x512-a7sf08js.png`}
+                                                  src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/linkedin-app-icon.png`}
                                              />
                                         </Button>
                                         <Button
@@ -124,7 +124,7 @@ const EmailVerification = ({ email, token }: EmailVerificationProps) => {
                                                   width="23"
                                                   height="23"
                                                   alt="PalmTechnIQ"
-                                                  src={`https://static-00.iconduck.com/assets.00/instagram-icon-256x256-ubgz701g.png`}
+                                                  src={`https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/ig-instagram-icon.png`}
                                              />
                                         </Button>
                                         <Button
