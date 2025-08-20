@@ -39,9 +39,10 @@ export async function POST(request: Request) {
           await eventNotificationEmail(
                fullName,
                email,
-               "PalmTechnIQ Lunchpad - AI Na The Future Program 2025",
+               "PalmTechnIQ Launchpad - AI Na The Future Program 2025",
                "August 30, 2025",
                "22rd Chicken Republic Building (FESTAC Tower), AMG Workspace, 1st floor, FESTAC Town, Lagos, Nigeria",
+               registrant.accessCode!,
           );
           console.log("Sent confirmation email to:", email);
 

@@ -17,13 +17,15 @@ interface EventNotificationProps {
      eventName: string;
      eventDate: string;
      eventVenue: string;
+     accessCode?: string;
 }
 
 const eventNotification = ({
      registrantName = "",
-     eventName = "PalmTechnIQ Lunchpad - AI Na The Future Program 2025",
+     eventName = "PalmTechnIQ Launchpad - AI Na The Future Program 2025",
      eventDate = "August 30, 2025",
      eventVenue = "22rd Chicken Republic Building (FESTAC Tower), AMG Workspace, 1st floor, FESTAC Town, Lagos, Nigeria",
+     accessCode = "",
 }: EventNotificationProps) => {
      return (
           <Tailwind>
@@ -86,6 +88,15 @@ const eventNotification = ({
                                                   rebels
                                              </li>
                                         </ul>
+                                   </Section>
+                                   <Section className="mt-6 text-center">
+                                        <Text className="text-lg text-white">
+                                             Your Access Code:{" "}
+                                             <b>{accessCode}</b>
+                                             <br />
+                                             Present this code at the event
+                                             entrance for quick check-in.
+                                        </Text>
                                    </Section>
                                    <Section className="mt-6 text-center">
                                         <Text className="text-lg text-white">

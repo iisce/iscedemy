@@ -109,6 +109,7 @@ model AwarenessProgramRegistration {
   goals       String?
   industry    String?
   status      String   @default("PENDING")
+  accessCode  String?  @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
