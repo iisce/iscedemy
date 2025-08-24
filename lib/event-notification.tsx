@@ -125,6 +125,14 @@ const eventNotification = ({
                                              </a>
                                         </Text>
                                    </Section>
+                                   <Section className="text-left">
+                                        <span>
+                                             <Text>
+                                                  Best regards, <br />
+                                                  <b>PalmTechnIQ Team</b>
+                                             </Text>
+                                        </span>
+                                   </Section>
                                    <Hr className="my-6 border-green-700" />
                                    <Section className="text-center text-gray-400">
                                         <Text>
@@ -158,7 +166,7 @@ const eventNotification = ({
                                              />
                                         </Button>
                                         <Button
-                                             href="https://www.linkedin.com/in/palm-techniq-03839b313/"
+                                             href="https://www.linkedin.com/company/palmtechniq/"
                                              className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img

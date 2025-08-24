@@ -73,6 +73,14 @@ const PasswordReset = ({ email, token }: PasswordResetProps) => {
                                         ignore and delete this message and
                                         strengthen your password.
                                    </Text>
+                                   <Section className="text-left">
+                                        <span>
+                                             <Text>
+                                                  Thanks, <br />
+                                                  <b>PalmTechnIQ Team</b>
+                                             </Text>
+                                        </span>
+                                   </Section>
                                    <Hr className="mt-[30px]" />
                                    <Section className="text-center text-[#333333]">
                                         <Text>
@@ -82,7 +90,8 @@ const PasswordReset = ({ email, token }: PasswordResetProps) => {
                                              </p>
                                              <p>
                                                   You are recieving this mail
-                                                  because you opted in via our
+                                                  because you requested a
+                                                  password reset via our
                                                   website.
                                              </p>
                                              <p>
@@ -106,7 +115,7 @@ const PasswordReset = ({ email, token }: PasswordResetProps) => {
                                              />
                                         </Button>
                                         <Button
-                                             href="https://www.linkedin.com/in/palm-techniq-03839b313/"
+                                             href="https://www.linkedin.com/company/palmtechniq/"
                                              className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img

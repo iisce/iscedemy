@@ -95,7 +95,7 @@ export default function AwarenessProgram() {
      const fetchRegistrantData = async () => {
           try {
                const response = await fetch("/api/awareness-slots", {
-                    cache: "no-store", // Prevent caching
+                    cache: "no-store",
                });
 
                const data = await response.json();
@@ -127,7 +127,7 @@ export default function AwarenessProgram() {
                     error: err instanceof Error ? err.message : String(err),
                     stack: err instanceof Error ? err.stack : undefined,
                });
-               setRegisteredCount(50); // Fallback to default
+               setRegisteredCount(50);
           }
      };
 
@@ -344,7 +344,7 @@ export default function AwarenessProgram() {
 
      if (isSubmitted) {
           return (
-               <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-black to-green-50 p-4">
+               <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-black to-green-50">
                     <MaxWidthWrapper>
                          <Card className="mx-auto w-full max-w-md border-0 bg-white/80 shadow-2xl backdrop-blur-sm">
                               {/* <CardContent className="p-8 text-center">
@@ -468,7 +468,7 @@ export default function AwarenessProgram() {
      }
 
      return (
-          <div className="min-h-screen bg-gradient-to-br from-[#00343d] via-[#00343d] to-white px-4 py-8">
+          <div className="min-h-screen bg-gradient-to-br from-[#00343d] via-[#00343d] to-white py-8">
                <style jsx>{`
                     @keyframes marquee {
                          0% {

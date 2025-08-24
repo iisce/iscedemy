@@ -92,15 +92,15 @@ const SignIn = ({ fullName = "" }: SignInProps) => {
                                                   All Rights Reserved.
                                              </p>
                                              <p>
-                                                  You are recieving this mail
-                                                  because you opted in via our
-                                                  website.
+                                                  {`You are recieving this mail
+                                                  because you you've successfully registered via our
+                                                  website.`}
                                              </p>
                                              <p>
-                                                  Mailing Address: 1st Floor,
+                                                  {`Mailing Address: 1st Floor,
                                                   (Festac Tower) Chicken
                                                   Republic Building, 22Rd
-                                                  ,Festac Town, Lagos, Nigeria.
+                                                  ,Festac Town, Lagos, Nigeria.`}
                                              </p>
                                         </Text>
                                    </Section>
@@ -117,7 +117,7 @@ const SignIn = ({ fullName = "" }: SignInProps) => {
                                              />
                                         </Button>
                                         <Button
-                                             href="https://www.linkedin.com/in/palm-techniq-03839b313/"
+                                             href="https://www.linkedin.com/company/palmtechniq/"
                                              className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img

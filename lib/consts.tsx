@@ -217,12 +217,12 @@ export const COURSELIST: ICOURSELIST2[] = [
      },
 ];
 export const COURSES: ICOURSES[] = [
-     // {
-     // 	name: 'Frontend Development',
-     // },
-     // {
-     // 	name: 'Backend Development',
-     // },
+     {
+          name: "Frontend Development",
+     },
+     {
+          name: "Backend Development",
+     },
      {
           name: "Web Development",
      },
@@ -315,33 +315,33 @@ export const COURSE_PREVIEW: {
           link: "smart-home-automation",
      },
      // {
-     // 	image: '/images/bakenddev.jpg',
-     // 	icon: [
-     // 		<Icons.LaptopIcon key='1' />,
-     // 		<Icons.NodeJSCourseIcon key='2' />,
-     // 		<Icons.DatabaseIcon key='3' />,
-     // 		<Icons.GitIcon key='4' />,
-     // 	],
-     // 	name: 'COURSE',
-     // 	title: 'Back-end Development',
-     // 	info: `Discover the core of back-end development. Learn to create user interfaces and master
+     //      image: "/images/bakenddev.jpg",
+     //      icon: [
+     //           <Icons.LaptopIcon key="1" />,
+     //           <Icons.NodeJSCourseIcon key="2" />,
+     //           <Icons.DatabaseIcon key="3" />,
+     //           <Icons.GitIcon key="4" />,
+     //      ],
+     //      name: "COURSE",
+     //      title: "Back-end Development",
+     //      info: `Discover the core of back-end development. Learn to create user interfaces and master
      // 		key programming languages and frameworks driving today's web.`,
-     // 	link: 'backend-development',
+     //      link: "backend-development",
      // },
-     // {
-     // 	image: '/images/frontenddev.jpg',
-     // 	icon: [
-     // 		<Icons.NextJSIcon key='5' />,
-     // 		<Icons.JavaScriptIcon key='6' />,
-     // 		<Icons.ReactJSColorIcon key='7' />,
-     // 		<Icons.Heading5Icon key='8' />,
-     // 	],
-     // 	name: 'COURSE',
-     // 	title: 'Front-end Development',
-     // 	info: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
-     //     develop engaging user-focused web applications.`,
-     // 	link: 'frontend-development',
-     // },
+     {
+          image: "/images/frontenddev.jpg",
+          icon: [
+               <Icons.NextJSIcon key="5" />,
+               <Icons.JavaScriptIcon key="6" />,
+               <Icons.ReactJSColorIcon key="7" />,
+               <Icons.Heading5Icon key="8" />,
+          ],
+          name: "COURSE",
+          title: "Front-end Development",
+          info: `Dive into front-end development using HTML, CSS, and JavaScript. Learn to craft web pages and use React to
+         develop engaging user-focused web applications.`,
+          link: "frontend-development",
+     },
 ];
 export const OTHER_COURSE_PREVIEW: {
      icon?: React.ReactNode;

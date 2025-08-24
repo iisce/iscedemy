@@ -3,18 +3,14 @@ import {
      Button,
      Container,
      Head,
+     Hr,
      Html,
      Img,
-     Hr,
-     Link,
-     Section,
-     Column,
-     Row,
-     Text,
-     Tailwind,
      Preview,
+     Section,
+     Tailwind,
+     Text,
 } from "@react-email/components";
-import React from "react";
 
 interface EmailVerificationProps {
      email: string;
@@ -82,8 +78,8 @@ const EmailVerification = ({ email, token }: EmailVerificationProps) => {
                                              </p>
                                              <p>
                                                   You are recieving this mail
-                                                  because you opted in via our
-                                                  website.
+                                                  because tried creating account
+                                                  via our website.
                                              </p>
                                              <p>
                                                   Mailing Address: 1st Floor,
@@ -106,7 +102,7 @@ const EmailVerification = ({ email, token }: EmailVerificationProps) => {
                                              />
                                         </Button>
                                         <Button
-                                             href="https://www.linkedin.com/in/palm-techniq-03839b313/"
+                                             href="https://www.linkedin.com/company/palmtechniq/"
                                              className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img
