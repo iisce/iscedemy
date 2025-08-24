@@ -97,7 +97,7 @@ const RegCrashCourse = ({
                                              />
                                         </Button>
                                         <Button
-                                             href="https://www.linkedin.com/in/palm-techniq-03839b313/"
+                                             href="https://www.linkedin.com/company/palmtechniq/"
                                              className="m-[5px] rounded-full bg-green-600 px-[10px] py-[8px]"
                                         >
                                              <Img

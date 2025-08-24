@@ -8,6 +8,8 @@ import {
      LucideMail,
      LucideMapPin,
      LucidePhone,
+     LucideTwitter,
+     LucideX,
      LucideYoutube,
 } from "lucide-react";
 import Link from "next/link";
@@ -167,16 +169,16 @@ export default function Footer() {
                     </div>
                     <div className="space-y-2 pb-2 pt-10">
                          <div className="flex items-center justify-center gap-4 py-2">
-                              {/* <Link href='https://www.twitter.com/'>
-						<LucideTwitter />
-					</Link> */}
                               <Link href="https://www.facebook.com/profile.php?id=61560523394595">
                                    <LucideFacebook />
                               </Link>
                               <Link href="https://www.instagram.com/palmtechniq/">
                                    <LucideInstagram />
                               </Link>
-                              <Link href="https://www.linkedin.com/">
+                              <Link href="https://x.com/palmtechniq/">
+                                   <LucideTwitter />
+                              </Link>
+                              <Link href="https://www.linkedin.com/company/palmtechniq/">
                                    <LucideLinkedin />
                               </Link>
                               <Link href="https://www.youtube.com/@isceapp">
@@ -186,7 +188,7 @@ export default function Footer() {
                          <div className="grid items-center justify-center text-center">
                               {`Powered by ISCE`}
                               <br />
-                              {`2024 PalmTechnIQ. All Rights Reserved.`}
+                              {`2025 PalmTechnIQ. All Rights Reserved.`}
                          </div>
                     </div>
                </MaxWidthWrapper>

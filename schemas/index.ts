@@ -125,25 +125,32 @@ export const TutorRegisterSchema = z.object({
           message: "Email is required",
      }),
 
-     course: z.string({
-          required_error: "Please select a course!",
-     }),
+     course: z
+          .string({
+               required_error: "Please select a course!",
+               message: "Please select/enter at least one course!",
+          })
+          .min(1, "Please select/enter at least one course!"),
 
      phone: z
           .string({
                required_error: "Phone number is required",
           })
-          .max(11, "Rating cannot exceed 11"),
+          .min(10, "Phone number is required")
+          .max(11, "Phone number cannot exceed 11"),
 
-     uploadcv: z.string({
-          required_error: "Upload CV is required",
-     }),
+     uploadcv: z
+          .string({
+               required_error: "Upload CV is required",
+          })
+          .min(1, "Upload CV is required"),
 
      coverletter: z
           .string({
                required_error: "Cover letter is required",
           })
-          .max(200, "Rating cannot exceed 200"),
+          .min(1, "Cover letter is required")
+          .max(200, "Cover letter cannot exceed 200"),
 });
 
 export const PurchaseCourseSchema = z.object({

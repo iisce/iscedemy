@@ -1,34 +1,33 @@
-import Pagination from '@/components/shared/pagination';
-import { Metadata } from 'next';
+import Pagination from "@/components/shared/pagination";
+import { Metadata } from "next";
 import BlogCard from "../../../components/pages/blog/blog-card";
 import { IPost } from "../../../lib/types";
 import { client } from "../../../sanity/lib/client";
-import Image from 'next/image';
-
+import Image from "next/image";
 
 export const metadata: Metadata = {
-	title:{
-		absolute:  'Blog - PalmTechnIQ',
-	},
-	description: 'Stay in the loop with the latest happenings in tech!',
-	metadataBase: new URL('https://www.palmtechniq.com/blog'),
-	alternates:{
-	  canonical: '/blog',
-	  languages: {
-		'en-US':'/en-US',
-		'de-DE': '/de-DE',
-	  },
-	},
-	openGraph: {
-	  title: {
-		absolute: 'Blog - PalmTechnIQ',
-	  },
-	  description: 'Stay in the loop with the latest happenings in tech!',
-	  url: 'https://www.palmtechniq.com/blog',
-	  siteName: 'PalmTechnIQ',
-	  images: '/jopwe.jpg'
-	}
-}
+     title: {
+          absolute: "Blog - PalmTechnIQ",
+     },
+     description: "Stay in the loop with the latest happenings in tech!",
+     metadataBase: new URL("https://www.palmtechniq.com/blog"),
+     alternates: {
+          canonical: "/blog",
+          languages: {
+               "en-US": "/en-US",
+               "de-DE": "/de-DE",
+          },
+     },
+     openGraph: {
+          title: {
+               absolute: "Blog - PalmTechnIQ",
+          },
+          description: "Stay in the loop with the latest happenings in tech!",
+          url: "https://www.palmtechniq.com/blog",
+          siteName: "PalmTechnIQ",
+          images: "/jopwe.jpg",
+     },
+};
 
 // Function to fetch a specific post by slug
 async function getPost() {
@@ -55,23 +54,20 @@ async function getPost() {
      return data;
 }
 
-
-
 // Define revalidate period
 export const revalidate = 60;
 
-interface BlogPageProps{
-     searchParams: {page?: string}
+interface BlogPageProps {
+     searchParams: { page?: string };
 }
-export default async function Blog({searchParams}: BlogPageProps) {
+export default async function Blog({ searchParams }: BlogPageProps) {
      // Fetch all posts or adjust if needed
      const posts: IPost[] = await getPost();
      const page = parseInt(searchParams.page || "1", 6);
      const blogPerPage = 6;
-     const totalPages = Math.ceil(posts.length / blogPerPage )
-     const startIndex = (page -1) * blogPerPage;
+     const totalPages = Math.ceil(posts.length / blogPerPage);
+     const startIndex = (page - 1) * blogPerPage;
      const paginatedPosts = posts.slice(startIndex, startIndex + blogPerPage);
-
 
      return (
           <div className="mx-auto max-w-5xl p-[20px]">
@@ -102,11 +98,9 @@ export default async function Blog({searchParams}: BlogPageProps) {
                     <Pagination
                          page={page}
                          totalPages={totalPages}
-                         baseUrl='/blog'
+                         baseUrl="/blog"
                     />
                )}
           </div>
      );
 }
-
-
