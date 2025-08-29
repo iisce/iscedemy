@@ -33,7 +33,7 @@ export async function initiatePayment(
                if (!event) {
                     return { error: "No event with that ID found" };
                }
-               basePrice = event.price * 100; // 5,000 Naira in kobo
+               basePrice = 10000 * 100; // 5,000 Naira in kobo
           } else {
                course = await db.course.findUnique({ where: { id: courseId } });
                if (!course) {

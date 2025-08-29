@@ -1,10 +1,10 @@
-'use server';
+"use server";
 
-import { signOut, signIn } from '@/auth';
+import { signOut, signIn } from "@/auth";
 
 export const logout = async () => {
-	await signOut();
+     await signOut();
 };
 export const login = async () => {
-	await signIn();
+     await signIn();
 };
