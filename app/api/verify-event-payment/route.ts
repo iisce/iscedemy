@@ -1,8 +1,8 @@
 // app/api/verify-payment/route.ts
 
-import { db } from "@/lib/db";
 import { verifyTransaction } from "@/actions/paystack";
-import { studentNotificationMail } from "@/lib/mail";
+import { db } from "@/lib/db";
+import { eventNotificationEmail } from "@/lib/mail";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -90,11 +90,13 @@ export async function POST(request: Request) {
                     email: transaction.User.email,
                });
 
-               await studentNotificationMail(
+               await eventNotificationEmail(
                     registrant.fullName,
                     registrant.email,
-                    "support@palmtechniq.com",
-                    "AI Awareness Program 2025",
+                    "PalmTechnIQ Launchpad - AI Na The Future Program 2025",
+                    "August 30, 2025",
+                    "22rd Chicken Republic Building (FESTAC Tower), AMG Workspace, 1st floor, FESTAC Town, Lagos, Nigeria",
+                    registrant.accessCode!,
                );
                console.log("Sent confirmation email to:", registrant.email);
           } else {

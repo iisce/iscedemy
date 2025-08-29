@@ -1,5 +1,6 @@
 "use client";
 
+import { initiatePayment } from "@/actions/initialize-payment";
 import MaxWidthWrapper from "@/components/layout/max-width-wrapper";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,7 +40,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TargetIcon } from "@radix-ui/react-icons";
-import { IconMail, IconTarget } from "@tabler/icons-react";
+import { IconAlertCircle, IconMail, IconTarget } from "@tabler/icons-react";
 import { Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -257,7 +258,7 @@ export default function AwarenessProgram() {
                     // Send registration confirmation email
 
                     const emailResponse = await fetch(
-                         "/api/send-registration-email",
+                         "/api/verify-event-payment",
                          {
                               method: "POST",
                               headers: { "Content-Type": "application/json" },
@@ -284,25 +285,25 @@ export default function AwarenessProgram() {
                          }
                     }
 
-                    // const paymentResponse = await initiatePayment({
-                    //      courseId: "awareness-program-2025",
-                    //      type: "event",
-                    //      userId: userData.id, // Use actual user ID
-                    //      includeCertificate: false,
-                    // });
-                    // console.log(
-                    //      "Payment initiation response:",
-                    //      paymentResponse,
-                    // );
-                    // if (paymentResponse.error) {
-                    //      throw new Error(paymentResponse.error);
-                    // }
+                    const paymentResponse = await initiatePayment({
+                         courseId: "awareness-program-2025",
+                         type: "event",
+                         userId: userData.id, // Use actual user ID
+                         includeCertificate: false,
+                    });
+                    console.log(
+                         "Payment initiation response:",
+                         paymentResponse,
+                    );
+                    if (paymentResponse.error) {
+                         throw new Error(paymentResponse.error);
+                    }
 
-                    setSubmissionStatus("CONFIRMED");
+                    setSubmissionStatus("PENDING");
                     setIsSubmitted(true);
                     setPaymentEmail(values.email);
-                    // setAuthorizationUrl(paymentResponse.authorization_url);
-                    // setTransactionId(paymentResponse.transactionId!);
+                    setAuthorizationUrl(paymentResponse.authorization_url);
+                    setTransactionId(paymentResponse.transactionId!);
                     setRecentRegistrants((prev) => [
                          `${values.fullName} (${values.industry || "Tech"}) just registered`,
                          ...prev.slice(0, 3),
@@ -347,7 +348,7 @@ export default function AwarenessProgram() {
                <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-black to-green-50">
                     <MaxWidthWrapper>
                          <Card className="mx-auto w-full max-w-md border-0 bg-white/80 shadow-2xl backdrop-blur-sm">
-                              {/* <CardContent className="p-8 text-center">
+                              <CardContent className="p-8 text-center">
                                    <div
                                         className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full ${
                                              submissionStatus === "PENDING"
@@ -376,7 +377,7 @@ export default function AwarenessProgram() {
                                    </h2>
                                    <p className="leading-relaxed text-primary/80">
                                         {submissionStatus === "PENDING"
-                                             ? "Complete the 5,000 Naira payment to secure your spot."
+                                             ? "Complete the 10,000 Naira payment to secure your spot."
                                              : submissionStatus === "WAITLISTED"
                                                ? "We'll contact you if a spot opens. Check your email for exclusive AI resources."
                                                : "You've secured your spot! Keep your eyes on your email. Event details coming soon."}
@@ -420,9 +421,9 @@ export default function AwarenessProgram() {
                                              {error}
                                         </p>
                                    )}
-                              </CardContent> */}
+                              </CardContent>
 
-                              <CardContent className="p-8 text-center">
+                              {/* <CardContent className="p-8 text-center">
                                    <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                                         <CheckCircleIcon className="h-8 w-8 text-green-600" />
                                    </div>
@@ -460,7 +461,7 @@ export default function AwarenessProgram() {
                                              {error}
                                         </p>
                                    )}
-                              </CardContent>
+                              </CardContent> */}
                          </Card>
                     </MaxWidthWrapper>
                </div>
