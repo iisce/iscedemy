@@ -4,6 +4,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { IconLoader2 } from "@tabler/icons-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function VerifyEventPayment() {
      const router = useRouter();
@@ -13,6 +16,9 @@ export default function VerifyEventPayment() {
      const [status, setStatus] = useState<"loading" | "success" | "error">(
           "loading",
      );
+
+     const [error, setError] = useState<string | null>(null);
+
      const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
      useEffect(() => {
@@ -21,7 +27,6 @@ export default function VerifyEventPayment() {
                setErrorMessage("Invalid payment verification link");
                setStatus("error");
                toast.error("Invalid payment verification link");
-               setTimeout(() => router.push("/awareness-program"), 3000);
                return;
           }
 
@@ -52,10 +57,6 @@ export default function VerifyEventPayment() {
                          setStatus("success");
                          toast.success(
                               "Payment verified! Your spot is secured.",
-                         );
-                         setTimeout(
-                              () => router.push("/awareness-program"),
-                              2000,
                          );
                     }
                } catch (err) {
@@ -97,18 +98,7 @@ export default function VerifyEventPayment() {
                               </p>
                          </div>
                     )}
-                    {status === "success" && (
-                         <div className="flex flex-col items-center">
-                              <CheckCircleIcon className="h-12 w-12 text-green-500" />
-                              <h2 className="mt-4 text-xl font-semibold text-gray-800">
-                                   Payment Verified!
-                              </h2>
-                              <p className="mt-2 text-gray-600">
-                                   Your spot for the AI Awareness Program 2025
-                                   is secured. Redirecting...
-                              </p>
-                         </div>
-                    )}
+
                     {status === "error" && (
                          <div className="flex flex-col items-center">
                               <XCircleIcon className="h-12 w-12 text-red-500" />
@@ -127,6 +117,45 @@ export default function VerifyEventPayment() {
                                    Return to Event Page
                               </button>
                          </div>
+                    )}
+
+                    {status === "success" && (
+                         <Card className="mx-auto w-full border-0 bg-white/80 shadow-2xl backdrop-blur-sm">
+                              <CardContent className="p-8 text-center">
+                                   <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+                                        <CheckCircleIcon className="h-8 w-8 text-green-600" />
+                                   </div>
+                                   <h2 className="mb-4 text-2xl font-bold text-primary">
+                                        Registration Confirmed!
+                                   </h2>
+                                   <p className="leading-relaxed text-primary/80">
+                                        {`Congratulations! You’ve secured your free spot for the AI Awareness Program.
+                                      Check your email for event details and exclusive resources. We’re excited to
+                                      see you on August 30, 2025!`}
+                                   </p>
+                                   <Button
+                                        asChild
+                                        className="mt-6 bg-gradient-to-r from-green-600 to-black hover:from-white hover:to-green-700"
+                                   >
+                                        <Link href="https://chat.whatsapp.com/LabSnHSaCEmCLhWxXXar3O">
+                                             Join Others Already On The Event
+                                        </Link>
+                                   </Button>
+                                   <Button
+                                        onClick={() =>
+                                             router.push("/awareness-program")
+                                        }
+                                        className="mt-6 bg-gradient-to-r from-green-600 to-black hover:from-white hover:to-green-700"
+                                   >
+                                        Register Another Person
+                                   </Button>
+                                   {error && (
+                                        <p className="mt-4 text-red-500">
+                                             {error}
+                                        </p>
+                                   )}
+                              </CardContent>
+                         </Card>
                     )}
                </div>
           </div>
