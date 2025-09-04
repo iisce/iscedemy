@@ -270,12 +270,18 @@ export const CreateCourseSchema = z.object({
      category: z.string().min(1, "Category is required"),
      videoUrl: z
           .string()
-          .min(1, "Video URL is required")
-          .refine((url) => !!extractVideoId(url), {
-               message: "Please provide a valid YouTube video URL",
-               path: ["videoUrl"],
-          })
-          .transform((url) => extractVideoId(url) || url),
+          .optional()
+          .refine(
+               (url) => {
+                    if (!url) return true;
+                    return !!extractVideoId(url);
+               },
+               {
+                    message: "Please provide a valid YouTube video URL",
+                    path: ["videoUrl"],
+               },
+          )
+          .transform((url) => (url ? extractVideoId(url) || url : url)),
      noOfClass: z.string().min(1, "Number of classes is required"),
      classDays: z.string().min(1, "Class days are required"),
      certificate: z.boolean(),
