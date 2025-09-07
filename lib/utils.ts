@@ -178,3 +178,8 @@ export const getNameFromEmail = (email: string): string => {
 
      return capitalizedName.trim();
 };
+
+export function generateRandomCertCode(year: number) {
+     const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+     return `PTV-${year}-${random}`;
+}

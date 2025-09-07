@@ -42,8 +42,8 @@ export default function NavBar({ user }: { user?: User }) {
                                    className="hidden h-12 rounded-full bg-background text-primary hover:bg-none hover:text-primary lg:flex"
                                    asChild
                               >
-                                   <Link href="/awareness-program">
-                                        {`Get Events Access`}
+                                   <Link href="https://drive.google.com/drive/folders/1u5Zh7uXtRH3Z5jybwIPZpwWLWWVChpxl?usp=sharing">
+                                        {`Event Highlights`}
                                    </Link>
                               </Button>
                               <Button
