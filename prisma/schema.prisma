@@ -328,6 +328,16 @@ model Certificate {
   User           User            @relation(fields: [userId], references: [id])
 }
 
+model VolunteerCertificate {
+  id             String   @id @default(cuid())
+  fullName       String
+  certCode       String   @unique // e.g. "PTV-2025-001"
+  certificateUrl String   @default("")
+  issuedDate     DateTime @default(now())
+  role           String? // e.g. "Community Volunteer", "Speaker"
+  remarks        String?
+}
+
 model TutorApplication {
   id          String  @id @default(cuid())
   fullname    String
