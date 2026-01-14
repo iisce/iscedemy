@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
-import { neonConfig } from "@neondatabase/serverless";
+import { Pool, neonConfig } from "@neondatabase/serverless";
 
 neonConfig.webSocketConstructor = globalThis.WebSocket;
 
@@ -14,7 +14,9 @@ function createPrismaClient() {
           throw new Error("DATABASE_URL environment variable is not set");
      }
 
-     const adapter = new PrismaNeon({ connectionString });
+     // Create Pool with connectionString - using type assertion for compatibility
+     const pool = new Pool({ connectionString } as any);
+     const adapter = new PrismaNeon(pool as any);
 
      return new PrismaClient({
           adapter,
