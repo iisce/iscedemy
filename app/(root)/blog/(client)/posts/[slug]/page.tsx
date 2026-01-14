@@ -7,6 +7,7 @@ import { FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { PiInstagramLogoFill } from "react-icons/pi";
 import { IPost, ISingleBlog } from "../../../../../../lib/types";
+import { generateBlogMetadata } from "../../../../../../lib/metadata";
 import { client } from "../../../../../../sanity/lib/client";
 import { urlFor } from "../../../../../../sanity/lib/image";
 
@@ -73,49 +74,25 @@ export async function generateMetadata({
           blogPost.tag?.map((tag) => tag.name.trim().toLowerCase()) || [];
      const keywords = ["PalmTechnIQ", ...tagKeywords.slice(0, 9)];
 
-     return {
-          title: blogPost.title || "PalmTechnIQ Blog Post",
-          description:
-               blogPost.excerpt ||
+     const metadata = generateBlogMetadata(
+          blogPost.title || "PalmTechnIQ Blog Post",
+          blogPost.excerpt ||
                "Stay updated with the latest tech news and insights.",
-          metadataBase: new URL(`https://www.palmtechniq.com`),
-          alternates: {
-               canonical: `/blog/${slug}`,
-               languages: {
-                    "en-US": "/en-US",
-                    "de-DE": "/de-DE",
-               },
-          },
-          openGraph: {
-               title: blogPost.title || "PalmTechnIQ Blog Post",
-               description:
-                    blogPost.excerpt ||
-                    "Stay updated with the latest tech news and insights.",
-               url: `https://www.palmtechniq.com/blog/${slug}`,
-               siteName: "PalmTechnIQ",
-               type: "article",
-               images: [
-                    {
-                         url: imageUrl,
-                         width: 1200,
-                         height: 630,
-                         alt: blogPost.title || "PalmTechnIQ Blog Post",
-                         type: "image/jpeg",
-                    },
-               ],
-          },
+          imageUrl,
+          slug,
+     );
 
-          twitter: {
-               card: "summary_large_image",
-               title: blogPost.title,
-               description: blogPost.excerpt,
-               images: [imageUrl],
-               creator: "@palmtechniq",
-          },
+     // Add additional metadata specific to blog posts
+     return {
+          ...metadata,
           keywords,
           authors: [
                { name: "PalmTechnIQ", url: "https://www.palmtechniq.com" },
           ],
+          twitter: {
+               ...metadata.twitter,
+               creator: "@palmtechniq",
+          },
           robots: {
                index: true,
                follow: true,

@@ -1,40 +1,30 @@
 import FormError from '@/components/form-error';
 import SingleCourse from '@/components/pages/courses/singleCourse/singleCourse';
 import { getCourseBySlug } from '@/data/course';
-import { Metadata } from 'next';
+import { generateCourseMetadata } from '@/lib/metadata';
 import { notFound } from 'next/navigation';
 
 
 /**
- * This function is used to dynamically generate metadata for each blog post
+ * This function is used to dynamically generate metadata for each course page
  */
 export async function generateMetadata({
 	params,
 }: {
 	params: { courseId: string };
-}): Promise<Metadata> {
+}) {
 	const courseDetails = await getCourseBySlug(params.courseId);
 
 	if (!courseDetails) {
 		notFound();
 	}
 
-	return {
-		title: courseDetails.title.split('-').join(' ') || "PalmTechnIQ Course",
-		description: courseDetails.description,
-		openGraph: {
-			title: courseDetails.title.split('-').join(' ') || "PalmTechnIQ Course",
-			description: courseDetails.description,
-			url: `https://www.palmtechniq.com/courses/${params.courseId}`,
-			siteName: 'PalmTechnIQ',
-			images: [
-				{
-					url: courseDetails.description || '/innovation.jpg',
-					alt: courseDetails.title || "PalmTechnIQ",
-				},
-			],
-		},
-	};
+	return generateCourseMetadata(
+		courseDetails.title || "PalmTechnIQ Course",
+		courseDetails.description || courseDetails.overView || "Learn cutting-edge tech skills with PalmTechnIQ",
+		courseDetails.image || '/innovation.jpg',
+		params.courseId,
+	);
 }
 
 export default async function CoursePage({
