@@ -25,7 +25,7 @@ export default function Footer() {
      const [error, setError] = useState<string | undefined>(undefined);
      const [success, setSuccess] = useState<string | undefined>(undefined);
      const [isPending, startTransition] = useTransition();
-
+     const currentYear = new Date().getFullYear();
      const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           setError("");
@@ -186,9 +186,9 @@ export default function Footer() {
                               </Link>
                          </div>
                          <div className="grid items-center justify-center text-center">
-                              {`Powered by ISCE`}
+                              {`PalmTechnIQ by ISCE Digital Concept`}
                               <br />
-                              {`2025 PalmTechnIQ. All Rights Reserved.`}
+                              {` © ${currentYear} PalmTechnIQ. All Rights Reserved.`}
                          </div>
                     </div>
                </MaxWidthWrapper>

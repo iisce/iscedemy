@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import { NextResponse } from "next/server";
 import authConfig from "./auth.config";
 import {
      DEFAULT_LOGIN_REDIRECT,
@@ -41,17 +42,23 @@ export default auth((req) => {
 
      // If the route is related to API authentication, allow it to proceed
      if (isApiAuthRoutes) {
-          return;
+          const response = NextResponse.next();
+          addSecurityHeaders(response);
+          return response;
      }
 
      // If the user is already logged in and tries to access an auth route, redirect to the default page
      if (isAuthRoute) {
           if (isLoggedIn) {
-               return Response.redirect(
+               const redirectResponse = NextResponse.redirect(
                     new URL(DEFAULT_LOGIN_REDIRECT, nextUrl),
                );
+               addSecurityHeaders(redirectResponse);
+               return redirectResponse;
           }
-          return;
+          const response = NextResponse.next();
+          addSecurityHeaders(response);
+          return response;
      }
 
      // If the route is an admin route and the user is logged in
@@ -81,14 +88,29 @@ export default auth((req) => {
 
           // Encode the callback URL and redirect to the login page with the callback URL as a query parameter
           const encodedcallbackUrl = encodeURIComponent(callbackUrl);
-          return Response.redirect(
+          const redirectResponse = NextResponse.redirect(
                new URL(`/login?callbackUrl=${encodedcallbackUrl}`, nextUrl),
           );
+          addSecurityHeaders(redirectResponse);
+          return redirectResponse;
      }
 
      // Allow the request to proceed if no conditions above were met
-     return;
+     const response = NextResponse.next();
+     addSecurityHeaders(response);
+     return response;
 });
+
+// Helper function to add security headers to responses
+function addSecurityHeaders(response: NextResponse) {
+     response.headers.set('X-DNS-Prefetch-Control', 'on');
+     response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+     response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+     response.headers.set('X-Content-Type-Options', 'nosniff');
+     response.headers.set('X-XSS-Protection', '1; mode=block');
+     response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+     response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
+}
 
 // Configuration for the middleware to match all routes except static files and Next.js internals
 export const config = {

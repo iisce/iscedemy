@@ -893,6 +893,14 @@ async function seed() {
      //           type: "CertificateOfCompletion",
      //           certificateUrl: "",
      //      },
+     //      data: {
+     //           userId: "cmecvjrro0001k3045hnv9aue",
+     //           courseId: "clxgfalfb00006prq0wkbkzzx",
+     //           studentName: "Emmanuella Obanya",
+     //           platform: "PalmTechnIQ",
+     //           type: "CertificateOfCompletion",
+     //           certificateUrl: "",
+     //      },
      // });
      // console.log(`${certificate.count} Certificate Updated Successfully!`);
      //  const event = await prisma.event.upsert({

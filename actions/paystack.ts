@@ -1,7 +1,5 @@
 "use server";
 
-import { db } from "@/lib/db";
-
 export const createTransaction = async (opts: { payload: any }) => {
      try {
           const response = await fetch(
